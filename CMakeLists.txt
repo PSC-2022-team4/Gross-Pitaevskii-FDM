@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
-project(CQOrbit)
+project(GrossPitaevskiiFDM)
 include_directories(.)
-include_directories(OrbitFinder_Files)
+include_directories(./src)
+
 
 set(CMAKE_CXX_FLAGS "-std=c++17")
 
 add_executable(GrossPitaevskiiFDM
-        src/main.cpp
+        main.cpp
         )
 
