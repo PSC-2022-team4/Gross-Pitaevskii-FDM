@@ -15,5 +15,3 @@ add_executable(GrossPitaevskiiFDM
 find_package(MPI)
 include_directories(SYSTEM ${MPI_INCLUDE_PATH})
 target_link_libraries(GrossPitaevskiiFDM ${MPI_C_LIBRARIES})
-
-find_package(CUDAToolkit REQUIRED)
