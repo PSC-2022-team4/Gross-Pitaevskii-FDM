@@ -1,0 +1,3 @@
+/home/sonic/IQSL_Projects/KimMY/project/Gross-Pitaevskii-FDM/build/CMakeFiles/rebuild_cache.dir
+/home/sonic/IQSL_Projects/KimMY/project/Gross-Pitaevskii-FDM/build/CMakeFiles/edit_cache.dir
+/home/sonic/IQSL_Projects/KimMY/project/Gross-Pitaevskii-FDM/build/CMakeFiles/GrossPitaevskiiFDM.dir
