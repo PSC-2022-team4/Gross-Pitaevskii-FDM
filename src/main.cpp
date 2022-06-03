@@ -1,6 +1,9 @@
 #include <iostream>
-#include <mpi.h>
+#include "test/test_domain/test_base_domain.cpp"
+
 int main(int argc, char **argv)
 {
-    std::cout << "Hello, world!" << std::endl;
+    if(test_base_domain_contructor()){
+        std::cout << "Test base domain constructor succeeded!" << std::endl;
+    }
 }
