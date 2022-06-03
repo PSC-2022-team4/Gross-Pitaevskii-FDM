@@ -33,10 +33,14 @@ public:
     double get_t_end();
     double get_dt();
     int get_num_times();
-    
+    int get_num_grid_1();
+    int get_num_grid_2();
+    std::vector<BaseSpatialGrid> get_domain_data();
+    std::vector<double> get_times();
+
 protected:
     std::vector<BaseSpatialGrid> domain_data;
     std::vector<double> times;
     double t_start, t_end, dt;
-    int num_times;
+    int num_times, num_grid_1, num_grid_2;
 };

@@ -10,6 +10,8 @@ set(CMAKE_CXX_FLAGS "-std=c++17")
 
 add_executable(GrossPitaevskiiFDM
         src/main.cpp
+        src/initial_condition/initial_condition.h
+        src/initial_condition/initial_condition.cpp
         )
 
 find_package(MPI)

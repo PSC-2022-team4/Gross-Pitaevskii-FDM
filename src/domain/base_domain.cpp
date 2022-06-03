@@ -33,6 +33,8 @@ BaseDomain::BaseDomain(
     this->dt = (t_end - t_start) / (num_times - 1);
     this->domain_data = std::vector<BaseSpatialGrid>(num_times);
     this->times = std::vector<double>(num_times);
+    this->num_grid_1 = num_grid_1;
+    this->num_grid_2 = num_grid_2;
     for (auto i = 0; i < num_times; ++i)
     {
         this->domain_data[i] = BaseSpatialGrid(num_grid_1, num_grid_2);
@@ -52,4 +54,18 @@ double BaseDomain::get_dt(){
 int BaseDomain::get_num_times()
 {
     return this->num_times;
+}
+
+int BaseDomain::get_num_grid_1(){
+    return this->num_grid_1;
+}
+int BaseDomain::get_num_grid_2(){
+    return this->num_grid_2;
+}
+
+std::vector<BaseSpatialGrid> BaseDomain::get_domain_data(){
+    return this->domain_data;
+}
+std::vector<double> BaseDomain::get_times(){
+    return this->times;
 }
