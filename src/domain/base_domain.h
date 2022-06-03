@@ -1,3 +1,4 @@
+#pragma once
 #include <complex>
 #include <vector>
 
@@ -17,7 +18,7 @@ class BaseSpatialGrid
         BaseSpatialGrid(int num_grid_1, int num_grid_2);
         GridPoint at(int index_1, int index_2);
 
-    private:
+    protected:
         std::vector<std::vector<GridPoint>> spatial_data;
         double infinitesimal_distance_1, infinitesimal_distance_2;
         int num_grid_1, num_grid_2;
@@ -33,7 +34,7 @@ public:
     double get_dt();
     int get_num_times();
     
-private:
+protected:
     std::vector<BaseSpatialGrid> domain_data;
     std::vector<double> times;
     double t_start, t_end, dt;

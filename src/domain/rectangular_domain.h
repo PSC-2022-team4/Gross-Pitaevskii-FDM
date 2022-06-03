@@ -1,3 +1,4 @@
+#pragma once
 #include "base_domain.h"
 
 class RectangularSpatialGrid: private BaseSpatialGrid
