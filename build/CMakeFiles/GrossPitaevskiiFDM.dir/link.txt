@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++17   CMakeFiles/GrossPitaevskiiFDM.dir/src/main.cpp.o  -o GrossPitaevskiiFDM 
