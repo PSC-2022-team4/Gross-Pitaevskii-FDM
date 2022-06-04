@@ -205,7 +205,9 @@ void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, 
 void CrankNicolsonRectangularSolver::solve(double tolerance, int max_iter){
     for (auto k = 1; k < this->domain->get_num_times(); ++k)
     {
+        std::cout << "time step " << k << std::endl;
         this->initialize_guess_with_forward_euler(k);
         this->solve_single_time(k, tolerance, max_iter);
     }
+    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
 }

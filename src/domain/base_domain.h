@@ -19,7 +19,8 @@ class BaseSpatialGrid
         GridPoint * at(int index_1, int index_2);
         double get_infinitesimal_distance1();
         double get_infinitesimal_distance2();
-        
+        void normalize();
+
     protected:
         std::vector<std::vector<GridPoint>> spatial_data;
         double infinitesimal_distance_1, infinitesimal_distance_2;
@@ -44,6 +45,7 @@ public:
     double get_infinitesimal_distance1();
     double get_infinitesimal_distance2();
     std::string generate_txt_file(std::string info);
+    void normalize(int time_index);
 
 protected:
     std::vector<BaseSpatialGrid> domain_data;

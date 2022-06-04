@@ -9,7 +9,7 @@ bool test_forward_euler_rectangular_solver(){
     bool all_passed = true;
     std::function<double(double, double)> potential;
     double g; 
-    RectangularDomain* domain = (new RectangularDomain(21, 21, 0, 10, 11, -10, 10, -10, 10));
+    RectangularDomain* domain = (new RectangularDomain(21, 21, 0, 10, 1001, -10, 10, -10, 10));
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
 

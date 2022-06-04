@@ -1,6 +1,6 @@
 #include "forward_euler_rectangular_solver.h"
 #include <iostream>
-
+#include <string>
 ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
     std::function<double(double, double)> potential_, 
     double g_, 
@@ -94,7 +94,9 @@ void ForwardEulerRectangularSolver::solve(){
     int time_length = this->domain->get_num_times();
     for(int k=0; k<time_length-1; ++k){
         this->solve_single_time(k);
+        this->domain->normalize(k+1);
     }
+    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
 }
 
 
