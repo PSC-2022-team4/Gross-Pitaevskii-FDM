@@ -19,7 +19,7 @@ bool test_base_serial_solver()
     double g = 1;
     BaseDomain *domain = new BaseDomain(11, 11, 0, 10, 11);
     try{
-        BaseSolver solver = BaseSolver(initial_condition, potential, g);
+        BaseSolver solver = BaseSolver(potential, g);
     }
     catch (int expn){
         all_passed = false;
