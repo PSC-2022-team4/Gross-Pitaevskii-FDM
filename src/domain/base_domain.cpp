@@ -6,7 +6,9 @@
 #include <sstream>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <experimental/filesystem>
 
+namespace fs = std::experimental::filesystem;
 
 GridPoint::GridPoint(double x_, double y_, std::complex<double> wave_function_) : x(x_), y(y_), wave_function(wave_function_){}
 
@@ -128,11 +130,16 @@ std::string BaseDomain::generate_directory_name(std::string info){
     auto str = oss.str();
     std::cout<<str<<std::endl;
     std::string directory_name= "./results/"+str+"_"+info;
-    if(mkdir(directory_name.c_str(), 0666)){
-        std::cout<< "Created directory "<<directory_name<<std::endl; 
-    }else{
-        std::cout<<"Creating directory failed"<<std::endl;
-    };
+    fs::create_directory(directory_name.c_str());
+
+    // if (mkdir(directory_name.c_str(), 0666))
+    // {
+    //     std::cout<< "Created directory "<<directory_name<<std::endl;
+    // }
+    // else
+    // {
+    //     std::cout<<"Creating directory failed"<<std::endl;
+    // };
     return directory_name+"/";
 }
 
