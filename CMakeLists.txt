@@ -38,3 +38,5 @@ target_link_libraries(GrossPitaevskiiFDM ${MPI_C_LIBRARIES})
 find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 target_link_libraries(GrossPitaevskiiFDM ${ARMADILLO_LIBRARIES})
+
+target_link_libraries(GrossPitaevskiiFDM stdc++fs)
