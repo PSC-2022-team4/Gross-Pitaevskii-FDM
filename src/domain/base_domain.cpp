@@ -4,8 +4,6 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <experimental/filesystem>
 
 namespace fs = std::experimental::filesystem;
@@ -148,7 +146,7 @@ std::string BaseDomain::generate_directory_name(std::string info){
  *        each txt file contains  |psi|^2 data 
  * @param info To generate directory 
  */
-void BaseDomain::generate_txt_file(std::string info){
+std::string BaseDomain::generate_txt_file(std::string info){
     std::string base_filename = this->generate_directory_name( info);
     std::string filename = "";
     for(int t=0; t<this->num_times; ++t){
@@ -159,6 +157,8 @@ void BaseDomain::generate_txt_file(std::string info){
     std::cout<<this->num_times;
     std::cout<< " text files are generated in \n";
     std::cout<< base_filename<<std::endl;
+
+    return base_filename
 }
 /**
  * @brief write txt file at certain t 

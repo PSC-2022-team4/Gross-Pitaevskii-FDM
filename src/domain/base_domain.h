@@ -43,7 +43,7 @@ public:
     double time_at(int time_index);
     double get_infinitesimal_distance1();
     double get_infinitesimal_distance2();
-    void generate_txt_file(std::string info);
+    std::string generate_txt_file(std::string info);
 
 protected:
     std::vector<BaseSpatialGrid> domain_data;

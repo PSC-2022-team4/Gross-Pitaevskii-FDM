@@ -2,6 +2,10 @@
 #include "src/utils.h"
 #include <iostream>
 
+#include <experimental/filesystem>
+
+namespace fs = std::experimental::filesystem;
+
 
 bool test_grid_point(){
     auto grid_point = GridPoint(0.1, 0.1, std::complex<double>{10., 1.});
@@ -71,27 +75,15 @@ bool test_base_domain_contructor(){
 
 bool test_base_domain_export_file(){
     auto domain = BaseDomain(100, 100, 0., 10., 3);
-    domain.generate_txt_file("test");
+    std::string directory_name = domain.generate_txt_file("test_initialize");
 
     bool all_passed = true;
-    std::string path = "/";
-    // for (const auto & file : std::experimental::filesystem::directory_iterator(path))
-    //     std::cout << file.path() << std::endl;
+    int count = 0;
+    for (const auto & file : fs::directory_iterator(directory_name))
+        count +=1;
 
 
-    if (!is_close(domain.get_t_start(), 0., 1e-12)){
-        all_passed = false;
-    }
-    if (!is_close(domain.get_t_end(), 10., 1e-12))
-    {
-        all_passed = false;
-    }
-    if (domain.get_num_times() != 11)
-    {
-        all_passed = false;
-    }
-    if (!is_close(domain.get_dt(), 1., 1e-12))
-    {
+    if (count != 3){
         all_passed = false;
     }
     return all_passed;
