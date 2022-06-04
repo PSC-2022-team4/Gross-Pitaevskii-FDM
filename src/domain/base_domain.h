@@ -40,6 +40,7 @@ public:
     int get_num_grid_2();
     GridPoint * at(int index_1, int index_2, int time_index);
     void assign_initial_value(int index_1, int index_2, std::complex<double> value);
+    void assign_wave_function(int index_1, int index_2, int time_index, std::complex<double> value);
     double time_at(int time_index);
     double get_infinitesimal_distance1();
     double get_infinitesimal_distance2();
