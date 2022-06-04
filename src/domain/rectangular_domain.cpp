@@ -55,7 +55,7 @@ RectangularDomain::RectangularDomain(){};
  * @param num_grid_2 Number of grids in y axis
  * @param t_start Initial time
  * @param t_end Final time
- * @param num_times iteration number or number of time slice 
+ * @param num_times iteration number or number of time points
  * @param x_start Start point of x axis 
  * @param x_end End point of x axis
  * @param y_start Start point of y axis
