@@ -18,12 +18,16 @@ bool test_forward_euler_rectangular_solver(){
     double g = 1. ; 
     RectangularDomain* domain = new RectangularDomain(21, 21, 0, 10, 11, -10, 10, -10, 10);
     
-    try{
+    try
+    {
         ForwardEulerRectangularSolver solver = ForwardEulerRectangularSolver(initial_condition, potential_func, g, domain);
     }
-    catch (int expn){
+    catch (const std::bad_function_call &e)
+    {
+        std::cout << e.what() << '\n';
         all_passed = false;
     }
+
     if(!is_close((*domain).at(10,10, 0)->x , 0., 1e-12)){
         all_passed = false;
     }

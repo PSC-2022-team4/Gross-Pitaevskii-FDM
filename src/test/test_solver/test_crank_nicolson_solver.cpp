@@ -11,8 +11,7 @@ bool test_crank_nicolson_solver_creation()
     { return std::complex<double>{1 * std::exp(-(x * x + y * y) / (9))}; };
 
     auto initial_condition = InitialCondition(initial_cond_function);
-
-    std::function<double(double, double)> potential = [](double x, double y)
+    auto potential = [](double x, double y)
     {
         return (double)0.5 * (x * x + y * y);
     };
@@ -22,15 +21,17 @@ bool test_crank_nicolson_solver_creation()
 
     try
     {
-        BaseSolver solver = BaseSolver(initial_condition, potential, g, domain);
+        CrankNicolsonRectangularSolver solver = CrankNicolsonRectangularSolver(initial_condition, potential, g, domain);
     }
-    catch (int expn)
+    catch (const std::bad_function_call &e)
     {
+        std::cout << "In Forward Euler Method" << std::endl;
+        std::cout << e.what() << '\n';
         all_passed = false;
     }
 
-    return all_passed;
-}
+        return all_passed;
+    }
 
 bool test_all_crank_nicolson_solver()
 {

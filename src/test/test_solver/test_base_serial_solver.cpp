@@ -8,7 +8,7 @@ bool test_base_serial_solver()
 {
     bool all_passed = true;
     auto initial_cond_function = [](double x, double y)
-    { return std::complex<double>{1 * std::exp(-(x * x + y * y) / (9))}; };
+    { return std::complex<double>{1 * std::exp(-(x * x + y * y) / (9)), 0}; };
 
     auto initial_condition = InitialCondition(initial_cond_function);
 
