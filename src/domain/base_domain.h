@@ -5,7 +5,7 @@
 class GridPoint
 {
     public:
-        GridPoint();
+        GridPoint() = default;
         GridPoint(double x, double y, std::complex<double> wave_function);
         double x, y;
         std::complex<double> wave_function;
@@ -14,13 +14,12 @@ class GridPoint
 class BaseSpatialGrid
 {
     public:
-        BaseSpatialGrid();
+        BaseSpatialGrid() = default;
         BaseSpatialGrid(int num_grid_1, int num_grid_2);
         GridPoint * at(int index_1, int index_2);
         double get_infinitesimal_distance1();
         double get_infinitesimal_distance2();
         
-
     protected:
         std::vector<std::vector<GridPoint>> spatial_data;
         double infinitesimal_distance_1, infinitesimal_distance_2;

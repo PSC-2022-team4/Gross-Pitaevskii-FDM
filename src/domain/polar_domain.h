@@ -3,7 +3,7 @@
 class PolarSpatialGrid : public BaseSpatialGrid
 {
 public:
-    PolarSpatialGrid();
+    PolarSpatialGrid() = default;
     PolarSpatialGrid(int num_grid_1, int num_grid_2, double r_start_, double r_end_);
 
 private:
@@ -13,6 +13,6 @@ private:
 class PolarDomain : public BaseDomain
 {
 public:
-    PolarDomain();
+    PolarDomain() = default;
     PolarDomain(int num_grid_1, int num_grid_2, double t_start, double t_end, int num_times, double r_start, double r_end);
 };
