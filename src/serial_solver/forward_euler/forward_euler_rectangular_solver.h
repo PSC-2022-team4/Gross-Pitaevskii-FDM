@@ -9,7 +9,7 @@ class ForwardEulerRectangularSolver : BaseSolver
 {
 public:
     ForwardEulerRectangularSolver() = default;
-    ForwardEulerRectangularSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, RectangularDomain rectangularDomain);
+    ForwardEulerRectangularSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, RectangularDomain* rectangularDomain);
     void applyInitialCondition();
     void generateRectangularDomain();
     void solve();
@@ -21,5 +21,4 @@ protected:
     std::function<double(double, double)> potential_func;
     double g;
     std::complex<double> temporal_equation(int i, int j, int k);
-
 };
