@@ -1,4 +1,4 @@
-#include "src/serial_solver/crank_nicolson/cn_rect_solver.h"
+#include "src/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
 #include "src/utils.h"
 #include <functional>
 #include <iostream>
@@ -20,7 +20,8 @@ bool test_cn_psolver()
         return (double)0.5 * (x * x + y * y);
     };
     double g = -1;
-    CNRectSolver solver = CNRectSolver(potential, g, domain);
+    CNRectPSolver solver = CNRectPSolver(potential, g, domain);
+
 
     solver.solve(1e-13, 101);
 

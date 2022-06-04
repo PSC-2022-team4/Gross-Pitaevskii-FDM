@@ -8,7 +8,7 @@ bool test_cn_solver_creation()
 {
     bool all_passed = true;
 
-    RectangularDomain *domain = (new RectangularDomain(41, 41, 0, 10, 1001, -5, 5, -5, 5));
+    RectangularDomain *domain = (new RectangularDomain(41, 41, 0, 1, 101, -5, 5, -5, 5));
 
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1 * std::exp(-(x * x + y * y) / (9))}; };

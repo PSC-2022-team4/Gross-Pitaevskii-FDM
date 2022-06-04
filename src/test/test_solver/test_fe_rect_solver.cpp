@@ -9,7 +9,7 @@ bool test_fe_rect_solver(){
     bool all_passed = true;
     std::function<double(double, double)> potential;
     double g;
-    RectangularDomain *domain = (new RectangularDomain(1001, 1001, 0, 10, 1001, -5, 5, -5, 5));
+    RectangularDomain *domain = (new RectangularDomain(1001, 1001, 0, 1, 101, -5, 5, -5, 5));
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
 

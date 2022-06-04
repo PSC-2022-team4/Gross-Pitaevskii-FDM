@@ -211,4 +211,5 @@ void CNRectSolver::solve(double tolerance, int max_iter){
         this->solve_single_time(k, tolerance, max_iter);
     }
     this->domain->generate_txt_file(string_info);
+
 }

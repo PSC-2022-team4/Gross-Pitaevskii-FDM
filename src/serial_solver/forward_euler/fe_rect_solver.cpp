@@ -99,6 +99,7 @@ void FERectSolver::solve(){
         this->domain->normalize(k+1);
     }
     this->domain->generate_txt_file(string_info);
+
 }
 
 
