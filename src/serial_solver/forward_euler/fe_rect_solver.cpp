@@ -1,7 +1,7 @@
-#include "forward_euler_rectangular_solver.h"
+#include "fe_rect_solver.h"
 #include <iostream>
 #include <string>
-ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
+FERectSolver::FERectSolver(
     std::function<double(double, double)> potential_, 
     double g_, 
     RectangularDomain* domain_)
@@ -9,7 +9,7 @@ ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
         this-> domain = domain_;
         this->generate_potential_grid();
 };
-void ForwardEulerRectangularSolver::generate_potential_grid(){
+void FERectSolver::generate_potential_grid(){
     int num_grid_1 = this->domain->get_num_grid_1();
     int num_grid_2 = this->domain->get_num_grid_2();
     double x_start = this->domain->at(0,0,0)->x;
@@ -24,7 +24,7 @@ void ForwardEulerRectangularSolver::generate_potential_grid(){
         }
     }
 };
-double ForwardEulerRectangularSolver::get_potential_value(int i, int j ){
+double FERectSolver::get_potential_value(int i, int j ){
     return this->potential_grid.at(i, j)->wave_function.real();
 }
 /**
@@ -35,7 +35,7 @@ double ForwardEulerRectangularSolver::get_potential_value(int i, int j ){
  * @param k index for time(t)
  * @return std::complex<double> time differential at x, y, t 
  */
-std::complex<double> ForwardEulerRectangularSolver::temporal_equation(int i, int j, int k){
+std::complex<double> FERectSolver::temporal_equation(int i, int j, int k){
     //Use five stencil method 
     auto point_data = this-> domain->at(i, j, k);
 
@@ -80,7 +80,7 @@ std::complex<double> ForwardEulerRectangularSolver::temporal_equation(int i, int
  * 
  * @param k 
  */
-void ForwardEulerRectangularSolver::solve_single_time(int k)
+void FERectSolver::solve_single_time(int k)
 {   int Nx = this->domain->get_num_grid_1();
     int Ny = this->domain->get_num_grid_2();
     double dt = this->domain->get_dt();
@@ -90,13 +90,13 @@ void ForwardEulerRectangularSolver::solve_single_time(int k)
         }
     }
 }
-void ForwardEulerRectangularSolver::solve(){
+void FERectSolver::solve(){
     int time_length = this->domain->get_num_times();
     for(int k=0; k<time_length-1; ++k){
         this->solve_single_time(k);
         this->domain->normalize(k+1);
     }
-    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
+    // this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
 }
 
 
