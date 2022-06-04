@@ -25,6 +25,7 @@ bool test_crank_nicolson_solver_creation()
     }
     catch (const std::bad_function_call &e)
     {
+        std::cout << "In Forward Euler Method" << std::endl;
         std::cout << e.what() << '\n';
         all_passed = false;
     }
