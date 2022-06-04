@@ -69,6 +69,34 @@ bool test_base_domain_contructor(){
     return all_passed;
 }
 
+bool test_base_domain_export_file(){
+    auto domain = BaseDomain(100, 100, 0., 10., 3);
+    domain.generate_txt_file("test");
+
+    bool all_passed = true;
+    std::string path = "/";
+    // for (const auto & file : std::experimental::filesystem::directory_iterator(path))
+    //     std::cout << file.path() << std::endl;
+
+
+    if (!is_close(domain.get_t_start(), 0., 1e-12)){
+        all_passed = false;
+    }
+    if (!is_close(domain.get_t_end(), 10., 1e-12))
+    {
+        all_passed = false;
+    }
+    if (domain.get_num_times() != 11)
+    {
+        all_passed = false;
+    }
+    if (!is_close(domain.get_dt(), 1., 1e-12))
+    {
+        all_passed = false;
+    }
+    return all_passed;
+}
+
 bool test_all_base_domain()
 {
     if (test_grid_point())

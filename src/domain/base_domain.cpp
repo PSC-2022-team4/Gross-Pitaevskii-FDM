@@ -1,5 +1,11 @@
 #include "base_domain.h"
 #include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 
 GridPoint::GridPoint(double x_, double y_, std::complex<double> wave_function_) : x(x_), y(y_), wave_function(wave_function_){}
@@ -106,3 +112,62 @@ void BaseDomain::assign_wave_function(int index_1, int index_2, int time_index, 
 double BaseDomain::time_at(int time_index){
     return this->times[time_index];
 }
+/**
+ * @brief create directory and return directory name with "/"
+ *         directory name : "./results/%d-%m-%Y %H-%M-%S_"+info
+ *         for exmaple, "./results/"
+ * @param info  information about domain type and solver type 
+ * @return std::string directory name with "/"
+ */
+std::string BaseDomain::generate_directory_name(std::string info){
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+
+    std::ostringstream oss;
+    oss << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+    auto str = oss.str();
+    std::cout<<str<<std::endl;
+    std::string directory_name= "./results/"+str+"_"+info;
+    if(mkdir(directory_name.c_str(), 0666)){
+        std::cout<< "Created directory "<<directory_name<<std::endl; 
+    }else{
+        std::cout<<"Creating directory failed"<<std::endl;
+    };
+    return directory_name+"/";
+}
+
+/**
+ * @brief export results of probability(|psi|^2) as txt 
+ *        it generates (num_times) txt files
+ *        each txt file contains  |psi|^2 data 
+ * @param info To generate directory 
+ */
+void BaseDomain::generate_txt_file(std::string info){
+    std::string base_filename = this->generate_directory_name( info);
+    std::string filename = "";
+    for(int t=0; t<this->num_times; ++t){
+        filename = "_"+std::to_string(this->times[t]);
+        filename = base_filename + filename;
+        generate_single_txt_file(& domain_data[t], filename);
+    }
+    std::cout<<this->num_times;
+    std::cout<< " text files are generated in \n";
+    std::cout<< base_filename<<std::endl;
+}
+/**
+ * @brief write txt file at certain t 
+ * 
+ * @param grid grid at t 
+ * @param filename file name to store data 
+ */
+void BaseDomain::generate_single_txt_file(BaseSpatialGrid* grid, std::string filename){
+    std::ofstream outfile(filename+".txt");
+    for(auto i=0; i<num_grid_1-1; ++i){
+        for(auto j=0; j<num_grid_2-1; ++j){
+            double magnitude = std::abs(grid->at(i, j)->wave_function); 
+            outfile<< magnitude*magnitude; 
+            outfile<<" ";
+        }outfile<<std::endl;
+    }
+    outfile.close();
+};

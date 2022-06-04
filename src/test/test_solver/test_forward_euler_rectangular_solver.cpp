@@ -24,8 +24,6 @@ bool test_forward_euler_rectangular_solver(){
     
     ForwardEulerRectangularSolver solver = ForwardEulerRectangularSolver(potential, g, domain);
     
-    //solver.applyInitialCondition();
-
     if(!is_close((*domain).at(10,10, 0)->x , 0., 1e-12)){
         all_passed = false;
     }

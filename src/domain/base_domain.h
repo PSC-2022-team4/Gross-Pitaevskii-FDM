@@ -1,7 +1,7 @@
 #pragma once
 #include <complex>
 #include <vector>
-
+#include <string.h>
 class GridPoint
 {
     public:
@@ -43,10 +43,13 @@ public:
     double time_at(int time_index);
     double get_infinitesimal_distance1();
     double get_infinitesimal_distance2();
+    void generate_txt_file(std::string info);
 
 protected:
     std::vector<BaseSpatialGrid> domain_data;
     std::vector<double> times;
     double t_start, t_end, dt;
     int num_times, num_grid_1, num_grid_2;
+    std::string generate_directory_name(std::string info);
+    void generate_single_txt_file(BaseSpatialGrid* grid, std::string filename);
 };
