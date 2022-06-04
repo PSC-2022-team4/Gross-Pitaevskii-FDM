@@ -17,6 +17,9 @@ class BaseSpatialGrid
         BaseSpatialGrid();
         BaseSpatialGrid(int num_grid_1, int num_grid_2);
         GridPoint * at(int index_1, int index_2);
+        double get_infinitesimal_distance1();
+        double get_infinitesimal_distance2();
+        
 
     protected:
         std::vector<std::vector<GridPoint>> spatial_data;
@@ -38,6 +41,8 @@ public:
     GridPoint * at(int index_1, int index_2, int time_index);
     void assign_initial_value(int index_1, int index_2, std::complex<double> value);
     double time_at(int time_index);
+    double get_infinitesimal_distance1();
+    double get_infinitesimal_distance2();
 
 protected:
     std::vector<BaseSpatialGrid> domain_data;
