@@ -1,4 +1,5 @@
 #include "forward_euler_rectangular_solver.h"
+#include <iostream>
 
 ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
     InitialCondition * initialCondition_, 
@@ -69,14 +70,15 @@ void ForwardEulerRectangularSolver::solve_single_time(int k)
         }
     }
 }
-void ForwardEulerRectangularSolver::applyInitialCondition(){
-    this->initialCondition->assign_to_domain(this->domain);
-}
+// void ForwardEulerRectangularSolver::applyInitialCondition(){
+//     //std::cout<<"?"<<std::endl;
+//     this->initialCondition->assign_to_domain(this->domain);
+//     //std::cout<<"?"<<std::endl;
+// }
 void ForwardEulerRectangularSolver::solve(){
-    this->applyInitialCondition();
     int time_length = this->domain->get_num_times();
     for(int k=0; k<time_length-1; ++k){
-        solve_single_time(k);
+        this->solve_single_time(k);
     }
 }
 
