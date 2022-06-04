@@ -13,6 +13,8 @@ class BaseSolver{
     protected: 
         InitialCondition initialCondition;
         BaseDomain baseDomain; 
+        std::complex<double> temporal_equation(double x, double y, double t);
+        
 
 
 
