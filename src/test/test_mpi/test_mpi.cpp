@@ -30,7 +30,7 @@ bool test_mpi_linking(int rank, int size){
 bool test_mpi_swap_g(int rank, int size){
     bool all_passed = true;
     
-    double g = (double) rank / (double) size; 
+    double g = -(double) rank; 
     std::function<double(double, double)> potential;
     RectangularDomain *domain = (new RectangularDomain(21, 21, 0, 10, 11, -5, 5, -5, 5));
     auto initial_cond_function = [](double x, double y)
