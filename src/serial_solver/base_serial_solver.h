@@ -1,6 +1,7 @@
 #pragma once
 #include <complex>
 #include <vector>
+#include "src/domain/base_domain.h"
 
 class InitialCondition{
     
@@ -8,7 +9,12 @@ class InitialCondition{
 class BaseSolver{
     public: 
         BaseSolver();
-        BaseSolver();
+        BaseSolver(InitialCondition initialCondition);
     protected: 
+        InitialCondition initialCondition;
+        BaseDomain baseDomain; 
+
+
+
         
 };
