@@ -5,12 +5,9 @@ ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
     std::function<double(double, double)> potential_, 
     double g_, 
     RectangularDomain* domain_)
-    :BaseSolver(initialCondition_, potential_, g_), domain(domain_)
-    {
-        
-        //Cast basedomain to rectangularDomain
-        ;
-    };
+    :BaseSolver(initialCondition_, potential_, g_){
+        this-> domain = domain_;
+};
 
 
 /**
