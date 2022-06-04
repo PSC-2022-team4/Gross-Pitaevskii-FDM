@@ -13,18 +13,19 @@ public:
     CrankNicolsonRectangularSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, RectangularDomain rectangularDomain);
     void applyInitialCondition();
     void generateRectangularDomain();
+    void solve_single_time(int k, double tolerance, int max_iter);
+    void solve(double tolerance, int max_iter);
 
 protected:
     InitialCondition initialCondition;
     RectangularDomain * domain;
     std::function<double(double, double)> potential_func;
-    RectangularSpatialGrid * old_guess, *new_guess;
+    RectangularSpatialGrid *guess;
+    ForwardEulerRectangularSolver *forward_euler_solver;
     double g;
     std::complex<double> temporal_equation(int i, int j, int k);
     std::complex<double> temporal_equation_from_guess(int i, int j);
     void initialize_guess_with_forward_euler(int k);
     void update_guess(int i, int j, int k);
-    double calculate_error();
-    void solve_single_time(int k, double tolerance, int max_iter);
-    void solve(double tolerance, int max_iter);
+    double calculate_error(int k);
 };

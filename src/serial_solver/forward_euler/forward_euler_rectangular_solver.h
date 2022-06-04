@@ -12,6 +12,8 @@ public:
     ForwardEulerRectangularSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, RectangularDomain rectangularDomain);
     void applyInitialCondition();
     void generateRectangularDomain();
+    void solve();
+    void solve_single_time(int k);
 
 protected:
     InitialCondition initialCondition;
@@ -19,6 +21,5 @@ protected:
     std::function<double(double, double)> potential_func;
     double g;
     std::complex<double> temporal_equation(int i, int j, int k);
-    void solve();
-    void solve_single_time(int k);
+
 };

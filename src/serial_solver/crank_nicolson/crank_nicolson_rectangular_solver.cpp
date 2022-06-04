@@ -1,5 +1,7 @@
 #include "src/serial_solver/crank_nicolson/crank_nicolson_rectangular_solver.h"
 #include <iostream>
+#include <cmath>
+
 CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
     InitialCondition initialCondition,
     std::function<double(double, double)> potential,
@@ -9,7 +11,9 @@ CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
 {
     // Cast basedomain to rectangularDomain
     (RectangularDomain) * (this->domain);
-    };
+    forward_euler_solver = new ForwardEulerRectangularSolver(this->initialCondition, this->potential_func, this->g, *this->domain);
+    forward_euler_solver->applyInitialCondition();
+};
 
 void CrankNicolsonRectangularSolver::applyInitialCondition()
 {
@@ -77,9 +81,9 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation_from_gues
 {
     auto infinitesimal_distance_1 = this->domain->get_infinitesimal_distance1();
     auto infinitesimal_distance_2 = this->domain->get_infinitesimal_distance2();
-    auto point_data = this->old_guess->at(i, j);
-    auto point_data_left = this->old_guess->at(i - 1, j);
-    auto point_data_right = this->old_guess->at(i + 1, j);
+    auto point_data = this->guess->at(i, j);
+    auto point_data_left = this->guess->at(i - 1, j);
+    auto point_data_right = this->guess->at(i + 1, j);
     if (i == 0)
     {
         point_data_left = new GridPoint(0, 0, std::complex<double>{0.});
@@ -88,8 +92,8 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation_from_gues
     {
         point_data_right = new GridPoint(0, 0, std::complex<double>{0.});
     }
-    auto point_data_up = this->old_guess->at(i, j + 1);
-    auto point_data_down = this->old_guess->at(i, j - 1);
+    auto point_data_up = this->guess->at(i, j + 1);
+    auto point_data_down = this->guess->at(i, j - 1);
     if (j == 0)
     {
         point_data_down = new GridPoint(0, 0, std::complex<double>{0.});
@@ -115,14 +119,34 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation_from_gues
 }
 void CrankNicolsonRectangularSolver::initialize_guess_with_forward_euler(int k)
 {
-    // Update old_guess with Forward Euler result
+    this->forward_euler_solver->solve_single_time(k);
 }
 
 void CrankNicolsonRectangularSolver::update_guess(int i, int j, int k){
-
+    for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
+    {
+        for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
+        {
+            guess->at(i, j)->wave_function = (
+                this->domain->at(i, j, k-1)->wave_function + 
+                std::complex<double>{0, 0.5} * this->domain->get_dt() * (
+                    this->temporal_equation(i, j, k-1)
+                    + this->temporal_equation_from_guess(i, j)
+                )
+            );
+        }
+    }
 }
-double CrankNicolsonRectangularSolver::calculate_error(){
-
+double CrankNicolsonRectangularSolver::calculate_error(int k){
+    double error = 0.;
+    for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
+    {
+        for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
+        {
+            error += std::pow(std::abs((guess->at(i, j)->wave_function - this->domain->at(i, j, k)->wave_function)), 2);
+        }
+    }
+    return error;
 }
 
 void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, int max_iter)
@@ -135,12 +159,21 @@ void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, 
             converged = true;
             break;
         }
+        for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
+        {
+            for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
+            {
+                this->domain->at(i, j, k)->wave_function = guess->at(i, j)->wave_function;
+            }
+        }
+
         for (auto i = 0; i < this->domain->get_num_grid_1(); ++i){
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j){
                 update_guess(i, j, k);
             }
         }
-        error = this->calculate_error();
+
+        error = this->calculate_error(k);
     }
     if(!converged){
         std::cout << "Converged failed with error = " << error << std::endl;
