@@ -1,5 +1,5 @@
 #include "src/serial_solver/crank_nicolson/crank_nicolson_rectangular_solver.h"
-
+#include <iostream>
 CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
     InitialCondition initialCondition,
     std::function<double(double, double)> potential,
@@ -88,8 +88,8 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation_from_gues
     {
         point_data_right = new GridPoint(0, 0, std::complex<double>{0.});
     }
-    auto point_data_up = this->old_guess->at(i, j - 1);
-    auto point_data_down = this->old_guess->at(i, j + 1);
+    auto point_data_up = this->old_guess->at(i, j + 1);
+    auto point_data_down = this->old_guess->at(i, j - 1);
     if (j == 0)
     {
         point_data_down = new GridPoint(0, 0, std::complex<double>{0.});
@@ -121,14 +121,29 @@ void CrankNicolsonRectangularSolver::initialize_guess_with_forward_euler(int k)
 void CrankNicolsonRectangularSolver::update_guess(int i, int j, int k){
 
 }
-void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, int max_iter){
+double CrankNicolsonRectangularSolver::calculate_error(){
+
+}
+
+void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, int max_iter)
+{
     double error = 1.;
+    bool converged = false;
     for (auto iter = 0; iter < max_iter; ++iter)
     {
-        if(error < tolerance)
+        if(error < tolerance){
+            converged = true;
             break;
-                
-
+        }
+        for (auto i = 0; i < this->domain->get_num_grid_1(); ++i){
+            for (auto j = 0; j < this->domain->get_num_grid_2(); ++j){
+                update_guess(i, j, k);
+            }
+        }
+        error = this->calculate_error();
+    }
+    if(!converged){
+        std::cout << "Converged failed with error = " << error << std::endl;
     }
 }
 void CrankNicolsonRectangularSolver::solve(double tolerance, int max_iter){

@@ -24,6 +24,7 @@ protected:
     std::complex<double> temporal_equation_from_guess(int i, int j);
     void initialize_guess_with_forward_euler(int k);
     void update_guess(int i, int j, int k);
+    double calculate_error();
     void solve_single_time(int k, double tolerance, int max_iter);
     void solve(double tolerance, int max_iter);
 };
