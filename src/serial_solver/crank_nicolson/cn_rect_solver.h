@@ -4,6 +4,7 @@
 #include <functional>
 #include <iostream>
 #include <cmath>
+#include <string.h>
 
 #include "src/domain/rect_domain.h"
 #include "src/initial_condition/initial_condition.h"
@@ -21,6 +22,7 @@ public:
     void generateRectangularDomain();
     void solve(double tolerance, int max_iter);
     void solve_single_time(int k, double tolerance, int max_iter);
+
 
 protected:
     RectangularDomain *domain;

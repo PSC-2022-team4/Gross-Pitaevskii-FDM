@@ -11,6 +11,7 @@ CNRectSolver::CNRectSolver(
 {
     this->generate_potential_grid();
     this->fe_solver = new FERectSolver(potential, g, domain);
+    this->string_info = std::string{"crank_nicolson_serial"};
 };
 
 void CNRectSolver::generate_potential_grid()
@@ -209,5 +210,5 @@ void CNRectSolver::solve(double tolerance, int max_iter){
         this->initialize_guess_with_forward_euler(k);
         this->solve_single_time(k, tolerance, max_iter);
     }
-    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
+    this->domain->generate_txt_file(string_info);
 }

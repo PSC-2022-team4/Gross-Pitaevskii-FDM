@@ -8,6 +8,8 @@ FERectSolver::FERectSolver(
     :BaseSolver(potential_, g_){
         this-> domain = domain_;
         this->generate_potential_grid();
+        this->string_info = std::string{"Forward_Euler_Result"};
+        string_info += "_"+std::to_string(g_);
 };
 void FERectSolver::generate_potential_grid(){
     int num_grid_1 = this->domain->get_num_grid_1();
@@ -96,7 +98,7 @@ void FERectSolver::solve(){
         this->solve_single_time(k);
         this->domain->normalize(k+1);
     }
-    // this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
+    this->domain->generate_txt_file(string_info);
 }
 
 
