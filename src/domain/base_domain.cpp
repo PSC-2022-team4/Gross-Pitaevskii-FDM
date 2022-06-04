@@ -161,7 +161,7 @@ std::string BaseDomain::generate_directory_name(std::string info)
     auto tm = *std::localtime(&t);
 
     std::ostringstream oss;
-    oss << std::put_time(&tm, "%d-%m-%Y-%H-%M-%S");
+    oss << std::put_time(&tm, "%Y-%m-%d-%H-%M-%S");
     auto str = oss.str();
     std::cout << str << std::endl;
     std::string directory_name = "../results/" + str + "_" + info;
