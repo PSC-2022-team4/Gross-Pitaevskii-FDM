@@ -18,6 +18,6 @@ int main(int argc, char **argv)
     test_all_armadillo_linking();
     test_all_base_serial_solver();
     test_all_forward_euler_rectangular_serial_solver();
-    // test_all_crank_nicolson_solver();
+    test_all_crank_nicolson_solver();
 }
 
