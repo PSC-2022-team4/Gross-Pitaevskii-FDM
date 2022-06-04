@@ -129,7 +129,7 @@ std::string BaseDomain::generate_directory_name(std::string info){
     oss << std::put_time(&tm, "%d-%m-%Y-%H-%M-%S");
     auto str = oss.str();
     std::cout<<str<<std::endl;
-    std::string directory_name= "./results/"+str+"_"+info;
+    std::string directory_name= "../results/"+str+"_"+info;
 
     if (fs::create_directory(directory_name.c_str()))
     {
@@ -152,7 +152,7 @@ void BaseDomain::generate_txt_file(std::string info){
     std::string base_filename = this->generate_directory_name( info);
     std::string filename = "";
     for(int t=0; t<this->num_times; ++t){
-        filename = "_"+std::to_string(this->times[t]);
+        filename =std::to_string(this->times[t]);
         filename = base_filename + filename;
         generate_single_txt_file(& domain_data[t], filename);
     }
@@ -168,8 +168,8 @@ void BaseDomain::generate_txt_file(std::string info){
  */
 void BaseDomain::generate_single_txt_file(BaseSpatialGrid* grid, std::string filename){
     std::ofstream outfile(filename+".txt");
-    for(auto i=0; i<num_grid_1-1; ++i){
-        for(auto j=0; j<num_grid_2-1; ++j){
+    for(auto i=0; i<num_grid_1; ++i){
+        for(auto j=0; j<num_grid_2; ++j){
             double magnitude = std::abs(grid->at(i, j)->wave_function); 
             outfile<< magnitude*magnitude; 
             outfile<<" ";
