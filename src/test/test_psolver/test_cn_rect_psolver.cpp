@@ -22,6 +22,7 @@ bool test_cn_psolver()
     double g = -1;
     CNRectPSolver solver = CNRectPSolver(potential, g, domain);
 
+
     solver.solve(1e-13, 101);
 
     return all_passed;

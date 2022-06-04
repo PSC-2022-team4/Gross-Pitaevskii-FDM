@@ -33,10 +33,20 @@ add_executable(GrossPitaevskiiFDM
         )
 
 #MPI linking
-find_package(MPI)
-include_directories(SYSTEM ${MPI_INCLUDE_PATH})
-target_link_libraries(GrossPitaevskiiFDM ${MPI_C_LIBRARIES})
+find_package(MPI REQUIRED)
 
+include_directories(${MPI_INCLUDE_PATH})
+target_link_libraries(GrossPitaevskiiFDM ${MPI_LIBRARIES})
+
+#if(MPI_COMPILE_FLAGS)
+#  set_target_properties(GrossPitaevskiiFDM PROPERTIES
+#    COMPILE_FLAGS "${MPI_COMPILE_FLAGS}")
+#endif()
+
+#if(MPI_LINK_FLAGS)
+#  set_target_properties(GrossPitaevskiiFDM PROPERTIES
+#    LINK_FLAGS "${MPI_LINK_FLAGS}")
+#endif()
 
 #Armadillo linking
 find_package(Armadillo REQUIRED)
@@ -52,7 +62,7 @@ find_package(OpenACC REQUIRED)
 include_directories(${OPENACC_INCLUDE_DIRS})
 target_link_libraries(GrossPitaevskiiFDM ${OPENACC_LIBRARIES})
 
-
 find_package(CUDA REQUIRED)
 include_directories(${CUDA_INCLUDE_DIRS})
 target_link_libraries(GrossPitaevskiiFDM ${CUDA_LIBRARIES})
+

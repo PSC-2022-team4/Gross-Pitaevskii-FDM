@@ -11,7 +11,6 @@ CNRectSolver::CNRectSolver(
 {
     this->generate_potential_grid();
     this->fe_solver = new FERectSolver(potential, g, domain);
-    this->string_info = std::string{"crank_nicolson_serial"};
 };
 
 void CNRectSolver::generate_potential_grid()
@@ -182,7 +181,7 @@ void CNRectSolver::solve_single_time(int k, double tolerance, int max_iter)
             break;
             converged_step = iter - 1;
         }
-
+#pragma acc parallel loop collapse(2)
         for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
         {
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
@@ -190,7 +189,7 @@ void CNRectSolver::solve_single_time(int k, double tolerance, int max_iter)
                 this->domain->at(i, j, k)->wave_function = guess->at(i, j)->wave_function;
             }
         }
-        
+#pragma acc parallel loop collapse(2)
         for (auto i = 0; i < this->domain->get_num_grid_1(); ++i){
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j){
                 update_guess(i, j, k);
@@ -210,6 +209,5 @@ void CNRectSolver::solve(double tolerance, int max_iter){
         this->initialize_guess_with_forward_euler(k);
         this->solve_single_time(k, tolerance, max_iter);
     }
-    this->domain->generate_txt_file(string_info);
-
+    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
 }
