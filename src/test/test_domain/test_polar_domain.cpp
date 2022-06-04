@@ -7,19 +7,19 @@ bool test_polar_spatial_grid()
 {
     auto spatial_grid = PolarSpatialGrid(10, 10, 1, 2);
     bool all_passed = true;
-    if (!is_close(spatial_grid.at(0, 0).x, 1., 1e-12))
+    if (!is_close(spatial_grid.at(0, 0)->x, 1., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(0, 0).y, 0., 1e-12))
+    if (!is_close(spatial_grid.at(0, 0)->y, 0., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10).wave_function.real(), 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->wave_function.real(), 0., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10).wave_function.imag(), 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->wave_function.imag(), 0., 1e-12))
     {
         all_passed = false;
     }

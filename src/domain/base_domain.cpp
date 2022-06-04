@@ -16,8 +16,8 @@ BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
     }
 }
 
-GridPoint BaseSpatialGrid::at(int index_1, int index_2){
-    return this->spatial_data[index_1%this->num_grid_1][index_2%this->num_grid_2];
+GridPoint * BaseSpatialGrid::at(int index_1, int index_2){
+    return &this->spatial_data[index_1%this->num_grid_1][index_2%this->num_grid_2];
 }
 BaseDomain::BaseDomain(){}
 BaseDomain::BaseDomain(
@@ -63,9 +63,14 @@ int BaseDomain::get_num_grid_2(){
     return this->num_grid_2;
 }
 
-std::vector<BaseSpatialGrid> BaseDomain::get_domain_data(){
-    return this->domain_data;
+GridPoint * BaseDomain::at(int index_1, int index_2, int time_index){
+    return this->domain_data[time_index].at(index_1, index_2);
 }
-std::vector<double> BaseDomain::get_times(){
-    return this->times;
+
+void BaseDomain::assign_initial_value(int index_1, int index_2, std::complex<double> value){
+    this->domain_data[0].at(index_1, index_2)->wave_function = value;
+}
+
+double BaseDomain::time_at(int time_index){
+    return this->times[time_index];
 }

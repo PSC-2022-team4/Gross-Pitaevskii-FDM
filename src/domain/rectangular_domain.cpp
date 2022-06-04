@@ -29,8 +29,8 @@ RectangularSpatialGrid::RectangularSpatialGrid(
         this -> y_start = y_start;
         this -> y_end = y_end ; 
         //infinitesimal_distance 1,2 = dx, dy 
-        this -> infinitesimal_distance_1 =(x_end - x_start) / (double) num_grid_1;
-        this -> infinitesimal_distance_2 =  (y_end - y_start) / (double) num_grid_1;
+        this -> infinitesimal_distance_1 = (x_end - x_start) / (num_grid_1 - 1);
+        this -> infinitesimal_distance_2 = (y_end - y_start) / (num_grid_2 - 1);
         //For each GridPoint, set x, y position. Also, set wave_function as 0+0i default value
         for (auto i=0; i<num_grid_1; ++i){
             for(auto j=0; j<num_grid_2; ++j){
