@@ -7,20 +7,22 @@
 bool test_crank_nicolson_solver_creation()
 {
     bool all_passed = true;
+
+    RectangularDomain *domain = new RectangularDomain(21, 21, 0, 1, 1001, -10, 10, -10, 10);
+
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1 * std::exp(-(x * x + y * y) / (9))}; };
+    auto *initial_condition = new InitialCondition(initial_cond_function);
+    initial_condition->assign_to_domain(domain);
 
-    auto initial_condition = new InitialCondition(initial_cond_function);
     auto potential = [](double x, double y)
     {
         return (double)0.5 * (x * x + y * y);
     };
     double g = 1;
-    RectangularDomain *domain = new RectangularDomain(21, 21, 0, 10, 11, -10, 10, -10, 10);
-
     CrankNicolsonRectangularSolver solver = CrankNicolsonRectangularSolver(potential, g, domain);
 
-    solver.solve(1e-3, 101);
+    solver.solve(1e-13, 101);
 
     return all_passed;
 }

@@ -59,10 +59,30 @@ RectangularDomain::RectangularDomain(
     double x_start,
     double x_end, 
     double y_start, 
-    double y_end): BaseDomain(num_grid_1, num_grid_2, t_start, t_end, num_times){
+    double y_end)
+    : BaseDomain(num_grid_1, num_grid_2, t_start, t_end, num_times), 
+    x_start(x_start), 
+    x_end(x_end),
+    y_start(y_start),
+    y_end(y_end)
+    {
         for (auto i = 0; i < num_times; ++i)
         {
             this->domain_data[i] = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
         }
 
     };
+
+    double RectangularDomain::get_x_start()
+    {
+        return this->x_start;
+    }
+    double RectangularDomain::get_y_start(){
+        return this->y_start;
+    }
+    double RectangularDomain::get_x_end(){
+        this->x_end;
+    }
+    double RectangularDomain::get_y_end(){
+        this->x_end;
+    }
