@@ -18,9 +18,11 @@ protected:
     InitialCondition initialCondition;
     RectangularDomain * domain;
     std::function<double(double, double)> potential_func;
-    RectangularSpatialGrid old_guess, new_guess;
+    RectangularSpatialGrid * old_guess, *new_guess;
     double g;
     std::complex<double> temporal_equation(int i, int j, int k);
     std::complex<double> temporal_equation_from_guess(int i, int j);
+    void update_guess(int i, int j, int k);
+    void update_single_time(int k);
     void update();
 };
