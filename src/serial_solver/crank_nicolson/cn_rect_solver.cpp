@@ -1,8 +1,8 @@
-#include "src/serial_solver/crank_nicolson/crank_nicolson_rectangular_solver.h"
+#include "src/serial_solver/crank_nicolson/cn_rect_solver.h"
 #include <iostream>
 #include <cmath>
 
-CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
+CNRectSolver::CNRectSolver(
     std::function<double(double, double)> potential,
     double g,
 
@@ -10,10 +10,10 @@ CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
     : BaseSolver(potential, g), domain(domain)
 {
     this->generate_potential_grid();
-    this->forward_euler_solver = new ForwardEulerRectangularSolver(potential, g, domain);
+    this->fe_solver = new FERectSolver(potential, g, domain);
 };
 
-void CrankNicolsonRectangularSolver::generate_potential_grid()
+void CNRectSolver::generate_potential_grid()
 {
     int num_grid_1 = this->domain->get_num_grid_1();
     int num_grid_2 = this->domain->get_num_grid_2();
@@ -38,7 +38,7 @@ void CrankNicolsonRectangularSolver::generate_potential_grid()
  * @param k index for time 
  * @return std::complex<double> 
  */
-std::complex<double> CrankNicolsonRectangularSolver::temporal_equation(int i, int j, int k)
+std::complex<double> CNRectSolver::temporal_equation(int i, int j, int k)
 {
     auto infinitesimal_distance_1 = this->domain->get_infinitesimal_distance1();
     auto infinitesimal_distance_2 = this->domain->get_infinitesimal_distance2();
@@ -87,7 +87,7 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation(int i, in
  * @param j 
  * @return std::complex<double> 
  */
-std::complex<double> CrankNicolsonRectangularSolver::temporal_equation_from_guess(int i, int j)
+std::complex<double> CNRectSolver::temporal_equation_from_guess(int i, int j)
 {
     auto infinitesimal_distance_1 = this->domain->get_infinitesimal_distance1();
     auto infinitesimal_distance_2 = this->domain->get_infinitesimal_distance2();
@@ -126,9 +126,9 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation_from_gues
                                      point_data->wave_function.imag() * point_data->wave_function.imag());
     return laplacian_x + laplacian_y - potential_value * point_data->wave_function - this->g * wave_function_abs_square * point_data->wave_function;
 }
-void CrankNicolsonRectangularSolver::initialize_guess_with_forward_euler(int k)
+void CNRectSolver::initialize_guess_with_forward_euler(int k)
 {
-    this->forward_euler_solver->solve_single_time(k-1);
+    this->fe_solver->solve_single_time(k-1);
     this->guess = new RectangularSpatialGrid(
         this->domain->get_num_grid_1(),
         this->domain->get_num_grid_2(),
@@ -146,7 +146,7 @@ void CrankNicolsonRectangularSolver::initialize_guess_with_forward_euler(int k)
     }
 }
 
-void CrankNicolsonRectangularSolver::update_guess(int i, int j, int k){
+void CNRectSolver::update_guess(int i, int j, int k){
     for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
@@ -157,7 +157,7 @@ void CrankNicolsonRectangularSolver::update_guess(int i, int j, int k){
     }
 }
 
-double CrankNicolsonRectangularSolver::calculate_error(int k){
+double CNRectSolver::calculate_error(int k){
     double error = 0.;
     for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
     {
@@ -169,7 +169,7 @@ double CrankNicolsonRectangularSolver::calculate_error(int k){
     return error;
 }
 
-void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, int max_iter)
+void CNRectSolver::solve_single_time(int k, double tolerance, int max_iter)
 {
     double error = 1.;
     bool converged = false;
@@ -202,7 +202,7 @@ void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, 
         std::cout << "Converged failed with error = " << error << std::endl;
     }
 }
-void CrankNicolsonRectangularSolver::solve(double tolerance, int max_iter){
+void CNRectSolver::solve(double tolerance, int max_iter){
     for (auto k = 1; k < this->domain->get_num_times(); ++k)
     {
         std::cout << "time step " << k << std::endl;

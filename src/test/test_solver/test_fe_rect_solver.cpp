@@ -1,15 +1,15 @@
 #include "src/serial_solver/base_serial_solver.h"
-#include "src/serial_solver/forward_euler/forward_euler_rectangular_solver.h"
+#include "src/serial_solver/forward_euler/fe_rect_solver.h"
 #include "src/utils.h"
 #include <iostream>
 #include <complex>
 
 
-bool test_forward_euler_rectangular_solver(){
+bool test_fe_rect_solver(){
     bool all_passed = true;
     std::function<double(double, double)> potential;
-    double g; 
-    RectangularDomain* domain = (new RectangularDomain(101, 101, 0, 10, 1001, -5, 5, -5, 5));
+    double g;
+    RectangularDomain *domain = (new RectangularDomain(1001, 1001, 0, 10, 1001, -5, 5, -5, 5));
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
 
@@ -19,10 +19,10 @@ bool test_forward_euler_rectangular_solver(){
     
     potential= [](double x, double y ){
         return (double) 0.5 * (x*x + y *y);  };
-    g = 1. ; 
+    g = 1.; 
     
     
-    ForwardEulerRectangularSolver solver = ForwardEulerRectangularSolver(potential, g, domain);
+    FERectSolver solver = FERectSolver(potential, g, domain);
     
     if(!is_close((*domain).at(10,10, 0)->x , 0., 1e-12)){
         all_passed = false;
@@ -60,9 +60,9 @@ bool test_forward_euler_rectangular_solver(){
     
 }
 
-bool test_all_forward_euler_rectangular_serial_solver()
+bool test_all_fe_rect_solver()
 {
-    if (test_forward_euler_rectangular_solver())
+    if (test_fe_rect_solver())
     {
         std::cout << "test_all_forward_euler_rectangular_serial_solver succeeded!" << std::endl;
     }

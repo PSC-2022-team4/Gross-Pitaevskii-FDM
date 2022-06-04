@@ -1,4 +1,4 @@
-#include "src/domain/rectangular_domain.h"
+#include "src/domain/rect_domain.h"
 #include "src/utils.h"
 #include <iostream>
 
@@ -25,7 +25,7 @@ bool test_rectangular_spatial_grid(){
     return all_passed;
 }
 
-bool test_rectangular_domain_contructor(){
+bool test_rect_domain_contructor(){
     auto domain = RectangularDomain(100, 100, 0., 10., 11, 0, 10 , 0, 20 );
     bool all_passed = true;
     if (!is_close(domain.get_t_start(), 0., 1e-12)){
@@ -46,7 +46,7 @@ bool test_rectangular_domain_contructor(){
     return all_passed;
 }
 
-bool test_all_rectangular_domain()
+bool test_all_rect_domain()
 {
     if (test_rectangular_spatial_grid())
     {
@@ -56,7 +56,7 @@ bool test_all_rectangular_domain()
     {
         std::cout << "Test rectangular spatial grid constuctor failed!" << std::endl;
     }
-    if (test_rectangular_domain_contructor())
+    if (test_rect_domain_contructor())
     {
         std::cout << "Test rectangular domain constructor succeeded!" << std::endl;
     }
