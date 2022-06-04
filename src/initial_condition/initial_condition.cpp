@@ -17,4 +17,5 @@ void InitialCondition::assign_to_domain(BaseDomain *domain)
             domain->assign_initial_value(i, j, this->initial_condition_function(point_data->x, point_data->y));
         }
     }
+    domain->normalize(0);
 }
