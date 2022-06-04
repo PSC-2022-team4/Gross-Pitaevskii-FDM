@@ -18,12 +18,11 @@ bool test_forward_euler_rectangular_solver(){
     
     
     potential= [](double x, double y ){
-        return (double) 0.5 * (x*x + y *y);  
-    };
+        return (double) 0.5 * (x*x + y *y);  };
     g = 1. ; 
     
     
-    ForwardEulerRectangularSolver solver = ForwardEulerRectangularSolver(initial_condition, potential, g, domain);
+    ForwardEulerRectangularSolver solver = ForwardEulerRectangularSolver(potential, g, domain);
     
     //solver.applyInitialCondition();
 
@@ -42,18 +41,22 @@ bool test_forward_euler_rectangular_solver(){
     {
         all_passed = false;
     }
-    //solver.solve();
-    std::cout<<(*domain).at(10, 10, 1)->wave_function<<std::endl;
-    // //At first step, psi(0,0) = 1+ i (4 e^-1 - 5) 
-    // double real = 0. ; 
-    // double imag = 4 * std::exp(-1) - 5; 
-    // if (!is_close((*domain).at(10, 10, 1)->wave_function.real(), real, 1e-12))
-    // {
-    //     all_passed = false;
-    // }if (!is_close((*domain).at(10, 10, 1)->wave_function.imag(), imag, 1e-12))
-    // {
-    //     all_passed = false;
-    // }
+    if (!is_close((*domain).at(10, 10, 0)->wave_function.imag(), 0., 1e-12))
+    {
+        all_passed = false;
+    }
+    
+    solver.solve();
+    //At first step, psi(0,0) = 1+ i (4 e^-1 - 5) 
+    double real = 1. ; 
+    double imag = 4 * std::exp(-1./9.) - 5; 
+    if (!is_close((*domain).at(10, 10, 1)->wave_function.real(), real, 1e-12))
+    {
+        all_passed = false;
+    }if (!is_close((*domain).at(10, 10, 1)->wave_function.imag(), imag, 1e-12))
+    {
+        all_passed = false;
+    }
 
     return all_passed;
     

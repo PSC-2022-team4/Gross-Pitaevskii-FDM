@@ -10,19 +10,17 @@ class ForwardEulerRectangularSolver:public BaseSolver
 {
 public:
     ForwardEulerRectangularSolver() = default;    
-    ForwardEulerRectangularSolver(InitialCondition * initialCondition, 
-                                std::function<double(double, double)> potential, 
+    ForwardEulerRectangularSolver(std::function<double(double, double)> potential, 
                                 double g, 
                                 RectangularDomain *domain);
-    //void applyInitialCondition();
     void generateRectangularDomain();
     void solve();
     void solve_single_time(int k);
 
 protected:
-    InitialCondition * initialCondition;
     RectangularDomain * domain;
-    std::function<double(double, double)> potential_func;
-    double g;
+    RectangularSpatialGrid potential_grid;
+    void generate_potential_grid();
+    double get_potential_value(int i, int j);
     std::complex<double> temporal_equation(int i, int j, int k);
 };

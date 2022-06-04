@@ -3,21 +3,31 @@
 #include <cmath>
 
 CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
-    InitialCondition * initialCondition,
     std::function<double(double, double)> potential,
     double g,
 
     RectangularDomain* rectangularDomain)
-    : BaseSolver(initialCondition, potential, g), domain(rectangularDomain)
+    : BaseSolver(potential, g), domain(rectangularDomain)
 {
-    // forward_euler_solver = new ForwardEulerRectangularSolver(this->initialCondition, this->potential_func, this->g, this->domain);
-    this->applyInitialCondition();
+    this->generate_potential_grid();
 };
 
-void CrankNicolsonRectangularSolver::applyInitialCondition()
+void CrankNicolsonRectangularSolver::generate_potential_grid()
 {
-    this->initialCondition->assign_to_domain(this->domain);
-}
+    int num_grid_1 = this->domain->get_num_grid_1();
+    int num_grid_2 = this->domain->get_num_grid_2();
+    double x_start = this->domain->at(0,0,0)->x;
+    double y_start = this->domain->at(0,0,0)->y;
+    double x_end = this->domain->at(num_grid_1-1,num_grid_2-1,0)->x;
+    double y_end = this->domain->at(num_grid_1-1,num_grid_2-1,0)->y;
+    this ->potential_grid = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+    for(auto i=0; i<num_grid_1-1; ++i){
+        for(auto j=0;j<num_grid_2; ++j){
+            auto point = potential_grid.at(i, j);
+            point->wave_function = {this->potential_func(point->x, point->y), 0};
+        }
+    }
+};
 
 /**
  * @brief Time differential of phi 
@@ -52,7 +62,7 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation(int i, in
         point_data_up = new GridPoint(0, 0, std::complex<double>{0.});
     }
 
-    auto potential_value = this->potential_func(point_data->x, point_data->y);
+    auto potential_value = this->potential_grid.at(i, j)->wave_function.real();
     auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->wave_function +
                         1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->wave_function +
                         1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->wave_function);
@@ -102,7 +112,7 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation_from_gues
         point_data_up = new GridPoint(0, 0, std::complex<double>{0.});
     }
 
-    auto potential_value = this->potential_func(point_data->x, point_data->y);
+    auto potential_value = this->potential_grid.at(i, j)->wave_function.real();
     auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->wave_function +
                         1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->wave_function +
                         1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->wave_function);
@@ -179,7 +189,6 @@ void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, 
     }
 }
 void CrankNicolsonRectangularSolver::solve(double tolerance, int max_iter){
-    this->applyInitialCondition();
     for (auto k = 1; k < this->domain->get_num_times(); ++k)
     {
         this->initialize_guess_with_forward_euler(k);

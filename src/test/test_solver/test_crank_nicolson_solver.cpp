@@ -18,19 +18,12 @@ bool test_crank_nicolson_solver_creation()
     double g = 1;
     RectangularDomain *domain = new RectangularDomain(21, 21, 0, 10, 11, -10, 10, -10, 10);
 
-    try
-    {
-        CrankNicolsonRectangularSolver solver = CrankNicolsonRectangularSolver(initial_condition, potential, g, domain);
-    }
-    catch (const std::bad_function_call &e)
-    {
-        std::cout << "In Crank Nicolson Method" << std::endl;
-        std::cout << e.what() << '\n';
-        all_passed = false;
-    }
+    CrankNicolsonRectangularSolver solver = CrankNicolsonRectangularSolver(potential, g, domain);
 
-        return all_passed;
-    }
+    solver.solve(1e-3, 101);
+
+    return all_passed;
+}
 
 bool test_all_crank_nicolson_solver()
 {
@@ -43,3 +36,4 @@ bool test_all_crank_nicolson_solver()
         std::cout << "test_crank_nicolson_solver_creation failed!" << std::endl;
     }
 }
+
