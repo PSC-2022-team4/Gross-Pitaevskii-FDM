@@ -1,6 +1,5 @@
 #include "src/serial_solver/forward_euler/forward_euler_rectangular_solver.h"
 #include "src/utils.h"
-#include <functional>
 #include <iostream>
 #include <complex>
 
@@ -10,7 +9,7 @@ bool test_forward_euler_rectangular_solver(){
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
 
-    auto initial_condition = InitialCondition(initial_cond_function);
+    InitialCondition initial_condition = InitialCondition(initial_cond_function);
     
     std::function<double(double, double)> potential = [](double x, double y ){
         return (double) 0.5 * (x*x + y *y);  
