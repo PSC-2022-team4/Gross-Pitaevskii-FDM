@@ -12,6 +12,8 @@ add_executable(GrossPitaevskiiFDM
         src/main.cpp
         src/initial_condition/initial_condition.h
         src/initial_condition/initial_condition.cpp
+        src/serial_solver/base_serial_solver.h
+        src/serial_solver/base_serial_solver.cpp
         )
 
 #MPI linking
