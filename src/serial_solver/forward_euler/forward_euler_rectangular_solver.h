@@ -14,7 +14,7 @@ public:
                                 std::function<double(double, double)> potential, 
                                 double g, 
                                 RectangularDomain *domain);
-    void applyInitialCondition();
+    //void applyInitialCondition();
     void generateRectangularDomain();
     void solve();
     void solve_single_time(int k);
