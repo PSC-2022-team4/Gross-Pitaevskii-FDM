@@ -8,12 +8,12 @@ class BaseSolver
 {
 public:
     BaseSolver() = default;
-    BaseSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g);
+    BaseSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, BaseDomain domain);
 
 protected:
     InitialCondition initialCondition;
-    BaseDomain baseDomain;
+    BaseDomain *domain;
     std::function<double(double, double)> potential_func;
     double g;
-    std::complex<double> temporal_equation(double x, double y, double t);
+    std::complex<double> temporal_equation(int i, int j, int k);
 };
