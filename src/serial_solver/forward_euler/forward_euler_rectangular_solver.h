@@ -19,5 +19,6 @@ protected:
     std::function<double(double, double)> potential_func;
     double g;
     std::complex<double> temporal_equation(int i, int j, int k);
-    void update();
+    void solve();
+    void solve_single_time(int k);
 };
