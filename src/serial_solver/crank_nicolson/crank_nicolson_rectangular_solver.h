@@ -10,7 +10,7 @@ class CrankNicolsonRectangularSolver : BaseSolver
 {
 public:
     CrankNicolsonRectangularSolver() = default;
-    CrankNicolsonRectangularSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, RectangularDomain rectangularDomain);
+    CrankNicolsonRectangularSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, RectangularDomain* rectangularDomain);
     void applyInitialCondition();
     void generateRectangularDomain();
     void solve_single_time(int k, double tolerance, int max_iter);

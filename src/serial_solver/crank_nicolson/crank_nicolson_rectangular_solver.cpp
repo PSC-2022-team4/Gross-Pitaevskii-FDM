@@ -6,12 +6,12 @@ CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
     InitialCondition initialCondition,
     std::function<double(double, double)> potential,
     double g,
-    RectangularDomain rectangularDomain)
-    : BaseSolver(initialCondition, potential, g, rectangularDomain)
+    RectangularDomain* rectangularDomain)
+    : BaseSolver(initialCondition, potential, g), domain(rectangularDomain)
 {
     // Cast basedomain to rectangularDomain
-    (RectangularDomain) * (this->domain);
-    forward_euler_solver = new ForwardEulerRectangularSolver(this->initialCondition, this->potential_func, this->g, *this->domain);
+    //(RectangularDomain) * (this->domain);
+    forward_euler_solver = new ForwardEulerRectangularSolver(this->initialCondition, this->potential_func, this->g, this->domain);
     forward_euler_solver->applyInitialCondition();
 };
 

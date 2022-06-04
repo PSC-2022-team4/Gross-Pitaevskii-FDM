@@ -5,11 +5,12 @@
 #include "src/domain/rectangular_domain.h"
 #include "src/initial_condition/initial_condition.h"
 #include "src/serial_solver/base_serial_solver.h"
+
 class ForwardEulerRectangularSolver : BaseSolver
 {
 public:
-    ForwardEulerRectangularSolver() = default;
-    ForwardEulerRectangularSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, RectangularDomain* rectangularDomain);
+    ForwardEulerRectangularSolver() = default;    
+    ForwardEulerRectangularSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g, RectangularDomain *domain);
     void applyInitialCondition();
     void generateRectangularDomain();
     void solve();
