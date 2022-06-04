@@ -8,11 +8,11 @@ class BaseSolver
 {
 public:
     BaseSolver() = default;
-    BaseSolver(InitialCondition initialCondition, std::function<double(double, double)> potential, double g);
+    BaseSolver(InitialCondition * initialCondition, std::function<double(double, double)> potential, double g);
     //, BaseDomain *domain);
 
 protected:
-    InitialCondition initialCondition;
+    InitialCondition * initialCondition;
     //BaseDomain *domain;
     std::function<double(double, double)> potential_func;
     double g;

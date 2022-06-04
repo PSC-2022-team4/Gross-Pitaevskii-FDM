@@ -10,7 +10,7 @@ class ForwardEulerRectangularSolver:public BaseSolver
 {
 public:
     ForwardEulerRectangularSolver() = default;    
-    ForwardEulerRectangularSolver(InitialCondition initialCondition, 
+    ForwardEulerRectangularSolver(InitialCondition * initialCondition, 
                                 std::function<double(double, double)> potential, 
                                 double g, 
                                 RectangularDomain *domain);
@@ -20,7 +20,7 @@ public:
     void solve_single_time(int k);
 
 protected:
-    InitialCondition initialCondition;
+    InitialCondition * initialCondition;
     RectangularDomain * domain;
     std::function<double(double, double)> potential_func;
     double g;

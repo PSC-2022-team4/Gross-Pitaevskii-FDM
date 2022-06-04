@@ -10,7 +10,7 @@ bool test_base_serial_solver()
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1 * std::exp(-(x * x + y * y) / (9)), 0}; };
 
-    auto initial_condition = InitialCondition(initial_cond_function);
+    auto initial_condition = new InitialCondition(initial_cond_function);
 
     std::function<double(double, double)> potential = [](double x, double y)
     {

@@ -1,7 +1,7 @@
 #include "forward_euler_rectangular_solver.h"
 
 ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
-    InitialCondition initialCondition_, 
+    InitialCondition * initialCondition_, 
     std::function<double(double, double)> potential_, 
     double g_, 
     RectangularDomain* domain_)
@@ -70,7 +70,7 @@ void ForwardEulerRectangularSolver::solve_single_time(int k)
     }
 }
 void ForwardEulerRectangularSolver::applyInitialCondition(){
-    this -> initialCondition.assign_to_domain(this->domain);
+    this->initialCondition->assign_to_domain(this->domain);
 }
 void ForwardEulerRectangularSolver::solve(){
     this->applyInitialCondition();
