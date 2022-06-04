@@ -15,7 +15,12 @@ BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
         this->spatial_data[i] = std::vector<GridPoint>(num_grid_2);
     }
 }
-
+double BaseSpatialGrid::get_infinitesimal_distance1(){
+    return this->infinitesimal_distance_1;
+}
+double BaseSpatialGrid::get_infinitesimal_distance2(){
+    return this->infinitesimal_distance_2;
+}
 GridPoint * BaseSpatialGrid::at(int index_1, int index_2){
     return &this->spatial_data[index_1%this->num_grid_1][index_2%this->num_grid_2];
 }
@@ -73,4 +78,11 @@ void BaseDomain::assign_initial_value(int index_1, int index_2, std::complex<dou
 
 double BaseDomain::time_at(int time_index){
     return this->times[time_index];
+}
+
+double BaseDomain::get_infinitesimal_distance1(){
+    return this->domain_data[0].get_infinitesimal_distance1();
+}
+double BaseDomain::get_infinitesimal_distance2(){
+    return this->domain_data[0].get_infinitesimal_distance2();
 }
