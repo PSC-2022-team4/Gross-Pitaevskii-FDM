@@ -11,7 +11,6 @@ ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
         (RectangularDomain) *(this->domain);
     };
 
-
 /**
  * @brief Time differential of phi 
  * 

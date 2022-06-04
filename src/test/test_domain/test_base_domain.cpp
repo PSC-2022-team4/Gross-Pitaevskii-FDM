@@ -1,4 +1,4 @@
-#include "src/domain/base_domain.cpp"
+#include "src/domain/base_domain.h"
 #include "src/utils.h"
 #include <iostream>
 

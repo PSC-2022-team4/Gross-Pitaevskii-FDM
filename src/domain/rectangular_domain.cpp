@@ -1,10 +1,4 @@
 # include "rectangular_domain.h"
-/**
- * @brief Construct a new Rectangular Spatial Grid:: Rectangular Spatial Grid object
- *        Defalut constructor
- * 
- */
-RectangularSpatialGrid::RectangularSpatialGrid(){};
 
 /**
  * @brief Construct a new Rectangular Spatial Grid:: Rectangular Spatial Grid object
@@ -42,12 +36,7 @@ RectangularSpatialGrid::RectangularSpatialGrid(
         }
 
 }
-/**
- * @brief Construct a new Rectangular Domain:: Rectangular Domain object
- *        Default constructor 
- * 
- */
-RectangularDomain::RectangularDomain(){};
+
 /**
  * @brief Construct a new Rectangular Domain:: Rectangular Domain object
  * 

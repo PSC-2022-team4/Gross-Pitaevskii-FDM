@@ -2,12 +2,6 @@
 #include <cmath>
 
 /**
- * @brief Default constructor a new Polar Spatial Grid:: Polar Spatial Grid object
- * 
- */
-PolarSpatialGrid::PolarSpatialGrid() {}
-
-/**
  * @brief Construct a new Polar Spatial Grid:: Polar Spatial Grid object
  *
  * @param num_grid_1 number of grids in radial axis
@@ -33,11 +27,6 @@ PolarSpatialGrid::PolarSpatialGrid(int num_grid_1, int num_grid_2, double r_star
         r += dr;
     }
 }
-/**
- * @brief Default constructor a new Polar Domain:: Polar Domain object
- * 
- */
-PolarDomain::PolarDomain(){}
 /**
  * @brief Construct a new Polar Domain:: Polar Domain object
  *

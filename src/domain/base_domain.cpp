@@ -1,10 +1,8 @@
 #include "base_domain.h"
 #include <iostream>
 
-GridPoint::GridPoint(){}
 GridPoint::GridPoint(double x_, double y_, std::complex<double> wave_function_) : x(x_), y(y_), wave_function(wave_function_){}
 
-BaseSpatialGrid::BaseSpatialGrid(){}
 BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
 {
     this->num_grid_1 = num_grid_1;
@@ -24,7 +22,6 @@ double BaseSpatialGrid::get_infinitesimal_distance2(){
 GridPoint * BaseSpatialGrid::at(int index_1, int index_2){
     return &this->spatial_data[index_1%this->num_grid_1][index_2%this->num_grid_2];
 }
-BaseDomain::BaseDomain(){}
 BaseDomain::BaseDomain(
     int num_grid_1,
     int num_grid_2,
