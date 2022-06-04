@@ -14,6 +14,13 @@ add_executable(GrossPitaevskiiFDM
         src/initial_condition/initial_condition.cpp
         )
 
+#MPI linking
 find_package(MPI)
 include_directories(SYSTEM ${MPI_INCLUDE_PATH})
 target_link_libraries(GrossPitaevskiiFDM ${MPI_C_LIBRARIES})
+
+
+#Armadillo linking
+find_package(Armadillo REQUIRED)
+include_directories(${ARMADILLO_INCLUDE_DIRS})
+target_link_libraries(GrossPitaevskiiFDM ${ARMADILLO_LIBRARIES})

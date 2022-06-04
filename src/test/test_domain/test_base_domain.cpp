@@ -93,6 +93,6 @@ bool test_all_base_domain()
     }
     else
     {
-        std::cout << "Test grid point constuctor failed!" << std::endl;
+        std::cout << "Test base domain constuctor failed!" << std::endl;
     }
 }

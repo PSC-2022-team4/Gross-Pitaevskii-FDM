@@ -56,6 +56,10 @@ RectangularDomain::RectangularDomain(){};
  * @param t_start Initial time
  * @param t_end Final time
  * @param num_times iteration number or number of time slice 
+ * @param x_start Start point of x axis 
+ * @param x_end End point of x axis
+ * @param y_start Start point of y axis
+ * @param y_end Start point of x axis
  */
 RectangularDomain::RectangularDomain(
     int num_grid_1, 
