@@ -123,4 +123,9 @@ bool test_all_base_domain()
     {
         std::cout << "Test base domain constuctor failed!" << std::endl;
     }
+    if(test_base_domain_export_file()){
+        std::cout<<"Test base domain export to txt file succeded!"<<std::endl;
+    }else{
+        std::cout<<"Test base domain export to txt file failed!"<<std::endl;
+    }
 }
