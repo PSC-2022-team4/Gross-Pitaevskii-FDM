@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS "-std=c++17")
 add_executable(GrossPitaevskiiFDM
         src/main.cpp
         src/utils.h
-        src/utils.h
+        src/utils.cpp
         src/domain/base_domain.h
         src/domain/base_domain.cpp
         src/domain/polar_domain.h

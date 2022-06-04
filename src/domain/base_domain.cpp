@@ -1,28 +1,10 @@
 #include "base_domain.h"
 #include <iostream>
 
-<<<<<<< HEAD
+
 GridPoint::GridPoint(double x_, double y_, std::complex<double> wave_function_) : x(x_), y(y_), wave_function(wave_function_){}
 
-=======
-GridPoint::GridPoint(){}
-/**
- * @brief Construct a new Grid Point:: Grid Point object
- * 
- * @param x_ grid point x  
- * @param y_ grid point y 
- * @param wave_function_ wave function value at x, y 
- */
-GridPoint::GridPoint(double x_, double y_, std::complex<double> wave_function_) : x(x_), y(y_), wave_function(wave_function_){}
 
-BaseSpatialGrid::BaseSpatialGrid(){}
-/**
- * @brief Construct a new Base Spatial Grid:: Base Spatial Grid object
- * 
- * @param num_grid_1 Number of grid of first axis. index: 0 to num_grid_1-1
- * @param num_grid_2 Number of grid of second axis. index: 0 to num_grid_2-1
- */
->>>>>>> ae9304929e6d3ef7fecba2d21225c249a7c3bd33
 BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
 {
     this->num_grid_1 = num_grid_1;
@@ -48,21 +30,7 @@ double BaseSpatialGrid::get_infinitesimal_distance2(){
 GridPoint * BaseSpatialGrid::at(int index_1, int index_2){
     return &this->spatial_data[index_1%this->num_grid_1][index_2%this->num_grid_2];
 }
-<<<<<<< HEAD
-=======
 
-BaseDomain::BaseDomain(){}
-/**
- * @brief Construct a new Base Domain:: Base Domain object
- *        It contains spatial and temporal domain 
- * 
- * @param num_grid_1 Number of grid of first axis. index: 0 to num_grid_1-1
- * @param num_grid_2 Number of grid of second axis. index: 0 to num_grid_2-1
- * @param t_start start time 
- * @param t_end end time 
- * @param num_times number of time points. 
- */
->>>>>>> ae9304929e6d3ef7fecba2d21225c249a7c3bd33
 BaseDomain::BaseDomain(
     int num_grid_1,
     int num_grid_2,
