@@ -1,14 +1,15 @@
-#include "src/serial_solver/forward_euler/forward_euler_rectangular_solver.h"
+#include "forward_euler_rectangular_solver.h"
 
 ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
-    InitialCondition initialCondition,
-    std::function<double(double, double)> potential, 
-    double g,
-    RectangularDomain* rectangularDomain)
-    :BaseSolver(initialCondition, potential, g, rectangularDomain)
+    InitialCondition initialCondition_, 
+    std::function<double(double, double)> potential_, 
+    double g_, 
+    RectangularDomain* domain_)
+    :BaseSolver(initialCondition_, potential_, g_), domain(domain_)
     {
+        
         //Cast basedomain to rectangularDomain
-        (RectangularDomain) *(this->domain);
+        ;
     };
 
 /**
