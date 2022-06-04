@@ -189,7 +189,7 @@ std::string BaseDomain::generate_txt_file(std::string info)
     std::string filename = "";
     for (int t = 0; t < this->num_times; ++t)
     {
-        filename = std::to_string(this->times[t]);
+        filename = std::string("probability_") + std::to_string(t);
         filename = base_filename + filename;
         generate_single_txt_file(&domain_data[t], filename);
     }
@@ -208,6 +208,7 @@ std::string BaseDomain::generate_txt_file(std::string info)
 void BaseDomain::generate_single_txt_file(BaseSpatialGrid * grid, std::string filename)
 {
     std::ofstream outfile(filename + ".txt");
+    outfile << "x, y, probability" << std::endl;
     for (auto i = 0; i < num_grid_1; ++i)
     {
         for (auto j = 0; j < num_grid_2; ++j)
