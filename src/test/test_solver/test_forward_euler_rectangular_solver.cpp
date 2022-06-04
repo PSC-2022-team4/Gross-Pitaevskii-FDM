@@ -7,14 +7,13 @@
 
 bool test_forward_euler_rectangular_solver(){
     bool all_passed = true;
-    InitialCondition initial_condition;
     std::function<double(double, double)> potential;
     double g; 
     RectangularDomain* domain;
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
 
-    initial_condition = InitialCondition(initial_cond_function);
+    auto initial_condition = new InitialCondition(initial_cond_function);
     
     potential= [](double x, double y ){
         return (double) 0.5 * (x*x + y *y);  
@@ -23,14 +22,9 @@ bool test_forward_euler_rectangular_solver(){
     
     domain = (new RectangularDomain(21, 21, 0, 10, 11, -10, 10, -10, 10));
     
-    try{
-        ForwardEulerRectangularSolver solver = ForwardEulerRectangularSolver(initial_condition, potential, g, domain);
-    }
-    catch (const std::bad_function_call &e)
-    {
-        std::cout << e.what() << '\n';
-        all_passed = false;
-    }
+    ForwardEulerRectangularSolver solver = ForwardEulerRectangularSolver(initial_condition, potential, g, domain);
+    
+    solver.applyInitialCondition();
 
     if(!is_close((*domain).at(10,10, 0)->x , 0., 1e-12)){
         all_passed = false;
@@ -66,10 +60,10 @@ bool test_all_forward_euler_rectangular_serial_solver()
 {
     if (test_forward_euler_rectangular_solver())
     {
-        std::cout << "test_base_serial_solver succeeded!" << std::endl;
+        std::cout << "test_all_forward_euler_rectangular_serial_solver succeeded!" << std::endl;
     }
     else
     {
-        std::cout << "test_base_serial_solver failed!" << std::endl;
+        std::cout << "test_all_forward_euler_rectangular_serial_solver failed!" << std::endl;
     }
 }

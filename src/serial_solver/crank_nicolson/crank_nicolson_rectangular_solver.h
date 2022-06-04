@@ -14,7 +14,7 @@ class CrankNicolsonRectangularSolver : BaseSolver
 public:
     CrankNicolsonRectangularSolver() = default;
     CrankNicolsonRectangularSolver(
-        InitialCondition initialCondition, 
+        InitialCondition * initialCondition, 
         std::function<double(double, double)> potential, 
         double g, 
         RectangularDomain *rectangularDomain
@@ -25,7 +25,7 @@ public:
     void solve(double tolerance, int max_iter);
 
 protected:
-    InitialCondition initialCondition;
+    InitialCondition * initialCondition;
     RectangularDomain * domain;
     std::function<double(double, double)> potential_func;
     RectangularSpatialGrid *guess;

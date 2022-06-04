@@ -3,22 +3,20 @@
 #include <cmath>
 
 CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
-    InitialCondition initialCondition,
+    InitialCondition * initialCondition,
     std::function<double(double, double)> potential,
     double g,
 
     RectangularDomain* rectangularDomain)
     : BaseSolver(initialCondition, potential, g), domain(rectangularDomain)
 {
-    // Cast basedomain to rectangularDomain
-    //(RectangularDomain) * (this->domain);
-    forward_euler_solver = new ForwardEulerRectangularSolver(this->initialCondition, this->potential_func, this->g, this->domain);
-    forward_euler_solver->applyInitialCondition();
+    // forward_euler_solver = new ForwardEulerRectangularSolver(this->initialCondition, this->potential_func, this->g, this->domain);
+    this->applyInitialCondition();
 };
 
 void CrankNicolsonRectangularSolver::applyInitialCondition()
 {
-    this->initialCondition.assign_to_domain(this->domain);
+    this->initialCondition->assign_to_domain(this->domain);
 }
 
 /**
