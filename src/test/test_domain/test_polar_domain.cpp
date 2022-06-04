@@ -1,4 +1,4 @@
-#include "src/domain/polar_domain.cpp"
+#include "src/domain/polar_domain.h"
 #include "src/utils.h"
 #include <iostream>
 

@@ -1,4 +1,4 @@
-#include "src/domain/rectangular_domain.cpp"
+#include "src/domain/rectangular_domain.h"
 #include "src/utils.h"
 #include <iostream>
 

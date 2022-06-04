@@ -6,6 +6,7 @@ CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
     InitialCondition initialCondition,
     std::function<double(double, double)> potential,
     double g,
+
     RectangularDomain* rectangularDomain)
     : BaseSolver(initialCondition, potential, g), domain(rectangularDomain)
 {

@@ -2,6 +2,7 @@
 #include "src/domain/base_domain.h"
 #include <functional>
 #include <complex>
+#include <iostream>
 class InitialCondition
 {
     private:
