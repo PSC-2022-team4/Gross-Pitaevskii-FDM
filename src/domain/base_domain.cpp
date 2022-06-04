@@ -121,7 +121,10 @@ GridPoint * BaseDomain::at(int index_1, int index_2, int time_index){
  * @param value initial value at x, y 
  */
 void BaseDomain::assign_initial_value(int index_1, int index_2, std::complex<double> value){
-    this->domain_data[0].at(index_1, index_2)->wave_function = value;
+    this->at(index_1, index_2, 0)->wave_function = value;
+}
+void BaseDomain::assign_wave_function(int index_1, int index_2, int time_index, std::complex<double> value){
+    this->at(index_1, index_2, time_index)->wave_function = value;
 }
 //Get time using time index 
 double BaseDomain::time_at(int time_index){

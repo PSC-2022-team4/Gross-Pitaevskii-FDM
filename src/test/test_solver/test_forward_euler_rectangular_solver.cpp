@@ -16,8 +16,8 @@ bool test_forward_euler_rectangular_solver(){
     };
     double g = 1 ; 
     RectangularDomain* domain = new RectangularDomain(21, 21, 0, 10, 11, -10, 10, -10, 10);
-    
     ForwardEulerRectangularSolver solver = ForwardEulerRectangularSolver(initial_condition, potential, g, domain);
+    
     // if(!is_close((*domain).at(10,10, 0)->x , 0., 1e-12)){
     //     all_passed = false;
     // }
