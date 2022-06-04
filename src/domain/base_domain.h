@@ -16,7 +16,7 @@ class BaseSpatialGrid
     public:
         BaseSpatialGrid();
         BaseSpatialGrid(int num_grid_1, int num_grid_2);
-        GridPoint at(int index_1, int index_2);
+        GridPoint * at(int index_1, int index_2);
 
     protected:
         std::vector<std::vector<GridPoint>> spatial_data;
@@ -33,10 +33,15 @@ public:
     double get_t_end();
     double get_dt();
     int get_num_times();
-    
+    int get_num_grid_1();
+    int get_num_grid_2();
+    GridPoint * at(int index_1, int index_2, int time_index);
+    void assign_initial_value(int index_1, int index_2, std::complex<double> value);
+    double time_at(int time_index);
+
 protected:
     std::vector<BaseSpatialGrid> domain_data;
     std::vector<double> times;
     double t_start, t_end, dt;
-    int num_times;
+    int num_times, num_grid_1, num_grid_2;
 };

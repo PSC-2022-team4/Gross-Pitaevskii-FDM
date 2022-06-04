@@ -28,19 +28,19 @@ bool test_grid_point(){
 bool test_base_spatial_grid(){
     auto spatial_grid = BaseSpatialGrid(100, 100);
     bool all_passed = true;
-    if (!is_close(spatial_grid.at(10, 10).x, 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->x, 0., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10).y, 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->y, 0., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10).wave_function.real(), 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->wave_function.real(), 0., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10).wave_function.imag(), 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->wave_function.imag(), 0., 1e-12))
     {
         all_passed = false;
     }
