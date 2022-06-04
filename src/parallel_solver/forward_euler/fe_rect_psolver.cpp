@@ -1,15 +1,17 @@
-#include "forward_euler_rectangular_solver.h"
+#include "fe_rect_psolver.h"
 #include <iostream>
 #include <string>
-ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
-    std::function<double(double, double)> potential_, 
-    double g_, 
-    RectangularDomain* domain_)
-    :BaseSolver(potential_, g_){
-        this-> domain = domain_;
-        this->generate_potential_grid();
+FERectPSolver::FERectPSolver(
+    std::function<double(double, double)> potential_,
+    double g_,
+    RectangularDomain *domain_)
+    : BaseSolver(potential_, g_)
+{
+    this->domain = domain_;
+    this->generate_potential_grid();
 };
-void ForwardEulerRectangularSolver::generate_potential_grid(){
+void FERectPSolver::generate_potential_grid()
+{
     int num_grid_1 = this->domain->get_num_grid_1();
     int num_grid_2 = this->domain->get_num_grid_2();
     double x_start = this->domain->at(0,0,0)->x;
@@ -24,7 +26,8 @@ void ForwardEulerRectangularSolver::generate_potential_grid(){
         }
     }
 };
-double ForwardEulerRectangularSolver::get_potential_value(int i, int j ){
+double FERectPSolver::get_potential_value(int i, int j)
+{
     return this->potential_grid.at(i, j)->wave_function.real();
 }
 /**
@@ -35,7 +38,8 @@ double ForwardEulerRectangularSolver::get_potential_value(int i, int j ){
  * @param k index for time(t)
  * @return std::complex<double> time differential at x, y, t 
  */
-std::complex<double> ForwardEulerRectangularSolver::temporal_equation(int i, int j, int k){
+std::complex<double> FERectPSolver::temporal_equation(int i, int j, int k)
+{
     //Use five stencil method 
     auto point_data = this-> domain->at(i, j, k);
 
@@ -72,7 +76,7 @@ std::complex<double> ForwardEulerRectangularSolver::temporal_equation(int i, int
         +((point_data_u->wave_function)+(point_data_d->wave_function)-(point_data->wave_function) * std::complex<double>{2})/ (std::complex<double>{dy*dy})
         - (V_ij+additional_term) * (point_data->wave_function);
     df *= std::complex<double>{0,1}; 
-    return df; 
+    return df;
 };
 
 /**
@@ -80,23 +84,24 @@ std::complex<double> ForwardEulerRectangularSolver::temporal_equation(int i, int
  * 
  * @param k 
  */
-void ForwardEulerRectangularSolver::solve_single_time(int k)
+void FERectPSolver::solve_single_time(int k)
 {   int Nx = this->domain->get_num_grid_1();
     int Ny = this->domain->get_num_grid_2();
     double dt = this->domain->get_dt();
+    
+    #pragma acc parallel loop collapse(2)
     for(int i=0; i<Nx; ++i){
         for(int j=0; j<Ny; ++j){
             (this->domain->at(i, j, k+1)->wave_function) = this->domain->at(i, j, k)->wave_function + dt * this->temporal_equation(i,j,k);
         }
     }
 }
-void ForwardEulerRectangularSolver::solve(){
+void FERectPSolver::solve()
+{
     int time_length = this->domain->get_num_times();
     for(int k=0; k<time_length-1; ++k){
         this->solve_single_time(k);
         this->domain->normalize(k+1);
     }
-    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
+    // this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
 }
-
-

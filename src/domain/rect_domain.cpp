@@ -1,4 +1,4 @@
-# include "rectangular_domain.h"
+# include "rect_domain.h"
 
 /**
  * @brief Construct a new Rectangular Spatial Grid:: Rectangular Spatial Grid object

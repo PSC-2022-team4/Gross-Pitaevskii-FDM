@@ -1,4 +1,4 @@
-#include "src/domain/rectangular_domain.h"
+#include "src/domain/rect_domain.h"
 #include "src/initial_condition/initial_condition.h"
 #include "src/utils.h"
 #include <iostream>

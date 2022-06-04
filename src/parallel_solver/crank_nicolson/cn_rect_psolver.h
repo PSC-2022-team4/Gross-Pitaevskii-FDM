@@ -5,15 +5,15 @@
 #include <iostream>
 #include <cmath>
 
-#include "src/domain/rectangular_domain.h"
+#include "src/domain/rect_domain.h"
 #include "src/initial_condition/initial_condition.h"
 #include "src/serial_solver/base_serial_solver.h"
-#include "src/serial_solver/forward_euler/forward_euler_rectangular_solver.h"
-class CrankNicolsonRectangularSolver : BaseSolver
+#include "src/serial_solver/forward_euler/fe_rect_solver.h"
+class CNRectSolver : BaseSolver
 {
 public:
-    CrankNicolsonRectangularSolver() = default;
-    CrankNicolsonRectangularSolver(
+    CNRectSolver() = default;
+    CNRectSolver(
         std::function<double(double, double)> potential, 
         double g, 
         RectangularDomain *domain
@@ -26,7 +26,7 @@ protected:
     RectangularDomain *domain;
     RectangularSpatialGrid potential_grid;
     RectangularSpatialGrid *guess;
-    ForwardEulerRectangularSolver *forward_euler_solver;
+    FERectSolver *fe_solver;
     void generate_potential_grid();
     std::complex<double> temporal_equation(int i, int j, int k);
     std::complex<double> temporal_equation_from_guess(int i, int j);

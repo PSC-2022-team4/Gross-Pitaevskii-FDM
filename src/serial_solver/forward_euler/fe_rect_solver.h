@@ -2,15 +2,15 @@
 #include <complex>
 #include <vector>
 #include <functional>
-#include "src/domain/rectangular_domain.h"
+#include "src/domain/rect_domain.h"
 #include "src/initial_condition/initial_condition.h"
 #include "src/serial_solver/base_serial_solver.h"
 
-class ForwardEulerRectangularSolver:public BaseSolver
+class FERectSolver:public BaseSolver
 {
 public:
-    ForwardEulerRectangularSolver() = default;    
-    ForwardEulerRectangularSolver(std::function<double(double, double)> potential, 
+    FERectSolver() = default;    
+    FERectSolver(std::function<double(double, double)> potential, 
                                 double g, 
                                 RectangularDomain *domain);
     void generateRectangularDomain();
