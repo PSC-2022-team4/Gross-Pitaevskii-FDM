@@ -6,10 +6,11 @@ CrankNicolsonRectangularSolver::CrankNicolsonRectangularSolver(
     std::function<double(double, double)> potential,
     double g,
 
-    RectangularDomain* rectangularDomain)
-    : BaseSolver(potential, g), domain(rectangularDomain)
+    RectangularDomain *domain)
+    : BaseSolver(potential, g), domain(domain)
 {
     this->generate_potential_grid();
+    this->forward_euler_solver = new ForwardEulerRectangularSolver(potential, g, domain);
 };
 
 void CrankNicolsonRectangularSolver::generate_potential_grid()
@@ -123,12 +124,26 @@ std::complex<double> CrankNicolsonRectangularSolver::temporal_equation_from_gues
 
     auto wave_function_abs_square = (point_data->wave_function.real() * point_data->wave_function.real() +
                                      point_data->wave_function.imag() * point_data->wave_function.imag());
-
     return laplacian_x + laplacian_y - potential_value * point_data->wave_function - this->g * wave_function_abs_square * point_data->wave_function;
 }
 void CrankNicolsonRectangularSolver::initialize_guess_with_forward_euler(int k)
 {
-    this->forward_euler_solver->solve_single_time(k);
+    this->forward_euler_solver->solve_single_time(k-1);
+    this->guess = new RectangularSpatialGrid(
+        this->domain->get_num_grid_1(),
+        this->domain->get_num_grid_2(),
+        this->domain->get_x_start(),
+        this->domain->get_x_end(),
+        this->domain->get_y_start(),
+        this->domain->get_y_end());
+
+    for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
+    {
+        for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
+        {
+            guess->at(i, j)->wave_function = this->domain->at(i, j, k)->wave_function;
+        }
+    }
 }
 
 void CrankNicolsonRectangularSolver::update_guess(int i, int j, int k){
@@ -136,23 +151,19 @@ void CrankNicolsonRectangularSolver::update_guess(int i, int j, int k){
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
         {
-            guess->at(i, j)->wave_function = (
-                this->domain->at(i, j, k-1)->wave_function + 
-                std::complex<double>{0, 0.5} * this->domain->get_dt() * (
-                    this->temporal_equation(i, j, k-1)
-                    + this->temporal_equation_from_guess(i, j)
-                )
-            );
+            this->guess->at(i, j)->wave_function = (0.99 * this->guess->at(i, j)->wave_function +
+                                                    0.01 * (this->domain->at(i, j, k - 1)->wave_function + std::complex<double>{0, 0.5} * this->domain->get_dt() * (this->temporal_equation(i, j, k - 1) + this->temporal_equation(i, j, k)))); // this->temporal_equation_from_guess(i, j))));
         }
     }
 }
+
 double CrankNicolsonRectangularSolver::calculate_error(int k){
     double error = 0.;
     for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
         {
-            error += std::pow(std::abs((guess->at(i, j)->wave_function - this->domain->at(i, j, k)->wave_function)), 2);
+            error += std::pow(std::abs((this->guess->at(i, j)->wave_function - this->domain->at(i, j, k)->wave_function)), 2);
         }
     }
     return error;
@@ -162,12 +173,15 @@ void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, 
 {
     double error = 1.;
     bool converged = false;
+    int converged_step = 0;
     for (auto iter = 0; iter < max_iter; ++iter)
     {
         if(error < tolerance){
             converged = true;
             break;
+            converged_step = iter - 1;
         }
+
         for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
         {
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
@@ -175,7 +189,7 @@ void CrankNicolsonRectangularSolver::solve_single_time(int k, double tolerance, 
                 this->domain->at(i, j, k)->wave_function = guess->at(i, j)->wave_function;
             }
         }
-
+        
         for (auto i = 0; i < this->domain->get_num_grid_1(); ++i){
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j){
                 update_guess(i, j, k);
