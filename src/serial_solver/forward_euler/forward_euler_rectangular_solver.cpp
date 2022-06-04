@@ -1,14 +1,32 @@
 #include "forward_euler_rectangular_solver.h"
+#include <iostream>
 
 ForwardEulerRectangularSolver::ForwardEulerRectangularSolver(
-    InitialCondition * initialCondition_, 
     std::function<double(double, double)> potential_, 
     double g_, 
     RectangularDomain* domain_)
-    :BaseSolver(initialCondition_, potential_, g_){
+    :BaseSolver(potential_, g_){
         this-> domain = domain_;
+        this->generate_potential_grid();
 };
-
+void ForwardEulerRectangularSolver::generate_potential_grid(){
+    int num_grid_1 = this->domain->get_num_grid_1();
+    int num_grid_2 = this->domain->get_num_grid_2();
+    double x_start = this->domain->at(0,0,0)->x;
+    double y_start = this->domain->at(0,0,0)->y;
+    double x_end = this->domain->at(num_grid_1-1,num_grid_2-1,0)->x;
+    double y_end = this->domain->at(num_grid_1-1,num_grid_2-1,0)->y;
+    this ->potential_grid = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+    for(auto i=0; i<num_grid_1-1; ++i){
+        for(auto j=0;j<num_grid_2; ++j){
+            auto point = potential_grid.at(i, j);
+            point->wave_function = {this->potential_func(point->x, point->y), 0};
+        }
+    }
+};
+double ForwardEulerRectangularSolver::get_potential_value(int i, int j ){
+    return this->potential_grid.at(i, j)->wave_function.real();
+}
 /**
  * @brief Time differential of phi 
  * 
@@ -36,11 +54,14 @@ std::complex<double> ForwardEulerRectangularSolver::temporal_equation(int i, int
     if(j >= (this->domain->get_num_grid_2())-1)
         point_data_u = new GridPoint(0., 0., std::complex<double>{0,0});
     
-        
     //potential at x, y 
-    double V_ij = this->potential_func(point_data->x, point_data->y);
+    double V_ij = this->get_potential_value(i,j);
+    //this->potential_func(point_data->x, point_data->y);
+    
     //g * |psi(x,y)|^2 
     double additional_term = (this-> g) * (std::abs(point_data->wave_function))*(std::abs(point_data->wave_function));
+    
+    
     //Set infinitesimal value 
     double dx = this->domain->get_infinitesimal_distance1();
     double dy = this->domain->get_infinitesimal_distance2();
@@ -69,14 +90,10 @@ void ForwardEulerRectangularSolver::solve_single_time(int k)
         }
     }
 }
-void ForwardEulerRectangularSolver::applyInitialCondition(){
-    this->initialCondition->assign_to_domain(this->domain);
-}
 void ForwardEulerRectangularSolver::solve(){
-    this->applyInitialCondition();
     int time_length = this->domain->get_num_times();
     for(int k=0; k<time_length-1; ++k){
-        solve_single_time(k);
+        this->solve_single_time(k);
     }
 }
 
