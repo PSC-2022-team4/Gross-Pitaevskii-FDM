@@ -18,7 +18,7 @@ public:
     FERectPSolver(std::function<double(double, double)> potential,
                   double g,
                   RectangularDomain *domain);
-    void solve();
+    void solve(std::string dir_name);
     void solve_single_time(int k);
 
 protected:
