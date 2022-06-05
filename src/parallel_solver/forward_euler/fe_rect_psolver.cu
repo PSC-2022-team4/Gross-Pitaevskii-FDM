@@ -206,7 +206,7 @@ void FERectPSolver::solve_single_time(int k)
     }
 }
 
-void FERectPSolver::solve(std::string dir_name="")
+void FERectPSolver::solve(std::string dir_name)
 {
     int time_length = this->domain->get_num_times();
 
