@@ -10,6 +10,7 @@
 #include "src/test/test_solver/test_cn_rect_solver.cpp"
 #include "src/test/test_psolver/test_cn_rect_psolver.cpp"
 #include "src/test/test_psolver/test_fe_rect_psolver.cpp"
+
 #include "src/test/test_mpi/test_mpi.cpp"
 int main(int argc, char *argv[])
 {
@@ -26,10 +27,15 @@ int main(int argc, char *argv[])
     // test_all_initial_condition();
     // test_all_armadillo_linking();
     // test_all_base_serial_solver();
+    // test_all_fe_rect_solver();
+    // test_all_cn_rect_solver();
+    // test_all_fe_rect_psolver();
+    test_all_cn_rect_psolver();
+
     // test_all_fe_rect_solver(); //This works before normalization
     // test_all_cn_rect_solver();
     // test_all_fe_rect_psolver();
     // test_all_cn_rect_psolver();
-    test_all_mpi(rank, size);
+    // test_all_mpi(rank, size);
     MPI_Finalize();
 }

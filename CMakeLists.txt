@@ -26,6 +26,10 @@ add_executable(GrossPitaevskiiFDM
         src/serial_solver/forward_euler/fe_rect_solver.cpp
         src/serial_solver/crank_nicolson/cn_rect_solver.h
         src/serial_solver/crank_nicolson/cn_rect_solver.cpp
+        src/parallel_solver/forward_euler/fe_rect_psolver.cuh
+        src/parallel_solver/forward_euler/fe_rect_psolver.cu
+        src/parallel_solver/crank_nicolson/cn_rect_psolver.cuh
+        src/parallel_solver/crank_nicolson/cn_rect_psolver.cu
         )
 
 #MPI linking
@@ -57,3 +61,8 @@ find_package(OpenACC REQUIRED)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenACC_CXX_FLAGS} ${OpenACC_CXX_FLAGS_CUSTOM}")
 include_directories(${OPENACC_INCLUDE_DIRS})
 target_link_libraries(GrossPitaevskiiFDM ${OPENACC_LIBRARIES})
+
+find_package(CUDA REQUIRED)
+include_directories(${CUDA_INCLUDE_DIRS})
+target_link_libraries(GrossPitaevskiiFDM ${CUDA_LIBRARIES})
+

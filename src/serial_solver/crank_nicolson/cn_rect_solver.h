@@ -23,7 +23,6 @@ public:
     void solve(double tolerance, int max_iter);
     void solve_single_time(int k, double tolerance, int max_iter);
 
-
 protected:
     RectangularDomain *domain;
     RectangularSpatialGrid potential_grid;
