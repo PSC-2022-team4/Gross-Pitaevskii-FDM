@@ -1,6 +1,8 @@
 #include "src/utils.h"
 #include <mpi.h>
 #include <iostream>
+#include <functional>
+#include <src/domain/rect_domain.h>
 
 bool test_mpi_linking(int rank, int size){
     bool all_passed = false;

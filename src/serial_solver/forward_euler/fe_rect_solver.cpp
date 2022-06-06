@@ -94,11 +94,16 @@ void FERectSolver::solve_single_time(int k)
 }
 void FERectSolver::solve(){
     int time_length = this->domain->get_num_times();
+    this->domain ->generate_directory_name(this->string_info);
     for(int k=0; k<time_length-1; ++k){
+        //Update k+1 th grid using k th grid 
         this->solve_single_time(k);
         this->domain->normalize(k+1);
+        this -> domain->generate_single_txt_file( std::string("probability_") + std::to_string(k));
     }
-    this->domain->generate_txt_file(string_info);
+
+    this->domain->print_directory_info();
+    //this->domain->generate_txt_file(string_info);
 
 }
 

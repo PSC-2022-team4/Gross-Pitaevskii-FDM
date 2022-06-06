@@ -2,7 +2,6 @@
 #include <complex>
 #include <vector>
 #include <functional>
-#include "src/domain/base_domain.h"
 #include "src/initial_condition/initial_condition.h"
 class BaseSolver
 {

@@ -361,7 +361,7 @@ void CNRectPSolver::solve_single_time(int k, double tolerance, int max_iter)
                                                     d_psi_new_imag,
                                                     &error);
         cudaMemcpy(&error, d_error, sizeof(double), cudaMemcpyDeviceToHost);
-        std::cout << error << std::endl;
+        //std::cout << error << std::endl;
     }
     if (!converged)
     {

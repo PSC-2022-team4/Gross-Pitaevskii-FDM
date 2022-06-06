@@ -9,11 +9,11 @@ CNRectSolver::CNRectSolver(
     RectangularDomain *domain)
     : BaseSolver(potential, g), domain(domain)
 {
-    this->generate_potential_grid();
+    //this->generate_potential_grid();
     this->fe_solver = new FERectSolver(potential, g, domain);
     this->string_info = std::string{"crank_nicolson_serial"};
 };
-
+/*Data is already in FEsolver 
 void CNRectSolver::generate_potential_grid()
 {
     int num_grid_1 = this->domain->get_num_grid_1();
@@ -29,7 +29,7 @@ void CNRectSolver::generate_potential_grid()
             point->wave_function = {this->potential_func(point->x, point->y), 0};
         }
     }
-};
+};*/
 
 /**
  * @brief Time differential of phi 
@@ -64,7 +64,8 @@ std::complex<double> CNRectSolver::temporal_equation(int i, int j, int k)
         point_data_up = new GridPoint(0, 0, std::complex<double>{0.});
     }
 
-    auto potential_value = this->potential_grid.at(i, j)->wave_function.real();
+    auto potential_value = this->fe_solver->get_potential_value(i,j);
+    //this->potential_grid.at(i, j)->wave_function.real();
     auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->wave_function +
                         1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->wave_function +
                         1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->wave_function);
@@ -81,13 +82,7 @@ std::complex<double> CNRectSolver::temporal_equation(int i, int j, int k)
     return laplacian_x + laplacian_y - potential_value * point_data->wave_function - this->g * wave_function_abs_square * point_data->wave_function;
 }
 
-/**
- * @brief 
- * 
- * @param i 
- * @param j 
- * @return std::complex<double> 
- */
+/* Not used 
 std::complex<double> CNRectSolver::temporal_equation_from_guess(int i, int j)
 {
     auto infinitesimal_distance_1 = this->domain->get_infinitesimal_distance1();
@@ -126,7 +121,7 @@ std::complex<double> CNRectSolver::temporal_equation_from_guess(int i, int j)
     auto wave_function_abs_square = (point_data->wave_function.real() * point_data->wave_function.real() +
                                      point_data->wave_function.imag() * point_data->wave_function.imag());
     return laplacian_x + laplacian_y - potential_value * point_data->wave_function - this->g * wave_function_abs_square * point_data->wave_function;
-}
+}*/
 void CNRectSolver::initialize_guess_with_forward_euler(int k)
 {
     this->fe_solver->solve_single_time(k-1);
@@ -142,7 +137,7 @@ void CNRectSolver::initialize_guess_with_forward_euler(int k)
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
         {
-            guess->at(i, j)->wave_function = this->domain->at(i, j, k)->wave_function;
+            this->guess->at(i, j)->wave_function = this->domain->at(i, j, k)->wave_function;
         }
     }
 }
@@ -177,23 +172,27 @@ void CNRectSolver::solve_single_time(int k, double tolerance, int max_iter)
     int converged_step = 0;
     for (auto iter = 0; iter < max_iter; ++iter)
     {
+        //Check convergence 
         if(error < tolerance){
             converged = true;
-            break;
             converged_step = iter - 1;
+            break;
         }
-
+        
+        //For each point, update wave function 
         for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
         {
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
-            {
-                this->domain->at(i, j, k)->wave_function = guess->at(i, j)->wave_function;
+            {   
+                this->domain->at(i, j, k)->wave_function = this-> guess->at(i, j)->wave_function;
             }
         }
         
+        //for each point, update predicted value
         for (auto i = 0; i < this->domain->get_num_grid_1(); ++i){
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j){
                 update_guess(i, j, k);
+                
             }
         }
 
@@ -203,13 +202,14 @@ void CNRectSolver::solve_single_time(int k, double tolerance, int max_iter)
         std::cout << "Converged failed with error = " << error << std::endl;
     }
 }
-void CNRectSolver::solve(double tolerance, int max_iter){
+void CNRectSolver::solve(double tolerance, int max_iter, std::string dir_name ){
     for (auto k = 1; k < this->domain->get_num_times(); ++k)
     {
         std::cout << "time step " << k << std::endl;
         this->initialize_guess_with_forward_euler(k);
         this->solve_single_time(k, tolerance, max_iter);
+        this->domain->normalize(k);
     }
-    this->domain->generate_txt_file(string_info);
+    this->domain->generate_txt_file(string_info+dir_name);
 
 }

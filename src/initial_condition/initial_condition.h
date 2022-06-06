@@ -1,5 +1,6 @@
 #pragma once
-#include "src/domain/base_domain.h"
+//#include "src/domain/base_domain.h"
+#include "src/domain/base_domain_copy.h"
 #include <functional>
 #include <complex>
 #include <iostream>

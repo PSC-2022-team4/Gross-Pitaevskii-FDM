@@ -12,20 +12,26 @@ add_executable(GrossPitaevskiiFDM
         src/main.cpp
         src/utils.h
         src/utils.cpp
-        src/domain/base_domain.h
-        src/domain/base_domain.cpp
-        src/domain/polar_domain.h
-        src/domain/polar_domain.cpp
-        src/domain/rect_domain.h
-        src/domain/rect_domain.cpp
+        #src/domain/base_domain.h
+        #src/domain/base_domain.cpp
+        src/domain/base_domain_copy.h
+        src/domain/base_domain_copy.cpp
+        #src/domain/polar_domain.h
+        #src/domain/polar_domain.cpp
+        #src/domain/rect_domain.h
+        #src/domain/rect_domain.cpp
+        src/domain/rect_domain_copy.h
+        src/domain/rect_domain_copy.cpp
         src/initial_condition/initial_condition.h
         src/initial_condition/initial_condition.cpp
         src/serial_solver/base_serial_solver.h
         src/serial_solver/base_serial_solver.cpp
         src/serial_solver/forward_euler/fe_rect_solver.h
         src/serial_solver/forward_euler/fe_rect_solver.cpp
-        src/serial_solver/crank_nicolson/cn_rect_solver.h
-        src/serial_solver/crank_nicolson/cn_rect_solver.cpp
+        #src/serial_solver/crank_nicolson/cn_rect_solver.h
+        #src/serial_solver/crank_nicolson/cn_rect_solver.cpp
+        src/serial_solver/crank_nicolson/cn_rect_solver_copy.h
+        src/serial_solver/crank_nicolson/cn_rect_solver_copy.cpp
         src/parallel_solver/forward_euler/fe_rect_psolver.cuh
         src/parallel_solver/forward_euler/fe_rect_psolver.cu
         src/parallel_solver/crank_nicolson/cn_rect_psolver.cuh
