@@ -4,7 +4,6 @@
 #include <functional>
 #include <iostream>
 #include <cmath>
-#include <string.h>
 
 #include "src/domain/rect_domain.h"
 #include "src/initial_condition/initial_condition.h"

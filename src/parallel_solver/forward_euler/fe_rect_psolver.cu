@@ -216,5 +216,5 @@ void FERectPSolver::solve()
         this->solve_single_time(k);
         this->domain->normalize(k + 1);
     }
-    // this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
+    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
 }

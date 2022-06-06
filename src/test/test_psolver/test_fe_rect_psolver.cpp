@@ -8,21 +8,21 @@
 bool test_fe_rect_psolver(){
     bool all_passed = true;
     std::function<double(double, double)> potential;
+
     double g;
     std::cout << "." << std::endl;
-    RectangularDomain* domain = (new RectangularDomain(1001, 1001, 0, 1, 101, -5, 5, -5, 5));
+    RectangularDomain* domain = (new RectangularDomain(101, 101, 0, 1e-2, 11, -5, 5, -5, 5));
     std::cout << "." << std::endl;
     auto initial_cond_function = [](double x, double y)
-    { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
+    { return std::complex<double>{1e-10}; };
 
     auto *initial_condition =new  InitialCondition(initial_cond_function);
-    std::cout << "." << std::endl;
+
     initial_condition-> assign_to_domain(domain);
 
-    std::cout << "." << std::endl;
     potential= [](double x, double y ){
-        return (double) 0.5 * (x*x + y *y);  };
-    g = 1. ;
+        return (double) 0.5 * 5 * (x*x + y *y);  };
+    g = -1. ;
 
     std::cout << "." << std::endl;
     FERectPSolver solver = FERectPSolver(potential, g, domain);
@@ -46,7 +46,7 @@ bool test_fe_rect_psolver(){
     {
         all_passed = false;
     }
-    std::cout << "Start Solving Equation " << std::endl;
+
     solver.solve();
     //At first step, psi(0,0) = 1+ i (4 e^-1 - 5) 
     double real = 1. ; 
