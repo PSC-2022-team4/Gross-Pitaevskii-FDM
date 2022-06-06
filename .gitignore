@@ -33,3 +33,5 @@
 
 build/
 results/
+.vscode/
+visualization/
