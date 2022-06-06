@@ -23,12 +23,8 @@ bool test_cn_psolver()
     float g = 1;
     CNRectPSolver solver = CNRectPSolver(potential, g, domain);
 
-<<<<<<< HEAD
     solver.solve(1e-11, 101);
-=======
 
-    solver.solve(1e-13, 101);
->>>>>>> 2de3edd5ca6d644807779450d5ab49958aa59459
 
     return all_passed;
 }

@@ -10,9 +10,13 @@ bool test_fe_rect_psolver(){
     std::function<double(double, double)> potential;
 
     double g;
+<<<<<<< HEAD
     std::cout << "." << std::endl;
     RectangularDomain* domain = (new RectangularDomain(101, 101, 0, 1e-2, 11, -5, 5, -5, 5));
     std::cout << "." << std::endl;
+=======
+    RectangularDomain* domain = (new RectangularDomain(1001, 1001, 0, 1, 101, -5, 5, -5, 5));
+>>>>>>> 2de3edd5ca6d644807779450d5ab49958aa59459
     auto initial_cond_function = [](double x, double y)
     { return std::complex<double>{1e-10}; };
 
