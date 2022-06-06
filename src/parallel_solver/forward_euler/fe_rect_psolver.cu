@@ -206,7 +206,7 @@ void FERectPSolver::solve_single_time(int k)
     }
 }
 
-void FERectPSolver::solve()
+void FERectPSolver::solve(std::string dir_name)
 {
     int time_length = this->domain->get_num_times();
 
@@ -216,5 +216,5 @@ void FERectPSolver::solve()
         this->solve_single_time(k);
         this->domain->normalize(k + 1);
     }
-    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
+    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"}+dir_name);
 }

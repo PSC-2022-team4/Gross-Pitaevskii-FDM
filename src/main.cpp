@@ -29,8 +29,8 @@ int main(int argc, char *argv[])
     // test_all_base_serial_solver();
     // test_all_fe_rect_solver();
     // test_all_cn_rect_solver();
-    // test_all_fe_rect_psolver();
-    test_all_cn_rect_psolver();
+    test_all_fe_rect_psolver(rank, size);
+    //test_all_cn_rect_psolver();
 
     // test_all_fe_rect_solver(); //This works before normalization
     // test_all_cn_rect_solver();
