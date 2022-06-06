@@ -23,7 +23,7 @@ void CNRectSolver::generate_potential_grid()
     double x_end = this->domain->at(num_grid_1-1,num_grid_2-1,0)->x;
     double y_end = this->domain->at(num_grid_1-1,num_grid_2-1,0)->y;
     this ->potential_grid = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-    for(auto i=0; i<num_grid_1-1; ++i){
+    for(auto i=0; i<num_grid_1; ++i){
         for(auto j=0;j<num_grid_2; ++j){
             auto point = potential_grid.at(i, j);
             point->wave_function = {this->potential_func(point->x, point->y), 0};

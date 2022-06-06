@@ -30,6 +30,8 @@ add_executable(GrossPitaevskiiFDM
         src/parallel_solver/forward_euler/fe_rect_psolver.cu
         src/parallel_solver/crank_nicolson/cn_rect_psolver.cuh
         src/parallel_solver/crank_nicolson/cn_rect_psolver.cu
+        src/test/test_psolver/test_cn_rect_psolver.cu
+        src/test/test_psolver/test_cn_rect_psolver.cuh
         )
 
 #MPI linking

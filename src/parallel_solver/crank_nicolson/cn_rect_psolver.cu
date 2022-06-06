@@ -1,26 +1,31 @@
 #include "src/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
+#include "src/utils.h"
 #include <iostream>
 #include <cmath>
 
-__global__ void cn_rect_cusolver(double *psi_old_real,
-                                 double *psi_old_imag,
-                                 double *psi_new_real_trial,
-                                 double *psi_new_imag_trial,
-                                 double *psi_new_real,
-                                 double *psi_new_imag,
-                                 double *potential,
+#include <string>
+#include <fstream>
+
+__global__ void cn_rect_cusolver(float *psi_old_real,
+                                 float *psi_old_imag,
+                                 float *psi_new_real_trial,
+                                 float *psi_new_imag_trial,
+                                 float *psi_new_real,
+                                 float *psi_new_imag,
+                                 float *potential,
                                  int n_x,
                                  int n_y,
-                                 double g,
-                                 double h_x,
-                                 double h_y,
-                                 double tau)
+                                 float g,
+                                 float h_x,
+                                 float h_y,
+                                 float tau,
+                                 float relaxation)
 {
-    __shared__ double tile_old_real[nTx][nTy];
-    __shared__ double tile_old_imag[nTx][nTy];
-    __shared__ double tile_new_real_trial[nTx][nTy];
-    __shared__ double tile_new_imag_trial[nTx][nTy];
-    __shared__ double tile_potential[nTx][nTy];
+    __shared__ float tile_old_real[nTx][nTy];
+    __shared__ float tile_old_imag[nTx][nTy];
+    __shared__ float tile_new_real_trial[nTx][nTy];
+    __shared__ float tile_new_imag_trial[nTx][nTy];
+    __shared__ float tile_potential[nTx][nTy];
 
     int block_x = blockIdx.x * blockDim.x;
     int block_y = blockIdx.y * blockDim.y;
@@ -38,50 +43,149 @@ __global__ void cn_rect_cusolver(double *psi_old_real,
 
     __syncthreads();
 
-    //  Update tile position
-    psi_new_real[j * striding + i] += 0.5 * ((1 - tile_potential[thread_x][thread_y] - g * (tile_old_real[thread_x][thread_y] * tile_old_real[thread_x][thread_y] + tile_old_imag[thread_x][thread_y] * tile_old_imag[thread_x][thread_y])) * tile_old_real[thread_x][thread_y] + (2 * tau / (h_x * h_x) + 2 * tau / (h_y * h_y)) * tile_old_imag[thread_x][thread_y]) *
-                                      (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
-    psi_new_imag[j * striding + i] += 0.5 * ((1 - tile_potential[thread_x][thread_y] - g * (tile_old_real[thread_x][thread_y] * tile_old_real[thread_x][thread_y] + tile_old_imag[thread_x][thread_y] * tile_old_imag[thread_x][thread_y])) * tile_old_imag[thread_x][thread_y] - (2 * tau / (h_x * h_x) + 2 * tau / (h_y * h_y)) * tile_old_real[thread_x][thread_y]) *
-                                      (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
-    psi_new_real[j * striding + i] += 0.5 * ((1 - tile_potential[thread_x][thread_y] - g * (tile_new_real_trial[thread_x][thread_y] * tile_new_real_trial[thread_x][thread_y] + tile_new_imag_trial[thread_x][thread_y] * tile_new_imag_trial[thread_x][thread_y])) * tile_new_real_trial[thread_x][thread_y] + (2 * tau / (h_x * h_x) + 2 * tau / (h_y * h_y)) * tile_new_imag_trial[thread_x][thread_y]) *
-                                      (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
-    psi_new_imag[j * striding + i] += 0.5 * ((1 - tile_potential[thread_x][thread_y] - g * (tile_new_real_trial[thread_x][thread_y] * tile_new_real_trial[thread_x][thread_y] + tile_new_imag_trial[thread_x][thread_y] * tile_new_imag_trial[thread_x][thread_y])) * tile_new_imag_trial[thread_x][thread_y] - (2 * tau / (h_x * h_x) + 2 * tau / (h_y * h_y)) * tile_new_real_trial[thread_x][thread_y]) *
-                                      (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
-    // Update left position
-    psi_new_real[j * striding + i - 1] += 0.5 * (-(tau / (h_x * h_x)) * tile_old_imag[thread_x][thread_y]) * (i > 0) * (i < n_x) * (j >= 0) * (j < n_y);
-    psi_new_imag[j * striding + i - 1] += 0.5 * ((tau / (h_x * h_x)) * tile_old_real[thread_x][thread_y]) * (i > 0) * (i < n_x) * (j >= 0) * (j < n_y);
-    psi_new_real[j * striding + i - 1] += 0.5 * (-(tau / (h_x * h_x)) * tile_new_imag_trial[thread_x][thread_y]) * (i > 0) * (i < n_x) * (j >= 0) * (j < n_y);
-    psi_new_imag[j * striding + i - 1] += 0.5 * ((tau / (h_x * h_x)) * tile_new_real_trial[thread_x][thread_y]) * (i > 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // psi_new_real[j * striding + i] += 1. * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // psi_new_imag[j * striding + i] += 1. * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // printf("%f\n", psi_new_real[j * striding + i]);
+    // Method 2
+    // Parameters
+    float sigma_x = tau / (4 * h_x * h_x);
+    float sigma_y = tau / (4 * h_y * h_y);
+    float a = 2 * sigma_x + 2 * sigma_y + 0.5 * tau * tile_potential[thread_x][thread_y];
+    float b = a * a + 1;
+    float amplitude_old = tile_old_real[thread_x][thread_y] * tile_old_real[thread_x][thread_y] + tile_old_imag[thread_x][thread_y] * tile_old_imag[thread_x][thread_y];
+    float amplitude_new = tile_new_real_trial[thread_x][thread_y] * tile_new_real_trial[thread_x][thread_y] + tile_new_imag_trial[thread_x][thread_y] * tile_new_imag_trial[thread_x][thread_y];
 
-    // Update right position
-    psi_new_real[j * striding + i + 1] += 0.5 * (-(tau / (h_x * h_x)) * tile_old_imag[thread_x][thread_y]) * (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y);
-    psi_new_imag[j * striding + i + 1] += 0.5 * ((tau / (h_x * h_x)) * tile_old_real[thread_x][thread_y]) * (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y);
-    psi_new_real[j * striding + i + 1] += 0.5 * (-(tau / (h_x * h_x)) * tile_new_imag_trial[thread_x][thread_y]) * (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y);
-    psi_new_imag[j * striding + i + 1] += 0.5 * ((tau / (h_x * h_x)) * tile_new_real_trial[thread_x][thread_y]) * (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y);
+    // Update tile position
+    atomicAdd(&psi_new_real[j * striding + i],
+              relaxation * ((1 - a * a) / b * tile_old_real[thread_x][thread_y] + 2 * a / b * tile_old_imag[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    atomicAdd(&psi_new_real[j * striding + i],
+              relaxation * (-a * g * tau / (2 * b) * tile_old_real[thread_x][thread_y] + g * tau / (2 * b) * tile_old_imag[thread_x][thread_y]) * amplitude_old * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    atomicAdd(&psi_new_real[j * striding + i],
+              relaxation * (-a * g * tau / (2 * b) * tile_new_real_trial[thread_x][thread_y] + g * tau / (2 * b) * tile_new_imag_trial[thread_x][thread_y]) * amplitude_new * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
 
-    // Update down position
-    psi_new_real[(j - 1) * striding + i] += 0.5 * (-(tau / (h_y * h_y)) * tile_old_imag[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j > 0) * (j < n_y);
-    psi_new_imag[(j - 1) * striding + i] += 0.5 * ((tau / (h_y * h_y)) * tile_old_real[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j > 0) * (j < n_y);
-    psi_new_real[(j - 1) * striding + i] += 0.5 * (-(tau / (h_y * h_y)) * tile_new_imag_trial[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j > 0) * (j < n_y);
-    psi_new_imag[(j - 1) * striding + i] += 0.5 * ((tau / (h_y * h_y)) * tile_new_real_trial[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j > 0) * (j < n_y);
+    atomicAdd(&psi_new_imag[j * striding + i],
+              relaxation * (-2 * a / b * tile_old_real[thread_x][thread_y] + (1 - a * a) / b * tile_old_imag[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    atomicAdd(&psi_new_imag[j * striding + i],
+              relaxation * (-g * tau / (2 * b) * tile_old_real[thread_x][thread_y] - a * g * tau / (2 * b) * tile_old_imag[thread_x][thread_y]) * amplitude_old * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    atomicAdd(&psi_new_imag[j * striding + i],
+              relaxation * (-g * tau / (2 * b) * tile_new_real_trial[thread_x][thread_y] - a * g * tau / (2 * b) * tile_new_imag_trial[thread_x][thread_y]) * amplitude_new * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
 
-    // Update up position
-    psi_new_real[(j + 1) * striding + i] += 0.5 * (-(tau / (h_y * h_y)) * tile_old_imag[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
-    psi_new_imag[(j + 1) * striding + i] += 0.5 * ((tau / (h_y * h_y)) * tile_old_real[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
-    psi_new_real[(j + 1) * striding + i] += 0.5 * (-(tau / (h_y * h_y)) * tile_new_imag_trial[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
-    psi_new_imag[(j + 1) * striding + i] += 0.5 * ((tau / (h_y * h_y)) * tile_new_real_trial[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
+    // Update left
+    atomicAdd(&psi_new_real[j * striding + i - 1],
+              relaxation * (a * sigma_x / b * tile_old_real[thread_x][thread_y] - sigma_x / b * tile_old_imag[thread_x][thread_y]) *
+                  (i > 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    atomicAdd(&psi_new_real[j * striding + i - 1],
+              relaxation * (a * sigma_x / b * tile_new_real_trial[thread_x][thread_y] - sigma_x / b * tile_new_imag_trial[thread_x][thread_y]) *
+                  (i > 0) * (i < n_x) * (j >= 0) * (j < n_y));
+
+    atomicAdd(&psi_new_imag[j * striding + i - 1],
+              relaxation * (sigma_x / b * tile_old_real[thread_x][thread_y] + a * sigma_x / b * tile_old_imag[thread_x][thread_y]) *
+                  (i > 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    atomicAdd(&psi_new_imag[j * striding + i - 1],
+              relaxation * (sigma_x / b * tile_new_real_trial[thread_x][thread_y] + a * sigma_x / b * tile_new_imag_trial[thread_x][thread_y]) *
+                  (i > 0) * (i < n_x) * (j >= 0) * (j < n_y));
+
+    // Update right
+    atomicAdd(&psi_new_real[j * striding + i + 1],
+              relaxation * (a * sigma_x / b * tile_old_real[thread_x][thread_y] - sigma_x / b * tile_old_imag[thread_x][thread_y]) *
+                  (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y));
+    atomicAdd(&psi_new_real[j * striding + i + 1],
+              relaxation * (a * sigma_x / b * tile_new_real_trial[thread_x][thread_y] - sigma_x / b * tile_new_imag_trial[thread_x][thread_y]) *
+                  (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y));
+
+    atomicAdd(&psi_new_imag[j * striding + i + 1],
+              relaxation * (sigma_x / b * tile_old_real[thread_x][thread_y] + a * sigma_x / b * tile_old_imag[thread_x][thread_y]) *
+                  (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y));
+    atomicAdd(&psi_new_imag[j * striding + i + 1],
+              relaxation * (sigma_x / b * tile_new_real_trial[thread_x][thread_y] + a * sigma_x / b * tile_new_imag_trial[thread_x][thread_y]) *
+                  (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y));
+
+    // Update down
+    atomicAdd(&psi_new_real[(j - 1) * striding + i],
+              relaxation * (a * sigma_y / b * tile_old_real[thread_x][thread_y] - sigma_y / b * tile_old_imag[thread_x][thread_y]) *
+                  (i >= 0) * (i < n_x) * (j > 0) * (j < n_y));
+    atomicAdd(&psi_new_real[(j - 1) * striding + i],
+              relaxation * (a * sigma_y / b * tile_new_real_trial[thread_x][thread_y] - sigma_y / b * tile_new_imag_trial[thread_x][thread_y]) *
+                  (i >= 0) * (i < n_x) * (j > 0) * (j < n_y));
+
+    atomicAdd(&psi_new_imag[(j - 1) * striding + i],
+              relaxation * (sigma_y / b * tile_old_real[thread_x][thread_y] + a * sigma_y / b * tile_old_imag[thread_x][thread_y]) *
+                  (i >= 0) * (i < n_x) * (j > 0) * (j < n_y));
+    atomicAdd(&psi_new_imag[(j - 1) * striding + i],
+              relaxation * (sigma_y / b * tile_new_real_trial[thread_x][thread_y] + a * sigma_y / b * tile_new_imag_trial[thread_x][thread_y]) *
+                  (i >= 0) * (i < n_x) * (j > 0) * (j < n_y));
+
+    // Update up
+    atomicAdd(&psi_new_real[(j + 1) * striding + i],
+              relaxation * (a * sigma_y / b * tile_old_real[thread_x][thread_y] - sigma_y / b * tile_old_imag[thread_x][thread_y]) *
+                  (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1)));
+    atomicAdd(&psi_new_real[(j + 1) * striding + i],
+              relaxation * (a * sigma_y / b * tile_new_real_trial[thread_x][thread_y] - sigma_y / b * tile_new_imag_trial[thread_x][thread_y]) *
+                  (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1)));
+
+    atomicAdd(&psi_new_imag[(j + 1) * striding + i],
+              relaxation * (sigma_y / b * tile_old_real[thread_x][thread_y] + a * sigma_y / b * tile_old_imag[thread_x][thread_y]) *
+                  (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1)));
+    atomicAdd(&psi_new_imag[(j + 1) * striding + i],
+              relaxation * (sigma_y / b * tile_new_real_trial[thread_x][thread_y] + a * sigma_y / b * tile_new_imag_trial[thread_x][thread_y]) *
+                  (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1)));
+
+    // // remove unwanted values in padding zone
+    // psi_new_real[j * striding + i] *= ((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    // psi_new_imag[j * striding + i] *= ((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
+
+    // // Method 1
+    // //  Update tile position
+    // psi_new_real[j * striding + i] += relaxation * 0.5 * ((1 - tile_potential[thread_x][thread_y] - g * (tile_old_real[thread_x][thread_y] * tile_old_real[thread_x][thread_y] + tile_old_imag[thread_x][thread_y] * tile_old_imag[thread_x][thread_y])) * tile_old_real[thread_x][thread_y] + (2 * tau / (h_x * h_x) + 2 * tau / (h_y * h_y)) * tile_old_imag[thread_x][thread_y]) *
+    //                                   (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // psi_new_imag[j * striding + i] += relaxation * 0.5 * ((1 - tile_potential[thread_x][thread_y] - g * (tile_old_real[thread_x][thread_y] * tile_old_real[thread_x][thread_y] + tile_old_imag[thread_x][thread_y] * tile_old_imag[thread_x][thread_y])) * tile_old_imag[thread_x][thread_y] - (2 * tau / (h_x * h_x) + 2 * tau / (h_y * h_y)) * tile_old_real[thread_x][thread_y]) *
+    //                                   (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // psi_new_real[j * striding + i] += relaxation * 0.5 * ((1 - tile_potential[thread_x][thread_y] - g * (tile_new_real_trial[thread_x][thread_y] * tile_new_real_trial[thread_x][thread_y] + tile_new_imag_trial[thread_x][thread_y] * tile_new_imag_trial[thread_x][thread_y])) * tile_new_real_trial[thread_x][thread_y] + (2 * tau / (h_x * h_x) + 2 * tau / (h_y * h_y)) * tile_new_imag_trial[thread_x][thread_y]) *
+    //                                   (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // psi_new_imag[j * striding + i] += relaxation * 0.5 * ((1 - tile_potential[thread_x][thread_y] - g * (tile_new_real_trial[thread_x][thread_y] * tile_new_real_trial[thread_x][thread_y] + tile_new_imag_trial[thread_x][thread_y] * tile_new_imag_trial[thread_x][thread_y])) * tile_new_imag_trial[thread_x][thread_y] - (2 * tau / (h_x * h_x) + 2 * tau / (h_y * h_y)) * tile_new_real_trial[thread_x][thread_y]) *
+    //                                   (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // // Update left position
+    // psi_new_real[j * striding + i - 1] += relaxation * 0.5 * (-(tau / (h_x * h_x)) * tile_old_imag[thread_x][thread_y]) * (i > 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // psi_new_imag[j * striding + i - 1] += relaxation * 0.5 * ((tau / (h_x * h_x)) * tile_old_real[thread_x][thread_y]) * (i > 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // psi_new_real[j * striding + i - 1] += relaxation * 0.5 * (-(tau / (h_x * h_x)) * tile_new_imag_trial[thread_x][thread_y]) * (i > 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    // psi_new_imag[j * striding + i - 1] += relaxation * 0.5 * ((tau / (h_x * h_x)) * tile_new_real_trial[thread_x][thread_y]) * (i > 0) * (i < n_x) * (j >= 0) * (j < n_y);
+
+    // // Update right position
+    // psi_new_real[j * striding + i + 1] += relaxation * 0.5 * (-(tau / (h_x * h_x)) * tile_old_imag[thread_x][thread_y]) * (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y);
+    // psi_new_imag[j * striding + i + 1] += relaxation * 0.5 * ((tau / (h_x * h_x)) * tile_old_real[thread_x][thread_y]) * (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y);
+    // psi_new_real[j * striding + i + 1] += relaxation * 0.5 * (-(tau / (h_x * h_x)) * tile_new_imag_trial[thread_x][thread_y]) * (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y);
+    // psi_new_imag[j * striding + i + 1] += relaxation * 0.5 * ((tau / (h_x * h_x)) * tile_new_real_trial[thread_x][thread_y]) * (i >= 0) * (i < (n_x - 1)) * (j >= 0) * (j < n_y);
+
+    // // Update down position
+    // psi_new_real[(j - 1) * striding + i] += relaxation * 0.5 * (-(tau / (h_y * h_y)) * tile_old_imag[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j > 0) * (j < n_y);
+    // psi_new_imag[(j - 1) * striding + i] += relaxation * 0.5 * ((tau / (h_y * h_y)) * tile_old_real[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j > 0) * (j < n_y);
+    // psi_new_real[(j - 1) * striding + i] += relaxation * 0.5 * (-(tau / (h_y * h_y)) * tile_new_imag_trial[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j > 0) * (j < n_y);
+    // psi_new_imag[(j - 1) * striding + i] += relaxation * 0.5 * ((tau / (h_y * h_y)) * tile_new_real_trial[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j > 0) * (j < n_y);
+
+    // // Update up position
+    // psi_new_real[(j + 1) * striding + i] += relaxation * 0.5 * (-(tau / (h_y * h_y)) * tile_old_imag[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
+    // psi_new_imag[(j + 1) * striding + i] += relaxation * 0.5 * ((tau / (h_y * h_y)) * tile_old_real[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
+    // psi_new_real[(j + 1) * striding + i] += relaxation * 0.5 * (-(tau / (h_y * h_y)) * tile_new_imag_trial[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
+    // psi_new_imag[(j + 1) * striding + i] += relaxation * 0.5 * ((tau / (h_y * h_y)) * tile_new_real_trial[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
+
+    // // remove unwanted values in padding zone
+    // psi_new_real[j * striding + i + 1] *= ((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    // psi_new_imag[j * striding + i + 1] *= ((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
 }
 
-__global__ void calculate_error_on_device(double *psi_1_real,
-                                          double *psi_1_imag,
-                                          double *psi_2_real,
-                                          double *psi_2_imag,
-                                          double *error)
+// Only works with single block
+__global__ void calculate_local_error(float *psi_1_real,
+                                      float *psi_1_imag,
+                                      float *psi_2_real,
+                                      float *psi_2_imag,
+                                      float *error_array,
+                                      int n_x,
+                                      int n_y)
 {
-    __shared__ double tile_psi_1_real[nTx][nTy];
-    __shared__ double tile_psi_1_imag[nTx][nTy];
-    __shared__ double tile_psi_2_real[nTx][nTy];
-    __shared__ double tile_psi_2_imag[nTx][nTy];
+    __shared__ float tile_psi_1_real[nTx][nTy];
+    __shared__ float tile_psi_1_imag[nTx][nTy];
+    __shared__ float tile_psi_2_real[nTx][nTy];
+    __shared__ float tile_psi_2_imag[nTx][nTy];
 
     int block_x = blockIdx.x * blockDim.x;
     int block_y = blockIdx.y * blockDim.y;
@@ -97,14 +201,116 @@ __global__ void calculate_error_on_device(double *psi_1_real,
     tile_psi_2_imag[thread_x][thread_y] = psi_2_imag[j * striding + i];
 
     __syncthreads();
-    *error += (tile_psi_1_real[thread_x][thread_y] - tile_psi_2_real[thread_x][thread_y]) * (tile_psi_1_real[thread_x][thread_y] - tile_psi_2_real[thread_x][thread_y]);
-    *error += (tile_psi_1_imag[thread_x][thread_y] - tile_psi_2_imag[thread_x][thread_y]) * (tile_psi_1_imag[thread_x][thread_y] - tile_psi_2_imag[thread_x][thread_y]);
-    printf("%f", *error);
+
+    error_array[j * striding + i] = ((tile_psi_1_real[thread_x][thread_y] - tile_psi_2_real[thread_x][thread_y]) * (tile_psi_1_real[thread_x][thread_y] - tile_psi_2_real[thread_x][thread_y])) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    error_array[j * striding + i] += ((tile_psi_1_imag[thread_x][thread_y] - tile_psi_2_imag[thread_x][thread_y]) * (tile_psi_1_imag[thread_x][thread_y] - tile_psi_2_imag[thread_x][thread_y])) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+}
+
+__global__ void reduction_error(float *error_array, float *error, int array_size)
+{
+    int idx = threadIdx.x;
+    float sum = 0;
+    for (int i = idx; i < array_size; i += nTx * nTy)
+    {
+        sum += error_array[i];
+    }
+
+    __shared__ float r[nTx * nTy];
+    r[idx] = sum;
+    __syncthreads();
+    for (int size = nTx * nTy / 2; size > 0; size /= 2)
+    { // uniform
+        if (idx < size)
+            r[idx] += r[idx + size];
+        __syncthreads();
+    }
+    if (idx == 0)
+        *error = r[0];
+}
+
+__global__ void calculate_probability(float *psi_real, float *psi_imag, float *probability, int n_x, int n_y)
+{
+    __shared__ float tile_psi_real[nTx][nTy];
+    __shared__ float tile_psi_imag[nTx][nTy];
+
+    int block_x = blockIdx.x * blockDim.x;
+    int block_y = blockIdx.y * blockDim.y;
+    int thread_x = threadIdx.x;
+    int thread_y = threadIdx.y;
+    int i = (block_x + thread_x);
+    int j = (block_y + thread_y);
+    int striding = gridDim.x * blockDim.x;
+
+    tile_psi_real[thread_x][thread_y] = psi_real[j * striding + i];
+    tile_psi_imag[thread_x][thread_y] = psi_imag[j * striding + i];
+    __syncthreads();
+
+    probability[j * striding + i] = ((tile_psi_real[thread_x][thread_y] * tile_psi_real[thread_x][thread_y]) + (tile_psi_imag[thread_x][thread_y] * tile_psi_imag[thread_x][thread_y])) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+}
+
+// Only works with single block
+__global__ void calculate_normalize_factor(float *probability, float *normalize_factor, int array_size, float unit_area)
+{
+    int idx = threadIdx.x;
+    float sum = 0;
+    for (auto i = idx; i < array_size; i += nTx * nTy)
+    {
+        sum += probability[i];
+    }
+
+    __shared__ float r[nTx * nTy];
+    r[idx] = sum;
+    __syncthreads();
+
+    for (auto size = nTx * nTy / 2; size > 0; size /= 2)
+    {
+        if (idx < size)
+            r[idx] += r[idx + size];
+        __syncthreads();
+    }
+    if (idx == 0)
+    {
+        *normalize_factor = sqrt(r[0] * unit_area);
+    }
+}
+
+__global__ void normalize(float *psi_real, float *psi_imag, float *normalize_factor)
+{
+    __shared__ float tile_psi_real[nTx][nTy];
+    __shared__ float tile_psi_imag[nTx][nTy];
+
+    int block_x = blockIdx.x * blockDim.x;
+    int block_y = blockIdx.y * blockDim.y;
+    int thread_x = threadIdx.x;
+    int thread_y = threadIdx.y;
+    int i = (block_x + thread_x);
+    int j = (block_y + thread_y);
+    int striding = gridDim.x * blockDim.x;
+
+    psi_real[j * striding + i] /= *normalize_factor;
+    psi_imag[j * striding + i] /= *normalize_factor;
+}
+
+__global__ void scale_prev_solution(float *psi_real, float *psi_imag, float scale)
+{
+    __shared__ float tile_psi_real[nTx][nTy];
+    __shared__ float tile_psi_imag[nTx][nTy];
+
+    int block_x = blockIdx.x * blockDim.x;
+    int block_y = blockIdx.y * blockDim.y;
+    int thread_x = threadIdx.x;
+    int thread_y = threadIdx.y;
+    int i = (block_x + thread_x);
+    int j = (block_y + thread_y);
+    int striding = gridDim.x * blockDim.x;
+
+    psi_real[j * striding + i] *= scale;
+    psi_imag[j * striding + i] *= scale;
 }
 
 CNRectPSolver::CNRectPSolver(
-    std::function<double(double, double)> potential,
-    double g,
+    std::function<float(float, float)> potential,
+    float g,
 
     RectangularDomain *domain)
     : BaseSolver(potential, g), domain(domain)
@@ -117,12 +323,12 @@ void CNRectPSolver::generate_potential_grid()
 {
     int num_grid_1 = this->domain->get_num_grid_1();
     int num_grid_2 = this->domain->get_num_grid_2();
-    double x_start = this->domain->at(0, 0, 0)->x;
-    double y_start = this->domain->at(0, 0, 0)->y;
-    double x_end = this->domain->at(num_grid_1 - 1, num_grid_2 - 1, 0)->x;
-    double y_end = this->domain->at(num_grid_1 - 1, num_grid_2 - 1, 0)->y;
+    float x_start = this->domain->at(0, 0, 0)->x;
+    float y_start = this->domain->at(0, 0, 0)->y;
+    float x_end = this->domain->at(num_grid_1 - 1, num_grid_2 - 1, 0)->x;
+    float y_end = this->domain->at(num_grid_1 - 1, num_grid_2 - 1, 0)->y;
     this->potential_grid = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-    for (auto i = 0; i < num_grid_1 - 1; ++i)
+    for (auto i = 0; i < num_grid_1; ++i)
     {
         for (auto j = 0; j < num_grid_2; ++j)
         {
@@ -131,183 +337,67 @@ void CNRectPSolver::generate_potential_grid()
         }
     }
 };
-
-/**
- * @brief Time differential of phi
- *
- * @param i index for x
- * @param j index for y
- * @param k index for time
- * @return std::complex<double>
- */
-std::complex<double> CNRectPSolver::temporal_equation(int i, int j, int k)
+void fileout_debug(float *array, int n_x, int n_y, std::string filename)
 {
-    auto infinitesimal_distance_1 = this->domain->get_infinitesimal_distance1();
-    auto infinitesimal_distance_2 = this->domain->get_infinitesimal_distance2();
-    auto point_data = this->domain->at(i, j, k);
-    auto point_data_left = this->domain->at(i - 1, j, k);
-    auto point_data_right = this->domain->at(i + 1, j, k);
-    if (i == 0)
+    std::ofstream fileout(filename.data());
+    for (auto i = 0; i < n_y; ++i)
     {
-        point_data_left = new GridPoint(0, 0, std::complex<double>{0.});
-    }
-    if (i == (this->domain->get_num_grid_1() - 1))
-    {
-        point_data_right = new GridPoint(0, 0, std::complex<double>{0.});
-    }
-    auto point_data_up = this->domain->at(i, j + 1, k);
-    auto point_data_down = this->domain->at(i, j - 1, k);
-    if (j == 0)
-    {
-        point_data_down = new GridPoint(0, 0, std::complex<double>{0.});
-    }
-    if (j == (this->domain->get_num_grid_2() - 1))
-    {
-        point_data_up = new GridPoint(0, 0, std::complex<double>{0.});
-    }
-
-    auto potential_value = this->potential_grid.at(i, j)->wave_function.real();
-    auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->wave_function +
-                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->wave_function +
-                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->wave_function);
-
-    auto laplacian_y = (-2. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data->wave_function +
-                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_down->wave_function +
-                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_up->wave_function);
-
-    auto wave_function_abs_square = (point_data->wave_function.real() * point_data->wave_function.real() +
-                                     point_data->wave_function.imag() * point_data->wave_function.imag());
-
-    return laplacian_x + laplacian_y - potential_value * point_data->wave_function - this->g * wave_function_abs_square * point_data->wave_function;
-}
-
-/**
- * @brief
- *
- * @param i
- * @param j
- * @return std::complex<double>
- */
-std::complex<double> CNRectPSolver::temporal_equation_from_guess(int i, int j)
-{
-    auto infinitesimal_distance_1 = this->domain->get_infinitesimal_distance1();
-    auto infinitesimal_distance_2 = this->domain->get_infinitesimal_distance2();
-    auto point_data = this->guess->at(i, j);
-    auto point_data_left = this->guess->at(i - 1, j);
-    auto point_data_right = this->guess->at(i + 1, j);
-    if (i == 0)
-    {
-        point_data_left = new GridPoint(0, 0, std::complex<double>{0.});
-    }
-    if (i == (this->domain->get_num_grid_1() - 1))
-    {
-        point_data_right = new GridPoint(0, 0, std::complex<double>{0.});
-    }
-    auto point_data_up = this->guess->at(i, j + 1);
-    auto point_data_down = this->guess->at(i, j - 1);
-    if (j == 0)
-    {
-        point_data_down = new GridPoint(0, 0, std::complex<double>{0.});
-    }
-    if (j == (this->domain->get_num_grid_2() - 1))
-    {
-        point_data_up = new GridPoint(0, 0, std::complex<double>{0.});
-    }
-
-    auto potential_value = this->potential_grid.at(i, j)->wave_function.real();
-    auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->wave_function +
-                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->wave_function +
-                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->wave_function);
-
-    auto laplacian_y = (-2. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data->wave_function +
-                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_down->wave_function +
-                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_up->wave_function);
-
-    auto wave_function_abs_square = (point_data->wave_function.real() * point_data->wave_function.real() +
-                                     point_data->wave_function.imag() * point_data->wave_function.imag());
-    return laplacian_x + laplacian_y - potential_value * point_data->wave_function - this->g * wave_function_abs_square * point_data->wave_function;
-}
-void CNRectPSolver::initialize_guess_with_forward_euler(int k)
-{
-    this->fe_solver->solve_single_time(k - 1);
-    this->guess = new RectangularSpatialGrid(
-        this->domain->get_num_grid_1(),
-        this->domain->get_num_grid_2(),
-        this->domain->get_x_start(),
-        this->domain->get_x_end(),
-        this->domain->get_y_start(),
-        this->domain->get_y_end());
-
-    for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
-    {
-        for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
+        for (auto j = 0; j < n_x - 1; ++j)
         {
-            guess->at(i, j)->wave_function = this->domain->at(i, j, k)->wave_function;
+            fileout << array[n_x * i + j] << ", ";
         }
+        fileout << array[n_x * i + n_x - 1] << std::endl;
     }
 }
 
-void CNRectPSolver::update_guess(int i, int j, int k)
-{
-    for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
-    {
-        for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
-        {
-            this->guess->at(i, j)->wave_function = (0.99 * this->guess->at(i, j)->wave_function +
-                                                    0.01 * (this->domain->at(i, j, k - 1)->wave_function + std::complex<double>{0, 0.5} * this->domain->get_dt() * (this->temporal_equation(i, j, k - 1) + this->temporal_equation(i, j, k)))); // this->temporal_equation_from_guess(i, j))));
-        }
-    }
-}
-
-double CNRectPSolver::calculate_error(int k)
-{
-    double error = 0.;
-    for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
-    {
-        for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
-        {
-            error += std::pow(std::abs((this->guess->at(i, j)->wave_function - this->domain->at(i, j, k)->wave_function)), 2);
-        }
-    }
-    return error;
-}
-
-void CNRectPSolver::solve_single_time(int k, double tolerance, int max_iter)
+void CNRectPSolver::solve(float tolerance, int max_iter)
 {
     int n_x = this->domain->get_num_grid_1();
     int n_y = this->domain->get_num_grid_2();
-    double dt = this->domain->get_dt();
+    float h_x = this->domain->get_infinitesimal_distance1();
+    float h_y = this->domain->get_infinitesimal_distance2();
+    float dt = this->domain->get_dt();
+    float error = 1.;
+    float normalize_factor;
 
-    double error = 1.;
-    double *d_error;
+    float *d_error;
+    float *d_normalize_factor;
     bool converged = false;
     int converged_step = 0;
+    float relaxation_parameter = 1.;
 
     dim3 TPB(nTx, nTy);
     dim3 nBlocks(n_x / nTx + (n_x % nTx != 0), n_y / nTy + (n_y % nTy != 0));
-    double *h_psi_old_real = (double *)malloc(sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    double *h_psi_old_imag = (double *)malloc(sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    double *h_psi_new_real_trial = (double *)malloc(sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    double *h_psi_new_imag_trial = (double *)malloc(sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    double *h_psi_new_real = (double *)malloc(sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    double *h_psi_new_imag = (double *)malloc(sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    double *h_potential = (double *)malloc(sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    double *d_psi_old_real, *d_psi_old_imag, *d_psi_new_real, *d_psi_new_real_trial, *d_psi_new_imag_trial, *d_psi_new_imag, *d_potential;
-    cudaMalloc((double **)&d_psi_old_real, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    cudaMalloc((double **)&d_psi_old_imag, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    cudaMalloc((double **)&d_psi_new_real_trial, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    cudaMalloc((double **)&d_psi_new_imag_trial, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    cudaMalloc((double **)&d_psi_new_real, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    cudaMalloc((double **)&d_psi_new_imag, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    cudaMalloc((double **)&d_potential, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    cudaMalloc((double **)&d_error, sizeof(double));
-    std::complex<double> wave_func;
-    double potential_value;
+    float *h_psi_old_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *h_psi_old_imag = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *h_psi_new_real_trial = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *h_psi_new_imag_trial = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *h_psi_new_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *h_psi_new_imag = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *h_potential = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *h_probability_array = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *d_psi_old_real, *d_psi_old_imag, *d_psi_new_real, *d_psi_new_real_trial, *d_psi_new_imag_trial, *d_psi_new_imag, *d_potential;
+    float *d_probability_array, *d_error_array;
+
+    cudaMalloc((float **)&d_psi_old_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_psi_new_real_trial, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_psi_new_imag_trial, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_probability_array, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_error_array, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    cudaMalloc((float **)&d_error, sizeof(float));
+    cudaMalloc((float **)&d_normalize_factor, sizeof(float));
+
+    std::complex<float> wave_func;
+    float potential_value;
     for (int i = 0; i < n_x; ++i)
     {
         for (int j = 0; j < n_y; ++j)
         {
-            wave_func = this->domain->at(i, j, k)->wave_function;
+            wave_func = this->domain->at(i, j, 0)->wave_function;
             potential_value = this->potential_grid.at(i, j)->wave_function.real();
             h_psi_old_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
             h_psi_old_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
@@ -319,62 +409,112 @@ void CNRectPSolver::solve_single_time(int k, double tolerance, int max_iter)
         }
     }
 
-    cudaMemcpy(d_psi_new_real, h_psi_new_real, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_psi_new_imag, h_psi_new_imag, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_psi_new_real_trial, h_psi_new_real_trial, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_psi_new_imag_trial, h_psi_new_imag_trial, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_psi_old_real, h_psi_old_real, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_psi_old_imag, h_psi_old_imag, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_potential, h_potential, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_error, &error, sizeof(double), cudaMemcpyHostToDevice);
+    cudaMemcpy(d_psi_new_real, h_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_psi_new_imag, h_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_psi_new_real_trial, h_psi_new_real_trial, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_psi_new_imag_trial, h_psi_new_imag_trial, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_psi_old_real, h_psi_old_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_psi_old_imag, h_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
 
-    cudaDeviceSynchronize();
+    // cudaDeviceSynchronize();
+    // {
+    //     calculate_probability<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_probability_array, n_x, n_y);
+    //     cudaMemcpy(h_probability_array, d_probability_array, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+    //     fileout_debug(h_probability_array, TPB.x * nBlocks.x, TPB.y * nBlocks.y, std::string("prob_init.txt"));
+    //     cudaMemcpy(h_psi_new_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+    //     fileout_debug(h_psi_new_real, TPB.x * nBlocks.x, TPB.y * nBlocks.y, std::string("real_init.txt"));
+    //     cudaMemcpy(h_psi_new_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+    //     fileout_debug(h_psi_new_imag, TPB.x * nBlocks.x, TPB.y * nBlocks.y, std::string("imag_init.txt"));
+    //     cudaMemcpy(h_potential, d_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+    //     fileout_debug(h_potential, TPB.x * nBlocks.x, TPB.y * nBlocks.y, std::string("potential.txt"));
+    // }
 
-    for (auto iter = 0; iter < max_iter; ++iter)
-    {
-        if (error < tolerance)
-        {
-            converged = true;
-            converged_step = iter - 1;
-            break;
-        }
-        cudaMemcpy(d_psi_new_real_trial, d_psi_new_real, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
-        cudaMemcpy(d_psi_new_imag_trial, d_psi_new_imag, sizeof(double) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
-        cn_rect_cusolver<<<nBlocks, TPB>>>(
-            d_psi_old_real,
-            d_psi_old_imag,
-            d_psi_new_real_trial,
-            d_psi_new_imag_trial,
-            d_psi_new_real,
-            d_psi_new_imag,
-            d_potential,
-            n_x, n_y,
-            this->g,
-            this->domain->get_infinitesimal_distance1(),
-            this->domain->get_infinitesimal_distance2(),
-            this->domain->get_dt());
-        error = 0.;
-        cudaMemcpy(d_error, &error, sizeof(double), cudaMemcpyHostToDevice);
-        calculate_error_on_device<<<nBlocks, TPB>>>(d_psi_new_real_trial,
-                                                    d_psi_new_imag_trial,
-                                                    d_psi_new_real,
-                                                    d_psi_new_imag,
-                                                    &error);
-        cudaMemcpy(&error, d_error, sizeof(double), cudaMemcpyDeviceToHost);
-        std::cout << error << std::endl;
-    }
-    if (!converged)
-    {
-        std::cout << "Converged failed with error = " << error << std::endl;
-    }
-}
-void CNRectPSolver::solve(double tolerance, int max_iter)
-{
     for (auto k = 1; k < this->domain->get_num_times(); ++k)
     {
         std::cout << "time step " << k << std::endl;
-        this->initialize_guess_with_forward_euler(k);
-        this->solve_single_time(k, tolerance, max_iter);
+        error = 1.;
+        if (k > 1)
+        {
+            cudaMemcpy(d_psi_old_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
+            cudaMemcpy(d_psi_old_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
+        }
+
+        for (auto iter = 0; iter < max_iter; ++iter)
+        {
+            // std::cout << ".";
+            if (error < tolerance)
+            {
+                converged = true;
+                converged_step = iter - 1;
+                // std::cout << std::endl;
+                break;
+            }
+            cudaMemcpy(d_psi_new_real_trial, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
+            cudaMemcpy(d_psi_new_imag_trial, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
+
+            scale_prev_solution<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, 1 - relaxation_parameter);
+
+            cudaDeviceSynchronize();
+
+            cn_rect_cusolver<<<nBlocks, TPB>>>(
+                d_psi_old_real,
+                d_psi_old_imag,
+                d_psi_new_real_trial,
+                d_psi_new_imag_trial,
+                d_psi_new_real,
+                d_psi_new_imag,
+                d_potential,
+                n_x, n_y,
+                this->g,
+                this->domain->get_infinitesimal_distance1(),
+                this->domain->get_infinitesimal_distance2(),
+                this->domain->get_dt(),
+                relaxation_parameter);
+
+            cudaMemset(&d_probability_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+            cudaMemset(&d_normalize_factor, 0, sizeof(float));
+
+            calculate_probability<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_probability_array, n_x, n_y);
+
+            calculate_normalize_factor<<<1, TPB.x * TPB.y>>>(d_probability_array, d_normalize_factor, TPB.x * nBlocks.x * TPB.y * nBlocks.y, h_x * h_y);
+            // cudaMemcpy(&normalize_factor, d_normalize_factor, sizeof(float), cudaMemcpyDeviceToHost);
+            normalize<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_normalize_factor);
+            cudaDeviceSynchronize();
+            // {
+            //     calculate_probability<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_probability_array, n_x, n_y);
+            //     cudaMemcpy(h_probability_array, d_probability_array, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+            //     cudaMemcpy(h_psi_new_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+            //     cudaMemcpy(h_psi_new_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+            //     fileout_debug(h_probability_array, TPB.x * nBlocks.x, TPB.y * nBlocks.y, std::string("prob_") + std::to_string(k) + std::string("_") + std::to_string(iter) + std::string(".txt"));
+            //     fileout_debug(h_psi_new_real, TPB.x * nBlocks.x, TPB.y * nBlocks.y, std::string("real_") + std::to_string(k) + std::string("_") + std::to_string(iter) + std::string(".txt"));
+            //     fileout_debug(h_psi_new_imag, TPB.x * nBlocks.x, TPB.y * nBlocks.y, std::string("imag_") + std::to_string(k) + std::string("_") + std::to_string(iter) + std::string(".txt"));
+            // }
+            cudaMemset(&d_error_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+            cudaMemset(&d_error, 0, sizeof(float));
+            calculate_local_error<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_psi_new_real_trial, d_psi_new_imag_trial, d_error_array, n_x, n_y);
+            reduction_error<<<1, TPB.x * TPB.y>>>(d_error_array, d_error, TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+            cudaMemcpy(&error, d_error, sizeof(float), cudaMemcpyDeviceToHost);
+            // std::cout << error << std::endl;
+            cudaDeviceSynchronize();
+            // std::cout << "error: " << error << std::endl;
+        }
+        if (!converged)
+        {
+            std::cout << "Converged failed with error = " << error << std::endl;
+        }
+        cudaMemcpy(h_psi_new_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+        cudaMemcpy(h_psi_new_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
+        for (int i = 0; i < n_x; ++i)
+        {
+            for (int j = 0; j < n_y; ++j)
+            {
+                this->domain->assign_wave_function(i, j, k,
+                                                   std::complex<float>{h_psi_new_real[j * TPB.x * nBlocks.x + i],
+                                                                       h_psi_new_imag[j * TPB.x * nBlocks.x + i]});
+            }
+        }
     }
+
     this->domain->generate_txt_file(std::string{"Forward_Euler_Result"});
 }

@@ -12,16 +12,17 @@ bool test_fe_rect_psolver(int rank, int size){
 
     double g;
     RectangularDomain* domain = (new RectangularDomain(101, 101, 0, 0.1, 101, -5, 5, -5, 5));
+
     auto initial_cond_function = [](double x, double y)
-    { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
+    { return std::complex<double>{1e-10}; };
 
     auto *initial_condition =new  InitialCondition(initial_cond_function);
 
     initial_condition-> assign_to_domain(domain);
     
     potential= [](double x, double y ){
-        return (double)  (1. *x*x + 2. * y *y);  };
-    g = 1. ;
+        return (double) 0.5 * 5 * (x*x + y *y);  };
+    g = -1. ;
 
     //std::cout << "." << std::endl;
     FERectPSolver solver = FERectPSolver(potential, g, domain);
