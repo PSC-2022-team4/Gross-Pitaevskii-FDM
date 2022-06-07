@@ -25,7 +25,7 @@ void CNRectSolver::generate_potential_grid()
     for(auto i=0; i<num_grid_1-1; ++i){
         for(auto j=0;j<num_grid_2; ++j){
             auto point = potential_grid.at(i, j);
-            point->wave_function = {this->potential_func(point->x, point->y), 0};
+            point->value = {this->potential_func(point->x, point->y), 0};
         }
     }
 };
@@ -63,21 +63,21 @@ std::complex<double> CNRectSolver::temporal_equation(int i, int j, int k)
         point_data_up = new GridPoint(0, 0, std::complex<double>{0.});
     }
 
-    auto potential_value = this->potential_grid.at(i, j)->wave_function.real();
-    auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->wave_function +
-                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->wave_function +
-                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->wave_function);
+    auto potential_value = this->potential_grid.at(i, j)->value.real();
+    auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->value +
+                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->value +
+                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->value);
 
 
-    auto laplacian_y = (-2. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data->wave_function + 
-                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_down->wave_function + 
-                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_up->wave_function);
+    auto laplacian_y = (-2. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data->value + 
+                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_down->value + 
+                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_up->value);
 
     auto wave_function_abs_square = (
-        point_data->wave_function.real() * point_data->wave_function.real() + 
-        point_data->wave_function.imag() * point_data->wave_function.imag());
+        point_data->value.real() * point_data->value.real() + 
+        point_data->value.imag() * point_data->value.imag());
         
-    return laplacian_x + laplacian_y - potential_value * point_data->wave_function - this->g * wave_function_abs_square * point_data->wave_function;
+    return laplacian_x + laplacian_y - potential_value * point_data->value - this->g * wave_function_abs_square * point_data->value;
 }
 
 /**
@@ -113,18 +113,18 @@ std::complex<double> CNRectSolver::temporal_equation_from_guess(int i, int j)
         point_data_up = new GridPoint(0, 0, std::complex<double>{0.});
     }
 
-    auto potential_value = this->potential_grid.at(i, j)->wave_function.real();
-    auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->wave_function +
-                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->wave_function +
-                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->wave_function);
+    auto potential_value = this->potential_grid.at(i, j)->value.real();
+    auto laplacian_x = (-2. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data->value +
+                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_left->value +
+                        1. / (infinitesimal_distance_1 * infinitesimal_distance_1) * point_data_right->value);
 
-    auto laplacian_y = (-2. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data->wave_function +
-                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_down->wave_function +
-                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_up->wave_function);
+    auto laplacian_y = (-2. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data->value +
+                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_down->value +
+                        1. / (infinitesimal_distance_2 * infinitesimal_distance_2) * point_data_up->value);
 
-    auto wave_function_abs_square = (point_data->wave_function.real() * point_data->wave_function.real() +
-                                     point_data->wave_function.imag() * point_data->wave_function.imag());
-    return laplacian_x + laplacian_y - potential_value * point_data->wave_function - this->g * wave_function_abs_square * point_data->wave_function;
+    auto wave_function_abs_square = (point_data->value.real() * point_data->value.real() +
+                                     point_data->value.imag() * point_data->value.imag());
+    return laplacian_x + laplacian_y - potential_value * point_data->value - this->g * wave_function_abs_square * point_data->value;
 }
 void CNRectSolver::initialize_guess_with_forward_euler(int k)
 {
@@ -141,7 +141,7 @@ void CNRectSolver::initialize_guess_with_forward_euler(int k)
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
         {
-            guess->at(i, j)->wave_function = this->domain->at(i, j, k)->wave_function;
+            guess->at(i, j)->value = this->domain->at(i, j, k)->value;
         }
     }
 }
@@ -151,8 +151,8 @@ void CNRectSolver::update_guess(int i, int j, int k){
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
         {
-            this->guess->at(i, j)->wave_function = (0.99 * this->guess->at(i, j)->wave_function +
-                                                    0.01 * (this->domain->at(i, j, k - 1)->wave_function + std::complex<double>{0, 0.5} * this->domain->get_dt() * (this->temporal_equation(i, j, k - 1) + this->temporal_equation(i, j, k)))); // this->temporal_equation_from_guess(i, j))));
+            this->guess->at(i, j)->value = (0.99 * this->guess->at(i, j)->value +
+                                                    0.01 * (this->domain->at(i, j, k - 1)->value + std::complex<double>{0, 0.5} * this->domain->get_dt() * (this->temporal_equation(i, j, k - 1) + this->temporal_equation(i, j, k)))); // this->temporal_equation_from_guess(i, j))));
         }
     }
 }
@@ -163,7 +163,7 @@ double CNRectSolver::calculate_error(int k){
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
         {
-            error += std::pow(std::abs((this->guess->at(i, j)->wave_function - this->domain->at(i, j, k)->wave_function)), 2);
+            error += std::pow(std::abs((this->guess->at(i, j)->value - this->domain->at(i, j, k)->value)), 2);
         }
     }
     return error;
@@ -186,7 +186,7 @@ void CNRectSolver::solve_single_time(int k, double tolerance, int max_iter)
         {
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
             {
-                this->domain->at(i, j, k)->wave_function = guess->at(i, j)->wave_function;
+                this->domain->at(i, j, k)->value = guess->at(i, j)->value;
             }
         }
 #pragma acc parallel loop collapse(2)

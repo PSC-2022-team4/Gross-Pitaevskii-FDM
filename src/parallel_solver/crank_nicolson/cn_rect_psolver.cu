@@ -281,7 +281,7 @@ void CNRectPSolver::generate_potential_grid()
         for (auto j = 0; j < num_grid_2; ++j)
         {
             auto point = potential_grid.at(i, j);
-            point->wave_function = {this->potential_func(point->x, point->y), 0};
+            point->value = {this->potential_func(point->x, point->y), 0};
         }
     }
 };
@@ -343,8 +343,8 @@ void CNRectPSolver::solve(float tolerance, int max_iter)
     {
         for (int j = 0; j < n_y; ++j)
         {
-            wave_func = this->domain->at(i, j, 0)->wave_function;
-            potential_value = this->potential_grid.at(i, j)->wave_function.real();
+            wave_func = this->domain->at(i, j, 0)->value;
+            potential_value = this->potential_grid.at(i, j)->value.real();
             h_psi_old_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
             h_psi_old_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
             h_psi_new_real_trial[j * TPB.x * nBlocks.x + i] = wave_func.real();

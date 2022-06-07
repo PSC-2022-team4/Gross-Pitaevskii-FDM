@@ -31,15 +31,15 @@ bool test_fe_rect_solver(){
     {
         all_passed = false;
     }
-    if (!is_close((*domain).at(10, 10, 0)->wave_function.real(), 1., 1e-12))
+    if (!is_close((*domain).at(10, 10, 0)->value.real(), 1., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close((*domain).at(10, 10, 0)->wave_function.imag(), 0., 1e-12))
+    if (!is_close((*domain).at(10, 10, 0)->value.imag(), 0., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close((*domain).at(10, 10, 0)->wave_function.imag(), 0., 1e-12))
+    if (!is_close((*domain).at(10, 10, 0)->value.imag(), 0., 1e-12))
     {
         all_passed = false;
     }
@@ -48,10 +48,10 @@ bool test_fe_rect_solver(){
     //At first step, psi(0,0) = 1+ i (4 e^-1 - 5) 
     double real = 1. ; 
     double imag = 4 * std::exp(-1./9.) - 5; 
-    if (!is_close((*domain).at(10, 10, 1)->wave_function.real(), real, 1e-12))
+    if (!is_close((*domain).at(10, 10, 1)->value.real(), real, 1e-12))
     {
         all_passed = false;
-    }if (!is_close((*domain).at(10, 10, 1)->wave_function.imag(), imag, 1e-12))
+    }if (!is_close((*domain).at(10, 10, 1)->value.imag(), imag, 1e-12))
     {
         all_passed = false;
     }

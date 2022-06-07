@@ -22,11 +22,11 @@ bool test_initial_condition_rectangular()
     {
         all_passed = false;
     }
-    if (!is_close(domain.at(10, 10, 0)->wave_function.real(), 1., 1e-12))
+    if (!is_close(domain.at(10, 10, 0)->value.real(), 1., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(domain.at(10, 10, 0)->wave_function.imag(), 0., 1e-12))
+    if (!is_close(domain.at(10, 10, 0)->value.imag(), 0., 1e-12))
     {
         all_passed = false;
     }

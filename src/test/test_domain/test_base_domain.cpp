@@ -18,11 +18,11 @@ bool test_grid_point(){
     {
         all_passed = false;
     }
-    if (!is_close(grid_point.wave_function.real(), 10., 1e-12))
+    if (!is_close(grid_point.value.real(), 10., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(grid_point.wave_function.imag(), 1., 1e-12))
+    if (!is_close(grid_point.value.imag(), 1., 1e-12))
     {
         all_passed = false;
     }
@@ -40,11 +40,11 @@ bool test_base_spatial_grid(){
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10)->wave_function.real(), 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->value.real(), 0., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10)->wave_function.imag(), 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->value.imag(), 0., 1e-12))
     {
         all_passed = false;
     }

@@ -8,7 +8,7 @@ class GridPoint
         GridPoint() = default;
         GridPoint(double x, double y, std::complex<double> wave_function);
         double x, y;
-        std::complex<double> wave_function;
+        std::complex<double> value;
 };
 
 class BaseSpatialGrid

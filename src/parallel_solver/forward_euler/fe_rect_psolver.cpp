@@ -22,13 +22,13 @@ void FERectPSolver::generate_potential_grid()
     for(auto i=0; i<num_grid_1; ++i){
         for(auto j=0;j<num_grid_2; ++j){
             auto point = potential_grid.at(i, j);
-            point->wave_function = {this->potential_func(point->x, point->y), 0};
+            point->value = {this->potential_func(point->x, point->y), 0};
         }
     }
 };
 double FERectPSolver::get_potential_value(int i, int j)
 {
-    return this->potential_grid.at(i, j)->wave_function.real();
+    return this->potential_grid.at(i, j)->value.real();
 }
 /**
  * @brief Time differential of phi 
@@ -63,7 +63,7 @@ std::complex<double> FERectPSolver::temporal_equation(int i, int j, int k)
     //this->potential_func(point_data->x, point_data->y);
     
     //g * |psi(x,y)|^2 
-    double additional_term = (this-> g) * (std::abs(point_data->wave_function))*(std::abs(point_data->wave_function));
+    double additional_term = (this-> g) * (std::abs(point_data->value))*(std::abs(point_data->value));
     
     
     //Set infinitesimal value 
@@ -72,9 +72,9 @@ std::complex<double> FERectPSolver::temporal_equation(int i, int j, int k)
     //df denote time differential of dt (d(psi)/dt)
     // = (laplace - V-g|psi|^2) psi
     std::complex<double> df = 
-        +((point_data_r->wave_function)+(point_data_l->wave_function)-(point_data->wave_function) * std::complex<double>{2})/ (std::complex<double>{dx*dx})
-        +((point_data_u->wave_function)+(point_data_d->wave_function)-(point_data->wave_function) * std::complex<double>{2})/ (std::complex<double>{dy*dy})
-        - (V_ij+additional_term) * (point_data->wave_function);
+        +((point_data_r->value)+(point_data_l->value)-(point_data->value) * std::complex<double>{2})/ (std::complex<double>{dx*dx})
+        +((point_data_u->value)+(point_data_d->value)-(point_data->value) * std::complex<double>{2})/ (std::complex<double>{dy*dy})
+        - (V_ij+additional_term) * (point_data->value);
     df *= std::complex<double>{0,1}; 
     return df;
 };
@@ -92,7 +92,7 @@ void FERectPSolver::solve_single_time(int k)
     #pragma acc parallel loop collapse(2)
     for(int i=0; i<Nx; ++i){
         for(int j=0; j<Ny; ++j){
-            (this->domain->at(i, j, k+1)->wave_function) = this->domain->at(i, j, k)->wave_function + dt * this->temporal_equation(i,j,k);
+            (this->domain->at(i, j, k+1)->value) = this->domain->at(i, j, k)->value + dt * this->temporal_equation(i,j,k);
         }
     }
 }

@@ -8,7 +8,7 @@
 
 namespace fs = std::experimental::filesystem;
 
-GridPoint::GridPoint(double x_, double y_, std::complex<double> wave_function_) : x(x_), y(y_), wave_function(wave_function_){}
+GridPoint::GridPoint(double x_, double y_, std::complex<double> wave_function_) : x(x_), y(y_), value(wave_function_){}
 
 
 BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
@@ -27,7 +27,7 @@ void BaseSpatialGrid::normalize(){
     double sum = 0.;
     for (auto i = 0; i < this->num_grid_1; ++i){
         for (auto j = 0; j < this->num_grid_2;++j){
-            auto wave_func = this->at(i, j)->wave_function;
+            auto wave_func = this->at(i, j)->value;
             sum += std::pow(std::abs(wave_func), 2);
         }
     }
@@ -36,7 +36,7 @@ void BaseSpatialGrid::normalize(){
     {
         for (auto j = 0; j < this->num_grid_2; ++j)
         {
-            this->at(i, j)->wave_function /= sum;
+            this->at(i, j)->value /= sum;
         }
     }
 }
@@ -137,11 +137,11 @@ GridPoint *BaseDomain::at(int index_1, int index_2, int time_index)
  */
 void BaseDomain::assign_initial_value(int index_1, int index_2, std::complex<double> value)
 {
-    this->at(index_1, index_2, 0)->wave_function = value;
+    this->at(index_1, index_2, 0)->value = value;
 }
 void BaseDomain::assign_wave_function(int index_1, int index_2, int time_index, std::complex<double> value)
 {
-    this->at(index_1, index_2, time_index)->wave_function = value;
+    this->at(index_1, index_2, time_index)->value = value;
 }
 // Get time using time index
 double BaseDomain::time_at(int time_index)
@@ -213,7 +213,7 @@ void BaseDomain::generate_single_txt_file(BaseSpatialGrid * grid, std::string fi
     {
         for (auto j = 0; j < num_grid_2; ++j)
         {
-            double magnitude = std::abs(grid->at(i, j)->wave_function);
+            double magnitude = std::abs(grid->at(i, j)->value);
             outfile << grid->at(i, j)->x << ", " << grid->at(i, j)->y << ", ";
             outfile << magnitude * magnitude;
             outfile << std::endl;

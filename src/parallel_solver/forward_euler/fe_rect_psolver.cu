@@ -86,13 +86,13 @@ void FERectPSolver::generate_potential_grid()
         for (auto j = 0; j < num_grid_2; ++j)
         {
             auto point = potential_grid.at(i, j);
-            point->wave_function = {this->potential_func(point->x, point->y), 0};
+            point->value = {this->potential_func(point->x, point->y), 0};
         }
     }
 };
 double FERectPSolver::get_potential_value(int i, int j)
 {
-    return this->potential_grid.at(i, j)->wave_function.real();
+    return this->potential_grid.at(i, j)->value.real();
 }
 /**
  * @brief Time differential of phi
@@ -127,7 +127,7 @@ std::complex<double> FERectPSolver::temporal_equation(int i, int j, int k)
     // this->potential_func(point_data->x, point_data->y);
 
     // g * |psi(x,y)|^2
-    double additional_term = (this->g) * (std::abs(point_data->wave_function)) * (std::abs(point_data->wave_function));
+    double additional_term = (this->g) * (std::abs(point_data->value)) * (std::abs(point_data->value));
 
     // Set infinitesimal value
     double dx = this->domain->get_infinitesimal_distance1();
@@ -135,7 +135,7 @@ std::complex<double> FERectPSolver::temporal_equation(int i, int j, int k)
     // df denote time differential of dt (d(psi)/dt)
     //  = (laplace - V-g|psi|^2) psi
     std::complex<double> df =
-        +((point_data_r->wave_function) + (point_data_l->wave_function) - (point_data->wave_function) * std::complex<double>{2}) / (std::complex<double>{dx * dx}) + ((point_data_u->wave_function) + (point_data_d->wave_function) - (point_data->wave_function) * std::complex<double>{2}) / (std::complex<double>{dy * dy}) - (V_ij + additional_term) * (point_data->wave_function);
+        +((point_data_r->value) + (point_data_l->value) - (point_data->value) * std::complex<double>{2}) / (std::complex<double>{dx * dx}) + ((point_data_u->value) + (point_data_d->value) - (point_data->value) * std::complex<double>{2}) / (std::complex<double>{dy * dy}) - (V_ij + additional_term) * (point_data->value);
     df *= std::complex<double>{0, 1};
     return df;
 };
@@ -166,8 +166,8 @@ void FERectPSolver::solve_single_time(int k)
     {
         for (int j = 0; j < n_y; ++j)
         {
-            wave_func = this->domain->at(i, j, k)->wave_function;
-            potential_value = this->potential_grid.at(i, j)->wave_function.real();
+            wave_func = this->domain->at(i, j, k)->value;
+            potential_value = this->potential_grid.at(i, j)->value.real();
             h_psi_old_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
             h_psi_old_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
             h_psi_new_real[j * TPB.x * nBlocks.x + i] = 0.;
@@ -201,7 +201,7 @@ void FERectPSolver::solve_single_time(int k)
     {
         for (int j = 0; j < n_y; ++j)
         {
-            this->domain->at(i, j, k + 1)->wave_function = h_psi_new_real[j * TPB.x * nBlocks.x + i] + std::complex<double>{0, 1.} * h_psi_new_imag[j * TPB.x * nBlocks.x + i];
+            this->domain->at(i, j, k + 1)->value = h_psi_new_real[j * TPB.x * nBlocks.x + i] + std::complex<double>{0, 1.} * h_psi_new_imag[j * TPB.x * nBlocks.x + i];
         }
     }
 }
@@ -216,5 +216,5 @@ void FERectPSolver::solve(std::string dir_name)
         this->solve_single_time(k);
         this->domain->normalize(k + 1);
     }
-    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"}+dir_name);
+    this->domain->generate_txt_file(std::string{"Forward_Euler_Result"} + dir_name);
 }

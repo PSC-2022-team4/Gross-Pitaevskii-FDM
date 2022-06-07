@@ -13,11 +13,11 @@ bool test_rectangular_spatial_grid(){
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10)->wave_function.real(), 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->value.real(), 0., 1e-12))
     {
         all_passed = false;
     }
-    if (!is_close(spatial_grid.at(10, 10)->wave_function.imag(), 0., 1e-12))
+    if (!is_close(spatial_grid.at(10, 10)->value.imag(), 0., 1e-12))
     {
         all_passed = false;
     }
