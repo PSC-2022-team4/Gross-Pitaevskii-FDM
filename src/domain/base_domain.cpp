@@ -31,7 +31,7 @@ void BaseSpatialGrid::normalize(){
             sum += std::pow(std::abs(wave_func), 2);
         }
     }
-    sum = std::sqrt(sum);
+    sum = std::sqrt(sum * this->infinitesimal_distance_1 * this->infinitesimal_distance_2);
     for (auto i = 0; i < this->num_grid_1; ++i)
     {
         for (auto j = 0; j < this->num_grid_2; ++j)
