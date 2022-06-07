@@ -1,4 +1,4 @@
 #pragma once
 #include <cmath>
 
-bool is_close(double a, double b, double tolerance);
+bool is_close(float a, float b, float tolerance);

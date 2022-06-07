@@ -7,8 +7,8 @@
 bool test_initial_condition_rectangular()
 {
     auto domain = RectangularDomain(21, 21, 0, 10, 11, -10, 10, -10, 10);
-    auto initial_cond_function = [](double x, double y)
-    { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
+    auto initial_cond_function = [](float x, float y)
+    { return std::complex<float>{1*std::exp(-(x*x + y*y)/(9))}; };
 
     auto *initial_condition =new  InitialCondition(initial_cond_function);
     initial_condition-> assign_to_domain(&domain);

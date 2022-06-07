@@ -7,11 +7,11 @@ class BaseSolver
 {
 public:
     BaseSolver() = default;
-    BaseSolver(std::function<double(double, double)> potential, double g);
+    BaseSolver(std::function<float(float, float)> potential, float g);
 
 protected:
-    std::function<double(double, double)> potential_func;
-    double g;
-    std::complex<double> temporal_equation(int i, int j, int k);
+    std::function<float(float, float)> potential_func;
+    float g;
+    std::complex<float> temporal_equation(int i, int j, int k);
     std::string string_info;
 };

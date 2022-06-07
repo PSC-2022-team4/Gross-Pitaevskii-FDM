@@ -8,7 +8,7 @@ namespace fs = std::experimental::filesystem;
 
 
 bool test_grid_point(){
-    auto grid_point = GridPoint(0.1, 0.1, std::complex<double>{10., 1.});
+    auto grid_point = GridPoint(0.1, 0.1, std::complex<float>{10., 1.});
     bool all_passed = true;
     if (!is_close(grid_point.x, 0.1, 1e-12))
     {

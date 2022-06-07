@@ -32,16 +32,16 @@ bool test_mpi_linking(int rank, int size){
 bool test_mpi_swap_g(int rank, int size){
     bool all_passed = true;
     
-    double g = (double) rank; 
-    std::function<double(double, double)> potential;
+    float g = (float) rank; 
+    std::function<float(float, float)> potential;
     RectangularDomain *domain = (new RectangularDomain(21, 21, 0, 5, 101, -5, 5, -5, 5));
-    auto initial_cond_function = [](double x, double y)
-    { return std::complex<double>{1*std::exp(-(x*x + y*y)/(9))}; };
+    auto initial_cond_function = [](float x, float y)
+    { return std::complex<float>{1*std::exp(-(x*x + y*y)/(9))}; };
 
     auto *initial_condition =new  InitialCondition(initial_cond_function);
     initial_condition-> assign_to_domain(domain);
-    potential= [](double x, double y ){
-        return (double) 4 * (x*x + y *y);  };
+    potential= [](float x, float y ){
+        return (float) 4 * (x*x + y *y);  };
     
     FERectSolver solver = FERectSolver(potential, g, domain);
     solver.solve();

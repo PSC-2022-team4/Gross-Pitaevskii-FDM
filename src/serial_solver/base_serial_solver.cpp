@@ -6,14 +6,14 @@
  * @param potential_func_ 
  * @param g_ 
  */
-BaseSolver::BaseSolver(std::function<double(double, double)> potential_func_, double g_)
+BaseSolver::BaseSolver(std::function<float(float, float)> potential_func_, float g_)
     : potential_func(potential_func_), g(g_){};
 
 /**
  * @brief defualt temporal equation 
  * 
- * @return std::complex<double> 0+0i
+ * @return std::complex<float> 0+0i
  */
-std::complex<double> BaseSolver::temporal_equation(int i, int j, int k){
-    return std::complex<double> {0};
+std::complex<float> BaseSolver::temporal_equation(int i, int j, int k){
+    return std::complex<float> {0};
 }

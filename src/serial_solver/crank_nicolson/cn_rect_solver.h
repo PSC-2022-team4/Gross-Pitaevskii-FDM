@@ -5,33 +5,26 @@
 #include <iostream>
 #include <cmath>
 #include <string.h>
-
 #include "src/domain/rect_domain.h"
 #include "src/initial_condition/initial_condition.h"
-#include "src/serial_solver/base_serial_solver.h"
 #include "src/serial_solver/forward_euler/fe_rect_solver.h"
-class CNRectSolver : BaseSolver
+
+class CNRectSolver : FERectSolver
 {
 public:
     CNRectSolver() = default;
     CNRectSolver(
-        std::function<double(double, double)> potential, 
-        double g, 
+        std::function<float(float, float)> potential, 
+        float g, 
         RectangularDomain *domain
     );
-    void generateRectangularDomain();
-    void solve(double tolerance, int max_iter, std::string dir_name="");
-    void solve_single_time(int k, double tolerance, int max_iter);
+    void solve(float tolerance, int max_iter, std::string dir_name="");
+    void solve_single_time(int k, float tolerance, int max_iter);
 
 protected:
-    RectangularDomain *domain;
-    RectangularSpatialGrid potential_grid;
     RectangularSpatialGrid *guess;
-    FERectSolver *fe_solver;
-    void generate_potential_grid();
-    std::complex<double> temporal_equation(int i, int j, int k);
-    std::complex<double> temporal_equation_from_guess(int i, int j);
+    //FERectSolver *fe_solver;
     void initialize_guess_with_forward_euler(int k);
     void update_guess(int i, int j, int k);
-    double calculate_error(int k);
+    float calculate_error(int k);
 };
