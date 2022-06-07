@@ -22,8 +22,6 @@ add_executable(GrossPitaevskiiFDM
         src/serial_solver/base_serial_solver.cpp
         src/serial_solver/forward_euler/fe_rect_solver.h
         src/serial_solver/forward_euler/fe_rect_solver.cpp
-        #src/serial_solver/crank_nicolson/cn_rect_solver.h
-        #src/serial_solver/crank_nicolson/cn_rect_solver.cpp
         src/serial_solver/crank_nicolson/cn_rect_solver.h
         src/serial_solver/crank_nicolson/cn_rect_solver.cpp
         )
@@ -45,18 +43,18 @@ target_link_libraries(GrossPitaevskiiFDM ${MPI_LIBRARIES})
 #endif()
 
 #Armadillo linking
-find_package(Armadillo REQUIRED)
-include_directories(${ARMADILLO_INCLUDE_DIRS})
-target_link_libraries(GrossPitaevskiiFDM ${ARMADILLO_LIBRARIES})
+#find_package(Armadillo REQUIRED)
+#include_directories(${ARMADILLO_INCLUDE_DIRS})
+#target_link_libraries(GrossPitaevskiiFDM ${ARMADILLO_LIBRARIES})
 
-target_link_libraries(GrossPitaevskiiFDM stdc++fs)
+t#arget_link_libraries(GrossPitaevskiiFDM stdc++fs)
 
 #OpenACC linking
-find_package(OpenACC REQUIRED)
+#find_package(OpenACC REQUIRED)
 # set(OpenACC_CXX_FLAGS "-acc=gpu -acc=noautopar -Minfo=accel -gpu=cc${CUDA_ARCH}")
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenACC_CXX_FLAGS} ${OpenACC_CXX_FLAGS_CUSTOM}")
-include_directories(${OPENACC_INCLUDE_DIRS})
-target_link_libraries(GrossPitaevskiiFDM ${OPENACC_LIBRARIES})
+#include_directories(${OPENACC_INCLUDE_DIRS})
+#target_link_libraries(GrossPitaevskiiFDM ${OPENACC_LIBRARIES})
 
 find_package(CUDA REQUIRED)
 include_directories(${CUDA_INCLUDE_DIRS})
