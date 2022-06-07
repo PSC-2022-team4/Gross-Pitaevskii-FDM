@@ -9,16 +9,16 @@ bool test_cn_psolver()
 {
     bool all_passed = true;
 
-    RectangularDomain *domain = (new RectangularDomain(101, 101, 0, 5, 1000, -5, 5, -5, 5));
+    RectangularDomain *domain = (new RectangularDomain(256, 256, 0, 5, 1000, -10, 10, -10, 10));
 
     auto initial_cond_function = [](float x, float y)
-    { return std::complex<float>{1. * exp(-((x-2.5)*(x-2.5)+y*y)/(1)) }; };
+    { return std::complex<float>{1. * expf(-((x)*(x)+y*y)/(1)) }; };
     auto *initial_condition = new InitialCondition(initial_cond_function);
     initial_condition->assign_to_domain(domain);
 
     auto potential = [](float x, float y)
     {
-        return (float)0.5 * (x * x + y * y);
+        return 0.5 * ((x - 3) * (x - 3) * (x + 3) * (x + 3) + (y - 3) * (y - 3) * (y + 3) * (y + 3));
     };
     float g = 1;
     CNRectPSolver solver = CNRectPSolver(potential, g, domain);
