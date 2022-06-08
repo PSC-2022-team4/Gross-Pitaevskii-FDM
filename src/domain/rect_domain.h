@@ -25,13 +25,11 @@ public:
     float get_x_end();
     float get_y_end();
     void generate_single_txt_file(std::string filename);
-
-    ~RectangularDomain(); 
     // a grid to save potential values 
     RectangularSpatialGrid* potential_grid;
     void update_time();
-    
     void reset();
+    ~RectangularDomain(); 
 
 
 private:

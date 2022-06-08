@@ -20,7 +20,7 @@ CNRectSolver::CNRectSolver(
 
 void CNRectSolver::initialize_guess_with_forward_euler(int k)
 {
-    free(this->guess);
+    delete this->guess;
     this->guess = new RectangularSpatialGrid(
         this->domain->get_num_grid_1(),
         this->domain->get_num_grid_2(),
