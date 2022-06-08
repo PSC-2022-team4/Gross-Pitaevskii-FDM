@@ -1,25 +1,26 @@
-#include "./g_sweeper.h"
+#include "./harmonic_p_sweeper.h"
 #include "../solver/serial_solver/crank_nicolson/cn_rect_solver.h"
 
 #include "../../src/solver/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
 #include <mpi.h>
 
-GSweeper::GSweeper(float start, float end, int num, bool endpoint)
+HPSweeper::HPSweeper(float start, float end, int num, bool endpoint)
 : BaseSweeper(start, end, num, endpoint){
-    
+    //numlist contains anharmonicity of angular frequency 
 }
 
-void GSweeper::run(RectangularDomain *domain, InitialCondition *initial_condition, HarmonicPotential *potential ){
+void HPSweeper::run(RectangularDomain *domain, InitialCondition *initial_condition, float g ){
 
 
     if (!(this -> MPI_use) && !(this -> CUDA_use)){
         if(print_info){
             cout<< "Running serially started"<<endl;
         }
-        float g=0;
+        
         for(int i=0; i<this -> num ; ++i){
             //Set conditions 
             initial_condition->assign_to_domain(domain);
+            auto potential = new HarmonicPotential(1, get_value_from_idx(i));
             potential->calcualte_potential_in_grid(domain);
             g = this  -> get_value_from_idx(i);
             //Apply on solver
@@ -29,6 +30,7 @@ void GSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
             //reset domain to use in next iteration 
             domain->reset();
             delete solver;
+            delete potential;
         }
     }
     else if ((this->MPI_use) && !(this->CUDA_use)){
@@ -42,11 +44,12 @@ void GSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
         float g = 0 ; 
         if (rank < num){
             initial_condition->assign_to_domain(domain);
+            auto potential =new HarmonicPotential(1, get_value_from_idx(rank));
             potential->calcualte_potential_in_grid(domain);
-            g = this  -> get_value_from_idx(rank);
             CNRectSolver* solver =new CNRectSolver(g, domain);
             solver->solve(1e-11, 101, "MPI_"+to_string(rank), this -> print_info, this->save_data);
             delete solver;
+            delete potential;
         }else{
             // No job for extra processors 
             ;
@@ -56,18 +59,18 @@ void GSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
         if(print_info){
             cout<< "Running with CUDA serially started"<<endl;
         }
-        float g=0;
         for(int i=0; i<this -> num ; ++i){
             //Set conditions 
             initial_condition->assign_to_domain(domain);
+            auto potential = new HarmonicPotential(1, get_value_from_idx(i));
             potential->calcualte_potential_in_grid(domain);
-            g = this  -> get_value_from_idx(i);
             //Apply on solver
             CNRectPSolver* solver =new CNRectPSolver(g, domain, 0);//solve using solver. It automatically save data
             solver->solve(1e-11, 101, "CUDA_"+to_string(i) , this-> print_info, this -> save_data);
             //reset domain to use in next iteration 
             domain->reset();
             delete solver;
+            delete potential;
         }
         
     }
@@ -86,11 +89,13 @@ void GSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
             if (i*repeat < max_pallel_tasks && rank < (i+1)*max_pallel_tasks && rank < num ){
                 int casted_GPU_num = (rank % max_pallel_tasks) % gpu_limit;
                 initial_condition->assign_to_domain(domain);
+                auto potential = new HarmonicPotential(1, get_value_from_idx(rank));
                 potential->calcualte_potential_in_grid(domain);
-                g = this  -> get_value_from_idx(rank);
+                //g = this  -> get_value_from_idx(rank);
                 CNRectPSolver* solver =new CNRectPSolver(g, domain, casted_GPU_num);
                 solver->solve(1e-11, 101, "MPI&CUDA_"+to_string(rank), this -> print_info, this->save_data);
                 delete solver;
+                delete potential;
             }
         }
 
