@@ -61,6 +61,8 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "filesystem": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "any": "cpp",
+        "variant": "cpp"
     }
 }

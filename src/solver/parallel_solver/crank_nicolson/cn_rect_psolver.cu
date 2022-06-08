@@ -267,6 +267,7 @@ CNRectPSolver::CNRectPSolver(
     this->string_info = std::string{"Parallel_Crank_Nicolson_Result"};
 };
 
+
 void fileout_debug(float *array, int n_x, int n_y, std::string filename)
 {
     std::ofstream fileout(filename.data());

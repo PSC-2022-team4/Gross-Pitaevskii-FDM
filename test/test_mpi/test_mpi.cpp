@@ -71,6 +71,7 @@ TEST(MPITest, SwapG)
 
     bool passed = true;
     bool all_passed = false;
+
     float g = (float)rank;
 
     RectangularDomain *domain = (new RectangularDomain(21, 21, 0, 5, 101, -5, 5, -5, 5));
@@ -98,6 +99,7 @@ TEST(MPITest, SwapG)
                 break;
             }
             if (i == (size - 1))
+
             {
                 all_passed = true;
             }

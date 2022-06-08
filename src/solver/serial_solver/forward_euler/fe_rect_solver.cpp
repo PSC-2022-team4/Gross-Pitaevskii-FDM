@@ -12,6 +12,7 @@ FERectSolver::FERectSolver(
 };
 float FERectSolver::get_potential_value(int i, int j)
 {
+
     return this->domain->potential_grid->at(i, j)->value.real();
 }
 /**

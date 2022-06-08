@@ -102,13 +102,14 @@ void CNRectSolver::solve_single_time(int k, float tolerance, int max_iter)
     }
     if (!converged)
     {
-        std::cout << "Converged failed with error = " << error << std::endl;
+        std::cout << "At time "<<k <<" Converged failed with error = " << error << std::endl;
     }
 }
 void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name)
 {
     int time_length = this->domain->get_num_times();
     //Save initial condition at time = start_time
+
     this->domain->generate_directory_name(this->string_info + dir_name);
     this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(0));
 
@@ -116,6 +117,7 @@ void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name)
     {
         //Update kth grid using k-1 th grid
         // std::cout << "time step " << k << std::endl;
+
         this->initialize_guess_with_forward_euler(k);
         this->solve_single_time(k, tolerance, max_iter);
         this->domain->normalize(k);
