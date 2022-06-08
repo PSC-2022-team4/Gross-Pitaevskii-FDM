@@ -5,15 +5,13 @@
 #include <iostream>
 #include <cmath>
 
-#include "src/domain/rect_domain.h"
-#include "src/initial_condition/initial_condition.h"
-#include "src/solver/base_solver.h"
-#include "src/solver/serial_solver/forward_euler/fe_rect_solver.h"
+#include "../../../domain/rect_domain.h"
+#include "../../../initial_condition/initial_condition.h"
+#include "../../base_solver.h"
+#include "../../serial_solver/forward_euler/fe_rect_solver.h"
 
-#include <cuda.h>
-#include <cuda_runtime.h>
+#include "cuda_runtime.h"
 #include "device_launch_parameters.h"
-// #include "device_functions.h"
 
 #define nTx 16
 #define nTy 16

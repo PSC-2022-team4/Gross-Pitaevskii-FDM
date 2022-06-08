@@ -1,6 +1,6 @@
-#include "src/solver/serial_solver/crank_nicolson/cn_rect_solver.h"
-#include "src/potential/harmonic_potential.h"
-#include "src/utils.h"
+#include "../../src/solver/serial_solver/crank_nicolson/cn_rect_solver.h"
+#include "../../src/potential/harmonic_potential.h"
+#include "../../src/utils.h"
 #include <functional>
 #include <iostream>
 #include <complex>

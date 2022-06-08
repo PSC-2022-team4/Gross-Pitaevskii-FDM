@@ -1,5 +1,5 @@
-#include "src/solver/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
-#include "src/utils.h"
+#include "../../parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
+#include "../../../utils.h"
 #include <iostream>
 #include <cmath>
 

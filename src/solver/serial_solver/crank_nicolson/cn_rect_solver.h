@@ -6,10 +6,12 @@
 #include <cmath>
 #include <string.h>
 
-#include "src/domain/rect_domain.h"
-#include "src/initial_condition/initial_condition.h"
-#include "src/solver/serial_solver/forward_euler/fe_rect_solver.h"
-class CNRectSolver : public FERectSolver
+#include "../../../domain/rect_domain.h"
+#include "../../../initial_condition/initial_condition.h"
+#include "../../base_solver.h"
+#include "../forward_euler/fe_rect_solver.h"
+class CNRectSolver : public BaseSolver
+
 {
 public:
     CNRectSolver() = default;

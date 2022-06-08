@@ -1,9 +1,10 @@
-#include "src/solver/base_solver.h"
-#include "src/potential/harmonic_potential.h"
-#include "src/utils.h"
+#include "../../src/solver/base_solver.h"
+#include "../../src/potential/harmonic_potential.h"
+#include "../../src/utils.h"
 #include <functional>
 #include <iostream>
 #include <complex>
+
 bool test_base_solver()
 {
     bool all_passed = true;
@@ -17,10 +18,12 @@ bool test_base_solver()
 
     float g = 1;
 
-    try{
+    try
+    {
         BaseSolver solver = BaseSolver(g);
     }
-    catch (int expn){
+    catch (int expn)
+    {
         all_passed = false;
     }
 

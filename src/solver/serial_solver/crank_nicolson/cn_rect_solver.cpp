@@ -1,4 +1,4 @@
-#include "src/solver/serial_solver/crank_nicolson/cn_rect_solver.h"
+#include "cn_rect_solver.h"
 #include <iostream>
 #include <cmath>
 

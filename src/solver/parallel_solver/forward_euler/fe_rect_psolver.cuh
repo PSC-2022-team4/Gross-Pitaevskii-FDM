@@ -2,11 +2,12 @@
 #include <complex>
 #include <vector>
 #include <functional>
-#include "src/domain/rect_domain.h"
-#include "src/initial_condition/initial_condition.h"
-#include "src/solver/base_solver.h"
-#include <cuda.h>
-#include <cuda_runtime.h>
+#include "../../../domain/rect_domain.h"
+#include "../../../initial_condition/initial_condition.h"
+#include "../../base_solver.h"
+
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
 
 #define nTx 16
 #define nTy 16
