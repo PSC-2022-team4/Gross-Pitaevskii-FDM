@@ -4,12 +4,13 @@
 #include <functional>
 #include <iostream>
 #include <complex>
+#include "gtest/gtest.h"
 
-bool test_cn_solver_creation()
+TEST(CNSolverTest, InitializeSolveTest)
 {
     bool all_passed = true;
 
-    RectangularDomain *domain = new RectangularDomain(256, 256, 0, 5, 1000, -10, 10, -10, 10);
+    RectangularDomain *domain = new RectangularDomain(16, 16, 0, 1e-5, 2, -10, 10, -10, 10);
 
     auto initial_cond_function = [](float x, float y)
     { return std::complex<float>{1 * std::exp(-(x * x + y * y) / (9))}; };
@@ -20,18 +21,5 @@ bool test_cn_solver_creation()
     float g = -1;
     CNRectSolver solver = CNRectSolver(g, domain);
     solver.solve(1e-11, 101);
-
-    return all_passed;
-}
-
-bool test_all_cn_rect_solver()
-{
-    if (test_cn_solver_creation())
-    {
-        std::cout << "test_crank_nicolson_solver_creation succeeded!" << std::endl;
-    }
-    else
-    {
-        std::cout << "test_crank_nicolson_solver_creation failed!" << std::endl;
-    }
+    ASSERT_TRUE(all_passed);
 }

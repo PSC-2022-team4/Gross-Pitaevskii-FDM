@@ -64,39 +64,18 @@ __global__ void fe_rect_cusolver(float *psi_old_real,
 }
 
 FERectPSolver::FERectPSolver(
-    // std::function<float(float, float)> potential_,
     float g_,
     RectangularDomain *domain_,
-    int device_number
-    )
+    int device_number)
     : BaseSolver(g_)
 {
     this->domain = domain_;
-    // this->generate_potential_grid();
 };
-// void FERectPSolver::generate_potential_grid()
-// {
-//     int num_grid_1 = this->domain->get_num_grid_1();
-//     int num_grid_2 = this->domain->get_num_grid_2();
-//     float x_start = this->domain->at(0, 0, 0)->x;
-//     float y_start = this->domain->at(0, 0, 0)->y;
-//     float x_end = this->domain->at(num_grid_1 - 1, num_grid_2 - 1, 0)->x;
-//     float y_end = this->domain->at(num_grid_1 - 1, num_grid_2 - 1, 0)->y;
-//     this->potential_grid = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-//     for (auto i = 0; i < num_grid_1; ++i)
-//     {
-//         for (auto j = 0; j < num_grid_2; ++j)
-//         {
-//             auto point = potential_grid->at(i, j);
-//             point->value = {this->potential_func(point->x, point->y), 0};
-//         }
-//     }
-// };
+
 float FERectPSolver::get_potential_value(int i, int j)
 {
     return this->domain->potential_grid->at(i, j)->value.real();
 }
-
 
 void FERectPSolver::solve_single_time(int k)
 {
@@ -159,7 +138,9 @@ void FERectPSolver::solve_single_time(int k)
     {
         for (int j = 0; j < n_y; ++j)
         {
-            this->domain->at(i, j, k + 1)->value = h_psi_new_real[j * TPB.x * nBlocks.x + i] + std::complex<float>{0, 1.} * h_psi_new_imag[j * TPB.x * nBlocks.x + i];
+            this->domain->assign_wave_function(i, j, k + 1,
+                                               h_psi_new_real[j * TPB.x * nBlocks.x + i] +
+                                                   std::complex<float>{0, 1.} * h_psi_new_imag[j * TPB.x * nBlocks.x + i]);
         }
     }
 }
@@ -167,13 +148,15 @@ void FERectPSolver::solve_single_time(int k)
 void FERectPSolver::solve(std::string dir_name)
 {
     int time_length = this->domain->get_num_times();
-
+    this->domain->generate_directory_name(this->string_info);
+    this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(0));
     for (int k = 0; k < time_length - 1; ++k)
     {
         // std::cout << "Time step: " << k << std::endl;
         this->solve_single_time(k);
         this->domain->normalize(k + 1);
-        this->domain->update_time();
+        this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k + 1));
     }
-    // this->domain->generate_txt_file(std::string{"Forward_Euler_Result"} + dir_name);
+    this->domain->print_directory_info();
+    //this->domain->generate_txt_file(std::string{"Forward_Euler_Result"} + dir_name);
 }

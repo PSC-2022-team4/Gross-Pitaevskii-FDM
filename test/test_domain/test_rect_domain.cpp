@@ -13,12 +13,12 @@ TEST(RectDomainTest, SpatialGridTest)
     ASSERT_FLOAT_EQ(spatial_grid.at(10, 10)->value.imag(), 0.);
 }
 
-TEST(RectDomainTest, RectDomainConstructor)
+TEST(RectDomainTest, RectDomainConstructorTest)
 {
     auto domain = RectangularDomain(100, 100, 0., 10., 11, 0, 10, 0, 20);
 
     ASSERT_FLOAT_EQ(domain.get_t_start(), 0.);
     ASSERT_FLOAT_EQ(domain.get_t_end(), 10.);
-    ASSERT_EQ(domain.get_num_times(), 11);
+    ASSERT_EQ(domain.get_num_times(), 11.);
     ASSERT_FLOAT_EQ(domain.get_dt(), 1.);
 }
