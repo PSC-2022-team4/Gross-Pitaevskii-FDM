@@ -54,6 +54,8 @@ public:
     void normalize(int time_index);
     void print_directory_info();
     ~BaseDomain();
+    std::string get_path();
+    void update_time();
 
 protected:
     BaseSpatialGrid* old_grid; 
@@ -64,5 +66,5 @@ protected:
     int current_time_index = 0;
     std::string PATH;
 private:
-    void update_time();
+    //void update_time();
 };

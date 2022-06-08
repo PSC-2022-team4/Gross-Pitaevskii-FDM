@@ -434,6 +434,7 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
                                                                        h_psi_new_imag[j * TPB.x * nBlocks.x + i]});
             }
         }
+        this->domain->update_time();
         //Above code might generate segmentation error since k th grid is not generated if domain time index is k-1 
         //TODO save single txt file 
     }

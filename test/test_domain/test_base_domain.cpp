@@ -35,10 +35,12 @@ TEST(DomainTest, BaseDomainConstructorTest)
 TEST(DomainTest, BaseDomainExportFileTest)
 {
     auto domain = BaseDomain(100, 100, 0., 10., 3);
-    std::string directory_name = domain.generate_txt_file("test_initialize");
+    domain.generate_directory_name("test_initialize");
+    domain.generate_single_txt_file("initialize_filename");
+    std::string directory_name = domain.get_path();
     int count = 0;
     for (const auto &file : fs::directory_iterator(directory_name))
         count += 1;
 
-    ASSERT_EQ(count, 3);
+    ASSERT_EQ(count, 1);
 }
