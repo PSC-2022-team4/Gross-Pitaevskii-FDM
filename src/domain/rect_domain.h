@@ -27,7 +27,7 @@ public:
     void generate_single_txt_file(std::string filename);
     ~RectangularDomain(); 
     // a grid to save potential values 
-    BaseSpatialGrid potential_grid;
+    RectangularSpatialGrid* potential_grid;
     void update_time();
 
 private:

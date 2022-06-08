@@ -1,5 +1,6 @@
 # include "rect_domain.h"
 #include <fstream>
+#include <iostream>
 /**
  * @brief Construct a new Rectangular Spatial Grid:: Rectangular Spatial Grid object
  * 
@@ -36,7 +37,9 @@ RectangularSpatialGrid::RectangularSpatialGrid(
         }
 
 }
-RectangularSpatialGrid::~RectangularSpatialGrid(){};
+RectangularSpatialGrid::~RectangularSpatialGrid(){
+    
+};
 /**
  * @brief Construct a new Rectangular Domain:: Rectangular Domain object
  * 
@@ -66,11 +69,17 @@ RectangularDomain::RectangularDomain(
     y_start(y_start),
     y_end(y_end)
     {
+            
+        delete (this-> old_grid);
+        delete (this-> current_grid);
         this -> old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
         this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+        this -> potential_grid= new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);  
         
     };
-RectangularDomain::~RectangularDomain(){};
+RectangularDomain::~RectangularDomain(){
+    delete this -> potential_grid;
+};
 float RectangularDomain::get_x_start()
 {
     return this->x_start;
@@ -87,7 +96,7 @@ float RectangularDomain::get_y_end(){
 
 void RectangularDomain::update_time(){
     this -> current_time_index+=1;
-    free( this -> old_grid);
+    delete ( this -> old_grid);
     this -> old_grid = &(*(this ->current_grid));
     //std::cout<<this->old_grid->at(1, 1)->wave_function<<std::endl;
     this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
