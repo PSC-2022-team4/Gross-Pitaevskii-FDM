@@ -27,8 +27,8 @@ class BaseSweeper{
         void generate_num_list();
 
         //MPI info 
-        int rank ;
-        int size;
+        int rank=0 ;
+        int size=0;
         bool MPI_use;
         bool CUDA_use;
         

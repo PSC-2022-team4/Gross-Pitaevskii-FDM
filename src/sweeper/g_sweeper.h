@@ -1,4 +1,4 @@
-#include "base_sweeper.h"
+#include "./base_sweeper.h"
 #include "../potential/harmonic_potential.h"
 #include "../initial_condition/initial_condition.h"
 
