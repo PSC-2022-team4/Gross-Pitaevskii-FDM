@@ -6,14 +6,16 @@
 #include <iostream>
 #include <complex>
 
-bool test_fe_rect_psolver()
+#include "gtest/gtest.h"
+
+TEST(FEPSolverTest, InitializeSolveTest)
 {
     bool all_passed = true;
     // std::function<float(float, float)> potential;
 
     float g;
     std::cout << "." << std::endl;
-    RectangularDomain *domain = (new RectangularDomain(101, 101, 0, 1e-2, 11, -5, 5, -5, 5));
+    RectangularDomain *domain = (new RectangularDomain(32, 32, 0, 1e-4, 2, -5, 5, -5, 5));
     std::cout << "." << std::endl;
     auto initial_cond_function = [](float x, float y)
     { return std::complex<float>{1e-10}; };
@@ -23,48 +25,17 @@ bool test_fe_rect_psolver()
 
     auto *potential = new HarmonicPotential(3, 5);
     potential->calcualte_potential_in_grid(domain);
-    // potential= [](float x, float y ){
-    //     return (float) 0.5 * 5 * (x*x + y *y);  };
     g = -1.;
-
-    std::cout << "." << std::endl;
     FERectPSolver solver = FERectPSolver(g, domain, 0);
 
-    if (!is_close((*domain).at(10, 10, 0)->x, 0., 1e-12))
-    {
-        all_passed = false;
-    }
-    if (!is_close((*domain).at(10, 10, 0)->y, 0., 1e-12))
-    {
-        all_passed = false;
-    }
-    if (!is_close((*domain).at(10, 10, 0)->value.real(), 1., 1e-12))
-    {
-        all_passed = false;
-    }
-    if (!is_close((*domain).at(10, 10, 0)->value.imag(), 0., 1e-12))
-    {
-        all_passed = false;
-    }
-    if (!is_close((*domain).at(10, 10, 0)->value.imag(), 0., 1e-12))
-    {
-        all_passed = false;
-    }
-
     solver.solve();
-    //At first step, psi(0,0) = 1+ i (4 e^-1 - 5)
-    float real = 1.;
-    float imag = 4 * std::exp(-1. / 9.) - 5;
-    if (!is_close((*domain).at(10, 10, 1)->value.real(), real, 1e-12))
-    {
-        all_passed = false;
-    }
-    if (!is_close((*domain).at(10, 10, 1)->value.imag(), imag, 1e-12))
-    {
-        all_passed = false;
-    }
 
-    return all_passed;
+    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.real(), 0);
+    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.imag(), 0);
+}
+
+bool test_fe_rect_psolver()
+{
 }
 
 bool test_all_fe_rect_psolver()

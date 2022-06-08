@@ -138,7 +138,9 @@ void FERectPSolver::solve_single_time(int k)
     {
         for (int j = 0; j < n_y; ++j)
         {
-            this->domain->at(i, j, k + 1)->value = h_psi_new_real[j * TPB.x * nBlocks.x + i] + std::complex<float>{0, 1.} * h_psi_new_imag[j * TPB.x * nBlocks.x + i];
+            this->domain->assign_wave_function(i, j, k + 1,
+                                               h_psi_new_real[j * TPB.x * nBlocks.x + i] +
+                                                   std::complex<float>{0, 1.} * h_psi_new_imag[j * TPB.x * nBlocks.x + i]);
         }
     }
 }
@@ -146,13 +148,15 @@ void FERectPSolver::solve_single_time(int k)
 void FERectPSolver::solve(std::string dir_name)
 {
     int time_length = this->domain->get_num_times();
-
+    this->domain->generate_directory_name(this->string_info);
+    this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(0));
     for (int k = 0; k < time_length - 1; ++k)
     {
         // std::cout << "Time step: " << k << std::endl;
         this->solve_single_time(k);
         this->domain->normalize(k + 1);
+        this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k + 1));
     }
-    this->domain->update_time();
+    this->domain->print_directory_info();
     //this->domain->generate_txt_file(std::string{"Forward_Euler_Result"} + dir_name);
 }

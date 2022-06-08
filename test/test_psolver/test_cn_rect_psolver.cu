@@ -32,8 +32,6 @@ TEST(CNPSolverTest, InitializeSolveTest)
     ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.imag(), 0);
 }
 
-// #include "src/solver/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
-
 void test_normalize(bool *passed)
 {
     *passed = true;
