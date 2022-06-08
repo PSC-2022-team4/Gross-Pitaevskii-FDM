@@ -6,7 +6,7 @@
 
 HPSweeper::HPSweeper(float start, float end, int num, bool endpoint)
 : BaseSweeper(start, end, num, endpoint){
-    //numlist contains anharmonicity of angular frequency 
+    //numlist contains assymetry of angular frequency 
 }
 
 void HPSweeper::run(RectangularDomain *domain, InitialCondition *initial_condition, float g ){
