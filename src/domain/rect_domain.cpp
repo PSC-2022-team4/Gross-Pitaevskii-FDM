@@ -13,10 +13,10 @@
 RectangularSpatialGrid::RectangularSpatialGrid(
     int num_grid_1, 
     int num_grid_2, 
-    double x_start, 
-    double x_end, 
-    double y_start, 
-    double y_end): BaseSpatialGrid(num_grid_1, num_grid_2)
+    float x_start, 
+    float x_end, 
+    float y_start, 
+    float y_end): BaseSpatialGrid(num_grid_1, num_grid_2)
     {
         this -> x_start = x_start;
         this -> x_end = x_end;
@@ -31,7 +31,7 @@ RectangularSpatialGrid::RectangularSpatialGrid(
                 this -> spatial_data[i][j]=GridPoint(this->x_start+ infinitesimal_distance_1*i,
                                                      this->y_start+ infinitesimal_distance_2*j,
                                                      //{real value, imaginary value}
-                                                     std::complex<double>{0,0});
+                                                     std::complex<float>{0,0});
             }
         }
 
@@ -53,13 +53,13 @@ RectangularSpatialGrid::RectangularSpatialGrid(
 RectangularDomain::RectangularDomain(
     int num_grid_1, 
     int num_grid_2, 
-    double t_start, 
-    double t_end, 
+    float t_start, 
+    float t_end, 
     int num_times,
-    double x_start,
-    double x_end, 
-    double y_start, 
-    double y_end)
+    float x_start,
+    float x_end, 
+    float y_start, 
+    float y_end)
     : BaseDomain(num_grid_1, num_grid_2, t_start, t_end, num_times), 
     x_start(x_start), 
     x_end(x_end),
@@ -73,16 +73,16 @@ RectangularDomain::RectangularDomain(
 
     };
 
-    double RectangularDomain::get_x_start()
+    float RectangularDomain::get_x_start()
     {
         return this->x_start;
     }
-    double RectangularDomain::get_y_start(){
+    float RectangularDomain::get_y_start(){
         return this->y_start;
     }
-    double RectangularDomain::get_x_end(){
+    float RectangularDomain::get_x_end(){
         this->x_end;
     }
-    double RectangularDomain::get_y_end(){
+    float RectangularDomain::get_y_end(){
         this->x_end;
     }

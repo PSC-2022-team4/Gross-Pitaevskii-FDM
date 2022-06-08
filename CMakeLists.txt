@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
-project(GrossPitaevskiiFDM LANGUAGES CXX CUDA)
+
+SET(proj_name "GrossPitaevskiiFDM")
+project(${proj_name} LANGUAGES CXX CUDA)
 enable_language(CUDA)
+
 
 include_directories(.)
 include_directories(./src)
@@ -14,41 +17,37 @@ add_executable(GrossPitaevskiiFDM
         src/utils.cpp
         src/domain/base_domain.h
         src/domain/base_domain.cpp
-        src/domain/polar_domain.h
-        src/domain/polar_domain.cpp
         src/domain/rect_domain.h
         src/domain/rect_domain.cpp
+        src/potential/base_potential.h
+        src/potential/base_potential.cpp
+        src/potential/harmonic_potential.h
+        src/potential/harmonic_potential.cpp
         src/initial_condition/initial_condition.h
         src/initial_condition/initial_condition.cpp
-        src/serial_solver/base_serial_solver.h
-        src/serial_solver/base_serial_solver.cpp
-        src/serial_solver/forward_euler/fe_rect_solver.h
-        src/serial_solver/forward_euler/fe_rect_solver.cpp
-        src/serial_solver/crank_nicolson/cn_rect_solver.h
-        src/serial_solver/crank_nicolson/cn_rect_solver.cpp
-        src/parallel_solver/forward_euler/fe_rect_psolver.cuh
-        src/parallel_solver/forward_euler/fe_rect_psolver.cu
-        src/parallel_solver/crank_nicolson/cn_rect_psolver.cuh
-        src/parallel_solver/crank_nicolson/cn_rect_psolver.cu
+        src/solver/base_solver.h
+        src/solver/base_solver.cpp
+        src/solver/serial_solver/forward_euler/fe_rect_solver.h
+        src/solver/serial_solver/forward_euler/fe_rect_solver.cpp
+        src/solver/parallel_solver/forward_euler/fe_rect_psolver.cuh
+        src/solver/parallel_solver/forward_euler/fe_rect_psolver.cu
+        src/solver/parallel_solver/crank_nicolson/cn_rect_psolver.cuh
+        src/solver/parallel_solver/crank_nicolson/cn_rect_psolver.cu
         src/test/test_psolver/test_cn_rect_psolver.cu
         src/test/test_psolver/test_cn_rect_psolver.cuh
         )
 
 #MPI linking
 find_package(MPI REQUIRED)
-
 include_directories(${MPI_INCLUDE_PATH})
 target_link_libraries(GrossPitaevskiiFDM ${MPI_LIBRARIES})
 
-#if(MPI_COMPILE_FLAGS)
-#  set_target_properties(GrossPitaevskiiFDM PROPERTIES
-#    COMPILE_FLAGS "${MPI_COMPILE_FLAGS}")
-#endif()
 
-#if(MPI_LINK_FLAGS)
-#  set_target_properties(GrossPitaevskiiFDM PROPERTIES
-#    LINK_FLAGS "${MPI_LINK_FLAGS}")
-#endif()
+# GTest linking
+find_package(GTest REQUIRED)
+include_directories(${GTest_INCLUDE_PATH})
+target_link_libraries(GrossPitaevskiiFDM ${GTest_LIBRARIES})
+
 
 #Armadillo linking
 find_package(Armadillo REQUIRED)

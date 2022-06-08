@@ -1,7 +1,7 @@
 #include "initial_condition.h"
 #include <iostream>
 #include <complex>
-InitialCondition::InitialCondition(std::function<std::complex<double>(double, double)> initial_condition_function)
+InitialCondition::InitialCondition(std::function<std::complex<float>(float, float)> initial_condition_function)
 {
     this->initial_condition_function = initial_condition_function;
 }
