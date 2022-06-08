@@ -29,11 +29,13 @@ public:
     // a grid to save potential values 
     RectangularSpatialGrid* potential_grid;
     void update_time();
+    
+    void reset();
+
 
 private:
     float x_start; 
     float x_end; 
     float y_start; 
     float y_end;
-    
 };

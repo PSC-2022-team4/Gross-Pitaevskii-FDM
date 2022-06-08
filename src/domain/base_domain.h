@@ -56,7 +56,7 @@ public:
     ~BaseDomain();
     std::string get_path();
     void update_time();
-    void reset();
+    virtual void reset();
 
 protected:
     BaseSpatialGrid* old_grid; 
