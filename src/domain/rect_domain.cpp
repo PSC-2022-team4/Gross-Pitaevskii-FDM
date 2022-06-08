@@ -124,7 +124,8 @@ void RectangularDomain::generate_single_txt_file(std::string filename)
 };
 void RectangularDomain::reset(){
     BaseDomain::reset();
-    delete this -> potential_grid;    
+    delete this -> potential_grid;
+        
     this -> old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
     this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
     this -> potential_grid= new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);  
