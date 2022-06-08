@@ -16,8 +16,7 @@
 #define nTx 16
 #define nTy 16
 
-class CNRectPSolver : public FERectSolver
-//BaseSolver
+class CNRectPSolver : public BaseSolver
 {
 public:
     CNRectPSolver() = default;
@@ -26,10 +25,10 @@ public:
         float g,
         RectangularDomain *domain,
         int device_number);
-    //void generateRectangularDomain();
-    //void solve(float tolerance, int max_iter);
+    // void generateRectangularDomain();
+    // void solve(float tolerance, int max_iter);
     void solve(float tolerance, int max_iter, std::string dir_name = "");
-    //void solve_single_time(int k, float tolerance, int max_iter);
+    // void solve_single_time(int k, float tolerance, int max_iter);
 
 protected:
     RectangularDomain *domain;

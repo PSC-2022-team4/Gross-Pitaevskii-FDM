@@ -26,8 +26,7 @@ int main(int argc, char *argv[])
 
     float g = 1;
     CNRectPSolver solver = CNRectPSolver(g, domain, 0);
-    //TODO
-    domain->update_time();
+    std::cout << domain->get_infinitesimal_distance1() << std::endl;
     solver.solve(1e-11, 101);
 
     MPI_Finalize();
