@@ -235,7 +235,17 @@ void BaseDomain::print_directory_info(){
 void BaseDomain::update_time(){
 
     this -> current_time_index+=1; 
-    free( this -> old_grid);
+    delete ( this -> old_grid);
     this -> old_grid = this ->current_grid;
     this -> current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+}
+
+void BaseDomain::reset(){
+    this -> current_time_index = 0 ; 
+    delete this -> old_grid; 
+    delete this ->current_grid;
+    
+    this -> current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+    this -> old_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+
 }
