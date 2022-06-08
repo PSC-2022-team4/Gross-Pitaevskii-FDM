@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     potential->calcualte_potential_in_grid(domain);
 
     float g = 1;
-    CNRectPSolver solver = CNRectPSolver(g, domain);
+    CNRectPSolver solver = CNRectPSolver(g, domain, 0);
     //TODO
     domain->update_time();
     solver.solve(1e-11, 101);

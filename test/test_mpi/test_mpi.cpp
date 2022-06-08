@@ -34,10 +34,12 @@ bool test_mpi_linking(int rank, int size)
     return all_passed;
 }
 
-bool test_mpi_swap_g(int rank, int size)
+bool test_mpi_sweep_g(int rank, int size)
 {
     bool all_passed = true;
 
+    //TODO 
+    // generate sweep class and sweep g 
     float g = (float)rank;
 
     RectangularDomain *domain = (new RectangularDomain(21, 21, 0, 5, 101, -5, 5, -5, 5));
@@ -76,7 +78,7 @@ void test_all_mpi(int rank, int size)
     {
         MPI_Gather(&passed, 1, MPI_INT, NULL, 0, MPI_INT, 0, MPI_COMM_WORLD);
     }
-    bool passed2 = test_mpi_swap_g(rank, size);
+    bool passed2 = test_mpi_sweep_g(rank, size);
     if (rank == 0)
     {
         int *passed_array = (int *)malloc(size * sizeof(int));

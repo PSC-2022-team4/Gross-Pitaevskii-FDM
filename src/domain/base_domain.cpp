@@ -89,8 +89,8 @@ BaseDomain::BaseDomain(
     
 }
 BaseDomain::~BaseDomain(){
-    free (this->old_grid);
-    free (this->current_grid);
+    delete (this->old_grid);
+    delete (this->current_grid);
 }
 
 std::string BaseDomain::get_path(){

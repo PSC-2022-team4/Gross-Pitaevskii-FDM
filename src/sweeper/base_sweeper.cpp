@@ -1,10 +1,12 @@
-#include <base_sweeper.h>
+#include "base_sweeper.h"
 #include <cassert>
+using namespace std;
 
-BaseSweeper::BaseSweeoer(float start_, float end_, int num_, bool endpoint_):
+BaseSweeper::BaseSweeper(float start_, float end_, int num_, bool endpoint_):
 start(start_), end(end_), num(num_), endpoint(endpoint_){
     
     this->generate_num_list(); 
+
 }
 /**
  * @brief generate number of points that sweep from start to end 
@@ -12,15 +14,15 @@ start(start_), end(end_), num(num_), endpoint(endpoint_){
  */
 void BaseSweeper::generate_num_list(){
     this->num_list = std::vector<float>(this->num);
-    
+    float d = 0.;
     if(this->endpoint){
-        float d = (this -> end - this-> start ) / float(this-> num -1 );
+        d = (this -> end - this-> start ) / float(this-> num -1 );
     }else{
-        float d = (this -> end - this-> start ) / float(this-> num);
+        d = (this -> end - this-> start ) / float(this-> num);
     }
 
     for (int i=0; i<this -> num; ++i){
-        this->num_list[i] = start_ + d; 
+        this->num_list[i] = this ->start + d*i; 
     }
 
 }
@@ -41,3 +43,11 @@ int BaseSweeper::get_number_of_pts(){
 }
 
 BaseSweeper::~BaseSweeper(){};
+
+//Set functions 
+
+void BaseSweeper::set_info(std::map<std::string, std::string> info_map){
+    string solver_type = info_map["solver"];
+    //TODO 
+
+};
