@@ -115,7 +115,7 @@ void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name)
     for (int k = 1; k < time_length; ++k)
     {
         //Update kth grid using k-1 th grid
-        std::cout << "time step " << k << std::endl;
+        // std::cout << "time step " << k << std::endl;
         this->initialize_guess_with_forward_euler(k);
         this->solve_single_time(k, tolerance, max_iter);
         this->domain->normalize(k);

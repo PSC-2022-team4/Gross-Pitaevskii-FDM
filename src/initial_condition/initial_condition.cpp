@@ -6,7 +6,7 @@ InitialCondition::InitialCondition(std::function<std::complex<float>(float, floa
     this->initial_condition_function = initial_condition_function;
 }
 
-void InitialCondition::assign_to_domain(BaseDomain *domain)
+void InitialCondition::assign_to_domain(RectangularDomain *domain)
 {
 
     for (auto i = 0; i < domain->get_num_grid_1(); ++i)

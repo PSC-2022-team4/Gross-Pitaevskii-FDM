@@ -8,14 +8,14 @@
 
 namespace fs = std::experimental::filesystem;
 
-GridPoint::GridPoint(float x_, float y_, std::complex<float> wave_function_) : x(x_), y(y_), value(wave_function_){}
+GridPoint::GridPoint(float x_, float y_, std::complex<float> wave_function_) : x(x_), y(y_), value(wave_function_) {}
 GridPoint::~GridPoint(){};
 
 BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
 {
     this->num_grid_1 = num_grid_1;
     this->num_grid_2 = num_grid_2;
-    //Spatial_data: 2D matrix of grid points 
+    //Spatial_data: 2D matrix of grid points
     this->spatial_data = std::vector<std::vector<GridPoint>>(num_grid_1);
     for (auto i = 0; i < num_grid_1; ++i)
     {
@@ -23,10 +23,13 @@ BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
     }
 }
 
-void BaseSpatialGrid::normalize(){
+void BaseSpatialGrid::normalize()
+{
     float sum = 0.;
-    for (auto i = 0; i < this->num_grid_1; ++i){
-        for (auto j = 0; j < this->num_grid_2;++j){
+    for (auto i = 0; i < this->num_grid_1; ++i)
+    {
+        for (auto j = 0; j < this->num_grid_2; ++j)
+        {
             auto wave_func = this->at(i, j)->value;
             sum += std::pow(std::abs(wave_func), 2);
         }
@@ -40,15 +43,16 @@ void BaseSpatialGrid::normalize(){
         }
     }
 }
-BaseSpatialGrid::~BaseSpatialGrid(){
+BaseSpatialGrid::~BaseSpatialGrid()
+{
 
     for (auto i = 0; i < num_grid_1; ++i)
     {
         this->spatial_data[i].clear();
         std::vector<GridPoint>().swap(this->spatial_data[i]);
-
-    }this ->spatial_data.clear();
-    std::vector<std::vector<GridPoint>>().swap(this ->spatial_data);
+    }
+    this->spatial_data.clear();
+    std::vector<std::vector<GridPoint>>().swap(this->spatial_data);
 }
 
 // Getter function of infinitesimal_distance1
@@ -84,15 +88,20 @@ BaseDomain::BaseDomain(
     this->num_grid_1 = num_grid_1;
     this->num_grid_2 = num_grid_2;
     this->old_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
-    this->current_grid= new BaseSpatialGrid(num_grid_1, num_grid_2);
-    this -> null_gridpt = new GridPoint(0,0,std::complex<float> {0});
-    
+    this->current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+    this->null_gridpt = new GridPoint(0, 0, std::complex<float>{0});
 }
-BaseDomain::~BaseDomain(){
-    free (this->old_grid);
-    free (this->current_grid);
+BaseDomain::~BaseDomain()
+{
+    delete (this->old_grid);
+    delete (this->current_grid);
 }
-void BaseDomain::normalize(int time_index){
+std::string BaseDomain::get_path()
+{
+    return this->PATH;
+}
+void BaseDomain::normalize(int time_index)
+{
     this->current_grid->normalize();
 }
 // Getter functions
@@ -123,7 +132,6 @@ int BaseDomain::get_num_grid_2()
     return this->num_grid_2;
 }
 
-
 float BaseDomain::get_infinitesimal_distance1()
 {
     return this->old_grid->get_infinitesimal_distance1();
@@ -136,21 +144,31 @@ float BaseDomain::get_infinitesimal_distance2()
 // Getter function of grid point at index_1, index_2 and time_index
 GridPoint *BaseDomain::at(int index_1, int index_2, int time_index)
 {
-    if(time_index == this -> current_time_index){
-        return this ->current_grid->at(index_1, index_2);
-    }else if (time_index == this -> current_time_index-1 ){
-        return this -> old_grid -> at(index_1, index_2);
+    if (time_index == this->current_time_index)
+    {
+        return this->current_grid->at(index_1, index_2);
     }
-    else{
-        std::cout<<"error in base domin at function"<<std::endl;
-        return this ->current_grid->at(index_1, index_2);
+    else if (time_index == this->current_time_index - 1)
+    {
+        return this->old_grid->at(index_1, index_2);
     }
-}
-//Getter function for boundary 
-GridPoint* BaseDomain::get_null_gridpt(){
-    return this->null_gridpt;
+    else
+    {
+        std::cout << "error in base domin at function" << std::endl;
+        return this->current_grid->at(index_1, index_2);
+    }
 }
 
+int BaseDomain::get_current_time_index()
+{
+    return this->current_time_index;
+}
+
+//Getter function for boundary
+GridPoint *BaseDomain::get_null_gridpt()
+{
+    return this->null_gridpt;
+}
 
 /**
  * @brief Assign initial value
@@ -192,7 +210,7 @@ void BaseDomain::generate_directory_name(std::string info)
     {
         std::cout << "Creating directory failed" << std::endl;
     };
-    this->PATH =  directory_name + "/";
+    this->PATH = directory_name + "/";
 }
 
 /**
@@ -205,33 +223,35 @@ void BaseDomain::generate_directory_name(std::string info)
  */
 void BaseDomain::generate_single_txt_file(std::string filename)
 {
-    std::ofstream outfile(this->PATH+filename + ".txt");
+    std::ofstream outfile(this->PATH + filename + ".txt");
     outfile << "x, y, probability" << std::endl;
     for (auto i = 0; i < num_grid_1; ++i)
     {
         for (auto j = 0; j < num_grid_2; ++j)
-        {       
+        {
             float magnitude = std::abs(this->current_grid->at(i, j)->value);
-            outfile <<this->current_grid->at(i, j)->x << ", " << this->current_grid->at(i, j)->y << ", ";
+            outfile << this->current_grid->at(i, j)->x << ", " << this->current_grid->at(i, j)->y << ", ";
             outfile << magnitude * magnitude;
             outfile << std::endl;
         }
     }
     outfile.close();
-    //After saving data, update domain 
-    this -> update_time();
+    //After saving data, update domain
+    this->update_time();
 };
 
-void BaseDomain::print_directory_info(){
+void BaseDomain::print_directory_info()
+{
     std::cout << this->num_times;
     std::cout << " text files are generated in \n";
     std::cout << this->PATH << std::endl;
 }
 
-void BaseDomain::update_time(){
+void BaseDomain::update_time()
+{
 
-    this -> current_time_index+=1; 
+    this->current_time_index += 1;
     //free( this -> old_grid);
-    this -> old_grid = this ->current_grid;
-    this -> current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+    this->old_grid = this->current_grid;
+    this->current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
 }

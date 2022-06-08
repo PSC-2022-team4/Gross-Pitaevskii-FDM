@@ -260,11 +260,11 @@ CNRectPSolver::CNRectPSolver(
     // std::function<float(float, float)> potential,
     float g,
     RectangularDomain *domain)
-    : FERectSolver(g,  domain)// potential,
-{
-    // this->generate_potential_grid();
-    //this->fe_solver = new FERectSolver(g, domain);
-};
+    : FERectSolver(g, domain) // potential,
+      {
+          // this->generate_potential_grid();
+          //this->fe_solver = new FERectSolver(g, domain);
+      };
 
 // void CNRectPSolver::generate_potential_grid()
 // {
@@ -279,7 +279,7 @@ CNRectPSolver::CNRectPSolver(
 //     {
 //         for (auto j = 0; j < num_grid_2; ++j)
 //         {
-//             auto point = potential_grid.at(i, j);
+//             auto point = potential_grid->at(i, j);
 //             point->value = {this->potential_func(point->x, point->y), 0};
 //         }
 //     }
@@ -344,7 +344,7 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
         for (int j = 0; j < n_y; ++j)
         {
             wave_func = this->domain->at(i, j, 0)->value;
-            potential_value = this->domain->potential_grid.at(i, j)->value.real();
+            potential_value = this->domain->potential_grid->at(i, j)->value.real();
             h_psi_old_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
             h_psi_old_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
             h_psi_new_real_trial[j * TPB.x * nBlocks.x + i] = wave_func.real();
@@ -362,6 +362,9 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
     cudaMemcpy(d_psi_old_real, h_psi_old_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaMemcpy(d_psi_old_imag, h_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaMemcpy(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
+
+    this->domain->generate_directory_name(this->string_info + dir_name);
+    this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(0));
 
     for (auto k = 1; k < this->domain->get_num_times(); ++k)
     {
@@ -434,8 +437,9 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
                                                                        h_psi_new_imag[j * TPB.x * nBlocks.x + i]});
             }
         }
-        //Above code might generate segmentation error since k th grid is not generated if domain time index is k-1 
-        //TODO save single txt file 
+        //Above code might generate segmentation error since k th grid is not generated if domain time index is k-1
+        //TODO save single txt file
+        this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k));
     }
 
     // this->domain->generate_txt_file(std::string{"Crank_Nicolson_Result"});
