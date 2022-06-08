@@ -5,7 +5,7 @@
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include <cuda_runtime_api.h>
-
+#include <mpi.h>
 #include <functional>
 #include <iostream>
 #include <complex>
@@ -13,6 +13,11 @@
 
 TEST(CNPSolverTest, InitializeSolveTest)
 {
+    MPI_Comm comm = MPI_COMM_WORLD;
+    int rank, size;
+    MPI_Comm_rank(comm, &rank);
+    MPI_Comm_size(comm, &size);
+    
     bool all_passed = true;
     RectangularDomain *domain = (new RectangularDomain(32, 32, 0, 1, 3, -10, 10, -10, 10));
     auto initial_cond_function = [](float x, float y)
@@ -26,7 +31,7 @@ TEST(CNPSolverTest, InitializeSolveTest)
     float g = -1;
     CNRectPSolver solver = CNRectPSolver(g, domain, 0);
 
-    solver.solve(1e-11, 101);
+    solver.solve(1e-11, 101, std::to_string(rank), false, false);
     ASSERT_TRUE(all_passed);
 }
 
@@ -74,7 +79,6 @@ TEST(CNPSolverTest, NormalizeTest)
 
     ASSERT_FLOAT_EQ(real_array[0], 1 / sqrt(2 * n_x * n_y));
     ASSERT_FLOAT_EQ(imag_array[0], 1 / sqrt(2 * n_x * n_y));
-    ASSERT_TRUE(abs(real_array[n_x + 1]) < 1e-6);
 
     cudaFree(d_real_array);
     cudaFree(d_imag_array);

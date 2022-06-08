@@ -264,7 +264,7 @@ CNRectPSolver::CNRectPSolver(
     : BaseSolver(g)
 {
     this->domain = domain_;
-    this->string_info = std::string{"Parallel_Crank_Nicolson_Result"};
+    this->string_info = std::string{"Crank_Nicolson_parallel_"};
 };
 
 
@@ -282,7 +282,7 @@ void fileout_debug(float *array, int n_x, int n_y, std::string filename)
 }
 
 // void CNRectPSolver::solve(float tolerance, int max_iter)
-void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
+void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name,bool print_info, bool save_data)
 {
     int n_x = this->domain->get_num_grid_1();
     int n_y = this->domain->get_num_grid_2();
@@ -309,7 +309,6 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
     float *d_psi_old_real, *d_psi_old_imag, *d_psi_new_real, *d_psi_new_real_trial, *d_psi_new_imag_trial, *d_psi_new_imag, *d_potential;
     float *d_probability_array, *d_error_array;
 
-    std::cout << "Test 2" << std::endl;
     cudaMalloc((float **)&d_psi_old_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     cudaMalloc((float **)&d_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     cudaMalloc((float **)&d_psi_new_real_trial, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
@@ -322,7 +321,6 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
     cudaMalloc((float **)&d_error, sizeof(float));
     cudaMalloc((float **)&d_normalize_factor, sizeof(float));
 
-    std::cout << "Test 3" << std::endl;
     std::complex<float> wave_func;
     float potential_value;
     for (int i = 0; i < n_x; ++i)
@@ -349,9 +347,14 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
     cudaMemcpy(d_psi_old_imag, h_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaMemcpy(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
 
-    this->domain->generate_directory_name(this->string_info);
-    this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(0));
-
+    if(save_data){
+        this->domain->generate_directory_name(this->string_info+dir_name, print_info);
+        //Save initial condition
+        this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(0));
+    }else{
+        this -> domain->update_time();
+    }
+    
     for (auto k = 0; k < this->domain->get_num_times() - 1; ++k)
     {
         // std::cout << "time step " << k << std::endl;
@@ -425,8 +428,14 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
         }
         // Above code might generate segmentation error since k th grid is not generated if domain time index is k-1
         // TODO save single txt file
-        this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k + 1));
+        if(save_data){
+            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k+1));
+        }
+        else{
+            this->domain->update_time();
+        }
     }
-
-    // this->domain->generate_txt_file(std::string{"Crank_Nicolson_Result"});
+    if(print_info){
+        this->domain->print_directory_info();
+    }
 }

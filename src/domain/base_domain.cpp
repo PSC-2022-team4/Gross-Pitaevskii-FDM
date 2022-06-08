@@ -195,7 +195,7 @@ void BaseDomain::assign_wave_function(int index_1, int index_2, int time_index, 
  * @param info  information about domain type and solver type
  * @return std::string directory name with "/"
  */
-void BaseDomain::generate_directory_name(std::string info)
+void BaseDomain::generate_directory_name(std::string info, bool print_info)
 {
     auto t = std::time(nullptr);
     auto tm = *std::localtime(&t);
@@ -204,15 +204,17 @@ void BaseDomain::generate_directory_name(std::string info)
     oss << std::put_time(&tm, "%Y-%m-%d-%H-%M-%S");
     auto str = oss.str();
     std::string directory_name = "../results/" + str + "_" + info;
-
-    if (fs::create_directory(directory_name.c_str()))
+    bool created=fs::create_directory(directory_name.c_str()); 
+    if (print_info && created)
     {
         std::cout << "Created directory " << directory_name << std::endl;
     }
-    else
-    {
-        std::cout << "Creating directory failed" << std::endl;
-    };
+    // else if(print_info )
+    //TODO
+    else if (!created){
+        std::cerr << "Creating directory failed" << std::endl;
+    }
+
     this->PATH = directory_name + "/";
 }
 

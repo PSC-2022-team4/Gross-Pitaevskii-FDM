@@ -49,7 +49,7 @@ public:
     float time_at(int time_index);
     float get_infinitesimal_distance1();
     float get_infinitesimal_distance2();
-    void generate_directory_name(std::string info);
+    void generate_directory_name(std::string info, bool print_info = true);
     void generate_single_txt_file(std::string filename);
     void normalize(int time_index);
     void print_directory_info();

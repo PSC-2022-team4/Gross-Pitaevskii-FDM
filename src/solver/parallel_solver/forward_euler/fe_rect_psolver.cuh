@@ -20,7 +20,7 @@ public:
         float g,
         RectangularDomain *domain,
         int device_number);
-    void solve(std::string dir_name = "");
+    void solve(std::string dir_name = "",bool print_info=true, bool save_data=true);
     void solve_single_time(int k);
 
 protected:

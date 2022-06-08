@@ -70,6 +70,7 @@ FERectPSolver::FERectPSolver(
     : BaseSolver(g_)
 {
     this->domain = domain_;
+    this -> string_info =  std::string{"Forward_Euler_parallel_"};
 };
 
 float FERectPSolver::get_potential_value(int i, int j)
@@ -145,18 +146,29 @@ void FERectPSolver::solve_single_time(int k)
     }
 }
 
-void FERectPSolver::solve(std::string dir_name)
+void FERectPSolver::solve(std::string dir_name,bool print_info, bool save_data)
 {
     int time_length = this->domain->get_num_times();
-    this->domain->generate_directory_name(this->string_info);
-    this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(0));
+    if(save_data){
+        this->domain->generate_directory_name(this->string_info+dir_name, print_info);
+        //Save initial condition
+        this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(0));
+    }else{
+        this -> domain->update_time();
+    }
     for (int k = 0; k < time_length - 1; ++k)
     {
         // std::cout << "Time step: " << k << std::endl;
         this->solve_single_time(k);
         this->domain->normalize(k + 1);
-        this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k + 1));
+        if(save_data){
+            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1));
+        }
+        else{
+            this->domain->update_time();
+        };
     }
-    this->domain->print_directory_info();
-    //this->domain->generate_txt_file(std::string{"Forward_Euler_Result"} + dir_name);
+    if(print_info){
+        this->domain->print_directory_info();
+    }
 }

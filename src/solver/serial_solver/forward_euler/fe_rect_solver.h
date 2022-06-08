@@ -12,9 +12,8 @@ public:
     FERectSolver() = default;    
     FERectSolver(               
         float g, 
-
         RectangularDomain *domain);
-    void solve();
+    void solve(std::string dir_name="", bool print_info=true, bool save_data=true);
     void solve_single_time(int k);
     //void update_time();
 

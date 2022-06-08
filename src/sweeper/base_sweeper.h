@@ -12,14 +12,24 @@ class BaseSweeper{
         float get_start(); 
         float get_end(); 
         int get_number_of_pts();
-        void set_info(map<string, string> info_map);
+        //TODO
+        //void set_info(map<string, string> info_map);
+        virtual void get_MPI_info(int rank, int size);
+        virtual void get_CUDA_info();
         ~BaseSweeper();
 
-    private: 
+    protected: 
         float start;
         float end; 
         int num; 
         bool endpoint; 
         vector<float> num_list; 
         void generate_num_list();
+
+        //MPI info 
+        int rank=0 ;
+        int size=0;
+        bool MPI_use;
+        bool CUDA_use;
+        
 };
