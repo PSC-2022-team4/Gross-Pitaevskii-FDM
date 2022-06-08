@@ -27,14 +27,11 @@ TEST(CNPSolverTest, InitializeSolveTest)
     CNRectPSolver solver = CNRectPSolver(g, domain, 0);
 
     solver.solve(1e-11, 101);
-
-    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.real(), 0);
-    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.imag(), 0);
+    ASSERT_TRUE(all_passed);
 }
 
-void test_normalize(bool *passed)
+TEST(CNPSolverTest, NormalizeTest)
 {
-    *passed = true;
     int n_x = 17;
     int n_y = 17;
     float h_x = 1;
@@ -69,41 +66,23 @@ void test_normalize(bool *passed)
     calculate_normalize_factor<<<1, TPB.x * TPB.y>>>(d_prob_array, d_normalize_factor, TPB.x * nBlocks.x * TPB.y * nBlocks.y, h_x * h_y);
     cudaMemcpy(&normalize_factor, d_normalize_factor, sizeof(float), cudaMemcpyDeviceToHost);
 
-    if (!is_close(normalize_factor, sqrt(2 * n_x * n_y), 1e-12))
-    {
-        *passed = false;
-    }
+    ASSERT_FLOAT_EQ(normalize_factor, sqrt(2 * n_x * n_y));
+
     normalize<<<nBlocks, TPB>>>(d_real_array, d_imag_array, d_normalize_factor);
     cudaMemcpy(real_array, d_real_array, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
     cudaMemcpy(imag_array, d_imag_array, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
-    if (!is_close(real_array[0], 1 / sqrt(2 * n_x * n_y), 1e-12))
-    {
-        *passed = false;
-    }
-    if (!is_close(imag_array[0], 1 / sqrt(2 * n_x * n_y), 1e-12))
-    {
-        *passed = false;
-    }
-    if (!is_close(real_array[n_x + 1], 0, 1e-12))
-    {
-        *passed = false;
-    }
-    if (!is_close(real_array[TPB.x * nBlocks.x * n_y + 1], 0, 1e-12))
-    {
-        *passed = false;
-    }
-    fileout_debug(real_array, TPB.x * nBlocks.x, TPB.y * nBlocks.y, "normalized_real.txt");
-    fileout_debug(imag_array, TPB.x * nBlocks.x, TPB.y * nBlocks.y, "normalized_imag.txt");
+
+    ASSERT_FLOAT_EQ(real_array[0], 1 / sqrt(2 * n_x * n_y));
+    ASSERT_FLOAT_EQ(imag_array[0], 1 / sqrt(2 * n_x * n_y));
+    ASSERT_TRUE(abs(real_array[n_x + 1]) < 1e-6);
 
     cudaFree(d_real_array);
     cudaFree(d_imag_array);
     cudaFree(d_normalize_factor);
     cudaFree(d_prob_array);
 }
-
-void test_error_calculation(bool *passed)
+TEST(CNPSolverTest, ErrorEstimation)
 {
-    *passed = true;
     int n_x = 17;
     int n_y = 17;
 
@@ -143,22 +122,11 @@ void test_error_calculation(bool *passed)
 
     calculate_local_error<<<nBlocks, TPB>>>(d_real_array_1, d_imag_array_1, d_real_array_2, d_imag_array_2, d_error_array, n_x, n_y);
     cudaMemcpy(error_array, d_error_array, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
-    fileout_debug(error_array, TPB.x * nBlocks.x, TPB.y * nBlocks.y, "error_array.txt");
-    if (!is_close(error_array[0], 2, 1e-12))
-    {
-        *passed = false;
-    }
-
-    if (!is_close(error_array[n_x], 0, 1e-12))
-    {
-        *passed = false;
-    }
+    ASSERT_FLOAT_EQ(error_array[0], 2);
+    ASSERT_FLOAT_EQ(error_array[n_x], 0);
     reduction_error<<<1, TPB.x * TPB.y>>>(d_error_array, d_error, TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     cudaMemcpy(&error, d_error, sizeof(float), cudaMemcpyDeviceToHost);
-    if (!is_close(error, 2 * n_x * n_y, 1e-12))
-    {
-        *passed = false;
-    }
+    ASSERT_FLOAT_EQ(error, 2 * n_x * n_y);
 
     cudaFree(d_real_array_1);
     cudaFree(d_imag_array_1);
