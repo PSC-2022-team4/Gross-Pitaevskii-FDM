@@ -185,7 +185,65 @@ int main(int argc, char *argv[])
         }
         else if (parameters.main_parameters.calculation_type == "anisotropy_sweep")
         {
+            HPSweeper hpSweeper = HPSweeper(parameters.main_parameters.float_parameters["sweep_start"],
+                                            parameters.main_parameters.float_parameters["sweep_end"],
+                                            parameters.main_parameters.int_parameters["sweep_count"],
+                                            bool(parameters.main_parameters.int_parameters["end_point"]));
+            RectangularDomain *domain = new RectangularDomain(parameters.domain_parameters.n_x,
+                                                              parameters.domain_parameters.n_y,
+                                                              parameters.domain_parameters.time_start,
+                                                              parameters.domain_parameters.time_end,
+                                                              parameters.domain_parameters.n_time,
+                                                              parameters.domain_parameters.spatial_parameters["x_start"],
+                                                              parameters.domain_parameters.spatial_parameters["x_end"],
+                                                              parameters.domain_parameters.spatial_parameters["y_start"],
+                                                              parameters.domain_parameters.spatial_parameters["y_end"]);
 
+            std::function<std::complex<float>(float, float)> initial_cond_function;
+            if (parameters.init_cond_parameters.init_cond_type == "singlegaussian")
+            {
+                auto sigma_x = parameters.init_cond_parameters.init_cond_parameters["sigma_x"];
+                auto sigma_y = parameters.init_cond_parameters.init_cond_parameters["sigma_y"];
+                auto center_x = parameters.init_cond_parameters.init_cond_parameters["center_x"];
+                auto center_y = parameters.init_cond_parameters.init_cond_parameters["center_y"];
+                initial_cond_function = [center_x, center_y, sigma_x, sigma_y](float x, float y)
+                {
+                    return std::complex<float>{
+                        float(1.) * expf(-((x - center_x) * (x - center_x) / (sigma_x * sigma_x) + (y - center_y) * (y - center_y) / (sigma_y * sigma_y)))};
+                };
+                auto *initial_condition = new InitialCondition(initial_cond_function);
+                initial_condition->assign_to_domain(domain);
+
+                if (parameters.equation_parameters.potential_type == "harmonic")
+                {
+                    float g = parameters.equation_parameters.g;
+                    bool save_data = parameters.solver_parameters.save_data;
+                    bool print_info = parameters.solver_parameters.print_info;
+                    bool cuda_use = (bool)parameters.main_parameters.int_parameters["cuda_use"];
+                    bool mpi_use = (bool)parameters.main_parameters.int_parameters["mpi_use"];
+                    if (cuda_use)
+                    {
+                        hpSweeper.set_CUDA_info(parameters.main_parameters.int_parameters["gpu_count"],
+                                                parameters.main_parameters.int_parameters["calculation_per_gpu"]);
+                    }
+                    if (mpi_use)
+                    {
+                        hpSweeper.set_MPI_info(rank, size);
+                    }
+                    hpSweeper.set_print_info(print_info);
+                    hpSweeper.set_save_data(save_data);
+
+                    hpSweeper.run(domain, initial_condition, g);
+                }
+                else
+                {
+                    std::cerr << "Unexpected initial condition" << std::endl;
+                }
+            }
+            else
+            {
+                std::cerr << "Unexpected initial condition" << std::endl;
+            }
         }
     }
     else

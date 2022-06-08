@@ -2,8 +2,8 @@
 [Main Configuration]
     # Types should be located on the very first line.
     # type = Single
-    # type = Anisotropy_Sweep
-    type = g_Sweep
+    type = Anisotropy_Sweep
+    # type = g_Sweep
     sweep_start = 0
     sweep_end = -10.
     sweep_count = 10
