@@ -259,7 +259,8 @@ __global__ void scale_prev_solution(float *psi_real, float *psi_imag, float scal
 CNRectPSolver::CNRectPSolver(
     // std::function<float(float, float)> potential,
     float g,
-    RectangularDomain *domain)
+    RectangularDomain *domain,    
+    int device_number)
     : FERectSolver(g,  domain)// potential,
 {
     // this->generate_potential_grid();

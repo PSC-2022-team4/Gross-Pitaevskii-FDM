@@ -66,7 +66,9 @@ __global__ void fe_rect_cusolver(float *psi_old_real,
 FERectPSolver::FERectPSolver(
     // std::function<float(float, float)> potential_,
     float g_,
-    RectangularDomain *domain_)
+    RectangularDomain *domain_,
+    int device_number
+    )
     : BaseSolver(g_)
 {
     this->domain = domain_;
