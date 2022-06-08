@@ -4,7 +4,10 @@
 #include "initial_condition/initial_condition.h"
 #include "potential/harmonic_potential.h"
 #include "solver/base_solver.h"
+#include "solver/parallel_solver/forward_euler/fe_rect_psolver.cuh"
 #include "solver/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
+#include "solver/serial_solver/forward_euler/fe_rect_solver.h"
+#include "solver/serial_solver/crank_nicolson/cn_rect_solver.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,9 +28,12 @@ int main(int argc, char *argv[])
     potential->calcualte_potential_in_grid(domain);
 
     float g = 1;
-    CNRectPSolver solver = CNRectPSolver(g, domain, 0);
-    std::cout << domain->get_infinitesimal_distance1() << std::endl;
-    solver.solve(1e-11, 101);
-
+    // CNRectSolver solver = CNRectSolver(g, domain);
+    // FERectSolver solver = FERectSolver(g, domain);
+    // CNRectPSolver solver = CNRectPSolver(g, domain, 0);
+    FERectPSolver solver = FERectPSolver(g, domain, 0);
+    
+    // solver.solve(1e-11, 101);
+    solver.solve();
     MPI_Finalize();
 }

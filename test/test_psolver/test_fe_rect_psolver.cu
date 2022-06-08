@@ -14,9 +14,7 @@ TEST(FEPSolverTest, InitializeSolveTest)
     // std::function<float(float, float)> potential;
 
     float g;
-    std::cout << "." << std::endl;
     RectangularDomain *domain = (new RectangularDomain(32, 32, 0, 1e-4, 2, -5, 5, -5, 5));
-    std::cout << "." << std::endl;
     auto initial_cond_function = [](float x, float y)
     { return std::complex<float>{1e-10}; };
 
@@ -28,7 +26,7 @@ TEST(FEPSolverTest, InitializeSolveTest)
     g = -1.;
     FERectPSolver solver = FERectPSolver(g, domain, 0);
 
-    solver.solve();
+    solver.solve("", false, false);
 
     ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.real(), 0.096875511);
     ASSERT_TRUE(abs((*domain).at(10, 10, 1)->value.imag()) < 1e-6);

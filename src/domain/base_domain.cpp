@@ -211,7 +211,7 @@ void BaseDomain::generate_directory_name(std::string info, bool print_info)
     }
     // else if(print_info )
     //TODO
-    {
+    else if (!created){
         std::cerr << "Creating directory failed" << std::endl;
     }
 

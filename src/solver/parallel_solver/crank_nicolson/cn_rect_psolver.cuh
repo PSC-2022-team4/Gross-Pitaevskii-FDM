@@ -27,7 +27,7 @@ public:
         int device_number);
     // void generateRectangularDomain();
     // void solve(float tolerance, int max_iter);
-    void solve(float tolerance, int max_iter, std::string dir_name = "");
+    void solve(float tolerance, int max_iter, std::string dir_name = "",bool print_info=true, bool save_data=true);
     // void solve_single_time(int k, float tolerance, int max_iter);
 
 protected:

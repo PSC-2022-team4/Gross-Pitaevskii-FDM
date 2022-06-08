@@ -20,6 +20,7 @@ TEST(CNSolverTest, InitializeSolveTest)
     potential->calcualte_potential_in_grid(domain);
     float g = -1;
     CNRectSolver solver = CNRectSolver(g, domain);
-    solver.solve(1e-11, 101);
+    
+    solver.solve(1e-11, 101, "", false, false);
     ASSERT_TRUE(all_passed);
 }

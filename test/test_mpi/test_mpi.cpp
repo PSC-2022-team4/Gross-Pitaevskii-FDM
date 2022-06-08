@@ -84,7 +84,7 @@ TEST(MPITest, SwapG)
     potential->calcualte_potential_in_grid(domain);
 
     FERectSolver solver = FERectSolver(g, domain);
-    solver.solve();
+    solver.solve(std::to_string(rank), false, false);
 
     if (rank == 0)
     {

@@ -15,7 +15,7 @@ CNRectSolver::CNRectSolver(
         this->domain->get_x_end(),
         this->domain->get_y_start(),
         this->domain->get_y_end());
-    this->string_info = std::string{"crank_nicolson_serial_"};
+    this->string_info = std::string{"Crank_Nicolson_serial_"};
 };
 
 void CNRectSolver::initialize_guess_with_forward_euler(int k)
@@ -117,16 +117,19 @@ void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name,boo
         this -> domain->update_time();
     }
     
-    for (int k = 1; k < time_length; ++k)
+    for (int k = 0; k < time_length-1; ++k)
     {
         //Update kth grid using k-1 th grid
         // std::cout << "time step " << k << std::endl;
 
-        this->initialize_guess_with_forward_euler(k);
-        this->solve_single_time(k, tolerance, max_iter);
-        this->domain->normalize(k);
+        this->initialize_guess_with_forward_euler(k+1);
+        this->solve_single_time(k+1, tolerance, max_iter);
+        this->domain->normalize(k+1);
         if(save_data){
-            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k));
+            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k+1));
+        }
+        else{
+            this->domain->update_time();
         }
     }
     if(print_info){

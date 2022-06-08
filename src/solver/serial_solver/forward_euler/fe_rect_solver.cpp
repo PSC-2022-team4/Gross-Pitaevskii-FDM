@@ -7,7 +7,7 @@ FERectSolver::FERectSolver(
     : BaseSolver(g_)
 {
     this->domain = domain_;
-    this->string_info = std::string{"Forward_Euler_Result_"};
+    this->string_info = std::string{"Forward_Euler_serial_"};
    
 };
 float FERectSolver::get_potential_value(int i, int j)
@@ -97,6 +97,9 @@ void FERectSolver::solve(std::string dir_name, bool print_info, bool save_data)
         this->domain->normalize(k + 1);
         if(save_data){
             this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1));
+        }
+        else{
+            this->domain->update_time();
         }
     }
     if(print_info){
