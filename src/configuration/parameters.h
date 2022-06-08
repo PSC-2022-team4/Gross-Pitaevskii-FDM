@@ -2,6 +2,13 @@
 #include <map>
 #include <string>
 
+class MainParameters
+{
+    public:
+        std::string calculation_type = std::string("");
+        std::map<std::string, float> float_parameters;
+        std::map<std::string, int> int_parameters;
+};
 class DomainParameters
 {
     public:
@@ -40,6 +47,7 @@ class Parameters
 {
 public:
     std::string config_name;
+    MainParameters main_parameters;
     DomainParameters domain_parameters;
     InitialConditionParameters init_cond_parameters;
     EquationParameters equation_parameters;
