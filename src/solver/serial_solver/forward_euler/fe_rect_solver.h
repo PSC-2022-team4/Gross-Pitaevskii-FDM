@@ -15,7 +15,7 @@ public:
         RectangularDomain *domain);
     void solve();
     void solve_single_time(int k);
-    void update_time();
+    //void update_time();
 
 protected:
     RectangularDomain * domain;

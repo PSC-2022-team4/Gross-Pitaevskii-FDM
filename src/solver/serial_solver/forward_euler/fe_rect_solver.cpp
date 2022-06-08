@@ -8,7 +8,7 @@ FERectSolver::FERectSolver(
 { 
     this->domain = domain_;
     this->string_info = std::string{"Forward_Euler_Result"};
-    string_info += "_" + std::to_string(g_);
+    //string_info += "_" + std::to_string(g_);
 };
 float FERectSolver::get_potential_value(int i, int j ){
     return this->domain->potential_grid.at(i, j)->value.real();
