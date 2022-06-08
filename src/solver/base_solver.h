@@ -9,9 +9,9 @@ class BaseSolver
 public:
     BaseSolver() = default;
     BaseSolver(float g);
+    ~BaseSolver();
 
 protected:
-    //  std::function<float(float, float)> potential_func;
     float g;
     std::complex<float> temporal_equation(int i, int j, int k);
     std::string string_info;

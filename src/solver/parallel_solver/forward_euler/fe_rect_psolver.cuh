@@ -25,7 +25,7 @@ public:
 protected:
     RectangularDomain *domain;
     // RectangularSpatialGrid potential_grid;
-    void generate_potential_grid();
+    //void generate_potential_grid();
     float get_potential_value(int i, int j);
     std::complex<float> temporal_equation(int i, int j, int k);
 };

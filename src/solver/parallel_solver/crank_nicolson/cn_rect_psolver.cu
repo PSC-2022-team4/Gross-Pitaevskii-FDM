@@ -260,10 +260,10 @@ CNRectPSolver::CNRectPSolver(
     // std::function<float(float, float)> potential,
     float g,
     RectangularDomain *domain)
-    : BaseSolver(g), domain(domain) // potential,
+    : FERectSolver(g,  domain)// potential,
 {
     // this->generate_potential_grid();
-    this->fe_solver = new FERectSolver(g, domain);
+    //this->fe_solver = new FERectSolver(g, domain);
 };
 
 // void CNRectPSolver::generate_potential_grid()
@@ -297,7 +297,8 @@ void fileout_debug(float *array, int n_x, int n_y, std::string filename)
     }
 }
 
-void CNRectPSolver::solve(float tolerance, int max_iter)
+//void CNRectPSolver::solve(float tolerance, int max_iter)
+void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
 {
     int n_x = this->domain->get_num_grid_1();
     int n_y = this->domain->get_num_grid_2();
@@ -433,6 +434,8 @@ void CNRectPSolver::solve(float tolerance, int max_iter)
                                                                        h_psi_new_imag[j * TPB.x * nBlocks.x + i]});
             }
         }
+        //Above code might generate segmentation error since k th grid is not generated if domain time index is k-1 
+        //TODO save single txt file 
     }
 
     // this->domain->generate_txt_file(std::string{"Crank_Nicolson_Result"});
