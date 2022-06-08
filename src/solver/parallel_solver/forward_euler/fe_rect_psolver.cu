@@ -64,32 +64,14 @@ __global__ void fe_rect_cusolver(float *psi_old_real,
 }
 
 FERectPSolver::FERectPSolver(
-    // std::function<float(float, float)> potential_,
     float g_,
-    RectangularDomain *domain_)
+    RectangularDomain *domain_,
+    int device_number)
     : BaseSolver(g_)
 {
     this->domain = domain_;
-    // this->generate_potential_grid();
 };
-// void FERectPSolver::generate_potential_grid()
-// {
-//     int num_grid_1 = this->domain->get_num_grid_1();
-//     int num_grid_2 = this->domain->get_num_grid_2();
-//     float x_start = this->domain->at(0, 0, 0)->x;
-//     float y_start = this->domain->at(0, 0, 0)->y;
-//     float x_end = this->domain->at(num_grid_1 - 1, num_grid_2 - 1, 0)->x;
-//     float y_end = this->domain->at(num_grid_1 - 1, num_grid_2 - 1, 0)->y;
-//     this->potential_grid = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-//     for (auto i = 0; i < num_grid_1; ++i)
-//     {
-//         for (auto j = 0; j < num_grid_2; ++j)
-//         {
-//             auto point = potential_grid->at(i, j);
-//             point->value = {this->potential_func(point->x, point->y), 0};
-//         }
-//     }
-// };
+
 float FERectPSolver::get_potential_value(int i, int j)
 {
     return this->domain->potential_grid->at(i, j)->value.real();

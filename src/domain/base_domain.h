@@ -56,6 +56,8 @@ public:
     std::string get_path();
     int get_current_time_index();
     ~BaseDomain();
+    std::string get_path();
+    void update_time();
 
     void update_time();
 

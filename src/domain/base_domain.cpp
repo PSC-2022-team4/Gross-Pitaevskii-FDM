@@ -100,6 +100,7 @@ std::string BaseDomain::get_path()
 {
     return this->PATH;
 }
+
 void BaseDomain::normalize(int time_index)
 {
     this->current_grid->normalize();
@@ -251,7 +252,7 @@ void BaseDomain::update_time()
 {
 
     this->current_time_index += 1;
-    //free( this -> old_grid);
+    free(this->old_grid);
     this->old_grid = this->current_grid;
     this->current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
 }
