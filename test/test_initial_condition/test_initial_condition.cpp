@@ -1,6 +1,6 @@
-#include "src/domain/rect_domain.h"
-#include "src/initial_condition/initial_condition.h"
-#include "src/utils.h"
+#include "../../src/domain/rect_domain.h"
+#include "../../src/initial_condition/initial_condition.h"
+#include "../../src/utils.h"
 #include <iostream>
 #include <complex>
 
@@ -8,10 +8,10 @@ bool test_initial_condition_rectangular()
 {
     auto domain = RectangularDomain(21, 21, 0, 10, 11, -10, 10, -10, 10);
     auto initial_cond_function = [](float x, float y)
-    { return std::complex<float>{1*std::exp(-(x*x + y*y)/(9))}; };
+    { return std::complex<float>{1 * std::exp(-(x * x + y * y) / (9))}; };
 
-    auto *initial_condition =new  InitialCondition(initial_cond_function);
-    initial_condition-> assign_to_domain(&domain);
+    auto *initial_condition = new InitialCondition(initial_cond_function);
+    initial_condition->assign_to_domain(&domain);
     bool all_passed = true;
 
     if (!is_close(domain.at(10, 10, 0)->x, 0., 1e-12))

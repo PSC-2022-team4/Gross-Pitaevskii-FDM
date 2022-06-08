@@ -94,51 +94,6 @@ float FERectPSolver::get_potential_value(int i, int j)
 {
     return this->domain->potential_grid.at(i, j)->value.real();
 }
-/**
- * @brief Time differential of phi
- *
- * @param i index for x
- * @param j index for y
- * @param k index for time(t)
- * @return std::complex<float> time differential at x, y, t
- */
-std::complex<float> FERectPSolver::temporal_equation(int i, int j, int k)
-{
-    // Use five stencil method
-    auto point_data = this->domain->at(i, j, k);
-
-    // l,r,d,u denotes left, right, down, up value
-    // Check boundary
-    auto point_data_l = this->domain->at(i - 1, j, k);
-    if (i <= 0)
-        point_data_l = new GridPoint(0., 0., std::complex<float>{0, 0});
-    auto point_data_d = this->domain->at(i, j - 1, k);
-    if (j <= 0)
-        point_data_d = new GridPoint(0., 0., std::complex<float>{0, 0});
-    auto point_data_r = this->domain->at(i + 1, j, k);
-    if (i >= (this->domain->get_num_grid_1()) - 1)
-        point_data_r = new GridPoint(0., 0., std::complex<float>{0, 0});
-    auto point_data_u = this->domain->at(i, j + 1, k);
-    if (j >= (this->domain->get_num_grid_2()) - 1)
-        point_data_u = new GridPoint(0., 0., std::complex<float>{0, 0});
-
-    // potential at x, y
-    float V_ij = this->get_potential_value(i, j);
-    // this->potential_func(point_data->x, point_data->y);
-
-    // g * |psi(x,y)|^2
-    float additional_term = (this->g) * (std::abs(point_data->value)) * (std::abs(point_data->value));
-
-    // Set infinitesimal value
-    float dx = this->domain->get_infinitesimal_distance1();
-    float dy = this->domain->get_infinitesimal_distance2();
-    // df denote time differential of dt (d(psi)/dt)
-    //  = (laplace - V-g|psi|^2) psi
-    std::complex<float> df =
-        +((point_data_r->value) + (point_data_l->value) - (point_data->value) * std::complex<float>{2}) / (std::complex<float>{dx * dx}) + ((point_data_u->value) + (point_data_d->value) - (point_data->value) * std::complex<float>{2}) / (std::complex<float>{dy * dy}) - (V_ij + additional_term) * (point_data->value);
-    df *= std::complex<float>{0, 1};
-    return df;
-};
 
 void FERectPSolver::solve_single_time(int k)
 {

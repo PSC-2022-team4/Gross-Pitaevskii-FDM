@@ -1,15 +1,10 @@
 #include <iostream>
 #include <mpi.h>
-// #include "src/test/test_domain/test_base_domain.cpp"
-// #include "src/test/test_domain/test_rect_domain.cpp"
-// #include "src/test/test_initial_condition/test_initial_condition.cpp"
-// #include "src/test/test_armadillo/test_armadillo_linking.cpp"
-// #include "src/test/test_solver/test_base_solver.cpp"
-// #include "test/test_solver/test_fe_rect_solver.cpp"
-// #include "src/test/test_solver/test_cn_rect_solver.cpp"
-#include "src/test/test_psolver/test_cn_rect_psolver.cpp"
-// #include "src/test/test_psolver/test_fe_rect_psolver.cpp"
-// #include "src/test/test_mpi/test_mpi.cpp"
+#include "domain/rect_domain.h"
+#include "initial_condition/initial_condition.h"
+#include "potential/harmonic_potential.h"
+#include "solver/base_solver.h"
+#include "solver/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
 
 int main(int argc, char *argv[])
 {
@@ -19,20 +14,20 @@ int main(int argc, char *argv[])
     MPI_Comm_rank(comm, &rank);
     MPI_Comm_size(comm, &size);
 
-    // test_all_base_domain();
-    // test_all_rect_domain();
-    // test_all_initial_condition();
-    // test_all_armadillo_linking();
-    // test_all_base_solver();
-    // test_all_fe_rect_solver();
-    // test_all_cn_rect_solver();
-    // test_all_fe_rect_psolver(rank, size);
-    // test_all_cn_rect_psolver();
+    RectangularDomain *domain = (new RectangularDomain(256, 256, 0, 5, 1000, -10, 10, -10, 10));
 
-    // test_all_fe_rect_solver(); //This works before normalization
-    // test_all_cn_rect_solver();
-    // test_all_fe_rect_psolver();
-    test_all_cn_rect_psolver();
-    // test_all_mpi(rank, size);
+    auto initial_cond_function = [](float x, float y)
+    { return std::complex<float>{1. * expf(-((x) * (x) + y * y) / (1))}; };
+    auto *initial_condition = new InitialCondition(initial_cond_function);
+    initial_condition->assign_to_domain(domain);
+
+    auto *potential = new HarmonicPotential(3, 5);
+    potential->calcualte_potential_in_grid(domain);
+
+    float g = 1;
+    CNRectPSolver solver = CNRectPSolver(g, domain);
+
+    solver.solve(1e-11, 101);
+
     MPI_Finalize();
 }

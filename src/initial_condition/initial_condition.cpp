@@ -8,7 +8,7 @@ InitialCondition::InitialCondition(std::function<std::complex<float>(float, floa
 
 void InitialCondition::assign_to_domain(BaseDomain *domain)
 {
-           
+
     for (auto i = 0; i < domain->get_num_grid_1(); ++i)
     {
         for (auto j = 0; j < domain->get_num_grid_2(); ++j)

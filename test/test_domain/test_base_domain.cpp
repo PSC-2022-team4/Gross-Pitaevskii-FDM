@@ -1,13 +1,12 @@
-#include "src/domain/base_domain.h"
-#include "src/utils.h"
+#include "../../src/domain/base_domain.h"
+#include "../../src/utils.h"
 #include <iostream>
-
 #include <experimental/filesystem>
-
+#include "gtest/gtest.h"
 namespace fs = std::experimental::filesystem;
 
-
-bool test_grid_point(){
+bool test_grid_point()
+{
     auto grid_point = GridPoint(0.1, 0.1, std::complex<float>{10., 1.});
     bool all_passed = true;
     if (!is_close(grid_point.x, 0.1, 1e-12))
@@ -29,7 +28,8 @@ bool test_grid_point(){
     return all_passed;
 }
 
-bool test_base_spatial_grid(){
+bool test_base_spatial_grid()
+{
     auto spatial_grid = BaseSpatialGrid(100, 100);
     bool all_passed = true;
     if (!is_close(spatial_grid.at(10, 10)->x, 0., 1e-12))
@@ -52,10 +52,12 @@ bool test_base_spatial_grid(){
     return all_passed;
 }
 
-bool test_base_domain_contructor(){
+bool test_base_domain_contructor()
+{
     auto domain = BaseDomain(100, 100, 0., 10., 11);
     bool all_passed = true;
-    if (!is_close(domain.get_t_start(), 0., 1e-12)){
+    if (!is_close(domain.get_t_start(), 0., 1e-12))
+    {
         all_passed = false;
     }
     if (!is_close(domain.get_t_end(), 10., 1e-12))
@@ -73,17 +75,18 @@ bool test_base_domain_contructor(){
     return all_passed;
 }
 
-bool test_base_domain_export_file(){
+bool test_base_domain_export_file()
+{
     auto domain = BaseDomain(100, 100, 0., 10., 3);
     std::string directory_name = domain.generate_txt_file("test_initialize");
 
     bool all_passed = true;
     int count = 0;
-    for (const auto & file : fs::directory_iterator(directory_name))
-        count +=1;
+    for (const auto &file : fs::directory_iterator(directory_name))
+        count += 1;
 
-
-    if (count != 3){
+    if (count != 3)
+    {
         all_passed = false;
     }
     return all_passed;
@@ -115,9 +118,12 @@ bool test_all_base_domain()
     {
         std::cout << "Test base domain constuctor failed!" << std::endl;
     }
-    if(test_base_domain_export_file()){
-        std::cout<<"Test base domain export to txt file succeded!"<<std::endl;
-    }else{
-        std::cout<<"Test base domain export to txt file failed!"<<std::endl;
+    if (test_base_domain_export_file())
+    {
+        std::cout << "Test base domain export to txt file succeded!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Test base domain export to txt file failed!" << std::endl;
     }
 }
