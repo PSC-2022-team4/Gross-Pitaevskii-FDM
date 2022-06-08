@@ -42,12 +42,21 @@ int BaseSweeper::get_number_of_pts(){
     return num; 
 }
 
+void BaseSweeper::get_MPI_info(int rank, int size){
+    this -> rank = rank; 
+    this -> size = size;
+    this -> MPI_use=true;
+}
+
+void BaseSweeper::get_CUDA_info(){
+    this -> CUDA_use=true;
+}
 BaseSweeper::~BaseSweeper(){};
 
 //Set functions 
 
-void BaseSweeper::set_info(std::map<std::string, std::string> info_map){
-    string solver_type = info_map["solver"];
-    //TODO 
+// void BaseSweeper::set_info(std::map<std::string, std::string> info_map){
+//     //string solver_type = info_map["solver"];
+//     //TODO 
 
-};
+// };
