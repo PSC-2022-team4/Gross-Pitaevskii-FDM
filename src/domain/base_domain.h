@@ -53,12 +53,9 @@ public:
     void generate_single_txt_file(std::string filename);
     void normalize(int time_index);
     void print_directory_info();
-    std::string get_path();
     int get_current_time_index();
     ~BaseDomain();
     std::string get_path();
-    void update_time();
-
     void update_time();
 
 protected:

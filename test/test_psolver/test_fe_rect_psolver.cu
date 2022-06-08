@@ -28,7 +28,7 @@ bool test_fe_rect_psolver()
     g = -1.;
 
     std::cout << "." << std::endl;
-    FERectPSolver solver = FERectPSolver(g, domain);
+    FERectPSolver solver = FERectPSolver(g, domain, 0);
 
     if (!is_close((*domain).at(10, 10, 0)->x, 0., 1e-12))
     {

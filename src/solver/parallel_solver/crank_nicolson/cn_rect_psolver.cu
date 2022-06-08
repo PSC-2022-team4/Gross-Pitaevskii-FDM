@@ -438,15 +438,9 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
                                                                        h_psi_new_imag[j * TPB.x * nBlocks.x + i]});
             }
         }
-<<<<<<< HEAD
         //Above code might generate segmentation error since k th grid is not generated if domain time index is k-1
         //TODO save single txt file
         this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k));
-=======
-        this->domain->update_time();
-        //Above code might generate segmentation error since k th grid is not generated if domain time index is k-1
-        //TODO save single txt file 
->>>>>>> b7602c284510dd2cd5866983ddad01bdb628b315
     }
 
     // this->domain->generate_txt_file(std::string{"Crank_Nicolson_Result"});
