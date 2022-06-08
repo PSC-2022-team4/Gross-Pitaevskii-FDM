@@ -1,14 +1,20 @@
 #include "../../src/utils.h"
-#include <mpi.h>
-#include <iostream>
-
 #include "../../src/potential/harmonic_potential.h"
 #include "../../src/solver/serial_solver/forward_euler/fe_rect_solver.h"
 
-bool test_mpi_linking(int rank, int size)
+#include <mpi.h>
+#include <iostream>
+#include "gtest/gtest.h"
+
+TEST(MPITest, Linking)
 {
     bool all_passed = false;
     MPI_Status status;
+    MPI_Comm comm = MPI_COMM_WORLD;
+    int rank, size;
+    MPI_Comm_rank(comm, &rank);
+    MPI_Comm_size(comm, &size);
+
     int baton;
     if (rank == 0)
     {
@@ -29,17 +35,43 @@ bool test_mpi_linking(int rank, int size)
         // baton 받고 다음 프로세스에 던지기
         MPI_Recv(&baton, 1, MPI_INT, rank - 1, 999, MPI_COMM_WORLD, &status);
         MPI_Send(&baton, 1, MPI_INT, (rank + 1) % size, 999, MPI_COMM_WORLD);
-        all_passed = true;
+        // all_passed = true;
     }
-    return all_passed;
+
+    if (rank == 0)
+    {
+        int *passed_array = (int *)malloc(size * sizeof(int));
+        //save results in passed_array
+        MPI_Gather(&all_passed, 1, MPI_INT, passed_array, 1, MPI_INT, 0, MPI_COMM_WORLD);
+        for (auto i = 0; i < size; ++i)
+        {
+            if (!passed_array[i])
+            {
+                break;
+            }
+            if (i == (size - 1))
+            {
+                all_passed = true;
+            }
+        }
+    }
+    else
+    {
+        MPI_Gather(&all_passed, 1, MPI_INT, NULL, 0, MPI_INT, 0, MPI_COMM_WORLD);
+    }
+    ASSERT_TRUE(all_passed);
 }
 
-bool test_mpi_sweep_g(int rank, int size)
+TEST(MPITest, SwapG)
 {
-    bool all_passed = true;
+    MPI_Comm comm = MPI_COMM_WORLD;
+    int rank, size;
+    MPI_Comm_rank(comm, &rank);
+    MPI_Comm_size(comm, &size);
 
-    //TODO 
-    // generate sweep class and sweep g 
+    bool passed = true;
+    bool all_passed = false;
+
     float g = (float)rank;
 
     RectangularDomain *domain = (new RectangularDomain(21, 21, 0, 5, 101, -5, 5, -5, 5));
@@ -53,12 +85,7 @@ bool test_mpi_sweep_g(int rank, int size)
 
     FERectSolver solver = FERectSolver(g, domain);
     solver.solve();
-    return all_passed;
-}
 
-void test_all_mpi(int rank, int size)
-{
-    bool passed = test_mpi_linking(rank, size);
     if (rank == 0)
     {
         int *passed_array = (int *)malloc(size * sizeof(int));
@@ -68,31 +95,15 @@ void test_all_mpi(int rank, int size)
         {
             if (!passed_array[i])
             {
-                std::cout << "MPI Test failed!!" << std::endl;
+
                 break;
             }
-        }
-        std::cout << "MPI Test succeed" << std::endl;
-    }
-    else
-    {
-        MPI_Gather(&passed, 1, MPI_INT, NULL, 0, MPI_INT, 0, MPI_COMM_WORLD);
-    }
-    bool passed2 = test_mpi_sweep_g(rank, size);
-    if (rank == 0)
-    {
-        int *passed_array = (int *)malloc(size * sizeof(int));
-        //save results in passed_array
-        MPI_Gather(&passed, 1, MPI_INT, passed_array, 1, MPI_INT, 0, MPI_COMM_WORLD);
-        for (auto i = 0; i < size; ++i)
-        {
-            if (!passed_array[i])
+            if (i == (size - 1))
+
             {
-                std::cout << "MPI Test with serial solver failed!!" << std::endl;
-                break;
+                all_passed = true;
             }
         }
-        std::cout << "MPI Test with serial solver succeed" << std::endl;
     }
     else
     {

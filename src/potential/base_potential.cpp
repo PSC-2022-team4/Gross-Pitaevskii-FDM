@@ -9,7 +9,8 @@ void BasePotential::calcualte_potential_in_grid(RectangularDomain *domain)
         for (auto j = 0; j < num_grid_2; ++j)
         {
             auto point = domain->potential_grid->at(i, j);
-            //Assign potential value in potential grid 
+
+            //Assign potential value in potential grid
             point->value = {this->potential_function(point->x, point->y)};
         }
     }

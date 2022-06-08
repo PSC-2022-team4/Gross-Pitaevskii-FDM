@@ -4,8 +4,9 @@
 #include <functional>
 #include <iostream>
 #include <complex>
+#include "gtest/gtest.h"
 
-bool test_base_solver()
+TEST(BaseSolverTest, InitializeTest)
 {
     bool all_passed = true;
 
@@ -27,17 +28,5 @@ bool test_base_solver()
         all_passed = false;
     }
 
-    return all_passed;
-}
-
-bool test_all_base_solver()
-{
-    if (test_base_solver())
-    {
-        std::cout << "test_base_solver succeeded!" << std::endl;
-    }
-    else
-    {
-        std::cout << "test_base_solver failed!" << std::endl;
-    }
+    ASSERT_TRUE(all_passed);
 }

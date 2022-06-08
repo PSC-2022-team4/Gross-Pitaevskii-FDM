@@ -1,5 +1,5 @@
 #pragma once
-#include "../domain/base_domain.h"
+#include "../domain/rect_domain.h"
 #include <functional>
 #include <complex>
 #include <iostream>
@@ -11,5 +11,5 @@ private:
 public:
     InitialCondition() = default;
     InitialCondition(std::function<std::complex<float>(float, float)> initial_condition_function);
-    void assign_to_domain(BaseDomain *domain);
+    void assign_to_domain(RectangularDomain *domain);
 };
