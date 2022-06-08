@@ -5,7 +5,7 @@
 CNRectSolver::CNRectSolver(
     float g,
     RectangularDomain *domain)
-    :  FERectSolver(g, domain) //
+    : FERectSolver(g, domain) //
 {
     // this->generate_potential_grid();
     this->guess = new RectangularSpatialGrid(
@@ -20,7 +20,7 @@ CNRectSolver::CNRectSolver(
 
 void CNRectSolver::initialize_guess_with_forward_euler(int k)
 {
-    free(this -> guess);
+    free(this->guess);
     this->guess = new RectangularSpatialGrid(
         this->domain->get_num_grid_1(),
         this->domain->get_num_grid_2(),
@@ -32,13 +32,12 @@ void CNRectSolver::initialize_guess_with_forward_euler(int k)
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
         {
-            
-            
-            //At first, initial guess is the results of fe algorithm 
-            this -> domain -> at(i, j, k )-> value =  this->domain->at(i, j, k-1)->value + this->domain->get_dt() * (this->temporal_equation(i, j, k - 1));
-            
-            this-> domain->normalize(k);
-            this->guess->at(i, j)->value = this -> domain -> at(i, j, k )-> value;
+
+            //At first, initial guess is the results of fe algorithm
+            this->domain->at(i, j, k)->value = this->domain->at(i, j, k - 1)->value + this->domain->get_dt() * (this->temporal_equation(i, j, k - 1));
+
+            this->domain->normalize(k);
+            this->guess->at(i, j)->value = this->domain->at(i, j, k)->value;
         }
     }
 }
@@ -81,24 +80,24 @@ void CNRectSolver::solve_single_time(int k, float tolerance, int max_iter)
             converged_step = iter - 1;
             break;
         }
-        //For each point, update wave function 
+        //For each point, update wave function
         for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
         {
             for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
-            {   
-                this->domain->at(i, j, k)->value = this-> guess->at(i, j)->value;
-                
+            {
+                this->domain->at(i, j, k)->value = this->guess->at(i, j)->value;
             }
         }
-        
+
         //for each point, update predicted value
-        for (auto i = 0; i < this->domain->get_num_grid_1(); ++i){
-            for (auto j = 0; j < this->domain->get_num_grid_2(); ++j){
+        for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
+        {
+            for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
+            {
                 update_guess(i, j, k);
-                
             }
         }
-        
+
         error = this->calculate_error(k);
     }
     if (!converged)
@@ -106,21 +105,22 @@ void CNRectSolver::solve_single_time(int k, float tolerance, int max_iter)
         std::cout << "Converged failed with error = " << error << std::endl;
     }
 }
-void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name )
+void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name)
 {
     int time_length = this->domain->get_num_times();
     //Save initial condition at time = start_time
-    this->domain ->generate_directory_name(this->string_info+dir_name);
-    this -> domain->generate_single_txt_file( std::string("probability_") + std::to_string(0));
-    
-    for(int k=1; k<time_length; ++k){
-        //Update kth grid using k-1 th grid 
+    this->domain->generate_directory_name(this->string_info + dir_name);
+    this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(0));
+
+    for (int k = 1; k < time_length; ++k)
+    {
+        //Update kth grid using k-1 th grid
         std::cout << "time step " << k << std::endl;
         this->initialize_guess_with_forward_euler(k);
         this->solve_single_time(k, tolerance, max_iter);
         this->domain->normalize(k);
-        this -> domain->generate_single_txt_file( std::string("probability_") + std::to_string(k));
+        this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k));
     }
-    
+
     this->domain->print_directory_info();
 }

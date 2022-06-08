@@ -10,7 +10,7 @@
 #include "../../../initial_condition/initial_condition.h"
 #include "../../base_solver.h"
 #include "../forward_euler/fe_rect_solver.h"
-class CNRectSolver : public BaseSolver
+class CNRectSolver : public FERectSolver
 
 {
 public:
@@ -19,7 +19,7 @@ public:
         float g,
         RectangularDomain *domain);
     void generateRectangularDomain();
-    void solve(float tolerance, int max_iter, std::string dir_name="");
+    void solve(float tolerance, int max_iter, std::string dir_name = "");
 
 protected:
     void solve_single_time(int k, float tolerance, int max_iter);
