@@ -31,6 +31,7 @@ void gSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
         if (num > size){
             MPI_Abort( MPI_COMM_WORLD, EXIT_FAILURE);
         }
+        float g = 0 ; 
         if (rank < num){
             initial_condition->assign_to_domain(domain);
             potential->calcualte_potential_in_grid(domain);
@@ -39,11 +40,14 @@ void gSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
             solver->solve(1e-11, 101, "_"+to_string(rank));
         }else{
             // No job for extra processors 
+            ;
         }
-    else if (!(this->MPI_use) && (this->CUDA_use)){
+    }else if (!(this->MPI_use) && (this->CUDA_use)){
         //Using only CUDA
+        ;
     }
-    else(){
+    else{
         //both MPI and CUDA 
+        ;
     }
 }

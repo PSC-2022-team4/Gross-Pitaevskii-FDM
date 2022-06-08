@@ -15,7 +15,7 @@ CNRectSolver::CNRectSolver(
         this->domain->get_x_end(),
         this->domain->get_y_start(),
         this->domain->get_y_end());
-    this->string_info = std::string{"crank_nicolson_serial"};
+    this->string_info = std::string{"crank_nicolson_serial_"};
 };
 
 void CNRectSolver::initialize_guess_with_forward_euler(int k)
@@ -105,14 +105,18 @@ void CNRectSolver::solve_single_time(int k, float tolerance, int max_iter)
         std::cout << "At time "<<k <<" Converged failed with error = " << error << std::endl;
     }
 }
-void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name)
+void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name,bool print_info, bool save_data)
 {
     int time_length = this->domain->get_num_times();
     //Save initial condition at time = start_time
-
-    this->domain->generate_directory_name(this->string_info + dir_name);
-    this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(0));
-
+    if(save_data){
+        this->domain->generate_directory_name(this->string_info+dir_name, print_info);
+        //Save initial condition
+        this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(0));
+    }else{
+        this -> domain->update_time();
+    }
+    
     for (int k = 1; k < time_length; ++k)
     {
         //Update kth grid using k-1 th grid
@@ -121,8 +125,11 @@ void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name)
         this->initialize_guess_with_forward_euler(k);
         this->solve_single_time(k, tolerance, max_iter);
         this->domain->normalize(k);
-        this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k));
+        if(save_data){
+            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k));
+        }
     }
-
-    this->domain->print_directory_info();
+    if(print_info){
+        this->domain->print_directory_info();
+    }
 }
