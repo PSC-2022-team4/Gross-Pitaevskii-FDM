@@ -259,9 +259,13 @@ __global__ void scale_prev_solution(float *psi_real, float *psi_imag, float scal
 CNRectPSolver::CNRectPSolver(
     // std::function<float(float, float)> potential,
     float g,
-    RectangularDomain *domain,
+    RectangularDomain *domain_,
     int device_number)
-    : FERectSolver(g, domain){};
+    : BaseSolver(g)
+{
+    this->domain = domain_;
+    this->string_info = std::string{"Parallel_Crank_Nicolson_Result"};
+};
 
 
 void fileout_debug(float *array, int n_x, int n_y, std::string filename)
@@ -277,7 +281,7 @@ void fileout_debug(float *array, int n_x, int n_y, std::string filename)
     }
 }
 
-//void CNRectPSolver::solve(float tolerance, int max_iter)
+// void CNRectPSolver::solve(float tolerance, int max_iter)
 void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
 {
     int n_x = this->domain->get_num_grid_1();
@@ -305,6 +309,7 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
     float *d_psi_old_real, *d_psi_old_imag, *d_psi_new_real, *d_psi_new_real_trial, *d_psi_new_imag_trial, *d_psi_new_imag, *d_potential;
     float *d_probability_array, *d_error_array;
 
+    std::cout << "Test 2" << std::endl;
     cudaMalloc((float **)&d_psi_old_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     cudaMalloc((float **)&d_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     cudaMalloc((float **)&d_psi_new_real_trial, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
@@ -317,6 +322,7 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
     cudaMalloc((float **)&d_error, sizeof(float));
     cudaMalloc((float **)&d_normalize_factor, sizeof(float));
 
+    std::cout << "Test 3" << std::endl;
     std::complex<float> wave_func;
     float potential_value;
     for (int i = 0; i < n_x; ++i)
@@ -417,8 +423,8 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name)
                                                                        h_psi_new_imag[j * TPB.x * nBlocks.x + i]});
             }
         }
-        //Above code might generate segmentation error since k th grid is not generated if domain time index is k-1
-        //TODO save single txt file
+        // Above code might generate segmentation error since k th grid is not generated if domain time index is k-1
+        // TODO save single txt file
         this->domain->generate_single_txt_file(std::string("probability_") + std::to_string(k + 1));
     }
 
