@@ -229,14 +229,16 @@ void BaseDomain::generate_directory_name(std::string info, bool print_info)
 void BaseDomain::generate_single_txt_file(std::string filename)
 {
     std::ofstream outfile(this->PATH + filename + ".txt");
-    outfile << "x, y, probability" << std::endl;
+    outfile << "x, y, real, imag, magn, phase " << std::endl;
     for (auto i = 0; i < num_grid_1; ++i)
     {
         for (auto j = 0; j < num_grid_2; ++j)
         {
             float magnitude = std::abs(this->current_grid->at(i, j)->value);
+            float phase = std::arg(this -> current_grid-> at(i, j )->value);
             outfile << this->current_grid->at(i, j)->x << ", " << this->current_grid->at(i, j)->y << ", ";
-            outfile << magnitude * magnitude;
+            outfile << this->current_grid->at(i, j)->value.real() << ", " <<this->current_grid->at(i, j)->value.imag()<< ", " ;
+            outfile << magnitude << ", " << phase ;
             outfile << std::endl;
         }
     }
