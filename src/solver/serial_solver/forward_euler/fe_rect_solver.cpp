@@ -2,31 +2,14 @@
 #include <iostream>
 #include <string>
 FERectSolver::FERectSolver(
-    // std::function<float(float, float)> potential_,
     float g_,
     RectangularDomain *domain_)
-    : BaseSolver(g_) // potential_
+    : BaseSolver(g_) 
 { 
     this->domain = domain_;
-    // this->generate_potential_grid();
     this->string_info = std::string{"Forward_Euler_Result"};
     string_info += "_" + std::to_string(g_);
 };
-// void FERectSolver::generate_potential_grid(){
-//     int num_grid_1 = this->domain->get_num_grid_1();
-//     int num_grid_2 = this->domain->get_num_grid_2();
-//     float x_start = this->domain->at(0,0,0)->x;
-//     float y_start = this->domain->at(0,0,0)->y;
-//     float x_end = this->domain->at(num_grid_1-1,num_grid_2-1,0)->x;
-//     float y_end = this->domain->at(num_grid_1-1,num_grid_2-1,0)->y;
-//     this ->potential_grid = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-//     for(auto i=0; i<num_grid_1; ++i){
-//         for(auto j=0;j<num_grid_2; ++j){
-//             auto point = potential_grid.at(i, j);
-//             point->value = {this->potential_func(point->x, point->y), 0};
-//         }
-//     }
-// };
 float FERectSolver::get_potential_value(int i, int j ){
     return this->domain->potential_grid.at(i, j)->value.real();
 }
@@ -46,16 +29,16 @@ std::complex<float> FERectSolver::temporal_equation(int i, int j, int k){
     //Check boundary 
     auto point_data_l = this-> domain->at(i-1, j, k);
     if(i <= 0)
-        point_data_l = new GridPoint(0., 0., std::complex<float>{0,0});
+        point_data_l =this->domain->get_null_gridpt();
     auto point_data_d = this-> domain->at(i, j-1, k);
     if(j<=0 )
-        point_data_d = new GridPoint(0., 0., std::complex<float>{0,0});
+        point_data_d = this->domain->get_null_gridpt();
     auto point_data_r = this-> domain->at(i+1, j, k);
     if(i>= (this->domain->get_num_grid_1())-1)
-        point_data_r = new GridPoint(0., 0., std::complex<float>{0,0});
+        point_data_r =this->domain->get_null_gridpt();
     auto point_data_u = this-> domain->at(i, j+1, k);
     if(j >= (this->domain->get_num_grid_2())-1)
-        point_data_u = new GridPoint(0., 0., std::complex<float>{0,0});
+        point_data_u = this->domain->get_null_gridpt();
     
     //potential at x, y 
     float V_ij = this->get_potential_value(i,j);
@@ -75,6 +58,8 @@ std::complex<float> FERectSolver::temporal_equation(int i, int j, int k){
         +((point_data_u->value)+(point_data_d->value)-(point_data->value) * std::complex<float>{2})/ (std::complex<float>{dy*dy})
         - (V_ij+additional_term) * (point_data->value);
     df *= std::complex<float>{0,1}; 
+    
+
     return df; 
 };
 
@@ -95,11 +80,18 @@ void FERectSolver::solve_single_time(int k)
 }
 void FERectSolver::solve(){
     int time_length = this->domain->get_num_times();
+    this->domain ->generate_directory_name(this->string_info);
+    //Save initial condition
+    this -> domain->generate_single_txt_file( std::string("probability_") + std::to_string(0));
+    
+    
     for(int k=0; k<time_length-1; ++k){
         this->solve_single_time(k);
         this->domain->normalize(k+1);
+        this ->domain->generate_single_txt_file( std::string("probability_") + std::to_string(k+1));
     }
-    this->domain->generate_txt_file(string_info);
+    this->domain->print_directory_info();
+
 
 }
 

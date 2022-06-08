@@ -3,12 +3,14 @@
 /**
  * @brief Construct a new Base Solver:: Base Solver object
  * 
- * @param potential_func_ 
  * @param g_ 
  */
-BaseSolver::BaseSolver(float g_) // std::function<float(float, float)> potential_func_,
-    : g(g_){};                   // potential_func(potential_func_),
+BaseSolver::BaseSolver(float g_) 
+    : g(g_){
+        this -> string_info = "Base_Solver";
+    };                   
 
+BaseSolver::~BaseSolver(){};
 /**
  * @brief defualt temporal equation 
  * 
