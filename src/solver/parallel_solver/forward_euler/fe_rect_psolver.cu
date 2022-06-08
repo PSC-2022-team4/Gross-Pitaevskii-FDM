@@ -87,14 +87,14 @@ FERectPSolver::FERectPSolver(
 //     {
 //         for (auto j = 0; j < num_grid_2; ++j)
 //         {
-//             auto point = potential_grid.at(i, j);
+//             auto point = potential_grid->at(i, j);
 //             point->value = {this->potential_func(point->x, point->y), 0};
 //         }
 //     }
 // };
 float FERectPSolver::get_potential_value(int i, int j)
 {
-    return this->domain->potential_grid.at(i, j)->value.real();
+    return this->domain->potential_grid->at(i, j)->value.real();
 }
 
 
@@ -125,7 +125,7 @@ void FERectPSolver::solve_single_time(int k)
         for (int j = 0; j < n_y; ++j)
         {
             wave_func = this->domain->at(i, j, k)->value;
-            potential_value = this->domain->potential_grid.at(i, j)->value.real();
+            potential_value = this->domain->potential_grid->at(i, j)->value.real();
             h_psi_old_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
             h_psi_old_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
             h_psi_new_real[j * TPB.x * nBlocks.x + i] = 0.;

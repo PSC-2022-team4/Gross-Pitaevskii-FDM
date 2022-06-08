@@ -11,7 +11,7 @@ FERectSolver::FERectSolver(
     //string_info += "_" + std::to_string(g_);
 };
 float FERectSolver::get_potential_value(int i, int j ){
-    return this->domain->potential_grid.at(i, j)->value.real();
+    return this->domain->potential_grid->at(i, j)->value.real();
 }
 /**
  * @brief Time differential of phi 
