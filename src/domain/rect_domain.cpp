@@ -1,5 +1,6 @@
 #include "rect_domain.h"
 #include <fstream>
+#include <iostream>
 /**
  * @brief Construct a new Rectangular Spatial Grid:: Rectangular Spatial Grid object
  * 
@@ -37,7 +38,9 @@ RectangularSpatialGrid::RectangularSpatialGrid(
         }
     }
 }
-RectangularSpatialGrid::~RectangularSpatialGrid(){};
+RectangularSpatialGrid::~RectangularSpatialGrid(){
+    
+};
 /**
  * @brief Construct a new Rectangular Domain:: Rectangular Domain object
  * 
@@ -61,19 +64,24 @@ RectangularDomain::RectangularDomain(
     float x_end,
     float y_start,
     float y_end)
-    : BaseDomain(num_grid_1, num_grid_2, t_start, t_end, num_times),
-      x_start(x_start),
-      x_end(x_end),
-      y_start(y_start),
-      y_end(y_end)
-{
-    delete (this->old_grid);
-    delete (this->current_grid);
-    this->old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-    this->current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-    this->potential_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+
+    : BaseDomain(num_grid_1, num_grid_2, t_start, t_end, num_times), 
+    x_start(x_start), 
+    x_end(x_end),
+    y_start(y_start),
+    y_end(y_end)
+    {
+            
+        delete (this-> old_grid);
+        delete (this-> current_grid);
+        this -> old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+        this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+        this -> potential_grid= new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);  
+        
+    };
+RectangularDomain::~RectangularDomain(){
+    delete this -> potential_grid;
 };
-RectangularDomain::~RectangularDomain(){};
 float RectangularDomain::get_x_start()
 {
     return this->x_start;
@@ -97,6 +105,7 @@ void RectangularDomain::update_time()
     delete (this->old_grid);
     this->old_grid = &(*(this->current_grid));
     this->current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+
 }
 //replace function again since update_time function is changed
 void RectangularDomain::generate_single_txt_file(std::string filename)

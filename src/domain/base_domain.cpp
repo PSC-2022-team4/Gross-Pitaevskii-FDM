@@ -91,8 +91,6 @@ BaseDomain::BaseDomain(
     this->current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
     this->null_gridpt = new GridPoint(0, 0, std::complex<float>{0});
 }
-BaseDomain::~BaseDomain()
-{
     delete (this->old_grid);
     delete (this->current_grid);
 }
