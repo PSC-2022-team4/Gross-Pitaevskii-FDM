@@ -8,7 +8,7 @@
 
 namespace fs = std::experimental::filesystem;
 
-GridPoint::GridPoint(double x_, double y_, std::complex<double> wave_function_) : x(x_), y(y_), value(wave_function_){}
+GridPoint::GridPoint(float x_, float y_, std::complex<float> wave_function_) : x(x_), y(y_), value(wave_function_){}
 
 
 BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
@@ -24,7 +24,7 @@ BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
 }
 
 void BaseSpatialGrid::normalize(){
-    double sum = 0.;
+    float sum = 0.;
     for (auto i = 0; i < this->num_grid_1; ++i){
         for (auto j = 0; j < this->num_grid_2;++j){
             auto wave_func = this->at(i, j)->value;
@@ -41,13 +41,13 @@ void BaseSpatialGrid::normalize(){
     }
 }
 // Getter function of infinitesimal_distance1
-double BaseSpatialGrid::get_infinitesimal_distance1()
+float BaseSpatialGrid::get_infinitesimal_distance1()
 {
     return this->infinitesimal_distance_1;
 }
 
 // Getter function of infinitesimal_distance2
-double BaseSpatialGrid::get_infinitesimal_distance2()
+float BaseSpatialGrid::get_infinitesimal_distance2()
 {
     return this->infinitesimal_distance_2;
 }
@@ -61,8 +61,8 @@ GridPoint *BaseSpatialGrid::at(int index_1, int index_2)
 BaseDomain::BaseDomain(
     int num_grid_1,
     int num_grid_2,
-    double t_start,
-    double t_end,
+    float t_start,
+    float t_end,
     int num_times)
 {
     this->t_start = t_start;
@@ -73,7 +73,7 @@ BaseDomain::BaseDomain(
     // vector of spatial domain. domain_data[i] : spatial domain at time i * dt
     this->domain_data = std::vector<BaseSpatialGrid>(num_times);
     // vector of time list
-    this->times = std::vector<double>(num_times);
+    this->times = std::vector<float>(num_times);
     this->num_grid_1 = num_grid_1;
     this->num_grid_2 = num_grid_2;
     for (auto i = 0; i < num_times; ++i)
@@ -87,16 +87,16 @@ void BaseDomain::normalize(int time_index){
     this->domain_data[time_index].normalize();
 }
 // Getter functions
-double BaseDomain::get_t_start()
+float BaseDomain::get_t_start()
 {
     return this->t_start;
 }
 
-double BaseDomain::get_t_end()
+float BaseDomain::get_t_end()
 {
     return this->t_end;
 }
-double BaseDomain::get_dt()
+float BaseDomain::get_dt()
 {
     return this->dt;
 }
@@ -114,11 +114,11 @@ int BaseDomain::get_num_grid_2()
     return this->num_grid_2;
 }
 
-double BaseDomain::get_infinitesimal_distance1()
+float BaseDomain::get_infinitesimal_distance1()
 {
     return this->domain_data[0].get_infinitesimal_distance1();
 }
-double BaseDomain::get_infinitesimal_distance2()
+float BaseDomain::get_infinitesimal_distance2()
 {
     return this->domain_data[0].get_infinitesimal_distance2();
 }
@@ -135,16 +135,16 @@ GridPoint *BaseDomain::at(int index_1, int index_2, int time_index)
  * @param index_2 y = y_start + index_2 * dy
  * @param value initial value at x, y
  */
-void BaseDomain::assign_initial_value(int index_1, int index_2, std::complex<double> value)
+void BaseDomain::assign_initial_value(int index_1, int index_2, std::complex<float> value)
 {
     this->at(index_1, index_2, 0)->value = value;
 }
-void BaseDomain::assign_wave_function(int index_1, int index_2, int time_index, std::complex<double> value)
+void BaseDomain::assign_wave_function(int index_1, int index_2, int time_index, std::complex<float> value)
 {
     this->at(index_1, index_2, time_index)->value = value;
 }
 // Get time using time index
-double BaseDomain::time_at(int time_index)
+float BaseDomain::time_at(int time_index)
 {
     return this->times[time_index];
 }
@@ -213,7 +213,7 @@ void BaseDomain::generate_single_txt_file(BaseSpatialGrid * grid, std::string fi
     {
         for (auto j = 0; j < num_grid_2; ++j)
         {
-            double magnitude = std::abs(grid->at(i, j)->value);
+            float magnitude = std::abs(grid->at(i, j)->value);
             outfile << grid->at(i, j)->x << ", " << grid->at(i, j)->y << ", ";
             outfile << magnitude * magnitude;
             outfile << std::endl;
