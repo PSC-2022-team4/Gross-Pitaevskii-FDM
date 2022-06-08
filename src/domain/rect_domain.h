@@ -28,11 +28,12 @@ public:
     ~RectangularDomain(); 
     // a grid to save potential values 
     BaseSpatialGrid potential_grid;
+    void update_time();
 
 private:
     float x_start; 
     float x_end; 
     float y_start; 
     float y_end;
-    void update_time();
+    
 };

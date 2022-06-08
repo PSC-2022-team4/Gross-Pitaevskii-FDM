@@ -24,7 +24,9 @@ public:
     CNRectPSolver(
         // std::function<float(float, float)> potential,
         float g,
-        RectangularDomain *domain);
+        RectangularDomain *domain,
+        int device_number
+        );
     //void generateRectangularDomain();
     //void solve(float tolerance, int max_iter);
     void solve(float tolerance, int max_iter, std::string dir_name="");

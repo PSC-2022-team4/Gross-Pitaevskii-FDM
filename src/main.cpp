@@ -17,16 +17,17 @@ int main(int argc, char *argv[])
     RectangularDomain *domain = (new RectangularDomain(256, 256, 0, 5, 1000, -10, 10, -10, 10));
 
     auto initial_cond_function = [](float x, float y)
-    { return std::complex<float>{1. * expf(-((x) * (x) + y * y) / (1))}; };
+    { return std::complex<float>{float(1.) * expf(-((x) * (x) + y * y) / (1))}; };
     auto *initial_condition = new InitialCondition(initial_cond_function);
     initial_condition->assign_to_domain(domain);
 
-    auto *potential = new HarmonicPotential(3, 5);
+    auto *potential = new HarmonicPotential(3., 5.);
     potential->calcualte_potential_in_grid(domain);
 
     float g = 1;
     CNRectPSolver solver = CNRectPSolver(g, domain);
-
+    //TODO
+    domain->update_time();
     solver.solve(1e-11, 101);
 
     MPI_Finalize();

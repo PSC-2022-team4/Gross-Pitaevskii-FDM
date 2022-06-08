@@ -18,7 +18,8 @@ public:
     FERectPSolver() = default;
     FERectPSolver( // std::function<float(float, float)> potential,
         float g,
-        RectangularDomain *domain);
+        RectangularDomain *domain,
+        int device_number);
     void solve(std::string dir_name = "");
     void solve_single_time(int k);
 
