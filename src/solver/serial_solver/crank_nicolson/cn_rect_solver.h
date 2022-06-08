@@ -8,28 +8,20 @@
 
 #include "src/domain/rect_domain.h"
 #include "src/initial_condition/initial_condition.h"
-#include "src/solver/base_solver.h"
 #include "src/solver/serial_solver/forward_euler/fe_rect_solver.h"
-class CNRectSolver : public BaseSolver
+class CNRectSolver : public FERectSolver
 {
 public:
     CNRectSolver() = default;
     CNRectSolver(
-        // std::function<float(float, float)> potential,
         float g,
         RectangularDomain *domain);
     void generateRectangularDomain();
-    void solve(float tolerance, int max_iter);
-    void solve_single_time(int k, float tolerance, int max_iter);
+    void solve(float tolerance, int max_iter, std::string dir_name="");
 
 protected:
-    RectangularDomain *domain;
-    // RectangularSpatialGrid potential_grid;
+    void solve_single_time(int k, float tolerance, int max_iter);
     RectangularSpatialGrid *guess;
-    FERectSolver *fe_solver;
-    // void generate_potential_grid();
-    std::complex<float> temporal_equation(int i, int j, int k);
-    std::complex<float> temporal_equation_from_guess(int i, int j);
     void initialize_guess_with_forward_euler(int k);
     void update_guess(int i, int j, int k);
     float calculate_error(int k);

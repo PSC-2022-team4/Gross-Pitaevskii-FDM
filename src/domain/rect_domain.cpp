@@ -1,5 +1,5 @@
 # include "rect_domain.h"
-
+#include <fstream>
 /**
  * @brief Construct a new Rectangular Spatial Grid:: Rectangular Spatial Grid object
  * 
@@ -36,7 +36,7 @@ RectangularSpatialGrid::RectangularSpatialGrid(
         }
 
 }
-
+RectangularSpatialGrid::~RectangularSpatialGrid(){};
 /**
  * @brief Construct a new Rectangular Domain:: Rectangular Domain object
  * 
@@ -66,23 +66,50 @@ RectangularDomain::RectangularDomain(
     y_start(y_start),
     y_end(y_end)
     {
-        for (auto i = 0; i < num_times; ++i)
-        {
-            this->domain_data[i] = RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-        }
-
+        this -> old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+        this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+        
     };
+RectangularDomain::~RectangularDomain(){};
+float RectangularDomain::get_x_start()
+{
+    return this->x_start;
+}
+float RectangularDomain::get_y_start(){
+    return this->y_start;
+}
+float RectangularDomain::get_x_end(){
+    this->x_end;
+}
+float RectangularDomain::get_y_end(){
+    this->x_end;
+}
 
-    float RectangularDomain::get_x_start()
+void RectangularDomain::update_time(){
+    this -> current_time_index+=1;
+    free( this -> old_grid);
+    this -> old_grid = &(*(this ->current_grid));
+    //std::cout<<this->old_grid->at(1, 1)->wave_function<<std::endl;
+    this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+
+}
+//replace function again since update_time function is changed
+void RectangularDomain::generate_single_txt_file(std::string filename)
+{
+    std::ofstream outfile(this->PATH+filename + ".txt");
+    outfile << "x, y, probability" << std::endl;
+    for (auto i = 0; i < num_grid_1; ++i)
     {
-        return this->x_start;
+        for (auto j = 0; j < num_grid_2; ++j)
+        {
+            float magnitude = std::abs(this->current_grid->at(i, j)->value);
+            outfile <<this->current_grid->at(i, j)->x << ", " << this->current_grid->at(i, j)->y << ", ";
+            outfile << magnitude * magnitude;
+            outfile << std::endl;
+        }
     }
-    float RectangularDomain::get_y_start(){
-        return this->y_start;
-    }
-    float RectangularDomain::get_x_end(){
-        this->x_end;
-    }
-    float RectangularDomain::get_y_end(){
-        this->x_end;
-    }
+    outfile.close();
+    //After saving data, update domain 
+    this -> update_time();
+
+};

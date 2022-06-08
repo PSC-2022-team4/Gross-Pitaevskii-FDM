@@ -7,7 +7,7 @@ class RectangularSpatialGrid: public BaseSpatialGrid
 public:
     RectangularSpatialGrid() = default;
     RectangularSpatialGrid(int num_grid_1, int num_grid_2, float x_start, float x_end, float y_start, float y_end);
-
+    ~RectangularSpatialGrid();
 private: 
     float x_start; 
     float x_end; 
@@ -24,7 +24,9 @@ public:
     float get_y_start();
     float get_x_end();
     float get_y_end();
-
+    void generate_single_txt_file(std::string filename);
+    ~RectangularDomain(); 
+    // a grid to save potential values 
     BaseSpatialGrid potential_grid;
 
 private:
@@ -32,5 +34,5 @@ private:
     float x_end; 
     float y_start; 
     float y_end;
-    
+    void update_time();
 };
