@@ -1,16 +1,21 @@
 #include "./g_sweeper.h"
 #include "../solver/serial_solver/crank_nicolson/cn_rect_solver.h"
+
+#include "../../src/solver/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
 #include <mpi.h>
-gSweeper::gSweeper(float start, float end, int num, bool endpoint, bool MPI_use, bool CUDA_use)
+
+GSweeper::GSweeper(float start, float end, int num, bool endpoint)
 : BaseSweeper(start, end, num, endpoint){
     
 }
 
-void gSweeper::run(RectangularDomain *domain, InitialCondition *initial_condition, HarmonicPotential *potential ){
+void GSweeper::run(RectangularDomain *domain, InitialCondition *initial_condition, HarmonicPotential *potential ){
 
 
     if (!(this -> MPI_use) && !(this -> CUDA_use)){
-        cout<< "Running serially started"<<endl;
+        if(print_info){
+            cout<< "Running serially started"<<endl;
+        }
         float g=0;
         for(int i=0; i<this -> num ; ++i){
             //Set conditions 
@@ -20,7 +25,7 @@ void gSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
             //Apply on solver
             CNRectSolver* solver =new CNRectSolver(g, domain);
             //solve using solver. It automatically save data
-            solver->solve(1e-11, 101, "_"+to_string(i));
+            solver->solve(1e-11, 101, to_string(i) , this-> print_info, this -> save_data);
             //reset domain to use in next iteration 
             domain->reset();
             delete solver;
@@ -28,6 +33,9 @@ void gSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
     }
     else if ((this->MPI_use) && !(this->CUDA_use)){
         //If number of tasks exceed number of processors, abort. 
+        if(print_info){
+            cout<< "Running with only MPI started"<<endl;
+        }
         if (num > size){
             MPI_Abort( MPI_COMM_WORLD, EXIT_FAILURE);
         }
@@ -37,17 +45,56 @@ void gSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
             potential->calcualte_potential_in_grid(domain);
             g = this  -> get_value_from_idx(rank);
             CNRectSolver* solver =new CNRectSolver(g, domain);
-            solver->solve(1e-11, 101, "_"+to_string(rank));
+            solver->solve(1e-11, 101, "MPI_"+to_string(rank), this -> print_info, this->save_data);
+            delete solver;
         }else{
             // No job for extra processors 
             ;
         }
     }else if (!(this->MPI_use) && (this->CUDA_use)){
-        //Using only CUDA
-        ;
+
+        if(print_info){
+            cout<< "Running with CUDA serially started"<<endl;
+        }
+        float g=0;
+        for(int i=0; i<this -> num ; ++i){
+            //Set conditions 
+            initial_condition->assign_to_domain(domain);
+            potential->calcualte_potential_in_grid(domain);
+            g = this  -> get_value_from_idx(i);
+            //Apply on solver
+            CNRectPSolver* solver =new CNRectPSolver(g, domain, 0);//solve using solver. It automatically save data
+            solver->solve(1e-11, 101, "CUDA_"+to_string(i) , this-> print_info, this -> save_data);
+            //reset domain to use in next iteration 
+            domain->reset();
+            delete solver;
+        }
+        
     }
     else{
-        //both MPI and CUDA 
-        ;
+        if(print_info){
+            cout<< "Running with CUDA & MPI started"<<endl;
+        }
+        float g=0;
+        
+        if (num > size){
+            MPI_Abort( MPI_COMM_WORLD, EXIT_FAILURE);
+        }
+        int max_pallel_tasks = this -> gpu_num * this ->gpu_limit;
+        int repeat = num / max_pallel_tasks+(num%max_pallel_tasks !=0);
+        for(int i=0; i<repeat; ++i){
+            if (i*repeat < max_pallel_tasks && rank < (i+1)*max_pallel_tasks && rank < num ){
+                int casted_GPU_num = (rank % max_pallel_tasks) % gpu_limit;
+                initial_condition->assign_to_domain(domain);
+                potential->calcualte_potential_in_grid(domain);
+                g = this  -> get_value_from_idx(rank);
+                CNRectPSolver* solver =new CNRectPSolver(g, domain, casted_GPU_num);
+                solver->solve(1e-11, 101, "MPI&CUDA_"+to_string(rank), this -> print_info, this->save_data);
+                delete solver;
+            }
+        }
+
+
+        
     }
 }

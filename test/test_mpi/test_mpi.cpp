@@ -109,4 +109,5 @@ TEST(MPITest, SwapG)
     {
         MPI_Gather(&passed, 1, MPI_INT, NULL, 0, MPI_INT, 0, MPI_COMM_WORLD);
     }
+    ASSERT_TRUE(all_passed);
 }

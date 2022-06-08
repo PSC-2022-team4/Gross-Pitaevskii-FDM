@@ -42,14 +42,23 @@ int BaseSweeper::get_number_of_pts(){
     return num; 
 }
 
-void BaseSweeper::get_MPI_info(int rank, int size){
+void BaseSweeper::set_MPI_info(int rank, int size){
     this -> rank = rank; 
     this -> size = size;
     this -> MPI_use=true;
 }
 
-void BaseSweeper::get_CUDA_info(){
+void BaseSweeper::set_CUDA_info(int gpu_num, int gpu_limit){
     this -> CUDA_use=true;
+    this -> gpu_num = gpu_num;
+    this -> gpu_limit = gpu_limit;
+}
+
+void BaseSweeper::set_print_info(bool print_info){
+    this -> print_info = print_info;
+}
+void BaseSweeper::set_save_data(bool save_data){
+    this -> save_data = save_data;
 }
 BaseSweeper::~BaseSweeper(){};
 

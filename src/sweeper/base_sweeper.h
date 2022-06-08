@@ -14,8 +14,10 @@ class BaseSweeper{
         int get_number_of_pts();
         //TODO
         //void set_info(map<string, string> info_map);
-        virtual void get_MPI_info(int rank, int size);
-        virtual void get_CUDA_info();
+        virtual void set_MPI_info(int rank, int size);
+        virtual void set_CUDA_info(int gpu_num, int gpu_limit);
+        void set_print_info(bool print_info);
+        void set_save_data(bool save_data);
         ~BaseSweeper();
 
     protected: 
@@ -30,6 +32,11 @@ class BaseSweeper{
         int rank=0 ;
         int size=0;
         bool MPI_use;
+        //CUDA info 
         bool CUDA_use;
-        
+        int gpu_num=1;
+        int gpu_limit=3;
+        //Save results 
+        bool print_info=true; 
+        bool save_data=true;     
 };
