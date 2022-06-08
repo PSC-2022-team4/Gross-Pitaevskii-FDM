@@ -33,9 +33,5 @@
 
 build/
 results/
-<<<<<<< HEAD
 .vscode/
 visualization/
-=======
-.vscode/
->>>>>>> 2de3edd5ca6d644807779450d5ab49958aa59459
