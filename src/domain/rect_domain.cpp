@@ -39,7 +39,7 @@ RectangularSpatialGrid::RectangularSpatialGrid(
     }
 }
 RectangularSpatialGrid::~RectangularSpatialGrid(){
-    
+
 };
 /**
  * @brief Construct a new Rectangular Domain:: Rectangular Domain object
@@ -65,22 +65,22 @@ RectangularDomain::RectangularDomain(
     float y_start,
     float y_end)
 
-    : BaseDomain(num_grid_1, num_grid_2, t_start, t_end, num_times), 
-    x_start(x_start), 
-    x_end(x_end),
-    y_start(y_start),
-    y_end(y_end)
-    {
-            
-        delete (this-> old_grid);
-        delete (this-> current_grid);
-        this -> old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-        this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-        this -> potential_grid= new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);  
-        
-    };
-RectangularDomain::~RectangularDomain(){
-    delete this -> potential_grid;
+    : BaseDomain(num_grid_1, num_grid_2, t_start, t_end, num_times),
+      x_start(x_start),
+      x_end(x_end),
+      y_start(y_start),
+      y_end(y_end)
+{
+
+    delete (this->old_grid);
+    delete (this->current_grid);
+    this->old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+    this->current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+    this->potential_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+};
+RectangularDomain::~RectangularDomain()
+{
+    delete this->potential_grid;
 };
 float RectangularDomain::get_x_start()
 {
@@ -99,43 +99,67 @@ float RectangularDomain::get_y_end()
     this->x_end;
 }
 
-void RectangularDomain::update_time()
+void RectangularDomain::update_time(bool cuda_mode)
 {
-    this->current_time_index += 1;
-    delete (this->old_grid);
-    this->old_grid = &(*(this->current_grid));
-    this->current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-
+    if (cuda_mode)
+    {
+        this->current_time_index += 1;
+    }
+    else
+    {
+        this->current_time_index += 1;
+        delete (this->old_grid);
+        this->old_grid = &(*(this->current_grid));
+        this->current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+    }
 }
 //replace function again since update_time function is changed
-void RectangularDomain::generate_single_txt_file(std::string filename)
+void RectangularDomain::generate_single_txt_file(std::string filename, bool cuda_mode, float **buffer, int buffer_n_x)
 {
-    std::ofstream outfile(this->PATH + filename + ".txt");
-    outfile << "x, y, real, imag, magn, phase " << std::endl;
-    for (auto i = 0; i < num_grid_1; ++i)
+    if (cuda_mode)
     {
-        for (auto j = 0; j < num_grid_2; ++j)
+        std::ofstream outfile(this->PATH + filename + ".txt");
+        outfile << "x, y, real, imag, magn, phase " << std::endl;
+        for (auto i = 0; i < num_grid_1; ++i)
         {
-            float magnitude = std::abs(this->current_grid->at(i, j)->value);
-            float phase = std::arg(this -> current_grid-> at(i, j )->value);
-            outfile << this->current_grid->at(i, j)->x << ", " << this->current_grid->at(i, j)->y << ", ";
-            outfile << this->current_grid->at(i, j)->value.real() << ", " <<this->current_grid->at(i, j)->value.imag()<< ", " ;
-            outfile << magnitude << ", " << phase ;
-            outfile << std::endl;
+            for (auto j = 0; j < num_grid_2; ++j)
+            {
+                std::complex<float> value = {buffer[2][buffer_n_x * j + i], buffer[3][buffer_n_x * j + i]};
+                outfile << buffer[0][buffer_n_x * j + i] << ", " << buffer[1][buffer_n_x * j + i] << ", ";
+                outfile << buffer[2][buffer_n_x * j + i] << ", " << buffer[3][buffer_n_x * j + i] << ", ";
+                outfile << std::abs(value) << ", " << std::arg(value);
+                outfile << std::endl;
+            }
         }
+        outfile.close();
     }
-    outfile.close();
-
-    //After saving data, update domain 
-    this -> update_time();
-
+    else
+    {
+        std::ofstream outfile(this->PATH + filename + ".txt");
+        outfile << "x, y, real, imag, magn, phase " << std::endl;
+        for (auto i = 0; i < num_grid_1; ++i)
+        {
+            for (auto j = 0; j < num_grid_2; ++j)
+            {
+                float magnitude = std::abs(this->current_grid->at(i, j)->value);
+                float phase = std::arg(this->current_grid->at(i, j)->value);
+                outfile << this->current_grid->at(i, j)->x << ", " << this->current_grid->at(i, j)->y << ", ";
+                outfile << this->current_grid->at(i, j)->value.real() << ", " << this->current_grid->at(i, j)->value.imag() << ", ";
+                outfile << magnitude << ", " << phase;
+                outfile << std::endl;
+            }
+        }
+        outfile.close();
+    }
+    //After saving data, update domain
+    this->update_time(cuda_mode);
 };
-void RectangularDomain::reset(){
+void RectangularDomain::reset()
+{
     BaseDomain::reset();
-    delete this -> potential_grid;
-        
-    this -> old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-    this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-    this -> potential_grid= new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);  
+    delete this->potential_grid;
 
+    this->old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+    this->current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
+    this->potential_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
 }

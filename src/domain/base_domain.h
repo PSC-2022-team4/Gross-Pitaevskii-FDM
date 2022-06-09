@@ -50,13 +50,13 @@ public:
     float get_infinitesimal_distance1();
     float get_infinitesimal_distance2();
     void generate_directory_name(std::string info, bool print_info = true);
-    void generate_single_txt_file(std::string filename);
+    void generate_single_txt_file(std::string filenam, bool cuda_mode = false, float **buffer = 0, int buffer_n_x = 0);
     void normalize(int time_index);
     void print_directory_info();
     int get_current_time_index();
     ~BaseDomain();
     std::string get_path();
-    void update_time();
+    void update_time(bool cuda_mode = false);
     virtual void reset();
 
 protected:

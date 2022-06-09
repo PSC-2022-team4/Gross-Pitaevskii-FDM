@@ -6,7 +6,8 @@
 
 #include <string>
 #include <fstream>
-
+#include <omp.h>
+#include <thread>
 #include "nvToolsExt.h"
 
 __global__ void cn_rect_cusolver(float *psi_old_real,
@@ -292,6 +293,7 @@ void fileout_debug(float *array, int n_x, int n_y, std::string filename)
 // void CNRectPSolver::solve(float tolerance, int max_iter)
 void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, bool print_info, bool save_data)
 {
+    cudaDeviceSynchronize();
     if (NVTX_USE)
     {
         nvtxRangePushA("solver started");
@@ -310,20 +312,13 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
 
     dim3 TPB(nTx, nTy);
     dim3 nBlocks(n_x / nTx + (n_x % nTx != 0), n_y / nTy + (n_y % nTy != 0));
-    float *h_psi_old_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    float *h_psi_old_imag = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    float *h_psi_new_real_trial = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    float *h_psi_new_imag_trial = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    float *h_psi_new_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    float *h_psi_new_imag = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    float *h_potential = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-    float *h_probability_array = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+
     float *d_psi_old_real, *d_psi_old_imag, *d_psi_new_real, *d_psi_new_real_trial, *d_psi_new_imag_trial, *d_psi_new_imag, *d_potential;
     float *d_probability_array, *d_error_array;
 
     if (NVTX_USE)
     {
-        nvtxRangePushA("initialize: cuda malloc");
+        nvtxRangePushA("cuda malloc");
     }
     cudaMalloc((float **)&d_psi_old_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     cudaMalloc((float **)&d_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
@@ -341,6 +336,23 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
         nvtxRangePop();
     }
 
+    cudaStream_t stream_psi_new_real, stream_psi_new_imag, stream_potential;
+    cudaStream_t stream_device_to_device_1, stream_device_to_device_2, stream_device_to_device_3, stream_device_to_device_4;
+
+    cudaStreamCreate(&stream_psi_new_real);
+    cudaStreamCreate(&stream_psi_new_imag);
+    cudaStreamCreate(&stream_potential);
+
+    cudaStreamCreate(&stream_device_to_device_1);
+    cudaStreamCreate(&stream_device_to_device_2);
+    cudaStreamCreate(&stream_device_to_device_3);
+    cudaStreamCreate(&stream_device_to_device_4);
+
+    float *h_psi_new_real, *h_psi_new_imag, *h_potential;
+    cudaHostAlloc((void **)&h_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaHostAllocDefault);
+    cudaHostAlloc((void **)&h_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaHostAllocDefault);
+    cudaHostAlloc((void **)&h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaHostAllocDefault);
+
     if (NVTX_USE)
     {
         nvtxRangePushA("initialize: host array");
@@ -353,10 +365,6 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
         {
             wave_func = this->domain->at(i, j, 0)->value;
             potential_value = this->domain->potential_grid->at(i, j)->value.real();
-            h_psi_old_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
-            h_psi_old_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
-            h_psi_new_real_trial[j * TPB.x * nBlocks.x + i] = wave_func.real();
-            h_psi_new_imag_trial[j * TPB.x * nBlocks.x + i] = wave_func.imag();
             h_psi_new_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
             h_psi_new_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
             h_potential[j * TPB.x * nBlocks.x + i] = potential_value;
@@ -370,73 +378,16 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
 
     if (NVTX_USE)
     {
-        nvtxRangePushA("memcpy to d_psi_new_real");
+        nvtxRangePushA("memcpyAsync");
     }
-    cudaMemcpy(d_psi_new_real, h_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    if (NVTX_USE)
-    {
-        nvtxRangePop();
-    }
+    cudaMemcpyAsync(d_psi_new_real, h_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice, stream_psi_new_real);
+    cudaMemcpyAsync(d_psi_new_imag, h_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice, stream_psi_new_imag);
+    cudaMemcpyAsync(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice, stream_potential);
 
-    if (NVTX_USE)
-    {
-        nvtxRangePushA("memcpy to d_psi_new_imag");
-    }
-    cudaMemcpy(d_psi_new_imag, h_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    if (NVTX_USE)
-    {
-        nvtxRangePop();
-    }
-
-    if (NVTX_USE)
-    {
-        nvtxRangePushA("memcpy to d_psi_new_real_trial");
-    }
-    cudaMemcpy(d_psi_new_real_trial, h_psi_new_real_trial, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    if (NVTX_USE)
-    {
-        nvtxRangePop();
-    }
-
-    if (NVTX_USE)
-    {
-        nvtxRangePushA("memcpy to d_psi_new_imag_trial");
-    }
-    cudaMemcpy(d_psi_new_imag_trial, h_psi_new_imag_trial, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    if (NVTX_USE)
-    {
-        nvtxRangePop();
-    }
-
-    if (NVTX_USE)
-    {
-        nvtxRangePushA("memcpy to d_psi_old_real");
-    }
-    cudaMemcpy(d_psi_old_real, h_psi_old_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    if (NVTX_USE)
-    {
-        nvtxRangePop();
-    }
-
-    if (NVTX_USE)
-    {
-        nvtxRangePushA("memcpy to d_psi_old_imag");
-    }
-    cudaMemcpy(d_psi_old_imag, h_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    if (NVTX_USE)
-    {
-        nvtxRangePop();
-    }
-
-    if (NVTX_USE)
-    {
-        nvtxRangePushA("memcpy to d_potential");
-    }
-    cudaMemcpy(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
-    if (NVTX_USE)
-    {
-        nvtxRangePop();
-    }
+    cudaMemcpyAsync(d_psi_new_real_trial, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
+    cudaMemcpyAsync(d_psi_new_imag_trial, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
+    cudaMemcpyAsync(d_psi_old_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_3);
+    cudaMemcpyAsync(d_psi_old_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_4);
 
     if (NVTX_USE)
     {
@@ -464,8 +415,8 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
             {
                 nvtxRangePushA("memcpy new to old");
             }
-            cudaMemcpy(d_psi_old_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
-            cudaMemcpy(d_psi_old_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
+            cudaMemcpyAsync(d_psi_old_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
+            cudaMemcpyAsync(d_psi_old_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
             if (NVTX_USE)
             {
                 nvtxRangePop();
@@ -484,8 +435,8 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
             {
                 nvtxRangePushA("memcpy new to trial");
             }
-            cudaMemcpy(d_psi_new_real_trial, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
-            cudaMemcpy(d_psi_new_imag_trial, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice);
+            cudaMemcpyAsync(d_psi_new_real_trial, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
+            cudaMemcpyAsync(d_psi_new_imag_trial, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
             if (NVTX_USE)
             {
                 nvtxRangePop();
@@ -606,28 +557,15 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
             std::cout << "Converged failed with error = " << error << std::endl;
         }
 
+        cudaMemcpyAsync(h_psi_new_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost, stream_device_to_device_1);
+        cudaMemcpyAsync(h_psi_new_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost, stream_device_to_device_2);
         if (NVTX_USE)
         {
-            nvtxRangePushA("memcpy to h_psi_new_real");
+            nvtxRangePushA("save_final_data");
         }
-        cudaMemcpy(h_psi_new_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
-        if (NVTX_USE)
-        {
-            nvtxRangePop();
-        }
-
-        if (NVTX_USE)
-        {
-            nvtxRangePushA("memcpy to h_psi_new_imag");
-        }
-        cudaMemcpy(h_psi_new_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
-        if (NVTX_USE)
-        {
-            nvtxRangePop();
-        }
-
         for (int i = 0; i < n_x; ++i)
         {
+
             for (int j = 0; j < n_y; ++j)
             {
                 this->domain->assign_wave_function(i, j, k + 1,
@@ -635,21 +573,36 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
                                                                        h_psi_new_imag[j * TPB.x * nBlocks.x + i]});
             }
         }
-        // Above code might generate segmentation error since k th grid is not generated if domain time index is k-1
-        // TODO save single txt file
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("update time");
+        }
         if (save_data)
         {
-            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1));
+            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1), true, );
         }
-        else
+
+        this->domain->update_time(true);
+
+        if (NVTX_USE)
         {
-            this->domain->update_time();
+            nvtxRangePop();
         }
     }
+
+    cudaFreeHost(h_psi_new_real);
+    cudaFreeHost(h_psi_new_imag);
+    cudaFreeHost(h_potential);
+
     if (NVTX_USE)
     {
         nvtxRangePushA("cuda free");
     }
+
     cudaFree(d_psi_old_real);
     cudaFree(d_psi_old_imag);
     cudaFree(d_psi_new_real_trial);
@@ -661,18 +614,11 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     cudaFree(d_error_array);
     cudaFree(d_error);
     cudaFree(d_normalize_factor);
+
     if (NVTX_USE)
     {
         nvtxRangePop();
     }
-    free(h_psi_old_real);
-    free(h_psi_old_imag);
-    free(h_psi_new_real_trial);
-    free(h_psi_new_imag_trial);
-    free(h_psi_new_real);
-    free(h_psi_new_imag);
-    free(h_potential);
-    free(h_probability_array);
 
     if (print_info)
     {

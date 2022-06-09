@@ -204,14 +204,15 @@ void BaseDomain::generate_directory_name(std::string info, bool print_info)
     oss << std::put_time(&tm, "%Y-%m-%d-%H-%M-%S");
     auto str = oss.str();
     std::string directory_name = "../results/" + str + "_" + info;
-    bool created=fs::create_directory(directory_name.c_str()); 
+    bool created = fs::create_directory(directory_name.c_str());
     if (print_info && created)
     {
         std::cout << "Created directory " << directory_name << std::endl;
     }
     // else if(print_info )
     //TODO
-    else if (!created){
+    else if (!created)
+    {
         std::cout << "Creating directory failed" << std::endl;
     }
 
@@ -226,25 +227,45 @@ void BaseDomain::generate_directory_name(std::string info, bool print_info)
  * @param grid grid at t
  * @param filename file name to store data
  */
-void BaseDomain::generate_single_txt_file(std::string filename)
+void BaseDomain::generate_single_txt_file(std::string filename, bool cuda_mode, float **buffer, int buffer_n_x)
 {
-    std::ofstream outfile(this->PATH + filename + ".txt");
-    outfile << "x, y, real, imag, magn, phase " << std::endl;
-    for (auto i = 0; i < num_grid_1; ++i)
+    if (cuda_mode)
     {
-        for (auto j = 0; j < num_grid_2; ++j)
+        std::ofstream outfile(this->PATH + filename + ".txt");
+        outfile << "x, y, real, imag, magn, phase " << std::endl;
+        for (auto i = 0; i < num_grid_1; ++i)
         {
-            float magnitude = std::abs(this->current_grid->at(i, j)->value);
-            float phase = std::arg(this -> current_grid-> at(i, j )->value);
-            outfile << this->current_grid->at(i, j)->x << ", " << this->current_grid->at(i, j)->y << ", ";
-            outfile << this->current_grid->at(i, j)->value.real() << ", " <<this->current_grid->at(i, j)->value.imag()<< ", " ;
-            outfile << magnitude << ", " << phase ;
-            outfile << std::endl;
+            for (auto j = 0; j < num_grid_2; ++j)
+            {
+                std::complex<float> value = {buffer[2][buffer_n_x * j + i], buffer[3][buffer_n_x * j + i]};
+                outfile << buffer[0][buffer_n_x * j + i] << ", " << buffer[1][buffer_n_x * j + i] << ", ";
+                outfile << buffer[2][buffer_n_x * j + i] << ", " << buffer[3][buffer_n_x * j + i] << ", ";
+                outfile << std::abs(value) << ", " << std::arg(value);
+                outfile << std::endl;
+            }
         }
+        outfile.close();
     }
-    outfile.close();
-    //After saving data, update domain
-    this->update_time();
+    else
+    {
+        std::ofstream outfile(this->PATH + filename + ".txt");
+        outfile << "x, y, real, imag, magn, phase " << std::endl;
+        for (auto i = 0; i < num_grid_1; ++i)
+        {
+            for (auto j = 0; j < num_grid_2; ++j)
+            {
+                float magnitude = std::abs(this->current_grid->at(i, j)->value);
+                float phase = std::arg(this->current_grid->at(i, j)->value);
+                outfile << this->current_grid->at(i, j)->x << ", " << this->current_grid->at(i, j)->y << ", ";
+                outfile << this->current_grid->at(i, j)->value.real() << ", " << this->current_grid->at(i, j)->value.imag() << ", ";
+                outfile << magnitude << ", " << phase;
+                outfile << std::endl;
+            }
+        }
+        outfile.close();
+        //After saving data, update domain
+    }
+    this->update_time(cuda_mode);
 };
 
 void BaseDomain::print_directory_info()
@@ -254,22 +275,27 @@ void BaseDomain::print_directory_info()
     std::cout << this->PATH << std::endl;
 }
 
-void BaseDomain::update_time()
+void BaseDomain::update_time(bool cuda_mode)
 {
-
-    this -> current_time_index+=1; 
-    delete ( this -> old_grid);
-    this -> old_grid = this ->current_grid;
-    this -> current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+    if (cuda_mode)
+    {
+        this->current_time_index += 1;
+    }
+    else
+    {
+        this->current_time_index += 1;
+        delete (this->old_grid);
+        this->old_grid = this->current_grid;
+        this->current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+    }
 }
 
-void BaseDomain::reset(){
-    this -> current_time_index = 0 ; 
-    delete this -> old_grid; 
-    delete this ->current_grid;
-    
-    this -> current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
-    this -> old_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+void BaseDomain::reset()
+{
+    this->current_time_index = 0;
+    delete this->old_grid;
+    delete this->current_grid;
 
-
+    this->current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+    this->old_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
 }
