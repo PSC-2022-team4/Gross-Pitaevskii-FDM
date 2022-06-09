@@ -397,8 +397,8 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
                 this->domain->get_dt(),
                 relaxation_parameter);
 
-            cudaMemset(&d_probability_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-            cudaMemset(&d_normalize_factor, 0, sizeof(float));
+            cudaMemset(d_probability_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+            cudaMemset(d_normalize_factor, 0, sizeof(float));
 
             calculate_probability<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_probability_array, n_x, n_y);
 
@@ -406,8 +406,8 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
             normalize<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_normalize_factor);
             cudaDeviceSynchronize();
 
-            cudaMemset(&d_error_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-            cudaMemset(&d_error, 0, sizeof(float));
+            cudaMemset(d_error_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+            cudaMemset(d_error, 0, sizeof(float));
             calculate_local_error<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_psi_new_real_trial, d_psi_new_imag_trial, d_error_array, n_x, n_y);
             reduction_error<<<1, TPB.x * TPB.y>>>(d_error_array, d_error, TPB.x * nBlocks.x * TPB.y * nBlocks.y);
             cudaMemcpy(&error, d_error, sizeof(float), cudaMemcpyDeviceToHost);
