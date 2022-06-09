@@ -414,6 +414,20 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
                         solver_parameters.int_parameters[dump[0]] = std::atoi(dump[1].c_str());
                     }
 
+                    // Get max iter
+                    else if (line.rfind("max_iter", 0) != std::string::npos)
+                    {
+                        while (std::getline(string_stream, tmp, '='))
+                        {
+                            dump.push_back(tmp);
+                        }
+                        if (dump.size() != 2)
+                        {
+                            std::cerr << "Unexpected Configuration File" << std::endl;
+                        }
+                        solver_parameters.int_parameters[dump[0]] = std::atoi(dump[1].c_str());
+                    }
+
                     else
                     {
                         while (std::getline(string_stream, tmp, '='))
@@ -441,6 +455,55 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
             }
         }
     }
+    parameters.main_parameters = main_parameters;
+    parameters.domain_parameters = domain_parameters;
+    parameters.init_cond_parameters = init_parameters;
+    parameters.equation_parameters = equation_parameters;
+    parameters.solver_parameters = solver_parameters;
+    return parameters;
+}
+
+Parameters ConfigParser::get_default()
+{
+    auto parameters = Parameters();
+    parameters.config_name = "default";
+    MainParameters main_parameters;
+    DomainParameters domain_parameters;
+    InitialConditionParameters init_parameters;
+    EquationParameters equation_parameters;
+    SolverParameters solver_parameters;
+
+    main_parameters.calculation_type = "single";
+    domain_parameters.domain_type = "rectangular";
+    domain_parameters.n_x = 256;
+    domain_parameters.n_y = 256;
+    domain_parameters.n_time = 100;
+    domain_parameters.time_start = 0.;
+    domain_parameters.time_end = 2.;
+    domain_parameters.spatial_parameters["x_start"] = -10.;
+    domain_parameters.spatial_parameters["x_end"] = 10.;
+    domain_parameters.spatial_parameters["y_start"] = -10.;
+    domain_parameters.spatial_parameters["y_end"] = 10.;
+
+    init_parameters.init_cond_type = "singlegaussian";
+    init_parameters.init_cond_parameters["sigma_x"] = 1.;
+    init_parameters.init_cond_parameters["sigma_y"] = 1.;
+    init_parameters.init_cond_parameters["center_x"] = 0.;
+    init_parameters.init_cond_parameters["center_y"] = 0.;
+
+    equation_parameters.potential_type = "harmonic";
+    equation_parameters.g = -1;
+    equation_parameters.potential_parameters["omega_x"] = 3.;
+    equation_parameters.potential_parameters["omega_y"] = 5.;
+
+    solver_parameters.method = "cranknicolson";
+    solver_parameters.run_parallel = true;
+    solver_parameters.print_info = false;
+    solver_parameters.save_data = false;
+    solver_parameters.solver_parameters["converge_crit"] = 1e-11;
+    solver_parameters.int_parameters["max_iter"] = 1001;
+    solver_parameters.int_parameters["cuda_device"] = 0;
+
     parameters.main_parameters = main_parameters;
     parameters.domain_parameters = domain_parameters;
     parameters.init_cond_parameters = init_parameters;

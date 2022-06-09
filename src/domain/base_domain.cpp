@@ -157,7 +157,7 @@ GridPoint *BaseDomain::at(int index_1, int index_2, int time_index)
     }
     else
     {
-        std::cout << "error in base domin at function" << std::endl;
+        std::cerr << "error in base domin at function" << std::endl;
         return this->current_grid->at(index_1, index_2);
     }
 }
@@ -212,7 +212,7 @@ void BaseDomain::generate_directory_name(std::string info, bool print_info)
     // else if(print_info )
     //TODO
     else if (!created){
-        std::cerr << "Creating directory failed" << std::endl;
+        std::cout << "Creating directory failed" << std::endl;
     }
 
     this->PATH = directory_name + "/";

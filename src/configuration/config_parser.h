@@ -8,4 +8,5 @@ class ConfigParser{
         ConfigParser() = default;
         virtual ~ConfigParser() = default;
         static Parameters parse(std::string config_name, std::string filename);
+        static Parameters get_default();
 };

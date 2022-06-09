@@ -22,18 +22,23 @@ int main(int argc, char *argv[])
     MPI_Comm_rank(comm, &rank);
     MPI_Comm_size(comm, &size);
 
-    if(argc != 2){
+    Parameters parameters;
+    if (argc == 1)
+    {
+        parameters = ConfigParser::get_default();
+    }
+    else if(argc != 2){
         std::cerr << "Input config file required. " << std::endl;
     }
-    std::string config_filename = std::string(argv[1]);
+    else{
+        std::string config_filename = std::string(argv[1]);
+        std::size_t dir_pos = config_filename.find_last_of("/");
+        std::string dir = config_filename.substr(0, dir_pos);
+        std::string config_name_extension = config_filename.substr(dir_pos + 1, config_filename.length());
+        std::string config_name = config_name_extension.substr(0, config_name_extension.length() - 4);
 
-    std::size_t dir_pos = config_filename.find_last_of("/");
-    std::string dir = config_filename.substr(0, dir_pos);
-    std::string config_name_extension = config_filename.substr(dir_pos+1, config_filename.length());
-    std::string config_name = config_name_extension.substr(0, config_name_extension.length() - 4);
-
-    auto parameters = ConfigParser::parse(config_name, config_filename);
-
+        parameters = ConfigParser::parse(config_name, config_filename);
+    }
 
     if (parameters.domain_parameters.domain_type == "rectangular")
     {
@@ -91,7 +96,7 @@ int main(int argc, char *argv[])
             {
                 if(parameters.solver_parameters.run_parallel){
                     float converge_crit = parameters.solver_parameters.solver_parameters["converge_crit"];
-                    int max_iter = parameters.solver_parameters.solver_parameters["max_iter"];
+                    int max_iter = parameters.solver_parameters.int_parameters["max_iter"];
                     int cuda_device = parameters.solver_parameters.int_parameters["cuda_device"];
                     CNRectPSolver solver = CNRectPSolver(g, domain, cuda_device);
                     solver.solve(converge_crit, max_iter, std::to_string(rank), print_info, save_data);
