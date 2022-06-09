@@ -2,7 +2,6 @@
 #include "gtest/gtest.h"
 #include <mpi.h>
 
-
 TEST(HPSweeperTest, Serial){
     MPI_Comm comm = MPI_COMM_WORLD;
     int rank, size;
@@ -21,7 +20,7 @@ TEST(HPSweeperTest, Serial){
         float g = -1 ;
         hpSweeper.set_print_info(false);
         hpSweeper.set_save_data(false);
-        hpSweeper.run(&domain,  initial_condition, g);
+        hpSweeper.run(&domain, initial_condition, g);
         all_passed = true; 
         ASSERT_TRUE(all_passed);
         delete initial_condition;

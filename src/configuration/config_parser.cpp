@@ -13,7 +13,9 @@
 Parameters ConfigParser::parse(std::string config_name, std::string filename){
     auto parameters = Parameters();
     parameters.config_name = config_name;
-    int mode = 0; // 0 for outside, 1 for domain, 2 for initial condition, 3 for eqution, 4 for solver
+    // -1 for outside, 0 for main,  1 for domain, 2 for initial condition, 3 for eqution, 4 for solver
+    int mode = -1; 
+    MainParameters main_parameters;
     DomainParameters domain_parameters;
     InitialConditionParameters init_parameters;
     EquationParameters equation_parameters;
@@ -37,6 +39,10 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
             {
                 continue;
             }
+            else if (line.rfind("[mainconfiguration]", 0) != std::string::npos)
+            {
+                mode = 0;
+            }
             else if (line.rfind("[domainconfiguration]", 0) != std::string::npos)
             {
                 mode = 1;
@@ -54,8 +60,104 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
                 mode = 4;
             }
             else{
-                if (mode == 0){
+                if (mode == -1){
                     std::cerr << "Unexpected Configuration File" << std::endl;
+                }
+                else if(mode == 0){
+                    std::vector<std::string> dump;
+                    std::string tmp;
+                    std::stringstream string_stream(line);
+                    if (line.rfind("type", 0) != std::string::npos)
+                    {
+                        while (std::getline(string_stream, tmp, '='))
+                        {
+                            dump.push_back(tmp);
+                        }
+                        if (dump.size() != 2)
+                        {
+                            std::cerr << "Unexpected Configuration File" << std::endl;
+                        }
+                        main_parameters.calculation_type = dump[1];
+                    }
+                    else{
+                        while (std::getline(string_stream, tmp, '='))
+                        {
+                            dump.push_back(tmp);
+                        }
+                        if (dump.size() != 2)
+                        {
+                            std::cerr << "Unexpected Configuration File" << std::endl;
+                        }
+                        if (dump[0] == "sweep_start")
+                        {
+                            main_parameters.float_parameters[dump[0]] = (float)std::atof(dump[1].c_str());
+                        }
+                        else if (dump[0] == "sweep_end")
+                        {
+                            main_parameters.float_parameters[dump[0]] = (float)std::atof(dump[1].c_str());
+                        }
+                        else if (dump[0] == "sweep_count")
+                        {
+                            main_parameters.int_parameters[dump[0]] = std::atoi(dump[1].c_str());
+                        }
+                        else if (dump[0] == "end_point")
+                        {
+                            if (dump[1] == "true")
+                            {
+                                main_parameters.int_parameters[dump[0]] = (int)true;
+                            }
+                            else if (dump[1] == "false")
+                            {
+                                main_parameters.int_parameters[dump[0]] = (int)false;
+                            }
+                            else 
+                            {
+                                std::cerr << "Unexpected Configuration File" << std::endl;
+                            }
+                        }
+                        else if (dump[0] == "mpi_use")
+                        {
+                            if (dump[1] == "true")
+                            {
+                                main_parameters.int_parameters[dump[0]] = (int)true;
+                            }
+                            else if (dump[1] == "false")
+                            {
+                                main_parameters.int_parameters[dump[0]] = (int)false;
+                            }
+                            else
+                            {
+                                std::cerr << "Unexpected Configuration File" << std::endl;
+                            }
+                        }
+                        else if (dump[0] == "cuda_use")
+                        {
+                            if (dump[1] == "true")
+                            {
+                                main_parameters.int_parameters[dump[0]] = (int)true;
+                            }
+                            else if (dump[1] == "false")
+                            {
+                                main_parameters.int_parameters[dump[0]] = (int)false;
+                            }
+                            else
+                            {
+                                std::cerr << "Unexpected Configuration File" << std::endl;
+                            }
+                        }
+                        else if (dump[0] == "gpu_count")
+                        {
+                            main_parameters.int_parameters[dump[0]] = std::atoi(dump[1].c_str());
+                        }
+                        else if (dump[0] == "calculation_per_gpu")
+                        {
+                            main_parameters.int_parameters[dump[0]] = std::atoi(dump[1].c_str());
+                        }
+                        else
+                        {
+                            std::cerr << "Unexpected Configuration File" << std::endl;
+                        }
+                    }
                 }
                 else if(mode == 1){
                     std::vector<std::string> dump;
@@ -339,6 +441,7 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
             }
         }
     }
+    parameters.main_parameters = main_parameters;
     parameters.domain_parameters = domain_parameters;
     parameters.init_cond_parameters = init_parameters;
     parameters.equation_parameters = equation_parameters;
