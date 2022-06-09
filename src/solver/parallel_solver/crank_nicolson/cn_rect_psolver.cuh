@@ -27,7 +27,36 @@ public:
         int device_number);
     // void generateRectangularDomain();
     // void solve(float tolerance, int max_iter);
-    void solve(float tolerance, int max_iter, std::string dir_name = "",bool print_info=true, bool save_data=true);
+    void solve(float tolerance, int max_iter, std::string dir_name = "", bool print_info = true, bool save_data = true);
+    void solve_single_time(int time_index,
+                           float *d_psi_old_real,
+                           float *d_psi_old_imag,
+                           float *d_psi_new_real_trial,
+                           float *d_psi_new_imag_trial,
+                           float *d_psi_new_real,
+                           float *d_psi_new_imag,
+                           float *d_potential,
+                           float *d_probability_array,
+                           float *d_normalize_factor,
+                           float *d_error_array,
+                           float *d_error,
+                           int max_iter,
+                           double tolerance,
+                           double relaxation_parameter,
+                           dim3 nBlocks,
+                           dim3 TPB,
+                           cudaStream_t stream_device_to_device_1,
+                           cudaStream_t stream_device_to_device_2,
+                           float *buffer_real,
+                           float *buffer_imag,
+                           bool save_data);
+
+    void export_single_time(int k,
+                            float *buffer_real,
+                            float *buffer_imag,
+                            dim3 nBlocks,
+                            dim3 TPB,
+                            bool save_data);
     // void solve_single_time(int k, float tolerance, int max_iter);
 
 protected:

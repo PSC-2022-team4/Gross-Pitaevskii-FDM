@@ -6,7 +6,7 @@
 
 #include <string>
 #include <fstream>
-#include <omp.h>
+#include <thread>
 #include <thread>
 #include "nvToolsExt.h"
 
@@ -300,14 +300,10 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     }
     int n_x = this->domain->get_num_grid_1();
     int n_y = this->domain->get_num_grid_2();
-    float h_x = this->domain->get_infinitesimal_distance1();
-    float h_y = this->domain->get_infinitesimal_distance2();
     float dt = this->domain->get_dt();
-    float error = 1.;
 
     float *d_error;
     float *d_normalize_factor;
-    bool converged = false;
     float relaxation_parameter = 1.;
 
     dim3 TPB(nTx, nTy);
@@ -383,7 +379,6 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     cudaMemcpyAsync(d_psi_new_real, h_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice, stream_psi_new_real);
     cudaMemcpyAsync(d_psi_new_imag, h_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice, stream_psi_new_imag);
     cudaMemcpyAsync(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice, stream_potential);
-
     cudaMemcpyAsync(d_psi_new_real_trial, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
     cudaMemcpyAsync(d_psi_new_imag_trial, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
     cudaMemcpyAsync(d_psi_old_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_3);
@@ -402,198 +397,58 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     }
     else
     {
-        this->domain->update_time();
+        this->domain->update_time(true);
     }
+    float *buffer_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+    float *buffer_imag = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
 
+    ///////////////////////////////////////  Calculation Core started ////////////////////////////////////////////////////////////
+    std::vector<std::thread> threads;
+    threads.reserve(this->domain->get_num_times() - 1);
     for (auto k = 0; k < this->domain->get_num_times() - 1; ++k)
     {
-        // std::cout << "time step " << k << std::endl;
-        error = 1.;
-        if (k > 0)
         {
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("memcpy new to old");
-            }
-            cudaMemcpyAsync(d_psi_old_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
-            cudaMemcpyAsync(d_psi_old_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-        }
+            this->solve_single_time(k, d_psi_old_real,
+                                    d_psi_old_imag,
+                                    d_psi_new_real_trial,
+                                    d_psi_new_imag_trial,
+                                    d_psi_new_real,
+                                    d_psi_new_imag,
+                                    d_potential,
+                                    d_probability_array,
+                                    d_normalize_factor,
+                                    d_error_array,
+                                    d_error,
+                                    max_iter,
+                                    tolerance,
+                                    relaxation_parameter,
+                                    nBlocks,
+                                    TPB,
+                                    stream_device_to_device_1,
+                                    stream_device_to_device_2,
+                                    buffer_real,
+                                    buffer_imag,
+                                    save_data);
 
-        for (auto iter = 0; iter < max_iter; ++iter)
-        {
-            if (error < tolerance)
-            {
-                converged = true;
-                break;
-            }
-
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("memcpy new to trial");
-            }
-            cudaMemcpyAsync(d_psi_new_real_trial, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
-            cudaMemcpyAsync(d_psi_new_imag_trial, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("scale_prev_solution");
-            }
-            scale_prev_solution<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, 1 - relaxation_parameter);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            cudaDeviceSynchronize();
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("cn_rect_cusolver");
-            }
-            cn_rect_cusolver<<<nBlocks, TPB>>>(
-                d_psi_old_real,
-                d_psi_old_imag,
-                d_psi_new_real_trial,
-                d_psi_new_imag_trial,
-                d_psi_new_real,
-                d_psi_new_imag,
-                d_potential,
-                n_x, n_y,
-                this->g,
-                this->domain->get_infinitesimal_distance1(),
-                this->domain->get_infinitesimal_distance2(),
-                this->domain->get_dt(),
-                relaxation_parameter);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("initialize prob and normalize factor");
-            }
-            cudaMemset(d_probability_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-            cudaMemset(d_normalize_factor, 0, sizeof(float));
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("calculate_probability");
-            }
-            calculate_probability<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_probability_array, n_x, n_y);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("calculate_normalize_factor");
-            }
-            calculate_normalize_factor<<<1, TPB.x * TPB.y>>>(d_probability_array, d_normalize_factor, TPB.x * nBlocks.x * TPB.y * nBlocks.y, h_x * h_y);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("normalize");
-            }
-            normalize<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_normalize_factor);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            cudaDeviceSynchronize();
-
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("initialize local and global error");
-            }
-            cudaMemset(d_error_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-            cudaMemset(d_error, 0, sizeof(float));
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("calculate_local_error");
-            }
-            calculate_local_error<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_psi_new_real_trial, d_psi_new_imag_trial, d_error_array, n_x, n_y);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            if (NVTX_USE)
-            {
-                nvtxRangePushA("reduction_error");
-            }
-            reduction_error<<<1, TPB.x * TPB.y>>>(d_error_array, d_error, TPB.x * nBlocks.x * TPB.y * nBlocks.y);
-            if (NVTX_USE)
-            {
-                nvtxRangePop();
-            }
-
-            cudaMemcpy(&error, d_error, sizeof(float), cudaMemcpyDeviceToHost);
-            cudaDeviceSynchronize();
-        }
-        if (!converged)
-        {
-            std::cout << "Converged failed with error = " << error << std::endl;
-        }
-
-        cudaMemcpyAsync(h_psi_new_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost, stream_device_to_device_1);
-        cudaMemcpyAsync(h_psi_new_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost, stream_device_to_device_2);
-        if (NVTX_USE)
-        {
-            nvtxRangePushA("save_final_data");
-        }
-        for (int i = 0; i < n_x; ++i)
-        {
-
-            for (int j = 0; j < n_y; ++j)
-            {
-                this->domain->assign_wave_function(i, j, k + 1,
-                                                   std::complex<float>{h_psi_new_real[j * TPB.x * nBlocks.x + i],
-                                                                       h_psi_new_imag[j * TPB.x * nBlocks.x + i]});
-            }
-        }
-        if (NVTX_USE)
-        {
-            nvtxRangePop();
-        }
-        if (NVTX_USE)
-        {
-            nvtxRangePushA("update time");
-        }
-        if (save_data)
-        {
-            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1), true, );
-        }
-
-        this->domain->update_time(true);
-
-        if (NVTX_USE)
-        {
-            nvtxRangePop();
+            auto export_thread = std::thread(&CNRectPSolver::export_single_time,
+                                             this,
+                                             k,
+                                             buffer_real,
+                                             buffer_imag,
+                                             nBlocks,
+                                             TPB,
+                                             save_data);
+            threads.push_back(std::move(export_thread));
         }
     }
 
+    for (std::thread &th : threads)
+    {
+        if (th.joinable())
+            th.join();
+    }
+
+    ///////////////////////////////////////  Calculation Core finished ////////////////////////////////////////////////////////////
     cudaFreeHost(h_psi_new_real);
     cudaFreeHost(h_psi_new_imag);
     cudaFreeHost(h_potential);
@@ -624,6 +479,234 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     {
         this->domain->print_directory_info();
     }
+    if (NVTX_USE)
+    {
+        nvtxRangePop();
+    }
+}
+
+void CNRectPSolver::solve_single_time(int k,
+                                      float *d_psi_old_real,
+                                      float *d_psi_old_imag,
+                                      float *d_psi_new_real_trial,
+                                      float *d_psi_new_imag_trial,
+                                      float *d_psi_new_real,
+                                      float *d_psi_new_imag,
+                                      float *d_potential,
+                                      float *d_probability_array,
+                                      float *d_normalize_factor,
+                                      float *d_error_array,
+                                      float *d_error,
+                                      int max_iter,
+                                      double tolerance,
+                                      double relaxation_parameter,
+                                      dim3 nBlocks,
+                                      dim3 TPB,
+                                      cudaStream_t stream_device_to_device_1,
+                                      cudaStream_t stream_device_to_device_2,
+                                      float *buffer_real,
+                                      float *buffer_imag,
+                                      bool save_data)
+{
+    int n_x = this->domain->get_num_grid_1();
+    int n_y = this->domain->get_num_grid_2();
+
+    float h_x = this->domain->get_infinitesimal_distance1();
+    float h_y = this->domain->get_infinitesimal_distance2();
+
+    if (k > 0)
+    {
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("memcpy new to old");
+        }
+        cudaMemcpyAsync(d_psi_old_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
+        cudaMemcpyAsync(d_psi_old_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+    }
+    if (NVTX_USE)
+    {
+        nvtxRangePushA((std::string("solve time ") + std::to_string(k)).c_str());
+    }
+
+    float error = 1.;
+    for (auto iter = 0; iter < max_iter; ++iter)
+    {
+        if (error < tolerance)
+        {
+            break;
+        }
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("memcpy new to trial");
+        }
+        cudaMemcpyAsync(d_psi_new_real_trial, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
+        cudaMemcpyAsync(d_psi_new_imag_trial, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("scale_prev_solution");
+        }
+        scale_prev_solution<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, 1 - relaxation_parameter);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        cudaDeviceSynchronize();
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("cn_rect_cusolver");
+        }
+        cn_rect_cusolver<<<nBlocks, TPB>>>(
+            d_psi_old_real,
+            d_psi_old_imag,
+            d_psi_new_real_trial,
+            d_psi_new_imag_trial,
+            d_psi_new_real,
+            d_psi_new_imag,
+            d_potential,
+            n_x, n_y,
+            this->g,
+            this->domain->get_infinitesimal_distance1(),
+            this->domain->get_infinitesimal_distance2(),
+            this->domain->get_dt(),
+            relaxation_parameter);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("initialize prob and normalize factor");
+        }
+        cudaMemset(d_probability_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+        cudaMemset(d_normalize_factor, 0, sizeof(float));
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("calculate_probability");
+        }
+        calculate_probability<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_probability_array, n_x, n_y);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("calculate_normalize_factor");
+        }
+        calculate_normalize_factor<<<1, TPB.x * TPB.y>>>(d_probability_array, d_normalize_factor, TPB.x * nBlocks.x * TPB.y * nBlocks.y, h_x * h_y);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("normalize");
+        }
+        normalize<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_normalize_factor);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        cudaDeviceSynchronize();
+
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("initialize local and global error");
+        }
+        cudaMemset(d_error_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+        cudaMemset(d_error, 0, sizeof(float));
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("calculate_local_error");
+        }
+        calculate_local_error<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_psi_new_real_trial, d_psi_new_imag_trial, d_error_array, n_x, n_y);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        if (NVTX_USE)
+        {
+            nvtxRangePushA("reduction_error");
+        }
+        reduction_error<<<1, TPB.x * TPB.y>>>(d_error_array, d_error, TPB.x * nBlocks.x * TPB.y * nBlocks.y);
+        if (NVTX_USE)
+        {
+            nvtxRangePop();
+        }
+
+        cudaMemcpy(&error, d_error, sizeof(float), cudaMemcpyDeviceToHost);
+    }
+    cudaMemcpyAsync(buffer_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost, stream_device_to_device_1);
+    cudaMemcpyAsync(buffer_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost, stream_device_to_device_2);
+
+    if (NVTX_USE)
+    {
+        nvtxRangePop();
+    }
+}
+
+void CNRectPSolver::export_single_time(int k,
+                                       float *buffer_real,
+                                       float *buffer_imag,
+                                       dim3 nBlocks,
+                                       dim3 TPB,
+                                       bool save_data)
+{
+    int n_x = this->domain->get_num_grid_1();
+    int n_y = this->domain->get_num_grid_2();
+
+    if (NVTX_USE)
+    {
+        nvtxRangePushA("save_final_data");
+    }
+    for (int i = 0; i < n_x; ++i)
+    {
+
+        for (int j = 0; j < n_y; ++j)
+        {
+            this->domain->assign_wave_function(i, j, k + 1,
+                                               std::complex<float>{buffer_real[j * TPB.x * nBlocks.x + i],
+                                                                   buffer_imag[j * TPB.x * nBlocks.x + i]});
+        }
+    }
+    if (NVTX_USE)
+    {
+        nvtxRangePop();
+    }
+    if (NVTX_USE)
+    {
+        nvtxRangePushA("update time");
+    }
+    if (save_data)
+    {
+        this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1), true);
+    }
+
+    this->domain->update_time(true);
+
     if (NVTX_USE)
     {
         nvtxRangePop();
