@@ -477,9 +477,9 @@ Parameters ConfigParser::get_default()
     domain_parameters.domain_type = "rectangular";
     domain_parameters.n_x = 256;
     domain_parameters.n_y = 256;
-    domain_parameters.n_time = 100;
+    domain_parameters.n_time = 5;
     domain_parameters.time_start = 0.;
-    domain_parameters.time_end = 2.;
+    domain_parameters.time_end = 0.01;
     domain_parameters.spatial_parameters["x_start"] = -10.;
     domain_parameters.spatial_parameters["x_end"] = 10.;
     domain_parameters.spatial_parameters["y_start"] = -10.;

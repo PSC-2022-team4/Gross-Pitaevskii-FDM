@@ -31,3 +31,6 @@ include_directories(${CUDA_INCLUDE_DIRS})
 target_link_libraries(${BINARY}_run ${CUDA_LIBRARIES})
 target_link_libraries(${BINARY}_lib ${CUDA_LIBRARIES})
 
+
+target_link_libraries(${BINARY}_run -lnvToolsExt)
+target_link_libraries(${BINARY}_lib -lnvToolsExt)
