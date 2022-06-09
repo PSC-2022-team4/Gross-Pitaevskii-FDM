@@ -85,10 +85,10 @@ TEST(HPSweeperTest, CUDASerial){
     MPI_Comm_size(comm, &size);
     if(rank == 0 ){
         bool all_passed = false;
-        HPSweeper hpSweeper = HPSweeper(float(1), float(0.5), 2, true);
-        auto domain = RectangularDomain(21, 21, 0, 0.01, 2, -10, 10, -10, 10);
+        HPSweeper hpSweeper = HPSweeper(float(1), float(0.1), 2, true);
+        auto domain = RectangularDomain(21, 21, 0, 0.01, 100, -10, 10, -10, 10);
         auto initial_cond_function = [](float x, float y)
-        { return std::complex<float>{float(1.)}; }; //  expf(-(x * x + y * y) / (9))
+        { return std::complex<float>{float(1.)*expf(-(x * x + y * y) / (9))}; }; //  expf(-(x * x + y * y) / (9))
         auto *initial_condition = new InitialCondition(initial_cond_function);
         float g = -1; 
         hpSweeper.set_print_info(false);

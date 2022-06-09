@@ -1,5 +1,5 @@
 #include "base_potential.h"
-
+#include <iostream>
 void BasePotential::calcualte_potential_in_grid(RectangularDomain *domain)
 {
     int num_grid_1 = domain->get_num_grid_1();
@@ -11,9 +11,10 @@ void BasePotential::calcualte_potential_in_grid(RectangularDomain *domain)
             auto point = domain->potential_grid->at(i, j);
 
             //Assign potential value in potential grid
-            point->value = {this->potential_function(point->x, point->y)};
+            point->value = std::complex<float>{this->potential_function(point->x, point->y), 0};
         }
     }
+    
 }
 
 std::string BasePotential::get_name()

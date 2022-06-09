@@ -20,7 +20,7 @@ void HPSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditi
         for(int i=0; i<this -> num ; ++i){
             //Set conditions 
             initial_condition->assign_to_domain(domain);
-            auto potential = new HarmonicPotential(1, get_value_from_idx(i));
+            HarmonicPotential * potential = new HarmonicPotential(1, get_value_from_idx(i));
             potential->calcualte_potential_in_grid(domain);
             g = this  -> get_value_from_idx(i);
             //Apply on solver
@@ -44,8 +44,8 @@ void HPSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditi
         float g = 0 ; 
         if (rank < num){
             initial_condition->assign_to_domain(domain);
-            auto potential =new HarmonicPotential(1, get_value_from_idx(rank));
-            potential->calcualte_potential_in_grid(domain);
+            HarmonicPotential * potential =new HarmonicPotential(1, get_value_from_idx(rank));
+            potential -> calcualte_potential_in_grid(domain);
             CNRectSolver* solver =new CNRectSolver(g, domain);
             solver->solve(1e-11, 101, "MPI_"+to_string(rank), this -> print_info, this->save_data);
             delete solver;
@@ -62,7 +62,7 @@ void HPSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditi
         for(int i=0; i<this -> num ; ++i){
             //Set conditions 
             initial_condition->assign_to_domain(domain);
-            auto potential = new HarmonicPotential(1, get_value_from_idx(i));
+            HarmonicPotential * potential = new HarmonicPotential(1, get_value_from_idx(i));
             potential->calcualte_potential_in_grid(domain);
             //Apply on solver
             CNRectPSolver* solver =new CNRectPSolver(g, domain, 0);//solve using solver. It automatically save data
