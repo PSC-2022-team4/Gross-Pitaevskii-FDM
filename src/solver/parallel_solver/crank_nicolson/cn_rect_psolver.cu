@@ -265,8 +265,8 @@ CNRectPSolver::CNRectPSolver(
 {
     this->domain = domain_;
     this->string_info = std::string{"Crank_Nicolson_parallel_"};
+    cudaSetDevice(device_number);
 };
-
 
 void fileout_debug(float *array, int n_x, int n_y, std::string filename)
 {
@@ -282,7 +282,7 @@ void fileout_debug(float *array, int n_x, int n_y, std::string filename)
 }
 
 // void CNRectPSolver::solve(float tolerance, int max_iter)
-void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name,bool print_info, bool save_data)
+void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, bool print_info, bool save_data)
 {
     int n_x = this->domain->get_num_grid_1();
     int n_y = this->domain->get_num_grid_2();
@@ -347,14 +347,17 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name,bo
     cudaMemcpy(d_psi_old_imag, h_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaMemcpy(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
 
-    if(save_data){
-        this->domain->generate_directory_name(this->string_info+dir_name, print_info);
-        //Save initial condition
+    if (save_data)
+    {
+        this->domain->generate_directory_name(this->string_info + dir_name, print_info);
+        // Save initial condition
         this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(0));
-    }else{
-        this -> domain->update_time();
     }
-    
+    else
+    {
+        this->domain->update_time();
+    }
+
     for (auto k = 0; k < this->domain->get_num_times() - 1; ++k)
     {
         // std::cout << "time step " << k << std::endl;
@@ -428,14 +431,39 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name,bo
         }
         // Above code might generate segmentation error since k th grid is not generated if domain time index is k-1
         // TODO save single txt file
-        if(save_data){
-            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k+1));
+        if (save_data)
+        {
+            this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1));
         }
-        else{
+        else
+        {
             this->domain->update_time();
         }
     }
-    if(print_info){
+
+    cudaFree(d_psi_old_real);
+    cudaFree(d_psi_old_imag);
+    cudaFree(d_psi_new_real_trial);
+    cudaFree(d_psi_new_imag_trial);
+    cudaFree(d_psi_new_real);
+    cudaFree(d_psi_new_imag);
+    cudaFree(d_potential);
+    cudaFree(d_probability_array);
+    cudaFree(d_error_array);
+    cudaFree(d_error);
+    cudaFree(d_normalize_factor);
+
+    free(h_psi_old_real);
+    free(h_psi_old_imag);
+    free(h_psi_new_real_trial);
+    free(h_psi_new_imag_trial);
+    free(h_psi_new_real);
+    free(h_psi_new_imag);
+    free(h_potential);
+    free(h_probability_array);
+
+    if (print_info)
+    {
         this->domain->print_directory_info();
     }
 }

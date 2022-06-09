@@ -70,7 +70,8 @@ FERectPSolver::FERectPSolver(
     : BaseSolver(g_)
 {
     this->domain = domain_;
-    this -> string_info =  std::string{"Forward_Euler_parallel_"};
+    this->string_info = std::string{"Forward_Euler_parallel_"};
+    cudaSetDevice(device_number);
 };
 
 float FERectPSolver::get_potential_value(int i, int j)
@@ -120,6 +121,7 @@ void FERectPSolver::solve_single_time(int k)
     cudaMemcpy(d_psi_old_imag, h_psi_old_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaMemcpy(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaDeviceSynchronize();
+
     fe_rect_cusolver<<<nBlocks, TPB>>>(
         d_psi_old_real,
         d_psi_old_imag,
@@ -135,6 +137,11 @@ void FERectPSolver::solve_single_time(int k)
     cudaMemcpy(h_psi_new_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_psi_new_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
 
+    cudaFree(d_potential);
+    cudaFree(d_psi_new_real);
+    cudaFree(d_psi_new_imag);
+    cudaFree(d_psi_old_real);
+    cudaFree(d_psi_old_imag);
     for (int i = 0; i < n_x; ++i)
     {
         for (int j = 0; j < n_y; ++j)
@@ -144,31 +151,42 @@ void FERectPSolver::solve_single_time(int k)
                                                    std::complex<float>{0, 1.} * h_psi_new_imag[j * TPB.x * nBlocks.x + i]);
         }
     }
+    free(h_potential);
+    free(h_psi_new_real);
+    free(h_psi_new_imag);
+    free(h_psi_old_real);
+    free(h_psi_old_imag);
 }
 
-void FERectPSolver::solve(std::string dir_name,bool print_info, bool save_data)
+void FERectPSolver::solve(std::string dir_name, bool print_info, bool save_data)
 {
     int time_length = this->domain->get_num_times();
-    if(save_data){
-        this->domain->generate_directory_name(this->string_info+dir_name, print_info);
-        //Save initial condition
+    if (save_data)
+    {
+        this->domain->generate_directory_name(this->string_info + dir_name, print_info);
+        // Save initial condition
         this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(0));
-    }else{
-        this -> domain->update_time();
+    }
+    else
+    {
+        this->domain->update_time();
     }
     for (int k = 0; k < time_length - 1; ++k)
     {
         // std::cout << "Time step: " << k << std::endl;
         this->solve_single_time(k);
         this->domain->normalize(k + 1);
-        if(save_data){
+        if (save_data)
+        {
             this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1));
         }
-        else{
+        else
+        {
             this->domain->update_time();
         };
     }
-    if(print_info){
+    if (print_info)
+    {
         this->domain->print_directory_info();
     }
 }
