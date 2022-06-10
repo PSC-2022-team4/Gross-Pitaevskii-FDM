@@ -7,9 +7,9 @@
     type = Rectangular
     n_x = 512
     n_y = 512
-    n_time = 100
+    n_time = 3
     time_start = 0.
-    time_end = 5.
+    time_end = 0.01.
     x_start = -10.
     x_end = 10.
     y_start = -10.
@@ -25,12 +25,12 @@
 [Equation Configuration]
     g = -1.
     type = Harmonic
-    omega_x = 3.
-    omega_y = 5.
+    omega_x = 1.
+    omega_y = 1.
 
 [Solver Configuration]
     method = CrankNicolson
-    parallel = true
+    parallel = false
     max_iter = 101
     converge_crit = 1e-11
     print_info = false

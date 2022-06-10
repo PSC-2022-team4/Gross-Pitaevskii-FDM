@@ -9,7 +9,7 @@
     n_y = 256
     n_time = 100
     time_start = 0.
-    time_end = 5.
+    time_end = 0.0001
     x_start = -10.
     x_end = 10.
     y_start = -10.
@@ -30,7 +30,7 @@
 
 [Solver Configuration]
     method = CrankNicolson
-    parallel = true
+    parallel = false
     max_iter = 101
     converge_crit = 1e-11
     print_info = false

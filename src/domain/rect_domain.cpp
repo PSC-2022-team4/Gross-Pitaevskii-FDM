@@ -60,23 +60,23 @@ RectangularDomain::RectangularDomain(
     float t_start,
     float t_end,
     int num_times,
-    float x_start,
-    float x_end,
-    float y_start,
-    float y_end)
+    float x_start_,
+    float x_end_,
+    float y_start_,
+    float y_end_)
 
     : BaseDomain(num_grid_1, num_grid_2, t_start, t_end, num_times), 
-    x_start(x_start), 
-    x_end(x_end),
-    y_start(y_start),
-    y_end(y_end)
+    x_start(x_start_), 
+    x_end(x_end_),
+    y_start(y_start_),
+    y_end(y_end_)
     {
             
         delete (this-> old_grid);
         delete (this-> current_grid);
-        this -> old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-        this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
-        this -> potential_grid= new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);  
+        this -> old_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start_, x_end_, y_start_, y_end_);
+        this -> current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start_, x_end_, y_start_, y_end_);
+        this -> potential_grid= new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start_, x_end_, y_start_, y_end_);  
         
     };
 RectangularDomain::~RectangularDomain(){
@@ -92,11 +92,11 @@ float RectangularDomain::get_y_start()
 }
 float RectangularDomain::get_x_end()
 {
-    this->x_end;
+    return this->x_end;
 }
 float RectangularDomain::get_y_end()
 {
-    this->x_end;
+    return this->x_end;
 }
 
 void RectangularDomain::update_time()

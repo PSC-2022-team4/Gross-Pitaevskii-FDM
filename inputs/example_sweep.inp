@@ -4,8 +4,8 @@
     # type = Single
     type = Anisotropy_Sweep
     # type = g_Sweep
-    sweep_start = 0
-    sweep_end = 100.
+    sweep_start = 0.2
+    sweep_end = 10.
     sweep_count = 10
     end_point = true
     mpi_use = true

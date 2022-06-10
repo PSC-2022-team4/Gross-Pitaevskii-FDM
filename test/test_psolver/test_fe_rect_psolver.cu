@@ -28,7 +28,7 @@ TEST(FEPSolverTest, InitializeSolveTest)
 
     solver.solve("", false, false);
 
-    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.real(), 0.096875511);
+    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.real(), -0.027037166);
 }
 
 bool test_fe_rect_psolver()
