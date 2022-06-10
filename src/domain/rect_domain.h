@@ -24,7 +24,7 @@ public:
     float get_y_start();
     float get_x_end();
     float get_y_end();
-    void generate_single_txt_file(std::string filename, bool cuda_mode = false, float **buffer = 0, int buffer_n_x = 0);
+    void generate_single_txt_file(std::string filename, bool cuda_mode = false);
     // a grid to save potential values
     RectangularSpatialGrid *potential_grid;
     void update_time(bool cuda_mode = false);

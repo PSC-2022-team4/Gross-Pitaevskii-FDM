@@ -1,129 +1,140 @@
 4
-0.133
+0.122
 4
-0.146
+0.122
 4
-0.153
+0.129
 4
-0.126
+0.118
 4
-0.131
+0.114
 4
-0.133
+0.125
 4
-0.138
+0.119
 4
-0.141
-8
-0.151
-8
-0.140
+0.127
 8
 0.139
 8
-0.129
+0.139
 8
-0.124
+0.121
+8
+0.127
+8
+0.137
+8
+0.116
+8
+0.099
 8
 0.138
-8
-0.131
-8
-0.135
 16
-0.166
+0.121
 16
-0.162
+0.186
 16
-0.136
+0.111
 16
-0.135
+0.204
 16
-0.135
-16
-0.153
-16
-0.169
-16
-0.135
-32
 0.197
+16
+0.122
+16
+0.199
+16
+0.180
 32
-0.202
+./run_psolver_benchmarking.sh: line 5:  3871 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+2.002
 32
-0.211
+0.110
 32
-0.202
+0.107
 32
-0.206
-32
-0.170
-32
-0.213
-32
-0.132
-64
-0.394
-64
-0.357
-64
-0.399
-64
-0.132
-64
-0.380
-64
-0.482
-64
-0.414
-64
-0.384
-128
-0.126
-128
-0.126
-128
-1.252
-128
-1.366
-128
-1.260
-128
-1.327
-128
-0.141
-128
-1.258
-256
-4.753
-256
-4.805
-256
-4.764
-256
-4.867
-256
-4.561
-256
-4.600
-256
-4.911
-256
-4.779
-512
-0.132
-512
-18.663
-512
-18.687
-512
-18.969
-512
-18.503
-512
-18.666
-512
-18.362
-512
 0.108
-1024
+32
+0.112
+32
+./run_psolver_benchmarking.sh: line 5:  4551 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+3.492
+32
+./run_psolver_benchmarking.sh: line 5:  4656 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+4.664
+32
+./run_psolver_benchmarking.sh: line 5:  4767 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+1.105
+64
+./run_psolver_benchmarking.sh: line 5:  4834 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+11.095
+64
+./run_psolver_benchmarking.sh: line 5:  4967 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+19.555
+64
+./run_psolver_benchmarking.sh: line 5:  5075 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+10.672
+64
+0.117
+64
+./run_psolver_benchmarking.sh: line 5:  5571 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+12.952
+64
+./run_psolver_benchmarking.sh: line 5:  5707 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+11.168
+64
+./run_psolver_benchmarking.sh: line 5:  5817 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+18.241
+64
+0.106
+128
+./run_psolver_benchmarking.sh: line 5:  6054 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+38.551
+128
+0.097
+128
+0.106
+128
+./run_psolver_benchmarking.sh: line 5:  6388 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+67.683
+128
+./run_psolver_benchmarking.sh: line 5:  6496 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+50.175
+128
+./run_psolver_benchmarking.sh: line 5:  6604 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+67.248
+128
+./run_psolver_benchmarking.sh: line 5:  6725 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+46.998
+128
+./run_psolver_benchmarking.sh: line 5:  6838 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+64.320
+256
+./run_psolver_benchmarking.sh: line 5:  6946 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+197.762
+256
+./run_psolver_benchmarking.sh: line 5:  7280 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+194.969
+256
+./run_psolver_benchmarking.sh: line 5:  7395 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+187.353
+256
+./run_psolver_benchmarking.sh: line 5:  7504 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+208.530
+256
+./run_psolver_benchmarking.sh: line 5:  7626 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+193.031
+256
+./run_psolver_benchmarking.sh: line 5:  7747 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+213.301
+256
+0.109
+256
+./run_psolver_benchmarking.sh: line 5:  7975 세그멘테이션 오류 (core dumped) ./../build/GrossPitaevskiiFDM_run ./benchmarking_$size.inp
+224.429
+512
+0.109
+512
+0.132
+512

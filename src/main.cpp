@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     MPI_Comm_size(comm, &size);
 
     Parameters parameters;
+
     if (argc == 1)
     {
         parameters = ConfigParser::get_default();

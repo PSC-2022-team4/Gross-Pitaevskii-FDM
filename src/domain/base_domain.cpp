@@ -227,27 +227,12 @@ void BaseDomain::generate_directory_name(std::string info, bool print_info)
  * @param grid grid at t
  * @param filename file name to store data
  */
-void BaseDomain::generate_single_txt_file(std::string filename, bool cuda_mode, float **buffer, int buffer_n_x)
+void BaseDomain::generate_single_txt_file(std::string filename, bool cuda_mode)
 {
-    if (cuda_mode)
-    {
-        std::ofstream outfile(this->PATH + filename + ".txt");
-        outfile << "x, y, real, imag, magn, phase " << std::endl;
-        for (auto i = 0; i < num_grid_1; ++i)
-        {
-            for (auto j = 0; j < num_grid_2; ++j)
-            {
-                std::complex<float> value = {buffer[2][buffer_n_x * j + i], buffer[3][buffer_n_x * j + i]};
-                outfile << buffer[0][buffer_n_x * j + i] << ", " << buffer[1][buffer_n_x * j + i] << ", ";
-                outfile << buffer[2][buffer_n_x * j + i] << ", " << buffer[3][buffer_n_x * j + i] << ", ";
-                outfile << std::abs(value) << ", " << std::arg(value);
-                outfile << std::endl;
-            }
-        }
-        outfile.close();
+    if (cuda_mode){
+        this->update_time(cuda_mode);
     }
-    else
-    {
+    else{
         std::ofstream outfile(this->PATH + filename + ".txt");
         outfile << "x, y, real, imag, magn, phase " << std::endl;
         for (auto i = 0; i < num_grid_1; ++i)
@@ -263,9 +248,9 @@ void BaseDomain::generate_single_txt_file(std::string filename, bool cuda_mode, 
             }
         }
         outfile.close();
-        //After saving data, update domain
+        // After saving data, update domain
+        this->update_time();
     }
-    this->update_time(cuda_mode);
 };
 
 void BaseDomain::print_directory_info()
@@ -277,12 +262,11 @@ void BaseDomain::print_directory_info()
 
 void BaseDomain::update_time(bool cuda_mode)
 {
-    if (cuda_mode)
-    {
+    if (cuda_mode){
         this->current_time_index += 1;
     }
-    else
-    {
+    else{
+
         this->current_time_index += 1;
         delete (this->old_grid);
         this->old_grid = this->current_grid;

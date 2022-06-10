@@ -208,7 +208,6 @@ __global__ void calculate_probability(float *psi_real, float *psi_imag, float *p
     probability[j * striding + i] = ((tile_psi_real[thread_x][thread_y] * tile_psi_real[thread_x][thread_y]) + (tile_psi_imag[thread_x][thread_y] * tile_psi_imag[thread_x][thread_y])) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
 }
 
-// Only works with single block
 __global__ void calculate_normalize_factor(float *probability, float *normalize_factor, int array_size, float unit_area)
 {
 
@@ -391,18 +390,18 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
 
     if (save_data)
     {
+
         this->domain->generate_directory_name(this->string_info + dir_name, print_info);
-        // Save initial condition
-        this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(0));
+        this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(0), true);
     }
     else
     {
         this->domain->update_time(true);
     }
+
     float *buffer_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     float *buffer_imag = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
 
-    ///////////////////////////////////////  Calculation Core started ////////////////////////////////////////////////////////////
     std::vector<std::thread> threads;
     threads.reserve(this->domain->get_num_times() - 1);
     for (auto k = 0; k < this->domain->get_num_times() - 1; ++k)
@@ -448,7 +447,6 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
             th.join();
     }
 
-    ///////////////////////////////////////  Calculation Core finished ////////////////////////////////////////////////////////////
     cudaFreeHost(h_psi_new_real);
     cudaFreeHost(h_psi_new_imag);
     cudaFreeHost(h_potential);
@@ -682,31 +680,45 @@ void CNRectPSolver::export_single_time(int k,
     {
         nvtxRangePushA("save_final_data");
     }
-    for (int i = 0; i < n_x; ++i)
-    {
 
-        for (int j = 0; j < n_y; ++j)
-        {
-            this->domain->assign_wave_function(i, j, k + 1,
-                                               std::complex<float>{buffer_real[j * TPB.x * nBlocks.x + i],
-                                                                   buffer_imag[j * TPB.x * nBlocks.x + i]});
-        }
-    }
     if (NVTX_USE)
     {
         nvtxRangePop();
     }
+
     if (NVTX_USE)
     {
         nvtxRangePushA("update time");
     }
     if (save_data)
     {
-        this->domain->generate_single_txt_file(std::string("Solution_") + std::to_string(k + 1), true);
+        std::ofstream outfile(this->domain->get_path() + std::string("Solution_") + std::to_string(k + 1) + ".txt");
+        outfile << "x, y, real, imag, magn, phase " << std::endl;
+        auto x_start = this->domain->get_x_start();
+        auto x_end = this->domain->get_x_end();
+        auto dx = this->domain->get_infinitesimal_distance1();
+        auto y_start = this->domain->get_y_start();
+        auto y_end = this->domain->get_y_end();
+        auto dy = this->domain->get_infinitesimal_distance2();
+        for (auto i = 0; i < n_x; ++i)
+        {
+            for (auto j = 0; j < n_y; ++j)
+            {
+                auto value = std::complex<float>{buffer_real[j * TPB.x * nBlocks.x + i],
+                                                 buffer_imag[j * TPB.x * nBlocks.x + i]};
+                float magnitude = std::abs(value);
+                float phase = std::arg(value);
+                outfile << x_start + i * dx << ", " << y_start + j * dy << ", ";
+                outfile << buffer_real[j * TPB.x * nBlocks.x + i] << ", " << buffer_imag[j * TPB.x * nBlocks.x + i] << ", ";
+                outfile << magnitude << ", " << phase;
+                outfile << std::endl;
+            }
+        }
+        outfile.close();
+        this->domain->update_time();
     }
-
-    this->domain->update_time(true);
-
+    else
+        this->domain->update_time(true);
     if (NVTX_USE)
     {
         nvtxRangePop();
