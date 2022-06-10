@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
                 }
                 else{
                     float converge_crit = parameters.solver_parameters.solver_parameters["converge_crit"];
-                    int max_iter = parameters.solver_parameters.solver_parameters["max_iter"];
+                    int max_iter = parameters.solver_parameters.int_parameters["max_iter"];
                     CNRectSolver solver = CNRectSolver(g, domain);
                     solver.solve(converge_crit, max_iter, std::to_string(rank), print_info, save_data);
                 }

@@ -392,7 +392,7 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
                         }
                         else if (dump[1].rfind("false", 0) != std::string::npos)
                         {
-                            solver_parameters.print_info = false;
+                            solver_parameters.save_data = false;
                         }
                         else
                         {
