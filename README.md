@@ -27,7 +27,7 @@ Bose-Einstein condensate(BEC) is a state of matter of a dilute gas of bosons coo
 Under such conditions, bosons condensate to the same ground state.  
 The Gross-Pitaevskii equation is an approximation model of BEC.   
 In Hartree-Fock approximation, many body equation is turned to one body equation. Also, in the partial-wave analysis, scattering process between each bosons are approximated by the s-wave scattering.  
-** TODO sample image
+
 
 ## Installation 
 ### Dependencies 
