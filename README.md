@@ -9,6 +9,7 @@
   - [Generate configuration file](#generate-configuration-file)
   - [Execute single condition](#execute-single-condition)
   - [Execute multiple conditions with MPI](#execute-multiple-conditions-with-mpi)
+  - [Save data](#save-data)
 - [Example results](#example-results)
 
 ## Overview
@@ -109,7 +110,13 @@ For example,
 ```
 mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ./inputs/example_sweep.inp
 ```
-
+### Save data
+If you run the code with save_info=true, it creates new folder under results directory.       
+Time log is included in folder name. Also, if you run parallely, the folder name contains the rank of the processor executed the program.      
+If you want to manage folder name, give the string parameter that contains folder name in solve method in solver class.    
+For example, in results directory, following directory is created.
+```
+'2022-06-09-17-29-26_Crank_Nicolson_parallel_MPI&CUDA_0'
+```
+In the directory, txt file is generated for each time step. It contains the spatial grid info and wave function values(real and imaginary).
 ## Example results
-in results directory    
-..... And ....
