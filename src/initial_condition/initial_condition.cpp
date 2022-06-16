@@ -21,7 +21,7 @@ InitialCondition::InitialCondition(std::function<std::complex<float>(float, floa
 }
 
 /**
- * @brief Assign initial condition to domain
+ * @brief Assign initial condition to the domain class instance
  * 
  * @param domain 
  */

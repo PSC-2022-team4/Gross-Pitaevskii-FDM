@@ -1,5 +1,20 @@
+/**
+ * @file base_potential.cpp
+ * @author Gyeonghun Kim, Minyoung Kim
+ * @brief Implementation of the methods in potential class.
+ * @version 0.1
+ * @date 2022-06-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "base_potential.h"
-#include <iostream>
+
+/**
+ * @brief Calculate potential values in each grid based on domain point coordinate and potential function.
+ * 
+ * @param domain 
+ */
 void BasePotential::calcualte_potential_in_grid(RectangularDomain *domain)
 {
     int num_grid_1 = domain->get_num_grid_1();
@@ -17,11 +32,23 @@ void BasePotential::calcualte_potential_in_grid(RectangularDomain *domain)
     
 }
 
+/**
+ * @brief Getter for name class variable
+ * 
+ * @return std::string 
+ */
 std::string BasePotential::get_name()
 {
     return this->name;
 }
 
+/**
+ * @brief Default potental function for constant zero potential.
+ * 
+ * @param x 
+ * @param y 
+ * @return float 
+ */
 float BasePotential::potential_function(float x, float y)
 {
     return 0;
