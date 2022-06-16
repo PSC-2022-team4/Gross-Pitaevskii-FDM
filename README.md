@@ -1,4 +1,6 @@
 # Gross-Pitaevskii-FDM
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPSC-2022-team4%2FGross-Pitaevskii-FDM.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FPSC-2022-team4%2FGross-Pitaevskii-FDM?ref=badge_shield)
+
 - [Overview](#overview)
   - [Equation](#equation)
   - [Physics](#physics)
@@ -120,3 +122,10 @@ For example, in results directory, following directory is created.
 ```
 In the directory, txt file is generated for each time step. It contains the spatial grid info and wave function values(real and imaginary).
 ## Example results
+in results directory    
+..... And ....
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPSC-2022-team4%2FGross-Pitaevskii-FDM.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FPSC-2022-team4%2FGross-Pitaevskii-FDM?ref=badge_large)
+
