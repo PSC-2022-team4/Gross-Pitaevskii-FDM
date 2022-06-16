@@ -31,7 +31,7 @@ In Hartree-Fock approximation, many body equation is turned to one body equation
 - C++ 17 
 - [Cmake](https://cmake.org/) version >= 3.5
 - [MPICH2](https://github.com/pmodels/mpich) 
-- [Nvidia CUDA toolkit](https://github.com/NVIDIA/cuda-samples) version == 10.1
+- [Nvidia CUDA toolkit](https://github.com/NVIDIA/cuda-samples) version == 11.7
 - [gtest](https://github.com/google/googletest)
 
 ### Build 
