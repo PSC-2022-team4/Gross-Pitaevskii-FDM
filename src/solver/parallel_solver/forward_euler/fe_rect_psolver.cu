@@ -106,7 +106,7 @@ FERectPSolver::FERectPSolver(
 };
 
 /**
- * @brief Load potential value
+ * @brief Getter function for potential value
  * 
  * @param i 
  * @param j 
@@ -117,6 +117,11 @@ float FERectPSolver::get_potential_value(int i, int j)
     return this->domain->potential_grid->at(i, j)->value.real();
 }
 
+/**
+ * @brief solve with forward euler in single timestep
+ * 
+ * @param k 
+ */
 void FERectPSolver::solve_single_time(int k)
 {
     int n_x = this->domain->get_num_grid_1();
@@ -125,6 +130,7 @@ void FERectPSolver::solve_single_time(int k)
 
     dim3 TPB(nTx, nTy);
     dim3 nBlocks(n_x / nTx + (n_x % nTx != 0), n_y / nTy + (n_y % nTy != 0));
+    // decleare host and device memeory
     float *h_psi_old_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     float *h_psi_old_imag = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     float *h_psi_new_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
@@ -137,6 +143,7 @@ void FERectPSolver::solve_single_time(int k)
     cudaMalloc((float **)&d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     cudaMalloc((float **)&d_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
 
+    // Initialize host values
     std::complex<float> wave_func;
     float potential_value;
     for (int i = 0; i < n_x; ++i)
@@ -153,6 +160,7 @@ void FERectPSolver::solve_single_time(int k)
         }
     }
 
+    // Initialize device values
     cudaMemcpy(d_psi_new_real, h_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaMemcpy(d_psi_new_imag, h_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaMemcpy(d_psi_old_real, h_psi_old_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
@@ -160,6 +168,7 @@ void FERectPSolver::solve_single_time(int k)
     cudaMemcpy(d_potential, h_potential, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyHostToDevice);
     cudaDeviceSynchronize();
 
+    // Update equation 
     fe_rect_cusolver<<<nBlocks, TPB>>>(
         d_psi_old_real,
         d_psi_old_imag,
@@ -172,6 +181,8 @@ void FERectPSolver::solve_single_time(int k)
         this->domain->get_infinitesimal_distance2(),
         this->domain->get_dt());
     cudaDeviceSynchronize();
+
+    // Get solution 
     cudaMemcpy(h_psi_new_real, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_psi_new_imag, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToHost);
 
@@ -180,6 +191,8 @@ void FERectPSolver::solve_single_time(int k)
     cudaFree(d_psi_new_imag);
     cudaFree(d_psi_old_real);
     cudaFree(d_psi_old_imag);
+
+    // Assign solution to the domain instance .
     for (int i = 0; i < n_x; ++i)
     {
         for (int j = 0; j < n_y; ++j)
@@ -189,6 +202,7 @@ void FERectPSolver::solve_single_time(int k)
                                                    std::complex<float>{0, 1.} * h_psi_new_imag[j * TPB.x * nBlocks.x + i]);
         }
     }
+
     free(h_potential);
     free(h_psi_new_real);
     free(h_psi_new_imag);
@@ -196,6 +210,13 @@ void FERectPSolver::solve_single_time(int k)
     free(h_psi_old_imag);
 }
 
+/**
+ * @brief Solve Gross Pitaevskii equation with Forward Euler method
+ * 
+ * @param dir_name 
+ * @param print_info 
+ * @param save_data 
+ */
 void FERectPSolver::solve(std::string dir_name, bool print_info, bool save_data)
 {
     int time_length = this->domain->get_num_times();
