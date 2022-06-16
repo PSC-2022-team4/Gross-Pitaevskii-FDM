@@ -126,5 +126,9 @@ In the directory, txt file is generated for each time step. It contains the spat
 Generated output file could be directly loaded by [ParaView](https://www.paraview.org/). By using Filters>Alphabetical>Table to Points and Filters>Alphabetical>Delaunary 2D successively, you could visualize the result data in 2D heatmap without any scripting. 
 
 ## Example results
-Below GIF is result from .inputs/swing.inp.
+1. Below GIF is result from .inputs/swing.inp.
 ![swing_wavefunction](https://user-images.githubusercontent.com/34947229/174142524-5c521850-c3d7-40db-b9f8-c26a58210f1f.gif)
+
+
+2. Below GIF is result from .inputs/asym_init.inp.
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/34947229/174147490-b624a031-3735-425b-a8a7-d985fe9b97ba.gif)
