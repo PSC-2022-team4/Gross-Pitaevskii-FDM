@@ -1,7 +1,23 @@
+/**
+ * @file parameters.h
+ * @author Gyeonghun Kim, Minyoung Kim
+ * @brief Header for the Parameter classes.
+ * @version 0.1
+ * @date 2022-06-09
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #pragma once
 #include <map>
 #include <string>
 
+
+/**
+ * @brief Main branch parameters containing information about overall calculation
+ * 
+ */
 class MainParameters
 {
     public:
@@ -9,6 +25,11 @@ class MainParameters
         std::map<std::string, float> float_parameters;
         std::map<std::string, int> int_parameters;
 };
+
+/**
+ * @brief Domain branch parameters containing information about domain 
+ * 
+ */
 class DomainParameters
 {
     public:
@@ -17,6 +38,11 @@ class DomainParameters
     std::map<std::string, float> spatial_parameters;
     float time_start, time_end;
 };
+
+/**
+ * @brief Initial condition branch parameters containing information about initial condition 
+ * 
+ */
 class InitialConditionParameters
 {
 public:
@@ -24,6 +50,10 @@ public:
     std::map<std::string, float> init_cond_parameters;
 };
 
+/**
+ * @brief Equation branch parameters containing information about equation 
+ * 
+ */
 class EquationParameters
 {
 public:
@@ -32,6 +62,10 @@ public:
     std::map<std::string, float> potential_parameters;
 };
 
+/**
+ * @brief Solver branch parameters containing information about solver 
+ * 
+ */
 class SolverParameters
 {
 public:
@@ -43,6 +77,10 @@ public:
     std::map<std::string, int> int_parameters;
 };
 
+/**
+ * @brief Parameters containing configuration name and all other branched parameters
+ * 
+ */
 class Parameters
 {
 public:

@@ -1,5 +1,10 @@
 #pragma once
+
+#include <iostream>
+
 #include "base_potential.h"
+
+
 
 class HarmonicPotential : public BasePotential
 {

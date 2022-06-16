@@ -1,7 +1,33 @@
+/**
+ * @file base_domain.h
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Header for Base domain class
+ * @version 0.1
+ * @date 2022-06-03
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #pragma once
 #include <complex>
 #include <vector>
-#include <string.h>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
+#include <experimental/filesystem>
+
+// setup filesystem
+namespace fs = std::experimental::filesystem;
+
+
+/**
+ * @brief Grid point class (single point)
+ * 
+ */
 class GridPoint
 {
 public:
@@ -13,6 +39,10 @@ public:
     ~GridPoint();
 };
 
+/**
+ * @brief Base Spatial Grid class for single time step
+ * 
+ */
 class BaseSpatialGrid
 {
 public:
@@ -30,6 +60,10 @@ protected:
     int num_grid_1, num_grid_2;
 };
 
+/**
+ * @brief Base domain class containing multiple time steps and export methods.
+ * 
+ */
 class BaseDomain
 {
 public:

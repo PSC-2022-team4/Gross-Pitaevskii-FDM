@@ -1,12 +1,14 @@
+/**
+ * @file base_domain.cpp
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Implementation of methods in the Base Domain class.
+ * @version 0.1
+ * @date 2022-06-03
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "base_domain.h"
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-#include <ctime>
-#include <sstream>
-#include <experimental/filesystem>
-
-namespace fs = std::experimental::filesystem;
 
 GridPoint::GridPoint(float x_, float y_, std::complex<float> wave_function_) : x(x_), y(y_), value(wave_function_) {}
 GridPoint::~GridPoint(){};

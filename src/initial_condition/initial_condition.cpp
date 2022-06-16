@@ -1,11 +1,30 @@
+/**
+ * @file initial_condition.cpp
+ * @author Gyeonghun Kim, Minyoung Kim
+ * @brief Implementation of initial condition class
+ * @version 0.1
+ * @date 2022-06-04
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "initial_condition.h"
-#include <iostream>
-#include <complex>
+
+/**
+ * @brief Construct a new Initial Condition:: Initial Condition object
+ * 
+ * @param initial_condition_function 
+ */
 InitialCondition::InitialCondition(std::function<std::complex<float>(float, float)> initial_condition_function)
 {
     this->initial_condition_function = initial_condition_function;
 }
 
+/**
+ * @brief Assign initial condition to the domain class instance
+ * 
+ * @param domain 
+ */
 void InitialCondition::assign_to_domain(RectangularDomain *domain)
 {
 

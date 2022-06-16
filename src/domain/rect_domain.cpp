@@ -1,6 +1,18 @@
+/**
+ * @file rect_domain.cpp
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Implementation of methods in the Rectangular Domain class.
+ * @version 0.1
+ * @date 2022-06-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "rect_domain.h"
 #include <fstream>
 #include <iostream>
+
+
 /**
  * @brief Construct a new Rectangular Spatial Grid:: Rectangular Spatial Grid object
  * 
