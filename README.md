@@ -6,7 +6,7 @@
   - Dependencies 
   - Build  
 - Execution 
-  - Generate input file 
+  - Generate configuration file 
   - Execute single condition 
   - Execute multiple conditions with MPI
 - Example 
@@ -33,3 +33,64 @@ In Hartree-Fock approximation, many body equation is turned to one body equation
 - [MPICH2](https://github.com/pmodels/mpich) 
 - [Nvidia CUDA toolkit](https://github.com/NVIDIA/cuda-samples) version == 10.1
 - [gtest](https://github.com/google/googletest)
+
+###Build 
+The build configuration is created with CMake.   
+To create build configuration in this project, create a build directory in the project directory.  
+Then, in the build directory, use cmake command to create build configuraiton as below. 
+```
+mkdir build 
+cd build 
+cmake ..
+```
+
+To build, execute:
+```
+make
+```
+
+Check that if the two files are generated.  
+```
+GrossPitaevskiiFDM_run  
+GrossPitaevskiiFDM_tst   
+```
+
+## Execution 
+### Generate configuration file 
+In the inputs directory, there are three example configuration files.
+```
+benchmarking.inp
+example_single.inp
+example_sweep.inp
+```
+If you want to run the codes in a single condition(initial condition, potential, parameter g), use example_single.inp as a template.   
+There are following parameters to set. 
+- Main Configuration 
+- Domain Configuration 
+- Initial Condition Configuration 
+- Equation Configuration 
+- Solver Configuration 
+ 
+For the details, refer to the code decription. #TODO  
+If you want to use GPU to accelerate the execution, set parallel as true and set cuda_device = {device number}  
+
+### Execute single condition 
+To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with the generated configurated file. 
+```
+{PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp
+```
+For example, 
+```
+./build/GrossPitaevskiiFDM_run ../inputs/example_single.inp
+```
+
+### Execute multiple conditions with MPI
+
+To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with the generated configurated file. 
+```
+mpiexec -np {PROCESSOR_NUMBER} {PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp
+```
+For example, 
+```
+mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ../inputs/example_sweep.inp
+```
