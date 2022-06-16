@@ -50,6 +50,29 @@ RectangularSpatialGrid::RectangularSpatialGrid(
         }
     }
 }
+void RectangularSpatialGrid::normalize()
+{
+    float sum = 0.;
+    for (auto i = 0; i < this->num_grid_1; ++i)
+    {
+        for (auto j = 0; j < this->num_grid_2; ++j)
+        {
+            auto wave_func = this->at(i, j)->value;
+            sum += float(std::pow(std::abs(wave_func), 2));
+        }
+    }
+    sum = std::sqrt(sum * this->infinitesimal_distance_1 * this->infinitesimal_distance_2);
+    for (auto i = 0; i < this->num_grid_1; ++i)
+    {
+        for (auto j = 0; j < this->num_grid_2; ++j)
+        {
+            this->at(i, j)->value /= sum;
+        }
+    }
+    
+}
+
+
 RectangularSpatialGrid::~RectangularSpatialGrid(){
 
 };
@@ -122,7 +145,7 @@ void RectangularDomain::update_time(bool cuda_mode)
         this->current_time_index += 1;
         delete (this->old_grid);
         this->old_grid = this->current_grid;
-        this->current_grid = new BaseSpatialGrid(num_grid_1, num_grid_2);
+        this->current_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
     }
 }
 // replace function again since update_time function is changed
@@ -164,4 +187,3 @@ void RectangularDomain::reset()
     this->potential_grid = new RectangularSpatialGrid(num_grid_1, num_grid_2, x_start, x_end, y_start, y_end);
 
 }
-

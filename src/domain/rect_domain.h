@@ -21,6 +21,7 @@ public:
     RectangularSpatialGrid() = default;
     RectangularSpatialGrid(int num_grid_1, int num_grid_2, float x_start, float x_end, float y_start, float y_end);
     ~RectangularSpatialGrid();
+    void normalize();
 
 private:
     float x_start;
