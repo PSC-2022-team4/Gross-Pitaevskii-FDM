@@ -1,0 +1,768 @@
+\begin{theindex}
+
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/CMakeLists.txt}, 
+		\hyperpage{151}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/configuration/config\_parser.cpp}, 
+		\hyperpage{152}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/configuration/config\_parser.h}, 
+		\hyperpage{153}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/configuration/parameters.h}, 
+		\hyperpage{154}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/domain/base\_domain.cpp}, 
+		\hyperpage{156}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/domain/base\_domain.h}, 
+		\hyperpage{157}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/domain/rect\_domain.cpp}, 
+		\hyperpage{158}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/domain/rect\_domain.h}, 
+		\hyperpage{159}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/initial\_condition/initial\_condition.cpp}, 
+		\hyperpage{160}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/initial\_condition/initial\_condition.h}, 
+		\hyperpage{161}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/main.cpp}, 
+		\hyperpage{163}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/potential/base\_potential.cpp}, 
+		\hyperpage{167}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/potential/base\_potential.h}, 
+		\hyperpage{168}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/potential/harmonic\_potential.cpp}, 
+		\hyperpage{170}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/potential/harmonic\_potential.h}, 
+		\hyperpage{171}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/solver/base\_solver.cpp}, 
+		\hyperpage{172}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/solver/base\_solver.h}, 
+		\hyperpage{173}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/solver/serial\_solver/crank\_nicolson/cn\_rect\_solver.cpp}, 
+		\hyperpage{174}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/solver/serial\_solver/crank\_nicolson/cn\_rect\_solver.h}, 
+		\hyperpage{175}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/solver/serial\_solver/forward\_euler/fe\_rect\_solver.cpp}, 
+		\hyperpage{176}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/solver/serial\_solver/forward\_euler/fe\_rect\_solver.h}, 
+		\hyperpage{177}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/sweeper/base\_sweeper.cpp}, 
+		\hyperpage{179}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/sweeper/base\_sweeper.h}, 
+		\hyperpage{180}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/sweeper/g\_sweeper.cpp}, 
+		\hyperpage{180}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/sweeper/g\_sweeper.h}, 
+		\hyperpage{181}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/sweeper/harmonic\_p\_sweeper.cpp}, 
+		\hyperpage{182}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/sweeper/harmonic\_p\_sweeper.h}, 
+		\hyperpage{183}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/utils.cpp}, 
+		\hyperpage{184}
+  \item {/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/utils.h}, 
+		\hyperpage{185}
+  \item {$\sim$BaseDomain}
+    \subitem {BaseDomain}, \hyperpage{11}
+  \item {$\sim$BaseSolver}
+    \subitem {BaseSolver}, \hyperpage{30}
+  \item {$\sim$BaseSpatialGrid}
+    \subitem {BaseSpatialGrid}, \hyperpage{34}
+  \item {$\sim$BaseSweeper}
+    \subitem {BaseSweeper}, \hyperpage{41}
+  \item {$\sim$ConfigParser}
+    \subitem {ConfigParser}, \hyperpage{64}
+  \item {$\sim$GridPoint}
+    \subitem {GridPoint}, \hyperpage{85}
+  \item {$\sim$RectangularDomain}
+    \subitem {RectangularDomain}, \hyperpage{125}
+  \item {$\sim$RectangularSpatialGrid}
+    \subitem {RectangularSpatialGrid}, \hyperpage{144}
+
+  \indexspace
+
+  \item {assign\_initial\_value}
+    \subitem {BaseDomain}, \hyperpage{11}
+    \subitem {RectangularDomain}, \hyperpage{125}
+  \item {assign\_to\_domain}
+    \subitem {InitialCondition}, \hyperpage{115}
+  \item {assign\_wave\_function}
+    \subitem {BaseDomain}, \hyperpage{12}
+    \subitem {RectangularDomain}, \hyperpage{126}
+  \item {at}
+    \subitem {BaseDomain}, \hyperpage{13}
+    \subitem {BaseSpatialGrid}, \hyperpage{34}
+    \subitem {RectangularDomain}, \hyperpage{126}
+    \subitem {RectangularSpatialGrid}, \hyperpage{144}
+
+  \indexspace
+
+  \item {BaseDomain}, \hyperpage{7}
+    \subitem {$\sim$BaseDomain}, \hyperpage{11}
+    \subitem {assign\_initial\_value}, \hyperpage{11}
+    \subitem {assign\_wave\_function}, \hyperpage{12}
+    \subitem {at}, \hyperpage{13}
+    \subitem {BaseDomain}, \hyperpage{10, 11}
+    \subitem {current\_grid}, \hyperpage{22}
+    \subitem {current\_time\_index}, \hyperpage{22}
+    \subitem {dt}, \hyperpage{22}
+    \subitem {generate\_directory\_name}, \hyperpage{13}
+    \subitem {generate\_single\_txt\_file}, \hyperpage{14}
+    \subitem {get\_current\_time\_index}, \hyperpage{15}
+    \subitem {get\_dt}, \hyperpage{15}
+    \subitem {get\_infinitesimal\_distance1}, \hyperpage{16}
+    \subitem {get\_infinitesimal\_distance2}, \hyperpage{16}
+    \subitem {get\_null\_gridpt}, \hyperpage{17}
+    \subitem {get\_num\_grid\_1}, \hyperpage{17}
+    \subitem {get\_num\_grid\_2}, \hyperpage{18}
+    \subitem {get\_num\_times}, \hyperpage{18}
+    \subitem {get\_path}, \hyperpage{19}
+    \subitem {get\_t\_end}, \hyperpage{19}
+    \subitem {get\_t\_start}, \hyperpage{19}
+    \subitem {normalize}, \hyperpage{19}
+    \subitem {null\_gridpt}, \hyperpage{22}
+    \subitem {num\_grid\_1}, \hyperpage{22}
+    \subitem {num\_grid\_2}, \hyperpage{22}
+    \subitem {num\_times}, \hyperpage{23}
+    \subitem {old\_grid}, \hyperpage{23}
+    \subitem {PATH}, \hyperpage{23}
+    \subitem {print\_directory\_info}, \hyperpage{20}
+    \subitem {reset}, \hyperpage{20}
+    \subitem {t\_end}, \hyperpage{23}
+    \subitem {t\_start}, \hyperpage{23}
+    \subitem {time\_at}, \hyperpage{21}
+    \subitem {update\_time}, \hyperpage{21}
+  \item {BasePotential}, \hyperpage{24}
+    \subitem {BasePotential}, \hyperpage{25}
+    \subitem {calcualte\_potential\_in\_grid}, \hyperpage{25}
+    \subitem {get\_name}, \hyperpage{26}
+    \subitem {name}, \hyperpage{27}
+    \subitem {potential\_function}, \hyperpage{26}
+  \item {BaseSolver}, \hyperpage{28}
+    \subitem {$\sim$BaseSolver}, \hyperpage{30}
+    \subitem {BaseSolver}, \hyperpage{29, 30}
+    \subitem {g}, \hyperpage{31}
+    \subitem {string\_info}, \hyperpage{31}
+    \subitem {temporal\_equation}, \hyperpage{30}
+  \item {BaseSpatialGrid}, \hyperpage{31}
+    \subitem {$\sim$BaseSpatialGrid}, \hyperpage{34}
+    \subitem {at}, \hyperpage{34}
+    \subitem {BaseSpatialGrid}, \hyperpage{33, 34}
+    \subitem {get\_infinitesimal\_distance1}, \hyperpage{35}
+    \subitem {get\_infinitesimal\_distance2}, \hyperpage{35}
+    \subitem {infinitesimal\_distance\_1}, \hyperpage{37}
+    \subitem {infinitesimal\_distance\_2}, \hyperpage{37}
+    \subitem {normalize}, \hyperpage{36}
+    \subitem {num\_grid\_1}, \hyperpage{37}
+    \subitem {num\_grid\_2}, \hyperpage{37}
+    \subitem {spatial\_data}, \hyperpage{37}
+  \item {BaseSweeper}, \hyperpage{38}
+    \subitem {$\sim$BaseSweeper}, \hyperpage{41}
+    \subitem {BaseSweeper}, \hyperpage{41}
+    \subitem {CUDA\_use}, \hyperpage{45}
+    \subitem {end}, \hyperpage{45}
+    \subitem {endpoint}, \hyperpage{46}
+    \subitem {generate\_num\_list}, \hyperpage{42}
+    \subitem {get\_end}, \hyperpage{42}
+    \subitem {get\_number\_of\_pts}, \hyperpage{42}
+    \subitem {get\_start}, \hyperpage{43}
+    \subitem {get\_value\_from\_idx}, \hyperpage{43}
+    \subitem {gpu\_limit}, \hyperpage{46}
+    \subitem {gpu\_num}, \hyperpage{46}
+    \subitem {MPI\_use}, \hyperpage{46}
+    \subitem {num}, \hyperpage{46}
+    \subitem {num\_list}, \hyperpage{46}
+    \subitem {print\_info}, \hyperpage{47}
+    \subitem {rank}, \hyperpage{47}
+    \subitem {save\_data}, \hyperpage{47}
+    \subitem {set\_CUDA\_info}, \hyperpage{43}
+    \subitem {set\_MPI\_info}, \hyperpage{44}
+    \subitem {set\_print\_info}, \hyperpage{44}
+    \subitem {set\_save\_data}, \hyperpage{45}
+    \subitem {size}, \hyperpage{47}
+    \subitem {start}, \hyperpage{47}
+
+  \indexspace
+
+  \item {calcualte\_potential\_in\_grid}
+    \subitem {BasePotential}, \hyperpage{25}
+    \subitem {HarmonicPotential}, \hyperpage{100}
+  \item {calculate\_error}
+    \subitem {CNRectSolver}, \hyperpage{51}
+  \item {calculation\_type}
+    \subitem {MainParameters}, \hyperpage{118}
+  \item {cmake\_minimum\_required}
+    \subitem {CMakeLists.txt}, \hyperpage{151}
+  \item {CMakeLists.txt}
+    \subitem {cmake\_minimum\_required}, \hyperpage{151}
+    \subitem {target\_link\_libraries}, \hyperpage{151}
+  \item {CNRectSolver}, \hyperpage{48}
+    \subitem {calculate\_error}, \hyperpage{51}
+    \subitem {CNRectSolver}, \hyperpage{50}
+    \subitem {domain}, \hyperpage{62}
+    \subitem {g}, \hyperpage{62}
+    \subitem {get\_potential\_value}, \hyperpage{52}
+    \subitem {guess}, \hyperpage{63}
+    \subitem {initialize\_guess\_with\_forward\_euler}, \hyperpage{53}
+    \subitem {solve}, \hyperpage{54}, \hyperpage{56}
+    \subitem {solve\_single\_time}, \hyperpage{57, 58}
+    \subitem {string\_info}, \hyperpage{63}
+    \subitem {temporal\_equation}, \hyperpage{59}
+    \subitem {update\_guess}, \hyperpage{61}
+  \item {config\_name}
+    \subitem {Parameters}, \hyperpage{119}
+  \item {ConfigParser}, \hyperpage{63}
+    \subitem {$\sim$ConfigParser}, \hyperpage{64}
+    \subitem {ConfigParser}, \hyperpage{64}
+    \subitem {get\_default}, \hyperpage{64}
+    \subitem {parse}, \hyperpage{65}
+  \item {CUDA\_use}
+    \subitem {BaseSweeper}, \hyperpage{45}
+    \subitem {GSweeper}, \hyperpage{95}
+    \subitem {HPSweeper}, \hyperpage{111}
+  \item {current\_grid}
+    \subitem {BaseDomain}, \hyperpage{22}
+    \subitem {RectangularDomain}, \hyperpage{137}
+  \item {current\_time\_index}
+    \subitem {BaseDomain}, \hyperpage{22}
+    \subitem {RectangularDomain}, \hyperpage{137}
+
+  \indexspace
+
+  \item {domain}
+    \subitem {CNRectSolver}, \hyperpage{62}
+    \subitem {FERectSolver}, \hyperpage{83}
+  \item {domain\_parameters}
+    \subitem {Parameters}, \hyperpage{119}
+  \item {domain\_type}
+    \subitem {DomainParameters}, \hyperpage{72}
+  \item {DomainParameters}, \hyperpage{72}
+    \subitem {domain\_type}, \hyperpage{72}
+    \subitem {n\_time}, \hyperpage{73}
+    \subitem {n\_x}, \hyperpage{73}
+    \subitem {n\_y}, \hyperpage{73}
+    \subitem {spatial\_parameters}, \hyperpage{73}
+    \subitem {time\_end}, \hyperpage{73}
+    \subitem {time\_start}, \hyperpage{73}
+  \item {dt}
+    \subitem {BaseDomain}, \hyperpage{22}
+    \subitem {RectangularDomain}, \hyperpage{137}
+
+  \indexspace
+
+  \item {end}
+    \subitem {BaseSweeper}, \hyperpage{45}
+    \subitem {GSweeper}, \hyperpage{95}
+    \subitem {HPSweeper}, \hyperpage{111}
+  \item {endpoint}
+    \subitem {BaseSweeper}, \hyperpage{46}
+    \subitem {GSweeper}, \hyperpage{96}
+    \subitem {HPSweeper}, \hyperpage{112}
+  \item {equation\_parameters}
+    \subitem {Parameters}, \hyperpage{120}
+  \item {EquationParameters}, \hyperpage{74}
+    \subitem {g}, \hyperpage{74}
+    \subitem {potential\_parameters}, \hyperpage{75}
+    \subitem {potential\_type}, \hyperpage{75}
+
+  \indexspace
+
+  \item {FERectSolver}, \hyperpage{75}
+    \subitem {domain}, \hyperpage{83}
+    \subitem {FERectSolver}, \hyperpage{78}
+    \subitem {g}, \hyperpage{83}
+    \subitem {get\_potential\_value}, \hyperpage{79}
+    \subitem {solve}, \hyperpage{79}
+    \subitem {solve\_single\_time}, \hyperpage{81}
+    \subitem {string\_info}, \hyperpage{84}
+    \subitem {temporal\_equation}, \hyperpage{82}
+  \item {float\_parameters}
+    \subitem {MainParameters}, \hyperpage{118}
+
+  \indexspace
+
+  \item {g}
+    \subitem {BaseSolver}, \hyperpage{31}
+    \subitem {CNRectSolver}, \hyperpage{62}
+    \subitem {EquationParameters}, \hyperpage{74}
+    \subitem {FERectSolver}, \hyperpage{83}
+  \item {generate\_directory\_name}
+    \subitem {BaseDomain}, \hyperpage{13}
+    \subitem {RectangularDomain}, \hyperpage{127}
+  \item {generate\_num\_list}
+    \subitem {BaseSweeper}, \hyperpage{42}
+    \subitem {GSweeper}, \hyperpage{90}
+    \subitem {HPSweeper}, \hyperpage{106}
+  \item {generate\_single\_txt\_file}
+    \subitem {BaseDomain}, \hyperpage{14}
+    \subitem {RectangularDomain}, \hyperpage{128}
+  \item {get\_current\_time\_index}
+    \subitem {BaseDomain}, \hyperpage{15}
+    \subitem {RectangularDomain}, \hyperpage{129}
+  \item {get\_default}
+    \subitem {ConfigParser}, \hyperpage{64}
+  \item {get\_dt}
+    \subitem {BaseDomain}, \hyperpage{15}
+    \subitem {RectangularDomain}, \hyperpage{129}
+  \item {get\_end}
+    \subitem {BaseSweeper}, \hyperpage{42}
+    \subitem {GSweeper}, \hyperpage{90}
+    \subitem {HPSweeper}, \hyperpage{106}
+  \item {get\_infinitesimal\_distance1}
+    \subitem {BaseDomain}, \hyperpage{16}
+    \subitem {BaseSpatialGrid}, \hyperpage{35}
+    \subitem {RectangularDomain}, \hyperpage{130}
+    \subitem {RectangularSpatialGrid}, \hyperpage{145}
+  \item {get\_infinitesimal\_distance2}
+    \subitem {BaseDomain}, \hyperpage{16}
+    \subitem {BaseSpatialGrid}, \hyperpage{35}
+    \subitem {RectangularDomain}, \hyperpage{130}
+    \subitem {RectangularSpatialGrid}, \hyperpage{145}
+  \item {get\_name}
+    \subitem {BasePotential}, \hyperpage{26}
+    \subitem {HarmonicPotential}, \hyperpage{101}
+  \item {get\_null\_gridpt}
+    \subitem {BaseDomain}, \hyperpage{17}
+    \subitem {RectangularDomain}, \hyperpage{131}
+  \item {get\_num\_grid\_1}
+    \subitem {BaseDomain}, \hyperpage{17}
+    \subitem {RectangularDomain}, \hyperpage{131}
+  \item {get\_num\_grid\_2}
+    \subitem {BaseDomain}, \hyperpage{18}
+    \subitem {RectangularDomain}, \hyperpage{132}
+  \item {get\_num\_times}
+    \subitem {BaseDomain}, \hyperpage{18}
+    \subitem {RectangularDomain}, \hyperpage{132}
+  \item {get\_number\_of\_pts}
+    \subitem {BaseSweeper}, \hyperpage{42}
+    \subitem {GSweeper}, \hyperpage{90}
+    \subitem {HPSweeper}, \hyperpage{106}
+  \item {get\_path}
+    \subitem {BaseDomain}, \hyperpage{19}
+    \subitem {RectangularDomain}, \hyperpage{133}
+  \item {get\_potential\_value}
+    \subitem {CNRectSolver}, \hyperpage{52}
+    \subitem {FERectSolver}, \hyperpage{79}
+  \item {get\_start}
+    \subitem {BaseSweeper}, \hyperpage{43}
+    \subitem {GSweeper}, \hyperpage{90}
+    \subitem {HPSweeper}, \hyperpage{106}
+  \item {get\_t\_end}
+    \subitem {BaseDomain}, \hyperpage{19}
+    \subitem {RectangularDomain}, \hyperpage{133}
+  \item {get\_t\_start}
+    \subitem {BaseDomain}, \hyperpage{19}
+    \subitem {RectangularDomain}, \hyperpage{133}
+  \item {get\_value\_from\_idx}
+    \subitem {BaseSweeper}, \hyperpage{43}
+    \subitem {GSweeper}, \hyperpage{91}
+    \subitem {HPSweeper}, \hyperpage{107}
+  \item {get\_x\_end}
+    \subitem {RectangularDomain}, \hyperpage{133}
+  \item {get\_x\_start}
+    \subitem {RectangularDomain}, \hyperpage{134}
+  \item {get\_y\_end}
+    \subitem {RectangularDomain}, \hyperpage{134}
+  \item {get\_y\_start}
+    \subitem {RectangularDomain}, \hyperpage{134}
+  \item {gpu\_limit}
+    \subitem {BaseSweeper}, \hyperpage{46}
+    \subitem {GSweeper}, \hyperpage{96}
+    \subitem {HPSweeper}, \hyperpage{112}
+  \item {gpu\_num}
+    \subitem {BaseSweeper}, \hyperpage{46}
+    \subitem {GSweeper}, \hyperpage{96}
+    \subitem {HPSweeper}, \hyperpage{112}
+  \item {GridPoint}, \hyperpage{84}
+    \subitem {$\sim$GridPoint}, \hyperpage{85}
+    \subitem {GridPoint}, \hyperpage{85}
+    \subitem {value}, \hyperpage{85}
+    \subitem {x}, \hyperpage{86}
+    \subitem {y}, \hyperpage{86}
+  \item {GSweeper}, \hyperpage{86}
+    \subitem {CUDA\_use}, \hyperpage{95}
+    \subitem {end}, \hyperpage{95}
+    \subitem {endpoint}, \hyperpage{96}
+    \subitem {generate\_num\_list}, \hyperpage{90}
+    \subitem {get\_end}, \hyperpage{90}
+    \subitem {get\_number\_of\_pts}, \hyperpage{90}
+    \subitem {get\_start}, \hyperpage{90}
+    \subitem {get\_value\_from\_idx}, \hyperpage{91}
+    \subitem {gpu\_limit}, \hyperpage{96}
+    \subitem {gpu\_num}, \hyperpage{96}
+    \subitem {GSweeper}, \hyperpage{89}
+    \subitem {MPI\_use}, \hyperpage{96}
+    \subitem {num}, \hyperpage{96}
+    \subitem {num\_list}, \hyperpage{96}
+    \subitem {print\_info}, \hyperpage{97}
+    \subitem {rank}, \hyperpage{97}
+    \subitem {run}, \hyperpage{91}
+    \subitem {save\_data}, \hyperpage{97}
+    \subitem {set\_CUDA\_info}, \hyperpage{93}
+    \subitem {set\_MPI\_info}, \hyperpage{94}
+    \subitem {set\_print\_info}, \hyperpage{94}
+    \subitem {set\_save\_data}, \hyperpage{95}
+    \subitem {size}, \hyperpage{97}
+    \subitem {start}, \hyperpage{97}
+  \item {guess}
+    \subitem {CNRectSolver}, \hyperpage{63}
+
+  \indexspace
+
+  \item {HarmonicPotential}, \hyperpage{98}
+    \subitem {calcualte\_potential\_in\_grid}, \hyperpage{100}
+    \subitem {get\_name}, \hyperpage{101}
+    \subitem {HarmonicPotential}, \hyperpage{100}
+    \subitem {name}, \hyperpage{102}
+    \subitem {omega\_x}, \hyperpage{102}
+    \subitem {omega\_y}, \hyperpage{102}
+    \subitem {potential\_function}, \hyperpage{101}
+  \item {HPSweeper}, \hyperpage{103}
+    \subitem {CUDA\_use}, \hyperpage{111}
+    \subitem {end}, \hyperpage{111}
+    \subitem {endpoint}, \hyperpage{112}
+    \subitem {generate\_num\_list}, \hyperpage{106}
+    \subitem {get\_end}, \hyperpage{106}
+    \subitem {get\_number\_of\_pts}, \hyperpage{106}
+    \subitem {get\_start}, \hyperpage{106}
+    \subitem {get\_value\_from\_idx}, \hyperpage{107}
+    \subitem {gpu\_limit}, \hyperpage{112}
+    \subitem {gpu\_num}, \hyperpage{112}
+    \subitem {HPSweeper}, \hyperpage{105}
+    \subitem {MPI\_use}, \hyperpage{112}
+    \subitem {num}, \hyperpage{112}
+    \subitem {num\_list}, \hyperpage{112}
+    \subitem {print\_info}, \hyperpage{113}
+    \subitem {rank}, \hyperpage{113}
+    \subitem {run}, \hyperpage{107}
+    \subitem {save\_data}, \hyperpage{113}
+    \subitem {set\_CUDA\_info}, \hyperpage{109}
+    \subitem {set\_MPI\_info}, \hyperpage{110}
+    \subitem {set\_print\_info}, \hyperpage{110}
+    \subitem {set\_save\_data}, \hyperpage{111}
+    \subitem {size}, \hyperpage{113}
+    \subitem {start}, \hyperpage{113}
+
+  \indexspace
+
+  \item {infinitesimal\_distance\_1}
+    \subitem {BaseSpatialGrid}, \hyperpage{37}
+    \subitem {RectangularSpatialGrid}, \hyperpage{146}
+  \item {infinitesimal\_distance\_2}
+    \subitem {BaseSpatialGrid}, \hyperpage{37}
+    \subitem {RectangularSpatialGrid}, \hyperpage{146}
+  \item {init\_cond\_parameters}
+    \subitem {InitialConditionParameters}, \hyperpage{117}
+    \subitem {Parameters}, \hyperpage{120}
+  \item {init\_cond\_type}
+    \subitem {InitialConditionParameters}, \hyperpage{117}
+  \item {initial\_condition\_function}
+    \subitem {InitialCondition}, \hyperpage{116}
+  \item {InitialCondition}, \hyperpage{114}
+    \subitem {assign\_to\_domain}, \hyperpage{115}
+    \subitem {initial\_condition\_function}, \hyperpage{116}
+    \subitem {InitialCondition}, \hyperpage{114}
+  \item {InitialConditionParameters}, \hyperpage{116}
+    \subitem {init\_cond\_parameters}, \hyperpage{117}
+    \subitem {init\_cond\_type}, \hyperpage{117}
+  \item {initialize\_guess\_with\_forward\_euler}
+    \subitem {CNRectSolver}, \hyperpage{53}
+  \item {int\_parameters}
+    \subitem {MainParameters}, \hyperpage{118}
+    \subitem {SolverParameters}, \hyperpage{149}
+  \item {is\_close}
+    \subitem {utils.cpp}, \hyperpage{184}
+    \subitem {utils.h}, \hyperpage{185}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.cpp}, \hyperpage{163}
+  \item {main.cpp}
+    \subitem {main}, \hyperpage{163}
+  \item {main\_parameters}
+    \subitem {Parameters}, \hyperpage{120}
+  \item {MainParameters}, \hyperpage{117}
+    \subitem {calculation\_type}, \hyperpage{118}
+    \subitem {float\_parameters}, \hyperpage{118}
+    \subitem {int\_parameters}, \hyperpage{118}
+  \item {method}
+    \subitem {SolverParameters}, \hyperpage{149}
+  \item {MPI\_use}
+    \subitem {BaseSweeper}, \hyperpage{46}
+    \subitem {GSweeper}, \hyperpage{96}
+    \subitem {HPSweeper}, \hyperpage{112}
+
+  \indexspace
+
+  \item {n\_time}
+    \subitem {DomainParameters}, \hyperpage{73}
+  \item {n\_x}
+    \subitem {DomainParameters}, \hyperpage{73}
+  \item {n\_y}
+    \subitem {DomainParameters}, \hyperpage{73}
+  \item {name}
+    \subitem {BasePotential}, \hyperpage{27}
+    \subitem {HarmonicPotential}, \hyperpage{102}
+  \item {normalize}
+    \subitem {BaseDomain}, \hyperpage{19}
+    \subitem {BaseSpatialGrid}, \hyperpage{36}
+    \subitem {RectangularDomain}, \hyperpage{134}
+    \subitem {RectangularSpatialGrid}, \hyperpage{145}
+  \item {null\_gridpt}
+    \subitem {BaseDomain}, \hyperpage{22}
+    \subitem {RectangularDomain}, \hyperpage{138}
+  \item {num}
+    \subitem {BaseSweeper}, \hyperpage{46}
+    \subitem {GSweeper}, \hyperpage{96}
+    \subitem {HPSweeper}, \hyperpage{112}
+  \item {num\_grid\_1}
+    \subitem {BaseDomain}, \hyperpage{22}
+    \subitem {BaseSpatialGrid}, \hyperpage{37}
+    \subitem {RectangularDomain}, \hyperpage{138}
+    \subitem {RectangularSpatialGrid}, \hyperpage{146}
+  \item {num\_grid\_2}
+    \subitem {BaseDomain}, \hyperpage{22}
+    \subitem {BaseSpatialGrid}, \hyperpage{37}
+    \subitem {RectangularDomain}, \hyperpage{138}
+    \subitem {RectangularSpatialGrid}, \hyperpage{147}
+  \item {num\_list}
+    \subitem {BaseSweeper}, \hyperpage{46}
+    \subitem {GSweeper}, \hyperpage{96}
+    \subitem {HPSweeper}, \hyperpage{112}
+  \item {num\_times}
+    \subitem {BaseDomain}, \hyperpage{23}
+    \subitem {RectangularDomain}, \hyperpage{138}
+
+  \indexspace
+
+  \item {old\_grid}
+    \subitem {BaseDomain}, \hyperpage{23}
+    \subitem {RectangularDomain}, \hyperpage{138}
+  \item {omega\_x}
+    \subitem {HarmonicPotential}, \hyperpage{102}
+  \item {omega\_y}
+    \subitem {HarmonicPotential}, \hyperpage{102}
+
+  \indexspace
+
+  \item {Parameters}, \hyperpage{119}
+    \subitem {config\_name}, \hyperpage{119}
+    \subitem {domain\_parameters}, \hyperpage{119}
+    \subitem {equation\_parameters}, \hyperpage{120}
+    \subitem {init\_cond\_parameters}, \hyperpage{120}
+    \subitem {main\_parameters}, \hyperpage{120}
+    \subitem {solver\_parameters}, \hyperpage{120}
+  \item {parse}
+    \subitem {ConfigParser}, \hyperpage{65}
+  \item {PATH}
+    \subitem {BaseDomain}, \hyperpage{23}
+    \subitem {RectangularDomain}, \hyperpage{138}
+  \item {potential\_function}
+    \subitem {BasePotential}, \hyperpage{26}
+    \subitem {HarmonicPotential}, \hyperpage{101}
+  \item {potential\_grid}
+    \subitem {RectangularDomain}, \hyperpage{139}
+  \item {potential\_parameters}
+    \subitem {EquationParameters}, \hyperpage{75}
+  \item {potential\_type}
+    \subitem {EquationParameters}, \hyperpage{75}
+  \item {print\_directory\_info}
+    \subitem {BaseDomain}, \hyperpage{20}
+    \subitem {RectangularDomain}, \hyperpage{135}
+  \item {print\_info}
+    \subitem {BaseSweeper}, \hyperpage{47}
+    \subitem {GSweeper}, \hyperpage{97}
+    \subitem {HPSweeper}, \hyperpage{113}
+    \subitem {SolverParameters}, \hyperpage{149}
+
+  \indexspace
+
+  \item {rank}
+    \subitem {BaseSweeper}, \hyperpage{47}
+    \subitem {GSweeper}, \hyperpage{97}
+    \subitem {HPSweeper}, \hyperpage{113}
+  \item {RectangularDomain}, \hyperpage{121}
+    \subitem {$\sim$RectangularDomain}, \hyperpage{125}
+    \subitem {assign\_initial\_value}, \hyperpage{125}
+    \subitem {assign\_wave\_function}, \hyperpage{126}
+    \subitem {at}, \hyperpage{126}
+    \subitem {current\_grid}, \hyperpage{137}
+    \subitem {current\_time\_index}, \hyperpage{137}
+    \subitem {dt}, \hyperpage{137}
+    \subitem {generate\_directory\_name}, \hyperpage{127}
+    \subitem {generate\_single\_txt\_file}, \hyperpage{128}
+    \subitem {get\_current\_time\_index}, \hyperpage{129}
+    \subitem {get\_dt}, \hyperpage{129}
+    \subitem {get\_infinitesimal\_distance1}, \hyperpage{130}
+    \subitem {get\_infinitesimal\_distance2}, \hyperpage{130}
+    \subitem {get\_null\_gridpt}, \hyperpage{131}
+    \subitem {get\_num\_grid\_1}, \hyperpage{131}
+    \subitem {get\_num\_grid\_2}, \hyperpage{132}
+    \subitem {get\_num\_times}, \hyperpage{132}
+    \subitem {get\_path}, \hyperpage{133}
+    \subitem {get\_t\_end}, \hyperpage{133}
+    \subitem {get\_t\_start}, \hyperpage{133}
+    \subitem {get\_x\_end}, \hyperpage{133}
+    \subitem {get\_x\_start}, \hyperpage{134}
+    \subitem {get\_y\_end}, \hyperpage{134}
+    \subitem {get\_y\_start}, \hyperpage{134}
+    \subitem {normalize}, \hyperpage{134}
+    \subitem {null\_gridpt}, \hyperpage{138}
+    \subitem {num\_grid\_1}, \hyperpage{138}
+    \subitem {num\_grid\_2}, \hyperpage{138}
+    \subitem {num\_times}, \hyperpage{138}
+    \subitem {old\_grid}, \hyperpage{138}
+    \subitem {PATH}, \hyperpage{138}
+    \subitem {potential\_grid}, \hyperpage{139}
+    \subitem {print\_directory\_info}, \hyperpage{135}
+    \subitem {RectangularDomain}, \hyperpage{124}
+    \subitem {reset}, \hyperpage{135}
+    \subitem {t\_end}, \hyperpage{139}
+    \subitem {t\_start}, \hyperpage{139}
+    \subitem {time\_at}, \hyperpage{136}
+    \subitem {update\_time}, \hyperpage{136}
+    \subitem {x\_end}, \hyperpage{139}
+    \subitem {x\_start}, \hyperpage{139}
+    \subitem {y\_end}, \hyperpage{139}
+    \subitem {y\_start}, \hyperpage{140}
+  \item {RectangularSpatialGrid}, \hyperpage{140}
+    \subitem {$\sim$RectangularSpatialGrid}, \hyperpage{144}
+    \subitem {at}, \hyperpage{144}
+    \subitem {get\_infinitesimal\_distance1}, \hyperpage{145}
+    \subitem {get\_infinitesimal\_distance2}, \hyperpage{145}
+    \subitem {infinitesimal\_distance\_1}, \hyperpage{146}
+    \subitem {infinitesimal\_distance\_2}, \hyperpage{146}
+    \subitem {normalize}, \hyperpage{145}
+    \subitem {num\_grid\_1}, \hyperpage{146}
+    \subitem {num\_grid\_2}, \hyperpage{147}
+    \subitem {RectangularSpatialGrid}, \hyperpage{143}
+    \subitem {spatial\_data}, \hyperpage{147}
+    \subitem {x\_end}, \hyperpage{147}
+    \subitem {x\_start}, \hyperpage{147}
+    \subitem {y\_end}, \hyperpage{147}
+    \subitem {y\_start}, \hyperpage{147}
+  \item {reset}
+    \subitem {BaseDomain}, \hyperpage{20}
+    \subitem {RectangularDomain}, \hyperpage{135}
+  \item {run}
+    \subitem {GSweeper}, \hyperpage{91}
+    \subitem {HPSweeper}, \hyperpage{107}
+  \item {run\_parallel}
+    \subitem {SolverParameters}, \hyperpage{149}
+
+  \indexspace
+
+  \item {save\_data}
+    \subitem {BaseSweeper}, \hyperpage{47}
+    \subitem {GSweeper}, \hyperpage{97}
+    \subitem {HPSweeper}, \hyperpage{113}
+    \subitem {SolverParameters}, \hyperpage{149}
+  \item {set\_CUDA\_info}
+    \subitem {BaseSweeper}, \hyperpage{43}
+    \subitem {GSweeper}, \hyperpage{93}
+    \subitem {HPSweeper}, \hyperpage{109}
+  \item {set\_MPI\_info}
+    \subitem {BaseSweeper}, \hyperpage{44}
+    \subitem {GSweeper}, \hyperpage{94}
+    \subitem {HPSweeper}, \hyperpage{110}
+  \item {set\_print\_info}
+    \subitem {BaseSweeper}, \hyperpage{44}
+    \subitem {GSweeper}, \hyperpage{94}
+    \subitem {HPSweeper}, \hyperpage{110}
+  \item {set\_save\_data}
+    \subitem {BaseSweeper}, \hyperpage{45}
+    \subitem {GSweeper}, \hyperpage{95}
+    \subitem {HPSweeper}, \hyperpage{111}
+  \item {size}
+    \subitem {BaseSweeper}, \hyperpage{47}
+    \subitem {GSweeper}, \hyperpage{97}
+    \subitem {HPSweeper}, \hyperpage{113}
+  \item {solve}
+    \subitem {CNRectSolver}, \hyperpage{54}, \hyperpage{56}
+    \subitem {FERectSolver}, \hyperpage{79}
+  \item {solve\_single\_time}
+    \subitem {CNRectSolver}, \hyperpage{57, 58}
+    \subitem {FERectSolver}, \hyperpage{81}
+  \item {solver\_parameters}
+    \subitem {Parameters}, \hyperpage{120}
+    \subitem {SolverParameters}, \hyperpage{149}
+  \item {SolverParameters}, \hyperpage{148}
+    \subitem {int\_parameters}, \hyperpage{149}
+    \subitem {method}, \hyperpage{149}
+    \subitem {print\_info}, \hyperpage{149}
+    \subitem {run\_parallel}, \hyperpage{149}
+    \subitem {save\_data}, \hyperpage{149}
+    \subitem {solver\_parameters}, \hyperpage{149}
+  \item {spatial\_data}
+    \subitem {BaseSpatialGrid}, \hyperpage{37}
+    \subitem {RectangularSpatialGrid}, \hyperpage{147}
+  \item {spatial\_parameters}
+    \subitem {DomainParameters}, \hyperpage{73}
+  \item {start}
+    \subitem {BaseSweeper}, \hyperpage{47}
+    \subitem {GSweeper}, \hyperpage{97}
+    \subitem {HPSweeper}, \hyperpage{113}
+  \item {string\_info}
+    \subitem {BaseSolver}, \hyperpage{31}
+    \subitem {CNRectSolver}, \hyperpage{63}
+    \subitem {FERectSolver}, \hyperpage{84}
+
+  \indexspace
+
+  \item {t\_end}
+    \subitem {BaseDomain}, \hyperpage{23}
+    \subitem {RectangularDomain}, \hyperpage{139}
+  \item {t\_start}
+    \subitem {BaseDomain}, \hyperpage{23}
+    \subitem {RectangularDomain}, \hyperpage{139}
+  \item {target\_link\_libraries}
+    \subitem {CMakeLists.txt}, \hyperpage{151}
+  \item {temporal\_equation}
+    \subitem {BaseSolver}, \hyperpage{30}
+    \subitem {CNRectSolver}, \hyperpage{59}
+    \subitem {FERectSolver}, \hyperpage{82}
+  \item {time\_at}
+    \subitem {BaseDomain}, \hyperpage{21}
+    \subitem {RectangularDomain}, \hyperpage{136}
+  \item {time\_end}
+    \subitem {DomainParameters}, \hyperpage{73}
+  \item {time\_start}
+    \subitem {DomainParameters}, \hyperpage{73}
+
+  \indexspace
+
+  \item {update\_guess}
+    \subitem {CNRectSolver}, \hyperpage{61}
+  \item {update\_time}
+    \subitem {BaseDomain}, \hyperpage{21}
+    \subitem {RectangularDomain}, \hyperpage{136}
+  \item {utils.cpp}
+    \subitem {is\_close}, \hyperpage{184}
+  \item {utils.h}
+    \subitem {is\_close}, \hyperpage{185}
+
+  \indexspace
+
+  \item {value}
+    \subitem {GridPoint}, \hyperpage{85}
+
+  \indexspace
+
+  \item {x}
+    \subitem {GridPoint}, \hyperpage{86}
+  \item {x\_end}
+    \subitem {RectangularDomain}, \hyperpage{139}
+    \subitem {RectangularSpatialGrid}, \hyperpage{147}
+  \item {x\_start}
+    \subitem {RectangularDomain}, \hyperpage{139}
+    \subitem {RectangularSpatialGrid}, \hyperpage{147}
+
+  \indexspace
+
+  \item {y}
+    \subitem {GridPoint}, \hyperpage{86}
+  \item {y\_end}
+    \subitem {RectangularDomain}, \hyperpage{139}
+    \subitem {RectangularSpatialGrid}, \hyperpage{147}
+  \item {y\_start}
+    \subitem {RectangularDomain}, \hyperpage{140}
+    \subitem {RectangularSpatialGrid}, \hyperpage{147}
+
+\end{theindex}

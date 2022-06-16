@@ -1,0 +1,423 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Domain Class Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{10}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Constructor \& Destructor Documentation}{10}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}BaseDomain()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{11}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}BaseDomain()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{11}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}$\sim $BaseDomain()}{11}{subsubsection.4.1.2.3}%
+\contentsline {subsection}{\numberline {4.1.3}Member Function Documentation}{11}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}assign\_initial\_value()}{11}{subsubsection.4.1.3.1}%
+\contentsline {subsubsection}{\numberline {4.1.3.2}assign\_wave\_function()}{12}{subsubsection.4.1.3.2}%
+\contentsline {subsubsection}{\numberline {4.1.3.3}at()}{13}{subsubsection.4.1.3.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.4}generate\_directory\_name()}{13}{subsubsection.4.1.3.4}%
+\contentsline {subsubsection}{\numberline {4.1.3.5}generate\_single\_txt\_file()}{14}{subsubsection.4.1.3.5}%
+\contentsline {subsubsection}{\numberline {4.1.3.6}get\_current\_time\_index()}{15}{subsubsection.4.1.3.6}%
+\contentsline {subsubsection}{\numberline {4.1.3.7}get\_dt()}{15}{subsubsection.4.1.3.7}%
+\contentsline {subsubsection}{\numberline {4.1.3.8}get\_infinitesimal\_distance1()}{16}{subsubsection.4.1.3.8}%
+\contentsline {subsubsection}{\numberline {4.1.3.9}get\_infinitesimal\_distance2()}{16}{subsubsection.4.1.3.9}%
+\contentsline {subsubsection}{\numberline {4.1.3.10}get\_null\_gridpt()}{17}{subsubsection.4.1.3.10}%
+\contentsline {subsubsection}{\numberline {4.1.3.11}get\_num\_grid\_1()}{17}{subsubsection.4.1.3.11}%
+\contentsline {subsubsection}{\numberline {4.1.3.12}get\_num\_grid\_2()}{18}{subsubsection.4.1.3.12}%
+\contentsline {subsubsection}{\numberline {4.1.3.13}get\_num\_times()}{18}{subsubsection.4.1.3.13}%
+\contentsline {subsubsection}{\numberline {4.1.3.14}get\_path()}{19}{subsubsection.4.1.3.14}%
+\contentsline {subsubsection}{\numberline {4.1.3.15}get\_t\_end()}{19}{subsubsection.4.1.3.15}%
+\contentsline {subsubsection}{\numberline {4.1.3.16}get\_t\_start()}{19}{subsubsection.4.1.3.16}%
+\contentsline {subsubsection}{\numberline {4.1.3.17}normalize()}{20}{subsubsection.4.1.3.17}%
+\contentsline {subsubsection}{\numberline {4.1.3.18}print\_directory\_info()}{20}{subsubsection.4.1.3.18}%
+\contentsline {subsubsection}{\numberline {4.1.3.19}reset()}{21}{subsubsection.4.1.3.19}%
+\contentsline {subsubsection}{\numberline {4.1.3.20}time\_at()}{21}{subsubsection.4.1.3.20}%
+\contentsline {subsubsection}{\numberline {4.1.3.21}update\_time()}{21}{subsubsection.4.1.3.21}%
+\contentsline {subsection}{\numberline {4.1.4}Member Data Documentation}{22}{subsection.4.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.4.1}current\_grid}{22}{subsubsection.4.1.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.4.2}current\_time\_index}{22}{subsubsection.4.1.4.2}%
+\contentsline {subsubsection}{\numberline {4.1.4.3}dt}{22}{subsubsection.4.1.4.3}%
+\contentsline {subsubsection}{\numberline {4.1.4.4}null\_gridpt}{22}{subsubsection.4.1.4.4}%
+\contentsline {subsubsection}{\numberline {4.1.4.5}num\_grid\_1}{22}{subsubsection.4.1.4.5}%
+\contentsline {subsubsection}{\numberline {4.1.4.6}num\_grid\_2}{23}{subsubsection.4.1.4.6}%
+\contentsline {subsubsection}{\numberline {4.1.4.7}num\_times}{23}{subsubsection.4.1.4.7}%
+\contentsline {subsubsection}{\numberline {4.1.4.8}old\_grid}{23}{subsubsection.4.1.4.8}%
+\contentsline {subsubsection}{\numberline {4.1.4.9}PATH}{23}{subsubsection.4.1.4.9}%
+\contentsline {subsubsection}{\numberline {4.1.4.10}t\_end}{23}{subsubsection.4.1.4.10}%
+\contentsline {subsubsection}{\numberline {4.1.4.11}t\_start}{23}{subsubsection.4.1.4.11}%
+\contentsline {section}{\numberline {4.2}Base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Potential Class Reference}{24}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{25}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Constructor \& Destructor Documentation}{25}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}BasePotential()}{25}{subsubsection.4.2.2.1}%
+\contentsline {subsection}{\numberline {4.2.3}Member Function Documentation}{25}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.1}calcualte\_potential\_in\_grid()}{25}{subsubsection.4.2.3.1}%
+\contentsline {subsubsection}{\numberline {4.2.3.2}get\_name()}{26}{subsubsection.4.2.3.2}%
+\contentsline {subsubsection}{\numberline {4.2.3.3}potential\_function()}{26}{subsubsection.4.2.3.3}%
+\contentsline {subsection}{\numberline {4.2.4}Member Data Documentation}{27}{subsection.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.4.1}name}{27}{subsubsection.4.2.4.1}%
+\contentsline {section}{\numberline {4.3}Base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Solver Class Reference}{28}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{29}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Constructor \& Destructor Documentation}{29}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}BaseSolver()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{30}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}BaseSolver()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{30}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}$\sim $BaseSolver()}{30}{subsubsection.4.3.2.3}%
+\contentsline {subsection}{\numberline {4.3.3}Member Function Documentation}{30}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}temporal\_equation()}{30}{subsubsection.4.3.3.1}%
+\contentsline {subsection}{\numberline {4.3.4}Member Data Documentation}{31}{subsection.4.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.4.1}g}{31}{subsubsection.4.3.4.1}%
+\contentsline {subsubsection}{\numberline {4.3.4.2}string\_info}{31}{subsubsection.4.3.4.2}%
+\contentsline {section}{\numberline {4.4}Base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Spatial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grid Class Reference}{31}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{33}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Constructor \& Destructor Documentation}{33}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}BaseSpatialGrid()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{34}{subsubsection.4.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.4.2.2}BaseSpatialGrid()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{34}{subsubsection.4.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.3}$\sim $BaseSpatialGrid()}{34}{subsubsection.4.4.2.3}%
+\contentsline {subsection}{\numberline {4.4.3}Member Function Documentation}{34}{subsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.1}at()}{35}{subsubsection.4.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.4.3.2}get\_infinitesimal\_distance1()}{35}{subsubsection.4.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.4.3.3}get\_infinitesimal\_distance2()}{36}{subsubsection.4.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.4}normalize()}{36}{subsubsection.4.4.3.4}%
+\contentsline {subsection}{\numberline {4.4.4}Member Data Documentation}{37}{subsection.4.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.4.1}infinitesimal\_distance\_1}{37}{subsubsection.4.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.4.2}infinitesimal\_distance\_2}{37}{subsubsection.4.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.4.3}num\_grid\_1}{37}{subsubsection.4.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.4.4}num\_grid\_2}{37}{subsubsection.4.4.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.4.5}spatial\_data}{38}{subsubsection.4.4.4.5}%
+\contentsline {section}{\numberline {4.5}Base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sweeper Class Reference}{38}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{41}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Constructor \& Destructor Documentation}{41}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}BaseSweeper()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{41}{subsubsection.4.5.2.1}%
+\contentsline {subsubsection}{\numberline {4.5.2.2}BaseSweeper()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{41}{subsubsection.4.5.2.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.3}$\sim $BaseSweeper()}{42}{subsubsection.4.5.2.3}%
+\contentsline {subsection}{\numberline {4.5.3}Member Function Documentation}{42}{subsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.1}generate\_num\_list()}{42}{subsubsection.4.5.3.1}%
+\contentsline {subsubsection}{\numberline {4.5.3.2}get\_end()}{42}{subsubsection.4.5.3.2}%
+\contentsline {subsubsection}{\numberline {4.5.3.3}get\_number\_of\_pts()}{43}{subsubsection.4.5.3.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.4}get\_start()}{43}{subsubsection.4.5.3.4}%
+\contentsline {subsubsection}{\numberline {4.5.3.5}get\_value\_from\_idx()}{43}{subsubsection.4.5.3.5}%
+\contentsline {subsubsection}{\numberline {4.5.3.6}set\_CUDA\_info()}{44}{subsubsection.4.5.3.6}%
+\contentsline {subsubsection}{\numberline {4.5.3.7}set\_MPI\_info()}{44}{subsubsection.4.5.3.7}%
+\contentsline {subsubsection}{\numberline {4.5.3.8}set\_print\_info()}{45}{subsubsection.4.5.3.8}%
+\contentsline {subsubsection}{\numberline {4.5.3.9}set\_save\_data()}{45}{subsubsection.4.5.3.9}%
+\contentsline {subsection}{\numberline {4.5.4}Member Data Documentation}{45}{subsection.4.5.4}%
+\contentsline {subsubsection}{\numberline {4.5.4.1}CUDA\_use}{45}{subsubsection.4.5.4.1}%
+\contentsline {subsubsection}{\numberline {4.5.4.2}end}{46}{subsubsection.4.5.4.2}%
+\contentsline {subsubsection}{\numberline {4.5.4.3}endpoint}{46}{subsubsection.4.5.4.3}%
+\contentsline {subsubsection}{\numberline {4.5.4.4}gpu\_limit}{46}{subsubsection.4.5.4.4}%
+\contentsline {subsubsection}{\numberline {4.5.4.5}gpu\_num}{46}{subsubsection.4.5.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.4.6}MPI\_use}{46}{subsubsection.4.5.4.6}%
+\contentsline {subsubsection}{\numberline {4.5.4.7}num}{46}{subsubsection.4.5.4.7}%
+\contentsline {subsubsection}{\numberline {4.5.4.8}num\_list}{47}{subsubsection.4.5.4.8}%
+\contentsline {subsubsection}{\numberline {4.5.4.9}print\_info}{47}{subsubsection.4.5.4.9}%
+\contentsline {subsubsection}{\numberline {4.5.4.10}rank}{47}{subsubsection.4.5.4.10}%
+\contentsline {subsubsection}{\numberline {4.5.4.11}save\_data}{47}{subsubsection.4.5.4.11}%
+\contentsline {subsubsection}{\numberline {4.5.4.12}size}{47}{subsubsection.4.5.4.12}%
+\contentsline {subsubsection}{\numberline {4.5.4.13}start}{47}{subsubsection.4.5.4.13}%
+\contentsline {section}{\numberline {4.6}C\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Solver Class Reference}{48}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{50}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Constructor \& Destructor Documentation}{50}{subsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.2.1}CNRectSolver()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{50}{subsubsection.4.6.2.1}%
+\contentsline {subsubsection}{\numberline {4.6.2.2}CNRectSolver()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{50}{subsubsection.4.6.2.2}%
+\contentsline {subsection}{\numberline {4.6.3}Member Function Documentation}{51}{subsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.3.1}calculate\_error()}{51}{subsubsection.4.6.3.1}%
+\contentsline {subsubsection}{\numberline {4.6.3.2}get\_potential\_value()}{52}{subsubsection.4.6.3.2}%
+\contentsline {subsubsection}{\numberline {4.6.3.3}initialize\_guess\_with\_forward\_euler()}{53}{subsubsection.4.6.3.3}%
+\contentsline {subsubsection}{\numberline {4.6.3.4}solve()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{54}{subsubsection.4.6.3.4}%
+\contentsline {subsubsection}{\numberline {4.6.3.5}solve()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{56}{subsubsection.4.6.3.5}%
+\contentsline {subsubsection}{\numberline {4.6.3.6}solve\_single\_time()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{57}{subsubsection.4.6.3.6}%
+\contentsline {subsubsection}{\numberline {4.6.3.7}solve\_single\_time()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{58}{subsubsection.4.6.3.7}%
+\contentsline {subsubsection}{\numberline {4.6.3.8}temporal\_equation()}{60}{subsubsection.4.6.3.8}%
+\contentsline {subsubsection}{\numberline {4.6.3.9}update\_guess()}{61}{subsubsection.4.6.3.9}%
+\contentsline {subsection}{\numberline {4.6.4}Member Data Documentation}{62}{subsection.4.6.4}%
+\contentsline {subsubsection}{\numberline {4.6.4.1}domain}{62}{subsubsection.4.6.4.1}%
+\contentsline {subsubsection}{\numberline {4.6.4.2}g}{63}{subsubsection.4.6.4.2}%
+\contentsline {subsubsection}{\numberline {4.6.4.3}guess}{63}{subsubsection.4.6.4.3}%
+\contentsline {subsubsection}{\numberline {4.6.4.4}string\_info}{63}{subsubsection.4.6.4.4}%
+\contentsline {section}{\numberline {4.7}Config\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parser Class Reference}{63}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Detailed Description}{64}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Constructor \& Destructor Documentation}{64}{subsection.4.7.2}%
+\contentsline {subsubsection}{\numberline {4.7.2.1}ConfigParser()}{64}{subsubsection.4.7.2.1}%
+\contentsline {subsubsection}{\numberline {4.7.2.2}$\sim $ConfigParser()}{64}{subsubsection.4.7.2.2}%
+\contentsline {subsection}{\numberline {4.7.3}Member Function Documentation}{64}{subsection.4.7.3}%
+\contentsline {subsubsection}{\numberline {4.7.3.1}get\_default()}{65}{subsubsection.4.7.3.1}%
+\contentsline {subsubsection}{\numberline {4.7.3.2}parse()}{66}{subsubsection.4.7.3.2}%
+\contentsline {section}{\numberline {4.8}Domain\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parameters Class Reference}{72}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Detailed Description}{72}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Member Data Documentation}{72}{subsection.4.8.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.1}domain\_type}{73}{subsubsection.4.8.2.1}%
+\contentsline {subsubsection}{\numberline {4.8.2.2}n\_time}{73}{subsubsection.4.8.2.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.3}n\_x}{73}{subsubsection.4.8.2.3}%
+\contentsline {subsubsection}{\numberline {4.8.2.4}n\_y}{73}{subsubsection.4.8.2.4}%
+\contentsline {subsubsection}{\numberline {4.8.2.5}spatial\_parameters}{73}{subsubsection.4.8.2.5}%
+\contentsline {subsubsection}{\numberline {4.8.2.6}time\_end}{73}{subsubsection.4.8.2.6}%
+\contentsline {subsubsection}{\numberline {4.8.2.7}time\_start}{74}{subsubsection.4.8.2.7}%
+\contentsline {section}{\numberline {4.9}Equation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parameters Class Reference}{74}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Detailed Description}{74}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}Member Data Documentation}{74}{subsection.4.9.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.1}g}{75}{subsubsection.4.9.2.1}%
+\contentsline {subsubsection}{\numberline {4.9.2.2}potential\_parameters}{75}{subsubsection.4.9.2.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.3}potential\_type}{75}{subsubsection.4.9.2.3}%
+\contentsline {section}{\numberline {4.10}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Solver Class Reference}{75}{section.4.10}%
+\contentsline {subsection}{\numberline {4.10.1}Detailed Description}{78}{subsection.4.10.1}%
+\contentsline {subsection}{\numberline {4.10.2}Constructor \& Destructor Documentation}{78}{subsection.4.10.2}%
+\contentsline {subsubsection}{\numberline {4.10.2.1}FERectSolver()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{78}{subsubsection.4.10.2.1}%
+\contentsline {subsubsection}{\numberline {4.10.2.2}FERectSolver()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{78}{subsubsection.4.10.2.2}%
+\contentsline {subsection}{\numberline {4.10.3}Member Function Documentation}{79}{subsection.4.10.3}%
+\contentsline {subsubsection}{\numberline {4.10.3.1}get\_potential\_value()}{79}{subsubsection.4.10.3.1}%
+\contentsline {subsubsection}{\numberline {4.10.3.2}solve()}{80}{subsubsection.4.10.3.2}%
+\contentsline {subsubsection}{\numberline {4.10.3.3}solve\_single\_time()}{81}{subsubsection.4.10.3.3}%
+\contentsline {subsubsection}{\numberline {4.10.3.4}temporal\_equation()}{82}{subsubsection.4.10.3.4}%
+\contentsline {subsection}{\numberline {4.10.4}Member Data Documentation}{83}{subsection.4.10.4}%
+\contentsline {subsubsection}{\numberline {4.10.4.1}domain}{83}{subsubsection.4.10.4.1}%
+\contentsline {subsubsection}{\numberline {4.10.4.2}g}{84}{subsubsection.4.10.4.2}%
+\contentsline {subsubsection}{\numberline {4.10.4.3}string\_info}{84}{subsubsection.4.10.4.3}%
+\contentsline {section}{\numberline {4.11}Grid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Point Class Reference}{84}{section.4.11}%
+\contentsline {subsection}{\numberline {4.11.1}Detailed Description}{85}{subsection.4.11.1}%
+\contentsline {subsection}{\numberline {4.11.2}Constructor \& Destructor Documentation}{85}{subsection.4.11.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.1}GridPoint()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{85}{subsubsection.4.11.2.1}%
+\contentsline {subsubsection}{\numberline {4.11.2.2}GridPoint()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{85}{subsubsection.4.11.2.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.3}$\sim $GridPoint()}{85}{subsubsection.4.11.2.3}%
+\contentsline {subsection}{\numberline {4.11.3}Member Data Documentation}{85}{subsection.4.11.3}%
+\contentsline {subsubsection}{\numberline {4.11.3.1}value}{86}{subsubsection.4.11.3.1}%
+\contentsline {subsubsection}{\numberline {4.11.3.2}x}{86}{subsubsection.4.11.3.2}%
+\contentsline {subsubsection}{\numberline {4.11.3.3}y}{86}{subsubsection.4.11.3.3}%
+\contentsline {section}{\numberline {4.12}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sweeper Class Reference}{86}{section.4.12}%
+\contentsline {subsection}{\numberline {4.12.1}Detailed Description}{89}{subsection.4.12.1}%
+\contentsline {subsection}{\numberline {4.12.2}Constructor \& Destructor Documentation}{89}{subsection.4.12.2}%
+\contentsline {subsubsection}{\numberline {4.12.2.1}GSweeper()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{89}{subsubsection.4.12.2.1}%
+\contentsline {subsubsection}{\numberline {4.12.2.2}GSweeper()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{89}{subsubsection.4.12.2.2}%
+\contentsline {subsection}{\numberline {4.12.3}Member Function Documentation}{90}{subsection.4.12.3}%
+\contentsline {subsubsection}{\numberline {4.12.3.1}generate\_num\_list()}{90}{subsubsection.4.12.3.1}%
+\contentsline {subsubsection}{\numberline {4.12.3.2}get\_end()}{90}{subsubsection.4.12.3.2}%
+\contentsline {subsubsection}{\numberline {4.12.3.3}get\_number\_of\_pts()}{90}{subsubsection.4.12.3.3}%
+\contentsline {subsubsection}{\numberline {4.12.3.4}get\_start()}{91}{subsubsection.4.12.3.4}%
+\contentsline {subsubsection}{\numberline {4.12.3.5}get\_value\_from\_idx()}{91}{subsubsection.4.12.3.5}%
+\contentsline {subsubsection}{\numberline {4.12.3.6}run()}{91}{subsubsection.4.12.3.6}%
+\contentsline {subsubsection}{\numberline {4.12.3.7}set\_CUDA\_info()}{93}{subsubsection.4.12.3.7}%
+\contentsline {subsubsection}{\numberline {4.12.3.8}set\_MPI\_info()}{94}{subsubsection.4.12.3.8}%
+\contentsline {subsubsection}{\numberline {4.12.3.9}set\_print\_info()}{94}{subsubsection.4.12.3.9}%
+\contentsline {subsubsection}{\numberline {4.12.3.10}set\_save\_data()}{95}{subsubsection.4.12.3.10}%
+\contentsline {subsection}{\numberline {4.12.4}Member Data Documentation}{95}{subsection.4.12.4}%
+\contentsline {subsubsection}{\numberline {4.12.4.1}CUDA\_use}{95}{subsubsection.4.12.4.1}%
+\contentsline {subsubsection}{\numberline {4.12.4.2}end}{96}{subsubsection.4.12.4.2}%
+\contentsline {subsubsection}{\numberline {4.12.4.3}endpoint}{96}{subsubsection.4.12.4.3}%
+\contentsline {subsubsection}{\numberline {4.12.4.4}gpu\_limit}{96}{subsubsection.4.12.4.4}%
+\contentsline {subsubsection}{\numberline {4.12.4.5}gpu\_num}{96}{subsubsection.4.12.4.5}%
+\contentsline {subsubsection}{\numberline {4.12.4.6}MPI\_use}{96}{subsubsection.4.12.4.6}%
+\contentsline {subsubsection}{\numberline {4.12.4.7}num}{96}{subsubsection.4.12.4.7}%
+\contentsline {subsubsection}{\numberline {4.12.4.8}num\_list}{97}{subsubsection.4.12.4.8}%
+\contentsline {subsubsection}{\numberline {4.12.4.9}print\_info}{97}{subsubsection.4.12.4.9}%
+\contentsline {subsubsection}{\numberline {4.12.4.10}rank}{97}{subsubsection.4.12.4.10}%
+\contentsline {subsubsection}{\numberline {4.12.4.11}save\_data}{97}{subsubsection.4.12.4.11}%
+\contentsline {subsubsection}{\numberline {4.12.4.12}size}{97}{subsubsection.4.12.4.12}%
+\contentsline {subsubsection}{\numberline {4.12.4.13}start}{97}{subsubsection.4.12.4.13}%
+\contentsline {section}{\numberline {4.13}Harmonic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Potential Class Reference}{98}{section.4.13}%
+\contentsline {subsection}{\numberline {4.13.1}Detailed Description}{99}{subsection.4.13.1}%
+\contentsline {subsection}{\numberline {4.13.2}Constructor \& Destructor Documentation}{100}{subsection.4.13.2}%
+\contentsline {subsubsection}{\numberline {4.13.2.1}HarmonicPotential()}{100}{subsubsection.4.13.2.1}%
+\contentsline {subsection}{\numberline {4.13.3}Member Function Documentation}{100}{subsection.4.13.3}%
+\contentsline {subsubsection}{\numberline {4.13.3.1}calcualte\_potential\_in\_grid()}{100}{subsubsection.4.13.3.1}%
+\contentsline {subsubsection}{\numberline {4.13.3.2}get\_name()}{101}{subsubsection.4.13.3.2}%
+\contentsline {subsubsection}{\numberline {4.13.3.3}potential\_function()}{102}{subsubsection.4.13.3.3}%
+\contentsline {subsection}{\numberline {4.13.4}Member Data Documentation}{102}{subsection.4.13.4}%
+\contentsline {subsubsection}{\numberline {4.13.4.1}name}{102}{subsubsection.4.13.4.1}%
+\contentsline {subsubsection}{\numberline {4.13.4.2}omega\_x}{102}{subsubsection.4.13.4.2}%
+\contentsline {subsubsection}{\numberline {4.13.4.3}omega\_y}{102}{subsubsection.4.13.4.3}%
+\contentsline {section}{\numberline {4.14}H\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sweeper Class Reference}{103}{section.4.14}%
+\contentsline {subsection}{\numberline {4.14.1}Detailed Description}{105}{subsection.4.14.1}%
+\contentsline {subsection}{\numberline {4.14.2}Constructor \& Destructor Documentation}{105}{subsection.4.14.2}%
+\contentsline {subsubsection}{\numberline {4.14.2.1}HPSweeper()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{105}{subsubsection.4.14.2.1}%
+\contentsline {subsubsection}{\numberline {4.14.2.2}HPSweeper()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{105}{subsubsection.4.14.2.2}%
+\contentsline {subsection}{\numberline {4.14.3}Member Function Documentation}{106}{subsection.4.14.3}%
+\contentsline {subsubsection}{\numberline {4.14.3.1}generate\_num\_list()}{106}{subsubsection.4.14.3.1}%
+\contentsline {subsubsection}{\numberline {4.14.3.2}get\_end()}{106}{subsubsection.4.14.3.2}%
+\contentsline {subsubsection}{\numberline {4.14.3.3}get\_number\_of\_pts()}{106}{subsubsection.4.14.3.3}%
+\contentsline {subsubsection}{\numberline {4.14.3.4}get\_start()}{107}{subsubsection.4.14.3.4}%
+\contentsline {subsubsection}{\numberline {4.14.3.5}get\_value\_from\_idx()}{107}{subsubsection.4.14.3.5}%
+\contentsline {subsubsection}{\numberline {4.14.3.6}run()}{107}{subsubsection.4.14.3.6}%
+\contentsline {subsubsection}{\numberline {4.14.3.7}set\_CUDA\_info()}{109}{subsubsection.4.14.3.7}%
+\contentsline {subsubsection}{\numberline {4.14.3.8}set\_MPI\_info()}{110}{subsubsection.4.14.3.8}%
+\contentsline {subsubsection}{\numberline {4.14.3.9}set\_print\_info()}{110}{subsubsection.4.14.3.9}%
+\contentsline {subsubsection}{\numberline {4.14.3.10}set\_save\_data()}{111}{subsubsection.4.14.3.10}%
+\contentsline {subsection}{\numberline {4.14.4}Member Data Documentation}{111}{subsection.4.14.4}%
+\contentsline {subsubsection}{\numberline {4.14.4.1}CUDA\_use}{111}{subsubsection.4.14.4.1}%
+\contentsline {subsubsection}{\numberline {4.14.4.2}end}{112}{subsubsection.4.14.4.2}%
+\contentsline {subsubsection}{\numberline {4.14.4.3}endpoint}{112}{subsubsection.4.14.4.3}%
+\contentsline {subsubsection}{\numberline {4.14.4.4}gpu\_limit}{112}{subsubsection.4.14.4.4}%
+\contentsline {subsubsection}{\numberline {4.14.4.5}gpu\_num}{112}{subsubsection.4.14.4.5}%
+\contentsline {subsubsection}{\numberline {4.14.4.6}MPI\_use}{112}{subsubsection.4.14.4.6}%
+\contentsline {subsubsection}{\numberline {4.14.4.7}num}{112}{subsubsection.4.14.4.7}%
+\contentsline {subsubsection}{\numberline {4.14.4.8}num\_list}{113}{subsubsection.4.14.4.8}%
+\contentsline {subsubsection}{\numberline {4.14.4.9}print\_info}{113}{subsubsection.4.14.4.9}%
+\contentsline {subsubsection}{\numberline {4.14.4.10}rank}{113}{subsubsection.4.14.4.10}%
+\contentsline {subsubsection}{\numberline {4.14.4.11}save\_data}{113}{subsubsection.4.14.4.11}%
+\contentsline {subsubsection}{\numberline {4.14.4.12}size}{113}{subsubsection.4.14.4.12}%
+\contentsline {subsubsection}{\numberline {4.14.4.13}start}{113}{subsubsection.4.14.4.13}%
+\contentsline {section}{\numberline {4.15}Initial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Condition Class Reference}{114}{section.4.15}%
+\contentsline {subsection}{\numberline {4.15.1}Detailed Description}{114}{subsection.4.15.1}%
+\contentsline {subsection}{\numberline {4.15.2}Constructor \& Destructor Documentation}{114}{subsection.4.15.2}%
+\contentsline {subsubsection}{\numberline {4.15.2.1}InitialCondition()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{114}{subsubsection.4.15.2.1}%
+\contentsline {subsubsection}{\numberline {4.15.2.2}InitialCondition()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{114}{subsubsection.4.15.2.2}%
+\contentsline {subsection}{\numberline {4.15.3}Member Function Documentation}{115}{subsection.4.15.3}%
+\contentsline {subsubsection}{\numberline {4.15.3.1}assign\_to\_domain()}{115}{subsubsection.4.15.3.1}%
+\contentsline {subsection}{\numberline {4.15.4}Member Data Documentation}{116}{subsection.4.15.4}%
+\contentsline {subsubsection}{\numberline {4.15.4.1}initial\_condition\_function}{116}{subsubsection.4.15.4.1}%
+\contentsline {section}{\numberline {4.16}Initial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Condition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parameters Class Reference}{116}{section.4.16}%
+\contentsline {subsection}{\numberline {4.16.1}Detailed Description}{117}{subsection.4.16.1}%
+\contentsline {subsection}{\numberline {4.16.2}Member Data Documentation}{117}{subsection.4.16.2}%
+\contentsline {subsubsection}{\numberline {4.16.2.1}init\_cond\_parameters}{117}{subsubsection.4.16.2.1}%
+\contentsline {subsubsection}{\numberline {4.16.2.2}init\_cond\_type}{117}{subsubsection.4.16.2.2}%
+\contentsline {section}{\numberline {4.17}Main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parameters Class Reference}{117}{section.4.17}%
+\contentsline {subsection}{\numberline {4.17.1}Detailed Description}{118}{subsection.4.17.1}%
+\contentsline {subsection}{\numberline {4.17.2}Member Data Documentation}{118}{subsection.4.17.2}%
+\contentsline {subsubsection}{\numberline {4.17.2.1}calculation\_type}{118}{subsubsection.4.17.2.1}%
+\contentsline {subsubsection}{\numberline {4.17.2.2}float\_parameters}{118}{subsubsection.4.17.2.2}%
+\contentsline {subsubsection}{\numberline {4.17.2.3}int\_parameters}{118}{subsubsection.4.17.2.3}%
+\contentsline {section}{\numberline {4.18}Parameters Class Reference}{119}{section.4.18}%
+\contentsline {subsection}{\numberline {4.18.1}Detailed Description}{119}{subsection.4.18.1}%
+\contentsline {subsection}{\numberline {4.18.2}Member Data Documentation}{119}{subsection.4.18.2}%
+\contentsline {subsubsection}{\numberline {4.18.2.1}config\_name}{119}{subsubsection.4.18.2.1}%
+\contentsline {subsubsection}{\numberline {4.18.2.2}domain\_parameters}{120}{subsubsection.4.18.2.2}%
+\contentsline {subsubsection}{\numberline {4.18.2.3}equation\_parameters}{120}{subsubsection.4.18.2.3}%
+\contentsline {subsubsection}{\numberline {4.18.2.4}init\_cond\_parameters}{120}{subsubsection.4.18.2.4}%
+\contentsline {subsubsection}{\numberline {4.18.2.5}main\_parameters}{120}{subsubsection.4.18.2.5}%
+\contentsline {subsubsection}{\numberline {4.18.2.6}solver\_parameters}{120}{subsubsection.4.18.2.6}%
+\contentsline {section}{\numberline {4.19}Rectangular\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Domain Class Reference}{121}{section.4.19}%
+\contentsline {subsection}{\numberline {4.19.1}Detailed Description}{124}{subsection.4.19.1}%
+\contentsline {subsection}{\numberline {4.19.2}Constructor \& Destructor Documentation}{124}{subsection.4.19.2}%
+\contentsline {subsubsection}{\numberline {4.19.2.1}RectangularDomain()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{124}{subsubsection.4.19.2.1}%
+\contentsline {subsubsection}{\numberline {4.19.2.2}RectangularDomain()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{124}{subsubsection.4.19.2.2}%
+\contentsline {subsubsection}{\numberline {4.19.2.3}$\sim $RectangularDomain()}{125}{subsubsection.4.19.2.3}%
+\contentsline {subsection}{\numberline {4.19.3}Member Function Documentation}{125}{subsection.4.19.3}%
+\contentsline {subsubsection}{\numberline {4.19.3.1}assign\_initial\_value()}{125}{subsubsection.4.19.3.1}%
+\contentsline {subsubsection}{\numberline {4.19.3.2}assign\_wave\_function()}{126}{subsubsection.4.19.3.2}%
+\contentsline {subsubsection}{\numberline {4.19.3.3}at()}{127}{subsubsection.4.19.3.3}%
+\contentsline {subsubsection}{\numberline {4.19.3.4}generate\_directory\_name()}{127}{subsubsection.4.19.3.4}%
+\contentsline {subsubsection}{\numberline {4.19.3.5}generate\_single\_txt\_file()}{128}{subsubsection.4.19.3.5}%
+\contentsline {subsubsection}{\numberline {4.19.3.6}get\_current\_time\_index()}{129}{subsubsection.4.19.3.6}%
+\contentsline {subsubsection}{\numberline {4.19.3.7}get\_dt()}{130}{subsubsection.4.19.3.7}%
+\contentsline {subsubsection}{\numberline {4.19.3.8}get\_infinitesimal\_distance1()}{130}{subsubsection.4.19.3.8}%
+\contentsline {subsubsection}{\numberline {4.19.3.9}get\_infinitesimal\_distance2()}{131}{subsubsection.4.19.3.9}%
+\contentsline {subsubsection}{\numberline {4.19.3.10}get\_null\_gridpt()}{131}{subsubsection.4.19.3.10}%
+\contentsline {subsubsection}{\numberline {4.19.3.11}get\_num\_grid\_1()}{132}{subsubsection.4.19.3.11}%
+\contentsline {subsubsection}{\numberline {4.19.3.12}get\_num\_grid\_2()}{132}{subsubsection.4.19.3.12}%
+\contentsline {subsubsection}{\numberline {4.19.3.13}get\_num\_times()}{133}{subsubsection.4.19.3.13}%
+\contentsline {subsubsection}{\numberline {4.19.3.14}get\_path()}{133}{subsubsection.4.19.3.14}%
+\contentsline {subsubsection}{\numberline {4.19.3.15}get\_t\_end()}{133}{subsubsection.4.19.3.15}%
+\contentsline {subsubsection}{\numberline {4.19.3.16}get\_t\_start()}{133}{subsubsection.4.19.3.16}%
+\contentsline {subsubsection}{\numberline {4.19.3.17}get\_x\_end()}{134}{subsubsection.4.19.3.17}%
+\contentsline {subsubsection}{\numberline {4.19.3.18}get\_x\_start()}{134}{subsubsection.4.19.3.18}%
+\contentsline {subsubsection}{\numberline {4.19.3.19}get\_y\_end()}{134}{subsubsection.4.19.3.19}%
+\contentsline {subsubsection}{\numberline {4.19.3.20}get\_y\_start()}{134}{subsubsection.4.19.3.20}%
+\contentsline {subsubsection}{\numberline {4.19.3.21}normalize()}{135}{subsubsection.4.19.3.21}%
+\contentsline {subsubsection}{\numberline {4.19.3.22}print\_directory\_info()}{135}{subsubsection.4.19.3.22}%
+\contentsline {subsubsection}{\numberline {4.19.3.23}reset()}{136}{subsubsection.4.19.3.23}%
+\contentsline {subsubsection}{\numberline {4.19.3.24}time\_at()}{136}{subsubsection.4.19.3.24}%
+\contentsline {subsubsection}{\numberline {4.19.3.25}update\_time()}{137}{subsubsection.4.19.3.25}%
+\contentsline {subsection}{\numberline {4.19.4}Member Data Documentation}{137}{subsection.4.19.4}%
+\contentsline {subsubsection}{\numberline {4.19.4.1}current\_grid}{137}{subsubsection.4.19.4.1}%
+\contentsline {subsubsection}{\numberline {4.19.4.2}current\_time\_index}{137}{subsubsection.4.19.4.2}%
+\contentsline {subsubsection}{\numberline {4.19.4.3}dt}{138}{subsubsection.4.19.4.3}%
+\contentsline {subsubsection}{\numberline {4.19.4.4}null\_gridpt}{138}{subsubsection.4.19.4.4}%
+\contentsline {subsubsection}{\numberline {4.19.4.5}num\_grid\_1}{138}{subsubsection.4.19.4.5}%
+\contentsline {subsubsection}{\numberline {4.19.4.6}num\_grid\_2}{138}{subsubsection.4.19.4.6}%
+\contentsline {subsubsection}{\numberline {4.19.4.7}num\_times}{138}{subsubsection.4.19.4.7}%
+\contentsline {subsubsection}{\numberline {4.19.4.8}old\_grid}{138}{subsubsection.4.19.4.8}%
+\contentsline {subsubsection}{\numberline {4.19.4.9}PATH}{139}{subsubsection.4.19.4.9}%
+\contentsline {subsubsection}{\numberline {4.19.4.10}potential\_grid}{139}{subsubsection.4.19.4.10}%
+\contentsline {subsubsection}{\numberline {4.19.4.11}t\_end}{139}{subsubsection.4.19.4.11}%
+\contentsline {subsubsection}{\numberline {4.19.4.12}t\_start}{139}{subsubsection.4.19.4.12}%
+\contentsline {subsubsection}{\numberline {4.19.4.13}x\_end}{139}{subsubsection.4.19.4.13}%
+\contentsline {subsubsection}{\numberline {4.19.4.14}x\_start}{139}{subsubsection.4.19.4.14}%
+\contentsline {subsubsection}{\numberline {4.19.4.15}y\_end}{140}{subsubsection.4.19.4.15}%
+\contentsline {subsubsection}{\numberline {4.19.4.16}y\_start}{140}{subsubsection.4.19.4.16}%
+\contentsline {section}{\numberline {4.20}Rectangular\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Spatial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grid Class Reference}{140}{section.4.20}%
+\contentsline {subsection}{\numberline {4.20.1}Detailed Description}{143}{subsection.4.20.1}%
+\contentsline {subsection}{\numberline {4.20.2}Constructor \& Destructor Documentation}{143}{subsection.4.20.2}%
+\contentsline {subsubsection}{\numberline {4.20.2.1}RectangularSpatialGrid()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{143}{subsubsection.4.20.2.1}%
+\contentsline {subsubsection}{\numberline {4.20.2.2}RectangularSpatialGrid()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{143}{subsubsection.4.20.2.2}%
+\contentsline {subsubsection}{\numberline {4.20.2.3}$\sim $RectangularSpatialGrid()}{144}{subsubsection.4.20.2.3}%
+\contentsline {subsection}{\numberline {4.20.3}Member Function Documentation}{144}{subsection.4.20.3}%
+\contentsline {subsubsection}{\numberline {4.20.3.1}at()}{144}{subsubsection.4.20.3.1}%
+\contentsline {subsubsection}{\numberline {4.20.3.2}get\_infinitesimal\_distance1()}{145}{subsubsection.4.20.3.2}%
+\contentsline {subsubsection}{\numberline {4.20.3.3}get\_infinitesimal\_distance2()}{145}{subsubsection.4.20.3.3}%
+\contentsline {subsubsection}{\numberline {4.20.3.4}normalize()}{145}{subsubsection.4.20.3.4}%
+\contentsline {subsection}{\numberline {4.20.4}Member Data Documentation}{146}{subsection.4.20.4}%
+\contentsline {subsubsection}{\numberline {4.20.4.1}infinitesimal\_distance\_1}{146}{subsubsection.4.20.4.1}%
+\contentsline {subsubsection}{\numberline {4.20.4.2}infinitesimal\_distance\_2}{146}{subsubsection.4.20.4.2}%
+\contentsline {subsubsection}{\numberline {4.20.4.3}num\_grid\_1}{147}{subsubsection.4.20.4.3}%
+\contentsline {subsubsection}{\numberline {4.20.4.4}num\_grid\_2}{147}{subsubsection.4.20.4.4}%
+\contentsline {subsubsection}{\numberline {4.20.4.5}spatial\_data}{147}{subsubsection.4.20.4.5}%
+\contentsline {subsubsection}{\numberline {4.20.4.6}x\_end}{147}{subsubsection.4.20.4.6}%
+\contentsline {subsubsection}{\numberline {4.20.4.7}x\_start}{147}{subsubsection.4.20.4.7}%
+\contentsline {subsubsection}{\numberline {4.20.4.8}y\_end}{147}{subsubsection.4.20.4.8}%
+\contentsline {subsubsection}{\numberline {4.20.4.9}y\_start}{148}{subsubsection.4.20.4.9}%
+\contentsline {section}{\numberline {4.21}Solver\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parameters Class Reference}{148}{section.4.21}%
+\contentsline {subsection}{\numberline {4.21.1}Detailed Description}{148}{subsection.4.21.1}%
+\contentsline {subsection}{\numberline {4.21.2}Member Data Documentation}{149}{subsection.4.21.2}%
+\contentsline {subsubsection}{\numberline {4.21.2.1}int\_parameters}{149}{subsubsection.4.21.2.1}%
+\contentsline {subsubsection}{\numberline {4.21.2.2}method}{149}{subsubsection.4.21.2.2}%
+\contentsline {subsubsection}{\numberline {4.21.2.3}print\_info}{149}{subsubsection.4.21.2.3}%
+\contentsline {subsubsection}{\numberline {4.21.2.4}run\_parallel}{149}{subsubsection.4.21.2.4}%
+\contentsline {subsubsection}{\numberline {4.21.2.5}save\_data}{149}{subsubsection.4.21.2.5}%
+\contentsline {subsubsection}{\numberline {4.21.2.6}solver\_parameters}{149}{subsubsection.4.21.2.6}%
+\contentsline {chapter}{\numberline {5}File Documentation}{151}{chapter.5}%
+\contentsline {section}{\numberline {5.1}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Make\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lists.txt File Reference}{151}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Function Documentation}{151}{subsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.1.1}cmake\_minimum\_required()}{151}{subsubsection.5.1.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.1.2}target\_link\_libraries()}{152}{subsubsection.5.1.1.2}%
+\contentsline {section}{\numberline {5.2}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/configuration/config\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}parser.cpp File Reference}{152}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{152}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/configuration/config\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}parser.h File Reference}{153}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Detailed Description}{154}{subsection.5.3.1}%
+\contentsline {section}{\numberline {5.4}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/configuration/parameters.h File Reference}{154}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{155}{subsection.5.4.1}%
+\contentsline {section}{\numberline {5.5}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/domain/base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}domain.cpp File Reference}{156}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Detailed Description}{156}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.6}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/domain/base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}domain.h File Reference}{157}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{158}{subsection.5.6.1}%
+\contentsline {section}{\numberline {5.7}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/domain/rect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}domain.cpp File Reference}{158}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Detailed Description}{159}{subsection.5.7.1}%
+\contentsline {section}{\numberline {5.8}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/domain/rect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}domain.h File Reference}{159}{section.5.8}%
+\contentsline {subsection}{\numberline {5.8.1}Detailed Description}{160}{subsection.5.8.1}%
+\contentsline {section}{\numberline {5.9}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/initial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}condition/initial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}condition.cpp File Reference}{160}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Detailed Description}{161}{subsection.5.9.1}%
+\contentsline {section}{\numberline {5.10}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/initial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}condition/initial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}condition.h File Reference}{161}{section.5.10}%
+\contentsline {subsection}{\numberline {5.10.1}Detailed Description}{162}{subsection.5.10.1}%
+\contentsline {section}{\numberline {5.11}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/main.cpp File Reference}{163}{section.5.11}%
+\contentsline {subsection}{\numberline {5.11.1}Function Documentation}{163}{subsection.5.11.1}%
+\contentsline {subsubsection}{\numberline {5.11.1.1}main()}{163}{subsubsection.5.11.1.1}%
+\contentsline {section}{\numberline {5.12}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/potential/base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}potential.cpp File Reference}{167}{section.5.12}%
+\contentsline {subsection}{\numberline {5.12.1}Detailed Description}{168}{subsection.5.12.1}%
+\contentsline {section}{\numberline {5.13}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/potential/base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}potential.h File Reference}{168}{section.5.13}%
+\contentsline {subsection}{\numberline {5.13.1}Detailed Description}{169}{subsection.5.13.1}%
+\contentsline {section}{\numberline {5.14}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/potential/harmonic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}potential.cpp File Reference}{170}{section.5.14}%
+\contentsline {subsection}{\numberline {5.14.1}Detailed Description}{170}{subsection.5.14.1}%
+\contentsline {section}{\numberline {5.15}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/potential/harmonic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}potential.h File Reference}{171}{section.5.15}%
+\contentsline {subsection}{\numberline {5.15.1}Detailed Description}{171}{subsection.5.15.1}%
+\contentsline {section}{\numberline {5.16}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/solver/base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver.cpp File Reference}{172}{section.5.16}%
+\contentsline {subsection}{\numberline {5.16.1}Detailed Description}{172}{subsection.5.16.1}%
+\contentsline {section}{\numberline {5.17}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/solver/base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver.h File Reference}{173}{section.5.17}%
+\contentsline {subsection}{\numberline {5.17.1}Detailed Description}{174}{subsection.5.17.1}%
+\contentsline {section}{\numberline {5.18}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/solver/serial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver/crank\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}nicolson/cn\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}rect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver.cpp File Reference}{174}{section.5.18}%
+\contentsline {subsection}{\numberline {5.18.1}Detailed Description}{175}{subsection.5.18.1}%
+\contentsline {section}{\numberline {5.19}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/solver/serial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver/crank\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}nicolson/cn\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}rect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver.h File Reference}{175}{section.5.19}%
+\contentsline {subsection}{\numberline {5.19.1}Detailed Description}{176}{subsection.5.19.1}%
+\contentsline {section}{\numberline {5.20}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/solver/serial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver/forward\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}euler/fe\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}rect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver.cpp File Reference}{176}{section.5.20}%
+\contentsline {subsection}{\numberline {5.20.1}Detailed Description}{177}{subsection.5.20.1}%
+\contentsline {section}{\numberline {5.21}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/solver/serial\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver/forward\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}euler/fe\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}rect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}solver.h File Reference}{177}{section.5.21}%
+\contentsline {subsection}{\numberline {5.21.1}Detailed Description}{178}{subsection.5.21.1}%
+\contentsline {section}{\numberline {5.22}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/sweeper/base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sweeper.cpp File Reference}{179}{section.5.22}%
+\contentsline {section}{\numberline {5.23}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/sweeper/base\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sweeper.h File Reference}{180}{section.5.23}%
+\contentsline {section}{\numberline {5.24}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/sweeper/g\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sweeper.cpp File Reference}{180}{section.5.24}%
+\contentsline {section}{\numberline {5.25}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/sweeper/g\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sweeper.h File Reference}{181}{section.5.25}%
+\contentsline {section}{\numberline {5.26}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/sweeper/harmonic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}p\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sweeper.cpp File Reference}{182}{section.5.26}%
+\contentsline {section}{\numberline {5.27}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/sweeper/harmonic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}p\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sweeper.h File Reference}{183}{section.5.27}%
+\contentsline {section}{\numberline {5.28}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/utils.cpp File Reference}{184}{section.5.28}%
+\contentsline {subsection}{\numberline {5.28.1}Function Documentation}{184}{subsection.5.28.1}%
+\contentsline {subsubsection}{\numberline {5.28.1.1}is\_close()}{184}{subsubsection.5.28.1.1}%
+\contentsline {section}{\numberline {5.29}/home/iqsl/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Kim\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}H/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Gross-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pitaevskii-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}F\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/src/utils.h File Reference}{185}{section.5.29}%
+\contentsline {subsection}{\numberline {5.29.1}Function Documentation}{185}{subsection.5.29.1}%
+\contentsline {subsubsection}{\numberline {5.29.1.1}is\_close()}{186}{subsubsection.5.29.1.1}%
+\contentsline {chapter}{Index}{187}{section*.255}%
