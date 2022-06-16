@@ -127,9 +127,7 @@ Generated output file could be directly loaded by [ParaView](https://www.paravie
 
 ## Example results
 1. Below GIF is result from .inputs/swing.inp.  
-![swing_wavefunction](https://user-images.githubusercontent.com/34947229/174142524-5c521850-c3d7-40db-b9f8-c26a58210f1f.gif){: width="500" height="500"}
 <img src = "https://user-images.githubusercontent.com/34947229/174142524-5c521850-c3d7-40db-b9f8-c26a58210f1f.gif" width="50%" height="50%">
 
 2. Below GIF is result from .inputs/asym_init.inp.  
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/34947229/174147490-b624a031-3735-425b-a8a7-d985fe9b97ba.gif){: width="500" height="500"}
 <img src = "https://user-images.githubusercontent.com/34947229/174142524-5c521850-c3d7-40db-b9f8-c26a58210f1f.gif" width="50%" height="50%">
