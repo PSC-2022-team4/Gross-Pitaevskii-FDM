@@ -86,17 +86,116 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">Gross-Pitaevskii-FDM Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-  Test TET
-Test TET
-Test TET
-Test TET
-Test TET
-Test TET
-Test TET
-Test TET
-Test TET
-Test TET
-Test TET
+
+
+  <h1>Gross-Pitaevskii-FDM</h1>
+<ul>
+<li><a href="#overview">Overview</a>
+<ul>
+<li><a href="#equation">Equation</a></li>
+<li><a href="#physics">Physics</a></li>
+</ul>
+</li>
+<li><a href="#installation">Installation</a>
+<ul>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#build">Build</a></li>
+</ul>
+</li>
+<li><a href="#execution">Execution</a>
+<ul>
+<li><a href="#generate-configuration-file">Generate configuration file</a></li>
+<li><a href="#execute-single-condition">Execute single condition</a></li>
+<li><a href="#execute-multiple-conditions-with-mpi">Execute multiple conditions with MPI</a></li>
+</ul>
+</li>
+<li><a href="#example-results">Example results</a></li>
+</ul>
+<h2>Overview</h2>
+<h3>Equation</h3>
+<p>The time-dependent Gross-Pitaevskii equation is
+$$𝑖ℏ \frac{𝜕Ψ(𝒓, 𝑡)}{𝜕𝑡}=(−\frac{ ℏ^2}{2𝑚} ∇^2+𝑉(𝒓)+𝑔 |Ψ(𝒓,𝑡)|^2 )Ψ(𝒓, 𝑡)$$
+g parameter is correlated to interactions of particles.<br>
+In this project, the equation is solved numerically with various initial condition, potential values, and g values in a parallel manner.</p>
+<h3>Physics</h3>
+<p>Bose-Einstein condensate(BEC) is a state of matter of a dilute gas of bosons cooled to temperatures very close to absolute zero.<br>
+Under such conditions, bosons condensate to the same ground state.<br>
+The Gross-Pitaevskii equation is an approximation model of BEC.<br>
+In Hartree-Fock approximation, many body equation is turned to one body equation. Also, in the partial-wave analysis, scattering process between each bosons are approximated by the s-wave scattering.<br>
+** TODO sample image</p>
+<h2>Installation</h2>
+<h3>Dependencies</h3>
+<ul>
+<li>C++ 17</li>
+<li><a href="https://cmake.org/">Cmake</a> version &gt;= 3.5</li>
+<li><a href="https://github.com/pmodels/mpich">MPICH2</a></li>
+<li><a href="https://github.com/NVIDIA/cuda-samples">Nvidia CUDA toolkit</a> version == 11.7</li>
+<li><a href="https://github.com/google/googletest">gtest</a></li>
+</ul>
+<h3>Build</h3>
+<p>The build configuration is created with CMake.<br>
+To create build configuration in this project, create a build directory in the project directory.<br>
+Then, in the build directory, use cmake command to create build configuraiton as below.</p>
+<pre class="hljs"><code>mkdir build 
+cd build 
+cmake ..
+</code></pre>
+<p>To build, execute:</p>
+<pre class="hljs"><code>make
+</code></pre>
+<p>Check that if the two programs are generated.</p>
+<pre class="hljs"><code>GrossPitaevskiiFDM_run  
+GrossPitaevskiiFDM_tst   
+</code></pre>
+<p>GrossPitaevskiiFDM_run is the main program and GrossPitaevskiiFDM_tst is the test program.<br>
+You can use GrossPitaevskiiFDM_tst to test the code and debug.<br>
+The test program should be run with MPI.</p>
+<pre class="hljs"><code>mpiexec -np 2 ./GrossPitaevskiiFDM_tst
+</code></pre>
+<h2>Execution</h2>
+<h3>Generate configuration file</h3>
+<p>In the inputs directory, there are three example configuration files.</p>
+<pre class="hljs"><code>benchmarking.inp
+example_single.inp
+example_sweep.inp
+</code></pre>
+<p>If you want to run the codes in a single condition(initial condition, potential, parameter g), use example_single.inp as a template.<br>
+There are following parameters to set.</p>
+<ul>
+<li>Main Configuration</li>
+<li>Domain Configuration</li>
+<li>Initial Condition Configuration</li>
+<li>Equation Configuration</li>
+<li>Solver Configuration</li>
+</ul>
+<p>For the details, refer to the code decription. #TODO<br>
+Especially, if you want to use GPU to accelerate the execution, set parallel as true and set cuda_device = {device number} in Solver Configuration.<br>
+For example,</p>
+<pre class="hljs"><code>  parallel = true
+   ...
+  cuda_device = 0 
+</code></pre>
+<h3>Execute single condition</h3>
+<p>To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with the generated configurated file.</p>
+<pre class="hljs"><code>{PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp
+</code></pre>
+<p>For example,</p>
+<pre class="hljs"><code>./build/GrossPitaevskiiFDM_run ./inputs/example_single.inp
+</code></pre>
+<h3>Execute multiple conditions with MPI</h3>
+<p>To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with the generated configurated file.
+If you want to execute the program with various condition parallely, use MPI.<br>
+You have to run the program with mpiexec and set the {PROCESSOR_NUMBER} which is the number of processors that you want to use.</p>
+<pre class="hljs"><code>mpiexec -np {PROCESSOR_NUMBER} {PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp
+</code></pre>
+<p>For example,</p>
+<pre class="hljs"><code>mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ./inputs/example_sweep.inp
+</code></pre>
+<h2>Example results</h2>
+<p>in results directory<br>
+… And …</p>
+
+
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
