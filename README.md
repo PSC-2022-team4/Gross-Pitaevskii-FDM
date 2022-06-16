@@ -130,4 +130,6 @@ Generated output file could be directly loaded by [ParaView](https://www.paravie
 <img src = "https://user-images.githubusercontent.com/34947229/174142524-5c521850-c3d7-40db-b9f8-c26a58210f1f.gif" width="50%" height="50%">
 
 2. Below GIF is result from .inputs/asym_init.inp.  
-<img src = "https://user-images.githubusercontent.com/34947229/174142524-5c521850-c3d7-40db-b9f8-c26a58210f1f.gif" width="50%" height="50%">
+<img src = "https://user-images.githubusercontent.com/34947229/174148325-bc8bcd74-246d-42de-b656-6475a3350b5a.gif" width="50%" height="50%">
+
+
