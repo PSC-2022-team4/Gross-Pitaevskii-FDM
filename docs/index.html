@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <style type="text/css">
-div {
-  font-family: "Times New Roman", Times, serif;
+body {
+  font: 16px 'Times New Roman', Times, serif;
 }
 #box1 {
   width:800px;
@@ -145,7 +145,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <pre>   make</pre></div>
   <p>Check that if the two programs are generated.  </p>
   <div id="box1">
-  <pre>   GrossPitaevskiiFDM_run 
+  <pre>  GrossPitaevskiiFDM_run 
   GrossPitaevskiiFDM_tst </pre></div>
   <p>GrossPitaevskiiFDM_run is the main program and GrossPitaevskiiFDM_tst is the test program.<br>You can use GrossPitaevskiiFDM_tst to test the code and debug.<br>The test program should be run with MPI.</p>
   <div id="box1">
@@ -154,9 +154,9 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <h3 id="generate-configuration-file">Generate configuration file</h3>
   <p>In the inputs directory, there are three example configuration files.</p>
   <div id="box1">
-  <pre> benchmarking.inp
-example_single.inp
-example_sweep.inp</pre></div>
+  <pre>  benchmarking.inp
+  example_single.inp
+  example_sweep.inp</pre></div>
   <p>If you want to run the codes in a single condition(initial condition, potential, parameter g), use example_single.inp as a template.<br>There are following parameters to set. </p>
   <ul>
   <li>Main Configuration </li>
