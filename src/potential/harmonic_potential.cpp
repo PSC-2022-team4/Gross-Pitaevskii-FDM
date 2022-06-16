@@ -1,7 +1,7 @@
 /**
  * @file harmonic_potential.cpp
- * @author Gyeonghun Kim, Minyoung Kim
- * @brief Header file of harmonic potential class
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Implementation of harmonic potential methods
  * @version 0.1
  * @date 2022-06-08
  * 
@@ -10,7 +10,12 @@
  */
 #include "harmonic_potential.h"
 
-
+/**
+ * @brief Construct a new Harmonic Potential:: Harmonic Potential object V = 0.5 * (omega_x^2 * x^2 + omega_y^2 * y^2)
+ * 
+ * @param omega_x 
+ * @param omega_y 
+ */
 HarmonicPotential::HarmonicPotential(float omega_x, float omega_y)
 : BasePotential(), omega_x(omega_x), omega_y(omega_y)
 {

@@ -1,6 +1,22 @@
+/**
+ * @file fe_rect_solver.cpp
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Implementation file for serial forward euler solver methods
+ * @version 0.1
+ * @date 2022-06-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "fe_rect_solver.h"
-#include <iostream>
-#include <string>
+
+/**
+ * @brief Construct a new FERectSolver::FERectSolver object
+ * 
+ * @param g_ 
+ * @param domain_ 
+ */
 FERectSolver::FERectSolver(
     float g_,
     RectangularDomain *domain_)
@@ -10,11 +26,20 @@ FERectSolver::FERectSolver(
     this->string_info = std::string{"Forward_Euler_serial_"};
    
 };
+
+/**
+ * @brief Get Potential value on each grid point.
+ * 
+ * @param i 
+ * @param j 
+ * @return float 
+ */
 float FERectSolver::get_potential_value(int i, int j)
 {
 
     return this->domain->potential_grid->at(i, j)->value.real();
 }
+
 /**
  * @brief Time differential of phi 
  * 
@@ -92,6 +117,14 @@ void FERectSolver::solve_single_time(int k)
         }
     }
 }
+
+/**
+ * @brief Solve Equation
+ * 
+ * @param dir_name 
+ * @param print_info 
+ * @param save_data 
+ */
 void FERectSolver::solve(std::string dir_name, bool print_info, bool save_data)
 {
     int time_length = this->domain->get_num_times();
