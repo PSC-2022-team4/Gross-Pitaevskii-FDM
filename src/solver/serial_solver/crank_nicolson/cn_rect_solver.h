@@ -1,3 +1,13 @@
+/**
+ * @file cn_rect_solver.h
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Header file for serial crank nicolson solver
+ * @version 0.1
+ * @date 2022-06-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #pragma once
 #include <complex>
 #include <vector>
