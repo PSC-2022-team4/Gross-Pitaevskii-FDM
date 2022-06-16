@@ -87,7 +87,7 @@ To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with
 ```
 For example, 
 ```
-./build/GrossPitaevskiiFDM_run ../inputs/example_single.inp
+./build/GrossPitaevskiiFDM_run ./inputs/example_single.inp
 ```
 
 ### Execute multiple conditions with MPI
@@ -101,5 +101,5 @@ mpiexec -np {PROCESSOR_NUMBER} {PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO
 ```
 For example, 
 ```
-mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ../inputs/example_sweep.inp
+mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ./inputs/example_sweep.inp
 ```
