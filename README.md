@@ -34,7 +34,7 @@ In Hartree-Fock approximation, many body equation is turned to one body equation
 - [Nvidia CUDA toolkit](https://github.com/NVIDIA/cuda-samples) version == 10.1
 - [gtest](https://github.com/google/googletest)
 
-###Build 
+### Build 
 The build configuration is created with CMake.   
 To create build configuration in this project, create a build directory in the project directory.  
 Then, in the build directory, use cmake command to create build configuraiton as below. 
@@ -72,7 +72,13 @@ There are following parameters to set.
 - Solver Configuration 
  
 For the details, refer to the code decription. #TODO  
-If you want to use GPU to accelerate the execution, set parallel as true and set cuda_device = {device number}  
+Especially, if you want to use GPU to accelerate the execution, set parallel as true and set cuda_device = {device number} in Solver Configuration.   
+For example, 
+```
+  parallel = true
+   ...
+  cuda_device = 0 
+```
 
 ### Execute single condition 
 To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with the generated configurated file. 
@@ -87,6 +93,9 @@ For example,
 ### Execute multiple conditions with MPI
 
 To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with the generated configurated file. 
+If you want to execute the program with various condition parallely, use MPI.   
+You have to run the program with mpiexec and set the {PROCESSOR_NUMBER} which is the number of processors that you want to use.  
+
 ```
 mpiexec -np {PROCESSOR_NUMBER} {PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp
 ```
