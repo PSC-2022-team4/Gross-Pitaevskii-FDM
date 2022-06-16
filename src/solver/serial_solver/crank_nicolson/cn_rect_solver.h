@@ -3,7 +3,7 @@
  * @author Minyoung Kim, Gyeonghun Kim
  * @brief Header file for serial crank nicolson solver
  * @version 0.1
- * @date 2022-06-08
+ * @date 2022-06-05
  * 
  * @copyright Copyright (c) 2022
  * 
