@@ -121,7 +121,10 @@ For example, in results directory, following directory is created.
 '2022-06-09-17-29-26_Crank_Nicolson_parallel_MPI&CUDA_0'
 ```
 In the directory, txt file is generated for each time step. It contains the spatial grid info and wave function values(real and imaginary).
-## Example results
-in results directory    
-..... And ....
 
+### Visualization
+Generated output file could be directly loaded by [ParaView](https://www.paraview.org/). By using Filters>Alphabetical>Table to Points and Filters>Alphabetical>Delaunary 2D successively, you could visualize the result data in 2D heatmap without any scripting. 
+
+## Example results
+Below GIF is result from .inputs/swing.inp.
+![swing_wavefunction](https://user-images.githubusercontent.com/34947229/174142524-5c521850-c3d7-40db-b9f8-c26a58210f1f.gif)
