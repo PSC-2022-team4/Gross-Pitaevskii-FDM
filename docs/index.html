@@ -114,9 +114,8 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <li><a href="#generate-configuration-file">Generate configuration file</a></li>
   <li><a href="#execute-single-condition">Execute single condition</a></li>
   <li><a href="#execute-multiple-conditions-with-mpi">Execute multiple conditions with MPI</a></li>
-  <li><a href="#save-data">Save data</a><ul>
-  </ul>
-  </li>
+  <li><a href="#save-data">Save data</a></li>
+  <ul>
   <li><a href="#example-results">Example results</a></li>
   </ul>
   <h2 id="overview">Overview</h2>
@@ -188,8 +187,6 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div id="box1">
   <pre>  mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ./inputs/example_sweep.inp</pre></div>
   <h3 id="save-data">Save data</h3>
-  <p></p>
-  <h2 id="example-results">Example results</h2>
   <p>If you run the code with save_info=true, it creates new folder under results directory.       
     Time log is included in folder name. Also, if you run parallely, the folder name contains the rank of the processor executed the program.      
     If you want to manage folder name, give the string parameter that contains folder name in solve method in solver class.    
@@ -197,6 +194,8 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div id="box1">
   <pre>  '2022-06-09-17-29-26_Crank_Nicolson_parallel_MPI&CUDA_0'</pre></div>
   <p>In the directory, txt file is generated for each time step. It contains the spatial grid info and wave function values(real and imaginary).</p>
+  <h2 id="example-results">Example results</h2>
+  <p></p>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
