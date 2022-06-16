@@ -3,7 +3,7 @@
  * @author Minyoung Kim, Gyeonghun Kim
  * @brief Implementation file for serial crank nicolson solver
  * @version 0.1
- * @date 2022-06-08
+ * @date 2022-06-05
  * 
  * @copyright Copyright (c) 2022
  * 
@@ -11,6 +11,12 @@
 
 #include "cn_rect_solver.h"
 
+/**
+ * @brief Construct a new CNRectSolver::CNRectSolver object
+ * 
+ * @param g 
+ * @param domain 
+ */
 CNRectSolver::CNRectSolver(
     float g,
     RectangularDomain *domain)
@@ -27,6 +33,11 @@ CNRectSolver::CNRectSolver(
     this->string_info = std::string{"Crank_Nicolson_serial_"};
 };
 
+/**
+ * @brief initialize guess with forward euler method
+ * 
+ * @param k 
+ */
 void CNRectSolver::initialize_guess_with_forward_euler(int k)
 {
     delete this->guess;
@@ -51,6 +62,13 @@ void CNRectSolver::initialize_guess_with_forward_euler(int k)
     }
 }
 
+/**
+ * @brief Update guess of the spatial(i, j), temporal k point
+ * 
+ * @param i 
+ * @param j 
+ * @param k 
+ */
 void CNRectSolver::update_guess(int i, int j, int k)
 {
     for (auto i = 0; i < this->domain->get_num_grid_1(); ++i)
@@ -63,6 +81,12 @@ void CNRectSolver::update_guess(int i, int j, int k)
     }
 }
 
+/**
+ * @brief Calculate L2 error between the ccurrent and previous guess
+ * 
+ * @param k 
+ * @return float 
+ */
 float CNRectSolver::calculate_error(int k)
 {
     float error = 0.;
@@ -76,6 +100,13 @@ float CNRectSolver::calculate_error(int k)
     return error;
 }
 
+/**
+ * @brief Solve spatial domain for temporal index k
+ * 
+ * @param k 
+ * @param tolerance 
+ * @param max_iter 
+ */
 void CNRectSolver::solve_single_time(int k, float tolerance, int max_iter)
 {
     float error = 1.;
@@ -114,6 +145,16 @@ void CNRectSolver::solve_single_time(int k, float tolerance, int max_iter)
         std::cout << "At time "<<k <<" Converged failed with error = " << error << std::endl;
     }
 }
+
+/**
+ * @brief solve equation with crank nicolson method with given max_iter and tolerance.
+ * 
+ * @param tolerance 
+ * @param max_iter 
+ * @param dir_name 
+ * @param print_info 
+ * @param save_data 
+ */
 void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name,bool print_info, bool save_data)
 {
     int time_length = this->domain->get_num_times();
