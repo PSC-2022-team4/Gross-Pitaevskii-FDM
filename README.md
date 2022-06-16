@@ -1,15 +1,15 @@
 # Gross-Pitaevskii-FDM
-- Overview 
-  - Equation
-  - Physics 
-- Installation 
-  - Dependencies 
-  - Build  
-- Execution 
-  - Generate configuration file 
-  - Execute single condition 
-  - Execute multiple conditions with MPI
-- Example 
+- [Overview](#overview)
+  - [Equation](#equation)
+  - [Physics](#physics)
+- [Installation](#installation)
+  - [Dependencies](#dependencies) 
+  - [Build](#build)
+- [Execution](#execution)
+  - [Generate configuration file](#generate-configuration-file)
+  - [Execute single condition](#execute-single-condition)
+  - [Execute multiple conditions with MPI](#execute-multiple-conditions-with-mpi)
+- [Example](#example)
 
 ## Overview
 ### Equation
