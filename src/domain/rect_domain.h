@@ -1,6 +1,20 @@
+/**
+ * @file rect_domain.h
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Header for Rectangular domain class
+ * @version 0.1
+ * @date 2022-06-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #pragma once
 #include "base_domain.h"
 
+/**
+ * @brief Rectangular Spatial Grid class for single time step.
+ * 
+ */
 class RectangularSpatialGrid : public BaseSpatialGrid
 {
 public:
@@ -15,6 +29,10 @@ private:
     float y_end;
 };
 
+/**
+ * @brief Rectangular domain containing multiple timesteps.
+ * 
+ */
 class RectangularDomain : public BaseDomain
 {
 public:

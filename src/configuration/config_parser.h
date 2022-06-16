@@ -3,15 +3,22 @@
  * @author Gyeonghun Kim, Minyoung Kim
  * @brief Configuration Parser Class header.
  * @version 0.1
- * @date 2022-06-9
+ * @date 2022-06-09
  * 
  * @copyright Copyright (c) 2022
  * 
  */
 #pragma once
 
-#include "parameters.h"
 #include <string>
+#include <vector>
+#include <map>
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <sstream>
+
+#include "parameters.h"
 
 /**
  * @brief Configuration parser
