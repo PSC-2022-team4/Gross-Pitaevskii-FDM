@@ -49,12 +49,18 @@ To build, execute:
 make
 ```
 
-Check that if the two files are generated.  
+Check that if the two programs are generated.  
 ```
 GrossPitaevskiiFDM_run  
 GrossPitaevskiiFDM_tst   
 ```
 
+GrossPitaevskiiFDM_run is the main program and GrossPitaevskiiFDM_tst is the test program.   
+You can use GrossPitaevskiiFDM_tst to test the code and debug.   
+The test program should be run with MPI.
+```
+mpiexec -np 2 ./GrossPitaevskiiFDM_tst
+```
 ## Execution 
 ### Generate configuration file 
 In the inputs directory, there are three example configuration files.
