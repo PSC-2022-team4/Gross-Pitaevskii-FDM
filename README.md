@@ -1,7 +1,7 @@
 # Gross-Pitaevskii-FDM
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPSC-2022-team4%2FGross-Pitaevskii-FDM.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FPSC-2022-team4%2FGross-Pitaevskii-FDM?ref=badge_shield)
 
-For details about code, refer [this site](https://psc-2022-team4.github.io/Gross-Pitaevskii-FDM/)
+For details about code, refer [documentation page](https://psc-2022-team4.github.io/Gross-Pitaevskii-FDM/)
 - [Overview](#overview)
   - [Equation](#equation)
   - [Physics](#physics)
