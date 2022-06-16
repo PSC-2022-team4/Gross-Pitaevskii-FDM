@@ -1,5 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<style type="text/css">
+.p1 {
+  font-family: "Times New Roman", Times, serif;
+}
+#box1 {
+  width:800px;
+  margin:10px;
+  background: rgb(211, 211, 211);
+  border: 1px solid gray;
+}
+</style>  
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
@@ -125,28 +136,28 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   </ul>
   <h3 id="build">Build</h3>
   <p>The build configuration is created with CMake.<br>To create build configuration in this project, create a build directory in the project directory.<br>Then, in the build directory, use cmake command to create build configuraiton as below. </p>
-  <div style="background-color:rgb(211, 211, 211);color:black;padding:20px;">
-  <pre class = "bash"><code>mkdir build 
-cd build 
-cmake ..
-  </code></pre></div>
+  <div id="box1">
+  <pre>   mkdir build 
+   cd build 
+   cmake ..</pre></div>
   <p>To build, execute:</p>
-  <pre><code>make
-  </code></pre>
+  <div id="box1">
+  <pre>   make</pre></div>
   <p>Check that if the two programs are generated.  </p>
-  <pre><code>GrossPitaevskiiFDM_run  
-  GrossPitaevskiiFDM_tst   
-  </code></pre>
+  <div id="box1">
+  <pre>   GrossPitaevskiiFDM_run 
+    GrossPitaevskiiFDM_tst </pre></div>
   <p>GrossPitaevskiiFDM_run is the main program and GrossPitaevskiiFDM_tst is the test program.<br>You can use GrossPitaevskiiFDM_tst to test the code and debug.<br>The test program should be run with MPI.</p>
-  <pre><code>mpiexec -np 2 ./GrossPitaevskiiFDM_tst
-  </code></pre>
+  <div id="box1">
+  <pre>   mpiexec -np 2 ./GrossPitaevskiiFDM_tst
+  </pre></div>
   <h2 id="execution">Execution</h2>
   <h3 id="generate-configuration-file">Generate configuration file</h3>
   <p>In the inputs directory, there are three example configuration files.</p>
-  <pre><code>benchmarking.inp
+  <div id="box1">
+  <pre> benchmarking.inp
   example_single.inp
-  example_sweep.inp
-  </code></pre>
+  example_sweep.inp</pre></div>
   <p>If you want to run the codes in a single condition(initial condition, potential, parameter g), use example_single.inp as a template.<br>There are following parameters to set. </p>
   <ul>
   <li>Main Configuration </li>
@@ -156,25 +167,25 @@ cmake ..
   <li>Solver Configuration</li>
   </ul>
   <p>For the details, refer to the code decription. #TODO<br>Especially, if you want to use GPU to accelerate the execution, set parallel as true and set cuda_device = {device number} in Solver Configuration.<br>For example, </p>
-  <pre><code>  parallel = true
-     ...
-    cuda_device = 0 
-  </code></pre>
+  <div id="box1">
+  <pre>   parallel = true
+   ...
+   cuda_device = 0 </pre></div>
   <h3 id="execute-single-condition">Execute single condition</h3>
   <p>To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with the generated configurated file. </p>
-  <pre><code>{PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp
-  </code></pre>
+  <div id="box1">
+  <pre>  {PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp</pre></div>
   <p>For example, </p>
-  <pre><code>./build/GrossPitaevskiiFDM_run ./inputs/example_single.inp
-  </code></pre>
+  <div id="box1">
+  <pre>  ./build/GrossPitaevskiiFDM_run ./inputs/example_single.inp</pre></div>
   <h3 id="execute-multiple-conditions-with-mpi">Execute multiple conditions with MPI</h3>
   <p>To execute the program, in the build directory run ./GrossPitaevskiiFDM_run with the generated configurated file. 
   If you want to execute the program with various condition parallely, use MPI.<br>You have to run the program with mpiexec and set the {PROCESSOR_NUMBER} which is the number of processors that you want to use.  </p>
-  <pre><code>mpiexec -np {PROCESSOR_NUMBER} {PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp
-  </code></pre>
+  <div id="box1">
+  <pre>  mpiexec -np {PROCESSOR_NUMBER} {PATH_TO_PROGRAM}/GrossPitaevskiiFDM_run {PATH_TO_INPUT_CONFIGURATION}.inp</pre></div>
   <p>For example, </p>
-  <pre><code>mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ./inputs/example_sweep.inp
-  </code></pre>
+  <div id="box1">
+  <pre>  mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ./inputs/example_sweep.inp</pre></div>
   <h2 id="example-results">Example results</h2>
   <p>in results directory<br>..... And ....</p>
   
