@@ -114,6 +114,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <li><a href="#generate-configuration-file">Generate configuration file</a></li>
   <li><a href="#execute-single-condition">Execute single condition</a></li>
   <li><a href="#execute-multiple-conditions-with-mpi">Execute multiple conditions with MPI</a></li>
+  <li><a href="#save-data">Save data</a><ul>
   </ul>
   </li>
   <li><a href="#example-results">Example results</a></li>
@@ -123,7 +124,6 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <p>The time-dependent Gross-Pitaevskii equation is 
     <img class="fit-picture"
     src="./Gross-Pitaevskii_eqn.png">
-  $$𝑖ℏ \frac{𝜕Ψ(𝒓, 𝑡)}{𝜕𝑡}=(−\frac{ ℏ^2}{2𝑚} ∇^2+𝑉(𝒓)+𝑔 |Ψ(𝒓,𝑡)|^2 )Ψ(𝒓, 𝑡)$$
   g parameter is correlated to interactions of particles.<br>In this project, the equation is solved numerically with various initial condition, potential values, and g values in a parallel manner.   </p>
   <h3 id="physics">Physics</h3>
   <p>Bose-Einstein condensate(BEC) is a state of matter of a dilute gas of bosons cooled to temperatures very close to absolute zero.<br>Under such conditions, bosons condensate to the same ground state.<br>The Gross-Pitaevskii equation is an approximation model of BEC.<br>In Hartree-Fock approximation, many body equation is turned to one body equation. Also, in the partial-wave analysis, scattering process between each bosons are approximated by the s-wave scattering.<br>** TODO sample image</p>
@@ -187,9 +187,16 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <p>For example, </p>
   <div id="box1">
   <pre>  mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ./inputs/example_sweep.inp</pre></div>
+  <h3 id="save-data">Save data</h3>
+  <p></p>
   <h2 id="example-results">Example results</h2>
-  <p>in results directory<br>..... And ....</p>
-  
+  <p>If you run the code with save_info=true, it creates new folder under results directory.       
+    Time log is included in folder name. Also, if you run parallely, the folder name contains the rank of the processor executed the program.      
+    If you want to manage folder name, give the string parameter that contains folder name in solve method in solver class.    
+    For example, in results directory, following directory is created. </p>
+  <div id="box1">
+  <pre>  '2022-06-09-17-29-26_Crank_Nicolson_parallel_MPI&CUDA_0'</pre></div>
+  <p>In the directory, txt file is generated for each time step. It contains the spatial grid info and wave function values(real and imaginary).</p>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
