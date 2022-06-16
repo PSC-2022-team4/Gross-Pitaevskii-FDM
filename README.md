@@ -4,7 +4,7 @@
   - Physics 
 - Installation 
   - Dependencies 
-  - Compile with cmake and make 
+  - Build  
 - Execution 
   - Generate input file 
   - Execute single condition 
@@ -28,3 +28,8 @@ In Hartree-Fock approximation, many body equation is turned to one body equation
 
 ## Installation 
 ### Dependencies 
+- C++ 17 
+- [Cmake](https://cmake.org/) version >= 3.5
+- [MPICH2](https://github.com/pmodels/mpich) 
+- [Nvidia CUDA toolkit](https://github.com/NVIDIA/cuda-samples) version == 10.1
+- [gtest](https://github.com/google/googletest)
