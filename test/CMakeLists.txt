@@ -19,3 +19,12 @@ target_link_libraries(${BINARY} ${CMAKE_PROJECT_NAME}_lib)
 target_link_libraries(${BINARY} gtest)
 target_link_libraries(${BINARY} ${CUDA_LIBRARIES})
 target_link_libraries(${BINARY} ${MPI_LIBRARIES})
+
+find_package(OpenMP)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+endif()
+
+target_link_libraries(${BINARY} -lnvToolsExt)

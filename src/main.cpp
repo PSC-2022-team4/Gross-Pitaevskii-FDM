@@ -14,6 +14,7 @@
 #include "sweeper/g_sweeper.h"
 #include "sweeper/harmonic_p_sweeper.h"
 
+
 int main(int argc, char *argv[])
 {
     MPI_Init(&argc, &argv);
@@ -22,6 +23,7 @@ int main(int argc, char *argv[])
     MPI_Comm_rank(comm, &rank);
     MPI_Comm_size(comm, &size);
     Parameters parameters;
+
     if (argc == 1)
     {
         parameters = ConfigParser::get_default();

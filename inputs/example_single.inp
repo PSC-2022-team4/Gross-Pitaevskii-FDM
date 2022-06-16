@@ -5,11 +5,11 @@
     
 [Domain Configuration]
     type = Rectangular
-    n_x = 256
-    n_y = 256
-    n_time = 1000
+    n_x = 32
+    n_y = 32
+    n_time = 10
     time_start = 0.
-    time_end = 5.
+    time_end = 0.001
     x_start = -10.
     x_end = 10.
     y_start = -10.
@@ -33,6 +33,6 @@
     parallel = true
     max_iter = 101
     converge_crit = 1e-11
-    print_info = true
+    print_info = false
     save_data = true
     cuda_device = 0
