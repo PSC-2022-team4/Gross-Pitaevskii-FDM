@@ -23,6 +23,8 @@ BaseSpatialGrid::BaseSpatialGrid(int num_grid_1, int num_grid_2)
     {
         this->spatial_data[i] = std::vector<GridPoint>(num_grid_2);
     }
+    this-> infinitesimal_distance_1 = 1.f; 
+    this -> infinitesimal_distance_2 = 1.f;
 }
 
 void BaseSpatialGrid::normalize()
@@ -33,7 +35,7 @@ void BaseSpatialGrid::normalize()
         for (auto j = 0; j < this->num_grid_2; ++j)
         {
             auto wave_func = this->at(i, j)->value;
-            sum += std::pow(std::abs(wave_func), 2);
+            sum += float(std::pow(std::abs(wave_func), 2));
         }
     }
     sum = std::sqrt(sum * this->infinitesimal_distance_1 * this->infinitesimal_distance_2);
@@ -44,6 +46,7 @@ void BaseSpatialGrid::normalize()
             this->at(i, j)->value /= sum;
         }
     }
+    
 }
 BaseSpatialGrid::~BaseSpatialGrid()
 {
