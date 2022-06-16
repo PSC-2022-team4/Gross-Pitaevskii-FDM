@@ -19,20 +19,23 @@
 #include <fstream>
 #include <thread>
 
-#include "nvToolsExt.h"
-
 #include "../../../utils.h"
 #include "../../../domain/rect_domain.h"
 #include "../../../initial_condition/initial_condition.h"
 #include "../../base_solver.h"
 #include "../../serial_solver/forward_euler/fe_rect_solver.h"
 
+#include "nvToolsExt.h"
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
 #define nTx 16
 #define nTy 16
 
+/**
+ * @brief Crank Nicolson solver with Parallel CUDA algorithm
+ * 
+ */
 class CNRectPSolver : public BaseSolver
 {
 public:
@@ -84,6 +87,8 @@ protected:
     void update_guess(int i, int j, int k);
     float calculate_error(int k);
 };
+
+// Explains about cuda kernels are in .cu file.
 
 __global__ void cn_rect_cusolver(float *psi_old_real,
                                  float *psi_old_imag,

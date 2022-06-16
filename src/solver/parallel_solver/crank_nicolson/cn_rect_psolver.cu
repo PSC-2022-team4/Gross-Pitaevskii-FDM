@@ -8,9 +8,28 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#define NVTX_USE true
+// NVTX_USE true only for profiling
+#define NVTX_USE false
 #include "cn_rect_psolver.cuh"
 
+/**
+ * @brief update Guess with Crank Nicolson Methods
+ * 
+ * @param psi_old_real input value
+ * @param psi_old_imag input value
+ * @param psi_new_real_trial input value
+ * @param psi_new_imag_trial input value
+ * @param psi_new_real output value
+ * @param psi_new_imag output value
+ * @param potential input value
+ * @param n_x input value
+ * @param n_y input value
+ * @param g electron-electron coupling strength input value
+ * @param h_x x direction difference input value
+ * @param h_y y direction difference input value
+ * @param tau temporal difference input value
+ * @param relaxation input value
+ */
 __global__ void cn_rect_cusolver(float *psi_old_real,
                                  float *psi_old_imag,
                                  float *psi_new_real_trial,
@@ -131,7 +150,18 @@ __global__ void cn_rect_cusolver(float *psi_old_real,
               relaxation * (sigma_y / b * tile_new_real_trial[thread_x][thread_y] + a * sigma_y / b * tile_new_imag_trial[thread_x][thread_y]) *
                   (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1)));
 }
-// Only works with single block
+
+/**
+ * @brief Calculate local errors. Note that this function only works with single block.
+ * 
+ * @param psi_1_real 
+ * @param psi_1_imag 
+ * @param psi_2_real 
+ * @param psi_2_imag 
+ * @param error_array 
+ * @param n_x 
+ * @param n_y 
+ */
 __global__ void calculate_local_error(float *psi_1_real,
                                       float *psi_1_imag,
                                       float *psi_2_real,
@@ -171,6 +201,14 @@ __global__ void calculate_local_error(float *psi_1_real,
         ) * float((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
 }
 
+
+/**
+ * @brief Reduction for sum errors in spatial grid
+ * 
+ * @param error_array 
+ * @param error 
+ * @param array_size 
+ */
 __global__ void reduction_error(float *error_array, float *error, int array_size)
 {
 
@@ -194,6 +232,16 @@ __global__ void reduction_error(float *error_array, float *error, int array_size
         *error = r[0];
 }
 
+
+/**
+ * @brief Calculate probability of electron from real and imaginary part of the wavefunction
+ * 
+ * @param psi_real input
+ * @param psi_imag input
+ * @param probability output
+ * @param n_x intput
+ * @param n_y intput
+ */
 __global__ void calculate_probability(float *psi_real, float *psi_imag, float *probability, int n_x, int n_y)
 {
 
@@ -219,6 +267,15 @@ __global__ void calculate_probability(float *psi_real, float *psi_imag, float *p
         float((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
 }
 
+
+/**
+ * @brief Calculate normalize factor from probability distribution
+ * 
+ * @param probability 
+ * @param normalize_factor 
+ * @param array_size 
+ * @param unit_area 
+ */
 __global__ void calculate_normalize_factor(float *probability, float *normalize_factor, int array_size, float unit_area)
 {
 
@@ -245,6 +302,13 @@ __global__ void calculate_normalize_factor(float *probability, float *normalize_
     }
 }
 
+/**
+ * @brief normalize wavefunction from given normalize factor
+ * 
+ * @param psi_real 
+ * @param psi_imag 
+ * @param normalize_factor 
+ */
 __global__ void normalize(float *psi_real, float *psi_imag, float *normalize_factor)
 {
 
@@ -260,6 +324,14 @@ __global__ void normalize(float *psi_real, float *psi_imag, float *normalize_fac
     psi_imag[j * striding + i] /= *normalize_factor;
 }
 
+/**
+ * @brief scale previous guess in Crank Nicolson method for under-relaxation update
+ * 
+ * @param psi_real 
+ * @param psi_imag 
+ * @param scale 
+ * @return __global__ 
+ */
 __global__ void scale_prev_solution(float *psi_real, float *psi_imag, float scale)
 {
 
@@ -275,6 +347,14 @@ __global__ void scale_prev_solution(float *psi_real, float *psi_imag, float scal
     psi_imag[j * striding + i] *= scale;
 }
 
+
+/**
+ * @brief Construct a new CNRectPSolver::CNRectPSolver object
+ * 
+ * @param g 
+ * @param domain_ 
+ * @param device_number 
+ */
 CNRectPSolver::CNRectPSolver(
     // std::function<float(float, float)> potential,
     float g,
@@ -287,6 +367,15 @@ CNRectPSolver::CNRectPSolver(
     cudaSetDevice(device_number);
 };
 
+
+/**
+ * @brief Write file for debugging 
+ * 
+ * @param array 
+ * @param n_x 
+ * @param n_y 
+ * @param filename 
+ */
 void fileout_debug(float *array, int n_x, int n_y, std::string filename)
 {
     std::ofstream fileout(filename.data());
@@ -300,7 +389,15 @@ void fileout_debug(float *array, int n_x, int n_y, std::string filename)
     }
 }
 
-// void CNRectPSolver::solve(float tolerance, int max_iter)
+/**
+ * @brief Solve Gross Pitaevskii equation with given tolerance and max_iter
+ * 
+ * @param tolerance 
+ * @param max_iter 
+ * @param dir_name 
+ * @param print_info 
+ * @param save_data 
+ */
 void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, bool print_info, bool save_data)
 {
     cudaDeviceSynchronize();
@@ -322,6 +419,7 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     float *d_psi_old_real, *d_psi_old_imag, *d_psi_new_real, *d_psi_new_real_trial, *d_psi_new_imag_trial, *d_psi_new_imag, *d_potential;
     float *d_probability_array, *d_error_array;
 
+    // Setup Device Memory
     if (NVTX_USE)
     {
         nvtxRangePushA("cuda malloc");
@@ -342,6 +440,7 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
         nvtxRangePop();
     }
 
+    // Setup CudaStream
     cudaStream_t stream_psi_new_real, stream_psi_new_imag, stream_potential;
     cudaStream_t stream_device_to_device_1, stream_device_to_device_2, stream_device_to_device_3, stream_device_to_device_4;
 
@@ -354,6 +453,7 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     cudaStreamCreate(&stream_device_to_device_3);
     cudaStreamCreate(&stream_device_to_device_4);
 
+    // Use cudaHostAlloc for using pinned memory
     float *h_psi_new_real, *h_psi_new_imag, *h_potential;
     cudaHostAlloc((void **)&h_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaHostAllocDefault);
     cudaHostAlloc((void **)&h_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaHostAllocDefault);
@@ -363,25 +463,48 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     {
         nvtxRangePushA("initialize: host array");
     }
+
+    // Prepare potential
     std::complex<float> wave_func;
     float potential_value;
-    for (int i = 0; i < n_x; ++i)
+    
+    // Setup initial condition in host
+
+    for (auto i = 0; i < TPB.x * nBlocks.x; ++i)
     {
-        for (int j = 0; j < n_y; ++j)
+        for (auto j = 0; j < TPB.y * nBlocks.y; ++j)
         {
-            wave_func = this->domain->at(i, j, 0)->value;
-            potential_value = this->domain->potential_grid->at(i, j)->value.real();
-            h_psi_new_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
-            h_psi_new_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
-            h_potential[j * TPB.x * nBlocks.x + i] = potential_value;
+            if (i < n_x)
+            {
+                if (j < n_y)
+                {
+                    wave_func = this->domain->at(i, j, 0)->value;
+                    potential_value = this->domain->potential_grid->at(i, j)->value.real();
+                    h_psi_new_real[j * TPB.x * nBlocks.x + i] = wave_func.real();
+                    h_psi_new_imag[j * TPB.x * nBlocks.x + i] = wave_func.imag();
+                    h_potential[j * TPB.x * nBlocks.x + i] = potential_value;
+                }
+                else{
+                    h_psi_new_real[j * TPB.x * nBlocks.x + i] = 0;
+                    h_psi_new_imag[j * TPB.x * nBlocks.x + i] = 0;
+                    h_potential[j * TPB.x * nBlocks.x + i] = 0;
+                }
+            }
+            else
+            {
+                h_psi_new_real[j * TPB.x * nBlocks.x + i] = 0;
+                h_psi_new_imag[j * TPB.x * nBlocks.x + i] = 0;
+                h_potential[j * TPB.x * nBlocks.x + i] = 0;
+            }
         }
     }
-
     if (NVTX_USE)
     {
         nvtxRangePop();
     }
 
+
+    // Setup initial condition in device
     if (NVTX_USE)
     {
         nvtxRangePushA("memcpyAsync");
@@ -399,6 +522,8 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
         nvtxRangePop();
     }
 
+
+    // Prepare for exporting 
     if (save_data)
     {
 
@@ -410,14 +535,17 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
         this->domain->update_time(true);
     }
 
+    // Prepare buffer for output
     float *buffer_real = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
     float *buffer_imag = (float *)malloc(sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
 
+    // Create threads (thread # == time step #f) 
     std::vector<std::thread> threads;
     threads.reserve(this->domain->get_num_times() - 1);
     for (auto k = 0; k < this->domain->get_num_times() - 1; ++k)
     {
-        {
+        {   
+            // Solve single time
             this->solve_single_time(k, d_psi_old_real,
                                     d_psi_old_imag,
                                     d_psi_new_real_trial,
@@ -439,7 +567,7 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
                                     buffer_real,
                                     buffer_imag,
                                     save_data);
-
+            // Export with branched thread 
             auto export_thread = std::thread(&CNRectPSolver::export_single_time,
                                              this,
                                              k,
@@ -448,10 +576,12 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
                                              nBlocks,
                                              TPB,
                                              save_data);
+            // Push back to threads vector
             threads.push_back(std::move(export_thread));
         }
     }
 
+    // Wait for all export process is done.
     for (std::thread &th : threads)
     {
         if (th.joinable())
@@ -494,6 +624,11 @@ void CNRectPSolver::solve(float tolerance, int max_iter, std::string dir_name, b
     }
 }
 
+
+/**
+ * @brief Solve Gross Pitaevskii equation in single time 
+ * 
+ */
 void CNRectPSolver::solve_single_time(int k,
                                       float *d_psi_old_real,
                                       float *d_psi_old_imag,
@@ -523,6 +658,7 @@ void CNRectPSolver::solve_single_time(int k,
     float h_x = this->domain->get_infinitesimal_distance1();
     float h_y = this->domain->get_infinitesimal_distance2();
 
+    // after one time step, previous answer is new guess. Then Crank Nicolson method is identical with Forward Euler at the first iteration in each timestep.
     if (k > 0)
     {
         if (NVTX_USE)
@@ -541,6 +677,7 @@ void CNRectPSolver::solve_single_time(int k,
         nvtxRangePushA((std::string("solve time ") + std::to_string(k)).c_str());
     }
 
+    // Initial error with 1 (not to exit in the first iteration.)
     float error = 1.;
     for (auto iter = 0; iter < max_iter; ++iter)
     {
@@ -552,6 +689,7 @@ void CNRectPSolver::solve_single_time(int k,
         {
             nvtxRangePushA("memcpy new to trial");
         }
+        // after one time step, new guess -> old guess
         cudaMemcpyAsync(d_psi_new_real_trial, d_psi_new_real, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_1);
         cudaMemcpyAsync(d_psi_new_imag_trial, d_psi_new_imag, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y, cudaMemcpyDeviceToDevice, stream_device_to_device_2);
         if (NVTX_USE)
@@ -563,6 +701,7 @@ void CNRectPSolver::solve_single_time(int k,
         {
             nvtxRangePushA("scale_prev_solution");
         }
+        // Scale previous solution for under-relaxation
         scale_prev_solution<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, 1 - relaxation_parameter);
         if (NVTX_USE)
         {
@@ -574,6 +713,8 @@ void CNRectPSolver::solve_single_time(int k,
         {
             nvtxRangePushA("cn_rect_cusolver");
         }
+
+        // Solve single iteration
         cn_rect_cusolver<<<nBlocks, TPB>>>(
             d_psi_old_real,
             d_psi_old_imag,
@@ -596,6 +737,7 @@ void CNRectPSolver::solve_single_time(int k,
         {
             nvtxRangePushA("initialize prob and normalize factor");
         }
+        // initialize prob and normalized factor for normalization
         cudaMemset(d_probability_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
         cudaMemset(d_normalize_factor, 0, sizeof(float));
         if (NVTX_USE)
@@ -607,6 +749,7 @@ void CNRectPSolver::solve_single_time(int k,
         {
             nvtxRangePushA("calculate_probability");
         }
+
         calculate_probability<<<nBlocks, TPB>>>(d_psi_new_real, d_psi_new_imag, d_probability_array, n_x, n_y);
         if (NVTX_USE)
         {
@@ -639,6 +782,8 @@ void CNRectPSolver::solve_single_time(int k,
         {
             nvtxRangePushA("initialize local and global error");
         }
+
+        // initialize error array and reduced error for convergence check.
         cudaMemset(d_error_array, 0, sizeof(float) * TPB.x * nBlocks.x * TPB.y * nBlocks.y);
         cudaMemset(d_error, 0, sizeof(float));
         if (NVTX_USE)
@@ -677,6 +822,16 @@ void CNRectPSolver::solve_single_time(int k,
     }
 }
 
+/**
+ * @brief Export Single time data 
+ * 
+ * @param k temporal index
+ * @param buffer_real print buffer (real)
+ * @param buffer_imag print buffer (output)
+ * @param nBlocks number of blocks used
+ * @param TPB threads per block used
+ * @param save_data save or not
+ */
 void CNRectPSolver::export_single_time(int k,
                                        float *buffer_real,
                                        float *buffer_imag,
