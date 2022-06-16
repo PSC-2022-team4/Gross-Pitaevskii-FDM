@@ -1,6 +1,15 @@
+/**
+ * @file cn_rect_solver.cpp
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Implementation file for serial crank nicolson solver
+ * @version 0.1
+ * @date 2022-06-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "cn_rect_solver.h"
-#include <iostream>
-#include <cmath>
 
 CNRectSolver::CNRectSolver(
     float g,

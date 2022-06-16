@@ -1,11 +1,29 @@
+/**
+ * @file fe_rect_solver.h
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Header file for serial forward euler solver
+ * @version 0.1
+ * @date 2022-06-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #pragma once
 #include <complex>
 #include <vector>
 #include <functional>
+#include <iostream>
+#include <string>
+
 #include "../../../domain/rect_domain.h"
 #include "../../../initial_condition/initial_condition.h"
 #include "../../base_solver.h"
 
+/**
+ * @brief Forward Euler Serial Solver 
+ * 
+ */
 class FERectSolver : public BaseSolver
 {
 public:

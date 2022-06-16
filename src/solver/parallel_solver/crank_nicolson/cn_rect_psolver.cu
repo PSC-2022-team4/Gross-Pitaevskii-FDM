@@ -1,14 +1,15 @@
+/**
+ * @file cn_rect_psolver.cu
+ * @author Gyeonghun Kim, Minyoung Kim
+ * @brief Implementation file for CUDA based parallel crank nicolson solver
+ * @version 0.1
+ * @date 2022-06-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #define NVTX_USE true
-#include "../../parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
-#include "../../../utils.h"
-#include <iostream>
-#include <cmath>
-
-#include <string>
-#include <fstream>
-#include <thread>
-#include <thread>
-#include "nvToolsExt.h"
+#include "cn_rect_psolver.cuh"
 
 __global__ void cn_rect_cusolver(float *psi_old_real,
                                  float *psi_old_imag,

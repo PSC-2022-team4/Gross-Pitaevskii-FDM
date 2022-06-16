@@ -1,7 +1,5 @@
 #include "fe_rect_psolver.cuh"
-#include <iostream>
-#include <string>
-#include <stdio.h>
+
 __global__ void fe_rect_cusolver(float *psi_old_real,
                                  float *psi_old_imag,
                                  float *psi_new_real,

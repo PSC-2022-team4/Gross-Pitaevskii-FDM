@@ -1,3 +1,13 @@
+/**
+ * @file cn_rect_psolver.cuh
+ * @author Gyeonghun Kim, Minyoung Kim
+ * @brief Header file for CUDA based parallel crank nicolson solver
+ * @version 0.1
+ * @date 2022-06-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #pragma once
 #include <complex>
 #include <vector>
@@ -5,6 +15,13 @@
 #include <iostream>
 #include <cmath>
 
+#include <string>
+#include <fstream>
+#include <thread>
+
+#include "nvToolsExt.h"
+
+#include "../../../utils.h"
 #include "../../../domain/rect_domain.h"
 #include "../../../initial_condition/initial_condition.h"
 #include "../../base_solver.h"
