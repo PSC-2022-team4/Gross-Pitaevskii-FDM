@@ -9,7 +9,13 @@
 #include "parameters.h"
 #include "config_parser.h"
 
-
+/**
+ * @brief Parse configuration for the calculation
+ * 
+ * @param config_name configuration name
+ * @param filename configuration file name
+ * @return Parsed parameters 
+ */
 Parameters ConfigParser::parse(std::string config_name, std::string filename){
     auto parameters = Parameters();
     parameters.config_name = config_name;
@@ -23,18 +29,23 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
     bool filled_parallel = false;
 
     std::ifstream file(filename.c_str());
-    if (file.is_open())
+    if (file.is_open()) // If file is opened
     {
         std::string line;
-        while (std::getline(file, line))
+        while (std::getline(file, line)) // while not EOF 
         {
-            line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
+            // remove all blanks in the line
+            line.erase(std::remove(line.begin(), line.end(), ' '), line.end()); 
+            // replace all lines with lower case
             std::transform(line.begin(), line.end(), line.begin(),
                            [](unsigned char c)
                            { return std::tolower(c); });
+
+            // skip the line when whole line is blank
             if (line == ""){
                 continue;
             }
+            // skip the line for the comment
             else if (line.rfind("#", 0) != std::string::npos)
             {
                 continue;
@@ -392,7 +403,7 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
                         }
                         else if (dump[1].rfind("false", 0) != std::string::npos)
                         {
-                            solver_parameters.print_info = false;
+                            solver_parameters.save_data = false;
                         }
                         else
                         {
@@ -477,9 +488,9 @@ Parameters ConfigParser::get_default()
     domain_parameters.domain_type = "rectangular";
     domain_parameters.n_x = 256;
     domain_parameters.n_y = 256;
-    domain_parameters.n_time = 100;
+    domain_parameters.n_time = 5;
     domain_parameters.time_start = 0.;
-    domain_parameters.time_end = 2.;
+    domain_parameters.time_end = 0.01;
     domain_parameters.spatial_parameters["x_start"] = -10.;
     domain_parameters.spatial_parameters["x_end"] = 10.;
     domain_parameters.spatial_parameters["y_start"] = -10.;

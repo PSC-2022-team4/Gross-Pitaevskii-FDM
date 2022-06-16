@@ -5,7 +5,7 @@
     "launcher": {
         "activity/interactiveprofile/cachecontrol": "Flush All",
         "activity/interactiveprofile/clockcontrol": "Base",
-        "activity/interactiveprofile/disableprofilingstartstop": false,
+        "activity/interactiveprofile/disableprofilingstartstop": true,
         "activity/interactiveprofile/enablecpustacksupport": true,
         "activity/interactiveprofile/enablenvtxsupport": true,
         "activity/interactiveprofile/enableprofilingfromstart": true,
@@ -52,8 +52,14 @@
         "platform/linux/arguments": "",
         "platform/linux/autoconnect": true,
         "platform/linux/environment": "",
-        "platform/linux/executable": "",
-        "platform/linux/workingdir": "",
+        "platform/linux/executable": "/home/sonic/IQSL_Projects/KimGH/Gross-Pitaevskii-FDM/build/GrossPitaevskiiFDM_run",
+        "platform/linux/executable/history": [
+            "/home/sonic/IQSL_Projects/KimGH/Gross-Pitaevskii-FDM/build/GrossPitaevskiiFDM_run"
+        ],
+        "platform/linux/workingdir": "/home/sonic/IQSL_Projects/KimGH/Gross-Pitaevskii-FDM",
+        "platform/linux/workingdir/history": [
+            "/home/sonic/IQSL_Projects/KimGH/Gross-Pitaevskii-FDM"
+        ],
         "platform/ppc/arguments": "",
         "platform/ppc/autoconnect": true,
         "platform/ppc/environment": "",
