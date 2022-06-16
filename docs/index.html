@@ -115,18 +115,15 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <li><a href="#execute-single-condition">Execute single condition</a></li>
   <li><a href="#execute-multiple-conditions-with-mpi">Execute multiple conditions with MPI</a></li>
   <li><a href="#save-data">Save data</a></li>
-  
-  <li><a href="#example-results">Example results</a><ul>
   </ul>
-  </li>
   <h2 id="overview">Overview</h2>
   <h3 id="equation">Equation</h3>
-  <p>The time-dependent Gross-Pitaevskii equation is 
+  <p>The time-dependent Gross-Pitaevskii equation is <br>
     <img class="fit-picture"
-    src="./Gross-Pitaevskii_eqn.png">
+    src="./Gross-Pitaevskii_eqn.png"><br>
   g parameter is correlated to interactions of particles.<br>In this project, the equation is solved numerically with various initial condition, potential values, and g values in a parallel manner.   </p>
   <h3 id="physics">Physics</h3>
-  <p>Bose-Einstein condensate(BEC) is a state of matter of a dilute gas of bosons cooled to temperatures very close to absolute zero.<br>Under such conditions, bosons condensate to the same ground state.<br>The Gross-Pitaevskii equation is an approximation model of BEC.<br>In Hartree-Fock approximation, many body equation is turned to one body equation. Also, in the partial-wave analysis, scattering process between each bosons are approximated by the s-wave scattering.<br>** TODO sample image</p>
+  <p>Bose-Einstein condensate(BEC) is a state of matter of a dilute gas of bosons cooled to temperatures very close to absolute zero.<br>Under such conditions, bosons condensate to the same ground state.<br>The Gross-Pitaevskii equation is an approximation model of BEC.<br>In Hartree-Fock approximation, many body equation is turned to one body equation. Also, in the partial-wave analysis, scattering process between each bosons are approximated by the s-wave scattering.</p>
   <h2 id="installation">Installation</h2>
   <h3 id="dependencies">Dependencies</h3>
   <ul>
@@ -195,8 +192,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div id="box1">
   <pre>  '2022-06-09-17-29-26_Crank_Nicolson_parallel_MPI&CUDA_0'</pre></div>
   <p>In the directory, txt file is generated for each time step. It contains the spatial grid info and wave function values(real and imaginary).</p>
-  <h2 id="example-results">Example results</h2>
-  <p></p>
+  
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
