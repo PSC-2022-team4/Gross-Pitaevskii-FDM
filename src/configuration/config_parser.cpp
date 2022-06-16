@@ -9,7 +9,13 @@
 #include "parameters.h"
 #include "config_parser.h"
 
-
+/**
+ * @brief Parse configuration for the calculation
+ * 
+ * @param config_name configuration name
+ * @param filename configuration file name
+ * @return Parsed parameters 
+ */
 Parameters ConfigParser::parse(std::string config_name, std::string filename){
     auto parameters = Parameters();
     parameters.config_name = config_name;
@@ -23,18 +29,23 @@ Parameters ConfigParser::parse(std::string config_name, std::string filename){
     bool filled_parallel = false;
 
     std::ifstream file(filename.c_str());
-    if (file.is_open())
+    if (file.is_open()) // If file is opened
     {
         std::string line;
-        while (std::getline(file, line))
+        while (std::getline(file, line)) // while not EOF 
         {
-            line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
+            // remove all blanks in the line
+            line.erase(std::remove(line.begin(), line.end(), ' '), line.end()); 
+            // replace all lines with lower case
             std::transform(line.begin(), line.end(), line.begin(),
                            [](unsigned char c)
                            { return std::tolower(c); });
+
+            // skip the line when whole line is blank
             if (line == ""){
                 continue;
             }
+            // skip the line for the comment
             else if (line.rfind("#", 0) != std::string::npos)
             {
                 continue;
