@@ -125,7 +125,3 @@ In the directory, txt file is generated for each time step. It contains the spat
 in results directory    
 ..... And ....
 
-
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPSC-2022-team4%2FGross-Pitaevskii-FDM.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FPSC-2022-team4%2FGross-Pitaevskii-FDM?ref=badge_large)
-
