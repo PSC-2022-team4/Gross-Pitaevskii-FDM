@@ -35,11 +35,10 @@ void CNRectSolver::initialize_guess_with_forward_euler(int k)
 
             //At first, initial guess is the results of fe algorithm
             this->domain->at(i, j, k)->value = this->domain->at(i, j, k - 1)->value + this->domain->get_dt() * (this->temporal_equation(i, j, k - 1));
-
-            this->domain->normalize(k);
             this->guess->at(i, j)->value = this->domain->at(i, j, k)->value;
         }
     }
+    this -> guess ->normalize();
 }
 
 void CNRectSolver::update_guess(int i, int j, int k)
@@ -48,8 +47,13 @@ void CNRectSolver::update_guess(int i, int j, int k)
     {
         for (auto j = 0; j < this->domain->get_num_grid_2(); ++j)
         {
-            this->guess->at(i, j)->value = (0.99f * this->guess->at(i, j)->value +
-                                            0.01f * (this->domain->at(i, j, k - 1)->value + std::complex<float>{0.5, 0.} * this->domain->get_dt() * (this->temporal_equation(i, j, k - 1) + this->temporal_equation(i, j, k)))); // this->temporal_equation_from_guess(i, j))));
+            this->guess->at(i, j)->value = (
+                0.99f * this->guess->at(i, j)->value +
+                0.01f * (
+                    this->domain->at(i, j, k - 1)->value + 
+                    std::complex<float>{0.5, 0.} * this->domain->get_dt() * (
+                        this->temporal_equation(i, j, k - 1) + 
+                        this->temporal_equation(i, j, k)))); // this->temporal_equation_from_guess(i, j))));
         }
     }
 }
@@ -97,8 +101,8 @@ void CNRectSolver::solve_single_time(int k, float tolerance, int max_iter)
                 update_guess(i, j, k);
             }
         }
-
         error = this->calculate_error(k);
+        
     }
     if (!converged)
     {
@@ -116,7 +120,6 @@ void CNRectSolver::solve(float tolerance, int max_iter, std::string dir_name,boo
     }else{
         this -> domain->update_time();
     }
-    
     for (int k = 0; k < time_length-1; ++k)
     {
         //Update kth grid using k-1 th grid
