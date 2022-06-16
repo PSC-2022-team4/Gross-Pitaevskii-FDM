@@ -1,0 +1,9 @@
+<map id="/home/iqsl/IQSL_Projects/KimGH/Gross&#45;Pitaevskii&#45;FDM/src/potential/harmonic_potential.h" name="/home/iqsl/IQSL_Projects/KimGH/Gross&#45;Pitaevskii&#45;FDM/src/potential/harmonic_potential.h">
+<area shape="rect" id="node1" title="Header file for harmoni potential (V = 0.5 * (omega_x^2 * x^2 + omega_y^2 * y^2)" alt="" coords="325,5,532,76"/>
+<area shape="rect" id="node2" href="$main_8cpp.html" title=" " alt="" coords="268,250,451,306"/>
+<area shape="rect" id="node3" href="$g__sweeper_8h.html" title=" " alt="" coords="98,131,322,187"/>
+<area shape="rect" id="node5" href="$harmonic__p__sweeper_8h.html" title=" " alt="" coords="397,124,601,195"/>
+<area shape="rect" id="node7" href="$harmonic__potential_8cpp.html" title="Implementation of harmonic potential methods." alt="" coords="625,124,832,195"/>
+<area shape="rect" id="node4" href="$g__sweeper_8cpp.html" title=" " alt="" coords="5,250,244,306"/>
+<area shape="rect" id="node6" href="$harmonic__p__sweeper_8cpp.html" title=" " alt="" coords="475,243,679,313"/>
+</map>

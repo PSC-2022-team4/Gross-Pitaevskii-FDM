@@ -1,0 +1,4 @@
+<map id="RectangularSpatialGrid" name="RectangularSpatialGrid">
+<area shape="rect" id="node1" title="Rectangular Spatial Grid class for single time step." alt="" coords="15,277,223,443"/>
+<area shape="rect" id="node2" href="$class_base_spatial_grid.html" title="Base Spatial Grid class for single time step." alt="" coords="5,5,232,229"/>
+</map>

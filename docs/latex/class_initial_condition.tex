@@ -1,0 +1,152 @@
+\hypertarget{class_initial_condition}{}\doxysection{Initial\+Condition Class Reference}
+\label{class_initial_condition}\index{InitialCondition@{InitialCondition}}
+
+
+Initial condition class.  
+
+
+
+
+{\ttfamily \#include $<$initial\+\_\+condition.\+h$>$}
+
+
+
+Collaboration diagram for Initial\+Condition\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_initial_condition__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_initial_condition_a7dad8e2ee1fe100667be8e2ea0dd2948}{Initial\+Condition}} ()=default
+\item 
+\mbox{\hyperlink{class_initial_condition_ac1de4cb9ba884e24a90fa938d810b3e6}{Initial\+Condition}} (std\+::function$<$ std\+::complex$<$ float $>$(float, float)$>$ \mbox{\hyperlink{class_initial_condition_aee14365174d66277a86df6009d587fc4}{initial\+\_\+condition\+\_\+function}})
+\begin{DoxyCompactList}\small\item\em Construct a new Initial Condition\+:\+: Initial Condition object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5}{assign\+\_\+to\+\_\+domain}} (\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$domain)
+\begin{DoxyCompactList}\small\item\em Assign initial condition to the domain class instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::function$<$ std\+::complex$<$ float $>$float, float)$>$ \mbox{\hyperlink{class_initial_condition_aee14365174d66277a86df6009d587fc4}{initial\+\_\+condition\+\_\+function}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Initial condition class. 
+
+
+
+Definition at line 24 of file initial\+\_\+condition.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_initial_condition_a7dad8e2ee1fe100667be8e2ea0dd2948}\label{class_initial_condition_a7dad8e2ee1fe100667be8e2ea0dd2948}} 
+\index{InitialCondition@{InitialCondition}!InitialCondition@{InitialCondition}}
+\index{InitialCondition@{InitialCondition}!InitialCondition@{InitialCondition}}
+\doxysubsubsection{\texorpdfstring{InitialCondition()}{InitialCondition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Initial\+Condition\+::\+Initial\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_initial_condition_ac1de4cb9ba884e24a90fa938d810b3e6}\label{class_initial_condition_ac1de4cb9ba884e24a90fa938d810b3e6}} 
+\index{InitialCondition@{InitialCondition}!InitialCondition@{InitialCondition}}
+\index{InitialCondition@{InitialCondition}!InitialCondition@{InitialCondition}}
+\doxysubsubsection{\texorpdfstring{InitialCondition()}{InitialCondition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Initial\+Condition\+::\+Initial\+Condition (\begin{DoxyParamCaption}\item[{std\+::function$<$ std\+::complex$<$ float $>$(float, float)$>$}]{initial\+\_\+condition\+\_\+function }\end{DoxyParamCaption})}
+
+
+
+Construct a new Initial Condition\+:\+: Initial Condition object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em initial\+\_\+condition\+\_\+function} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file initial\+\_\+condition.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     this-\/>\mbox{\hyperlink{class_initial_condition_aee14365174d66277a86df6009d587fc4}{initial\_condition\_function}} = \mbox{\hyperlink{class_initial_condition_aee14365174d66277a86df6009d587fc4}{initial\_condition\_function}};}
+\DoxyCodeLine{21 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5}\label{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5}} 
+\index{InitialCondition@{InitialCondition}!assign\_to\_domain@{assign\_to\_domain}}
+\index{assign\_to\_domain@{assign\_to\_domain}!InitialCondition@{InitialCondition}}
+\doxysubsubsection{\texorpdfstring{assign\_to\_domain()}{assign\_to\_domain()}}
+{\footnotesize\ttfamily void Initial\+Condition\+::assign\+\_\+to\+\_\+domain (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$}]{domain }\end{DoxyParamCaption})}
+
+
+
+Assign initial condition to the domain class instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em domain} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file initial\+\_\+condition.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < domain-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}(); ++i)}
+\DoxyCodeLine{32     \{}
+\DoxyCodeLine{33         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < domain-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}(); ++j)}
+\DoxyCodeLine{34         \{}
+\DoxyCodeLine{35             \textcolor{keyword}{auto} point\_data = domain-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, 0);}
+\DoxyCodeLine{36             domain-\/>\mbox{\hyperlink{class_base_domain_aa877307517b12fd296d01006139bb18c}{assign\_initial\_value}}(i, j, this-\/>\mbox{\hyperlink{class_initial_condition_aee14365174d66277a86df6009d587fc4}{initial\_condition\_function}}(point\_data-\/>x, point\_data-\/>y));}
+\DoxyCodeLine{37         \}}
+\DoxyCodeLine{38     \}}
+\DoxyCodeLine{39     domain-\/>\mbox{\hyperlink{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72}{normalize}}(0);}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_initial_condition_aee14365174d66277a86df6009d587fc4}\label{class_initial_condition_aee14365174d66277a86df6009d587fc4}} 
+\index{InitialCondition@{InitialCondition}!initial\_condition\_function@{initial\_condition\_function}}
+\index{initial\_condition\_function@{initial\_condition\_function}!InitialCondition@{InitialCondition}}
+\doxysubsubsection{\texorpdfstring{initial\_condition\_function}{initial\_condition\_function}}
+{\footnotesize\ttfamily std\+::function$<$std\+::complex$<$float$>$float, float)$>$ Initial\+Condition\+::initial\+\_\+condition\+\_\+function\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 27 of file initial\+\_\+condition.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/initial\+\_\+condition/\mbox{\hyperlink{initial__condition_8h}{initial\+\_\+condition.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/initial\+\_\+condition/\mbox{\hyperlink{initial__condition_8cpp}{initial\+\_\+condition.\+cpp}}\end{DoxyCompactItemize}

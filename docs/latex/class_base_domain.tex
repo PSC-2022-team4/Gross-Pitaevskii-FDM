@@ -1,0 +1,913 @@
+\hypertarget{class_base_domain}{}\doxysection{Base\+Domain Class Reference}
+\label{class_base_domain}\index{BaseDomain@{BaseDomain}}
+
+
+Base domain class containing multiple time steps and export methods.  
+
+
+
+
+{\ttfamily \#include $<$base\+\_\+domain.\+h$>$}
+
+
+
+Inheritance diagram for Base\+Domain\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_base_domain__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Base\+Domain\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_base_domain_acb1d34056afab3578d08746e118f9664}{Base\+Domain}} ()
+\item 
+\mbox{\hyperlink{class_base_domain_ade75a05718efb8167671b5e555e41312}{Base\+Domain}} (int \mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\+\_\+grid\+\_\+1}}, int \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\+\_\+grid\+\_\+2}}, float \mbox{\hyperlink{class_base_domain_abae221d4dd4c37011980ccfbba95afba}{t\+\_\+start}}, float \mbox{\hyperlink{class_base_domain_a2740d8dadf0903ef3eeaa949018689b7}{t\+\_\+end}}, int \mbox{\hyperlink{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}{num\+\_\+times}})
+\item 
+float \mbox{\hyperlink{class_base_domain_a8f330f0cb9571799fc812295727ce67a}{get\+\_\+t\+\_\+start}} ()
+\item 
+float \mbox{\hyperlink{class_base_domain_a0d10fc6d58eb94ed71906a5b18681f6a}{get\+\_\+t\+\_\+end}} ()
+\item 
+float \mbox{\hyperlink{class_base_domain_afe71a36d36e3b7e20f7e5b2621f3005f}{get\+\_\+dt}} ()
+\item 
+int \mbox{\hyperlink{class_base_domain_ade842081a5e63b389d92222a1e00f0e5}{get\+\_\+num\+\_\+times}} ()
+\item 
+int \mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\+\_\+num\+\_\+grid\+\_\+1}} ()
+\item 
+int \mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\+\_\+num\+\_\+grid\+\_\+2}} ()
+\item 
+\mbox{\hyperlink{class_grid_point}{Grid\+Point}} $\ast$ \mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\+\_\+null\+\_\+gridpt}} ()
+\item 
+\mbox{\hyperlink{class_grid_point}{Grid\+Point}} $\ast$ \mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}} (int index\+\_\+1, int index\+\_\+2, int time\+\_\+index)
+\item 
+void \mbox{\hyperlink{class_base_domain_aa877307517b12fd296d01006139bb18c}{assign\+\_\+initial\+\_\+value}} (int index\+\_\+1, int index\+\_\+2, std\+::complex$<$ float $>$ value)
+\begin{DoxyCompactList}\small\item\em Assign initial value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_base_domain_a72ba4101786254c7d88f639eea72fc41}{assign\+\_\+wave\+\_\+function}} (int index\+\_\+1, int index\+\_\+2, int time\+\_\+index, std\+::complex$<$ float $>$ value)
+\item 
+float \mbox{\hyperlink{class_base_domain_a65c25acb458684f60d58ea4e49ffdcca}{time\+\_\+at}} (int time\+\_\+index)
+\item 
+float \mbox{\hyperlink{class_base_domain_ac6c9c1476b3ae00c3e0863840c131d80}{get\+\_\+infinitesimal\+\_\+distance1}} ()
+\item 
+float \mbox{\hyperlink{class_base_domain_aa65e83a59ac70d337e141f933008002a}{get\+\_\+infinitesimal\+\_\+distance2}} ()
+\item 
+void \mbox{\hyperlink{class_base_domain_a95151f86188780b93caa6294242d366a}{generate\+\_\+directory\+\_\+name}} (std\+::string info, bool print\+\_\+info=true)
+\begin{DoxyCompactList}\small\item\em create directory and return directory name with \char`\"{}/\char`\"{} directory name \+: \char`\"{}./results/\%d-\/\%m-\/\%\+Y \%\+H-\/\%\+M-\/\%\+S\+\_\+\char`\"{}+info for exmaple, \char`\"{}./results/\char`\"{} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_base_domain_a729daa564abcaf5bdd37c2dfc63e8137}{generate\+\_\+single\+\_\+txt\+\_\+file}} (std\+::string filename, bool cuda\+\_\+mode=false)
+\begin{DoxyCompactList}\small\item\em export results of probability($\vert$psi$\vert$$^\wedge$2) as txt it generates (num\+\_\+times) txt files each txt file contains $\vert$psi$\vert$$^\wedge$2 data \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72}{normalize}} (int time\+\_\+index)
+\item 
+void \mbox{\hyperlink{class_base_domain_a1bfcbbddd7317754b6190daf7283c80b}{print\+\_\+directory\+\_\+info}} ()
+\item 
+int \mbox{\hyperlink{class_base_domain_ab9a8da6271dbd7266f7fcc7af89274e3}{get\+\_\+current\+\_\+time\+\_\+index}} ()
+\item 
+\mbox{\hyperlink{class_base_domain_aef06ec8ca25f38f6e1c47a1c46acd656}{$\sim$\+Base\+Domain}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_base_domain_a70bdb757e119aaff5f2917c8d14314db}{get\+\_\+path}} ()
+\item 
+void \mbox{\hyperlink{class_base_domain_ab3003e4ed3a00ba43157ebd34a112ae4}{update\+\_\+time}} (bool cuda\+\_\+mode=false)
+\item 
+virtual void \mbox{\hyperlink{class_base_domain_a4ec37b33c4592796b13f4ae8da5d3cd3}{reset}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_base_spatial_grid}{Base\+Spatial\+Grid}} $\ast$ \mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\+\_\+grid}}
+\item 
+\mbox{\hyperlink{class_base_spatial_grid}{Base\+Spatial\+Grid}} $\ast$ \mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\+\_\+grid}}
+\item 
+\mbox{\hyperlink{class_grid_point}{Grid\+Point}} $\ast$ \mbox{\hyperlink{class_base_domain_a9b25ece308051dd894b84051b8618ec6}{null\+\_\+gridpt}}
+\item 
+float \mbox{\hyperlink{class_base_domain_abae221d4dd4c37011980ccfbba95afba}{t\+\_\+start}}
+\item 
+float \mbox{\hyperlink{class_base_domain_a2740d8dadf0903ef3eeaa949018689b7}{t\+\_\+end}}
+\item 
+float \mbox{\hyperlink{class_base_domain_a28e08b00f4aff3862e865402f349f2d6}{dt}}
+\item 
+int \mbox{\hyperlink{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}{num\+\_\+times}}
+\item 
+int \mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\+\_\+grid\+\_\+1}}
+\item 
+int \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\+\_\+grid\+\_\+2}}
+\item 
+int \mbox{\hyperlink{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}{current\+\_\+time\+\_\+index}} = 0
+\item 
+std\+::string \mbox{\hyperlink{class_base_domain_ae3a8ff153fbed2aa32c312ca882b07d2}{P\+A\+TH}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base domain class containing multiple time steps and export methods. 
+
+
+
+Definition at line 67 of file base\+\_\+domain.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_base_domain_acb1d34056afab3578d08746e118f9664}\label{class_base_domain_acb1d34056afab3578d08746e118f9664}} 
+\index{BaseDomain@{BaseDomain}!BaseDomain@{BaseDomain}}
+\index{BaseDomain@{BaseDomain}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{BaseDomain()}{BaseDomain()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Base\+Domain\+::\+Base\+Domain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_base_domain_ade75a05718efb8167671b5e555e41312}\label{class_base_domain_ade75a05718efb8167671b5e555e41312}} 
+\index{BaseDomain@{BaseDomain}!BaseDomain@{BaseDomain}}
+\index{BaseDomain@{BaseDomain}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{BaseDomain()}{BaseDomain()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Base\+Domain\+::\+Base\+Domain (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+grid\+\_\+1,  }\item[{int}]{num\+\_\+grid\+\_\+2,  }\item[{float}]{t\+\_\+start,  }\item[{float}]{t\+\_\+end,  }\item[{int}]{num\+\_\+times }\end{DoxyParamCaption})}
+
+
+
+Definition at line 81 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{87 \{}
+\DoxyCodeLine{88     this-\/>\mbox{\hyperlink{class_base_domain_abae221d4dd4c37011980ccfbba95afba}{t\_start}} = \mbox{\hyperlink{class_base_domain_abae221d4dd4c37011980ccfbba95afba}{t\_start}};}
+\DoxyCodeLine{89     this-\/>\mbox{\hyperlink{class_base_domain_a2740d8dadf0903ef3eeaa949018689b7}{t\_end}} = \mbox{\hyperlink{class_base_domain_a2740d8dadf0903ef3eeaa949018689b7}{t\_end}};}
+\DoxyCodeLine{90     this-\/>\mbox{\hyperlink{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}{num\_times}} = \mbox{\hyperlink{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}{num\_times}};}
+\DoxyCodeLine{91     \textcolor{comment}{// dt: interval of time}}
+\DoxyCodeLine{92     this-\/>\mbox{\hyperlink{class_base_domain_a28e08b00f4aff3862e865402f349f2d6}{dt}} = (\mbox{\hyperlink{class_base_domain_a2740d8dadf0903ef3eeaa949018689b7}{t\_end}} -\/ \mbox{\hyperlink{class_base_domain_abae221d4dd4c37011980ccfbba95afba}{t\_start}}) / (\mbox{\hyperlink{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}{num\_times}} -\/ 1);}
+\DoxyCodeLine{93     this-\/>\mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}} = \mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}};}
+\DoxyCodeLine{94     this-\/>\mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}} = \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}};}
+\DoxyCodeLine{95     this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_base_spatial_grid}{BaseSpatialGrid}}(\mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}}, \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}});}
+\DoxyCodeLine{96     this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_base_spatial_grid}{BaseSpatialGrid}}(\mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}}, \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}});}
+\DoxyCodeLine{97     this-\/>\mbox{\hyperlink{class_base_domain_a9b25ece308051dd894b84051b8618ec6}{null\_gridpt}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_grid_point}{GridPoint}}(0, 0, std::complex<float>\{0\});}
+\DoxyCodeLine{98 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_domain_aef06ec8ca25f38f6e1c47a1c46acd656}\label{class_base_domain_aef06ec8ca25f38f6e1c47a1c46acd656}} 
+\index{BaseDomain@{BaseDomain}!````~BaseDomain@{$\sim$BaseDomain}}
+\index{````~BaseDomain@{$\sim$BaseDomain}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseDomain()}{~BaseDomain()}}
+{\footnotesize\ttfamily Base\+Domain\+::$\sim$\+Base\+Domain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 100 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101 \{}
+\DoxyCodeLine{102     \textcolor{keyword}{delete} (this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}});}
+\DoxyCodeLine{103     \textcolor{keyword}{delete} (this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}});}
+\DoxyCodeLine{104 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_base_domain_aa877307517b12fd296d01006139bb18c}\label{class_base_domain_aa877307517b12fd296d01006139bb18c}} 
+\index{BaseDomain@{BaseDomain}!assign\_initial\_value@{assign\_initial\_value}}
+\index{assign\_initial\_value@{assign\_initial\_value}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{assign\_initial\_value()}{assign\_initial\_value()}}
+{\footnotesize\ttfamily void Base\+Domain\+::assign\+\_\+initial\+\_\+value (\begin{DoxyParamCaption}\item[{int}]{index\+\_\+1,  }\item[{int}]{index\+\_\+2,  }\item[{std\+::complex$<$ float $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+Assign initial value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index\+\_\+1} & x = x\+\_\+start + index\+\_\+1$\ast$dx \\
+\hline
+{\em index\+\_\+2} & y = y\+\_\+start + index\+\_\+2 $\ast$ dy \\
+\hline
+{\em value} & initial value at x, y \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 188 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{189 \{}
+\DoxyCodeLine{190     this-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(index\_1, index\_2, 0)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} = value;}
+\DoxyCodeLine{191 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_aa877307517b12fd296d01006139bb18c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_aa877307517b12fd296d01006139bb18c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a72ba4101786254c7d88f639eea72fc41}\label{class_base_domain_a72ba4101786254c7d88f639eea72fc41}} 
+\index{BaseDomain@{BaseDomain}!assign\_wave\_function@{assign\_wave\_function}}
+\index{assign\_wave\_function@{assign\_wave\_function}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{assign\_wave\_function()}{assign\_wave\_function()}}
+{\footnotesize\ttfamily void Base\+Domain\+::assign\+\_\+wave\+\_\+function (\begin{DoxyParamCaption}\item[{int}]{index\+\_\+1,  }\item[{int}]{index\+\_\+2,  }\item[{int}]{time\+\_\+index,  }\item[{std\+::complex$<$ float $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line 192 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{193 \{}
+\DoxyCodeLine{194     this-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(index\_1, index\_2, time\_index)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} = value;}
+\DoxyCodeLine{195 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a72ba4101786254c7d88f639eea72fc41_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}\label{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}} 
+\index{BaseDomain@{BaseDomain}!at@{at}}
+\index{at@{at}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_grid_point}{Grid\+Point}} $\ast$ Base\+Domain\+::at (\begin{DoxyParamCaption}\item[{int}]{index\+\_\+1,  }\item[{int}]{index\+\_\+2,  }\item[{int}]{time\+\_\+index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{154 \{}
+\DoxyCodeLine{155     \textcolor{keywordflow}{if} (time\_index == this-\/>\mbox{\hyperlink{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}{current\_time\_index}})}
+\DoxyCodeLine{156     \{}
+\DoxyCodeLine{157         \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(index\_1, index\_2);}
+\DoxyCodeLine{158     \}}
+\DoxyCodeLine{159     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (time\_index == this-\/>\mbox{\hyperlink{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}{current\_time\_index}} -\/ 1)}
+\DoxyCodeLine{160     \{}
+\DoxyCodeLine{161         \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(index\_1, index\_2);}
+\DoxyCodeLine{162     \}}
+\DoxyCodeLine{163     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{164     \{}
+\DoxyCodeLine{165         std::cerr << \textcolor{stringliteral}{"error in base domin at function"} << std::endl;}
+\DoxyCodeLine{166         \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(index\_1, index\_2);}
+\DoxyCodeLine{167     \}}
+\DoxyCodeLine{168 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a95151f86188780b93caa6294242d366a}\label{class_base_domain_a95151f86188780b93caa6294242d366a}} 
+\index{BaseDomain@{BaseDomain}!generate\_directory\_name@{generate\_directory\_name}}
+\index{generate\_directory\_name@{generate\_directory\_name}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{generate\_directory\_name()}{generate\_directory\_name()}}
+{\footnotesize\ttfamily void Base\+Domain\+::generate\+\_\+directory\+\_\+name (\begin{DoxyParamCaption}\item[{std\+::string}]{info,  }\item[{bool}]{print\+\_\+info = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+create directory and return directory name with \char`\"{}/\char`\"{} directory name \+: \char`\"{}./results/\%d-\/\%m-\/\%\+Y \%\+H-\/\%\+M-\/\%\+S\+\_\+\char`\"{}+info for exmaple, \char`\"{}./results/\char`\"{} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & information about domain type and solver type \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string directory name with \char`\"{}/\char`\"{} 
+\end{DoxyReturn}
+
+
+Definition at line 203 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{204 \{}
+\DoxyCodeLine{205     \textcolor{keyword}{auto} t = std::time(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{206     \textcolor{keyword}{auto} tm = *std::localtime(\&t);}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     std::ostringstream oss;}
+\DoxyCodeLine{209     oss << std::put\_time(\&tm, \textcolor{stringliteral}{"\%Y-\/\%m-\/\%d-\/\%H-\/\%M-\/\%S"});}
+\DoxyCodeLine{210     \textcolor{keyword}{auto} str = oss.str();}
+\DoxyCodeLine{211     std::string directory\_name = \textcolor{stringliteral}{"../results/"} + str + \textcolor{stringliteral}{"\_"} + info;}
+\DoxyCodeLine{212     \textcolor{keywordtype}{bool} created = fs::create\_directory(directory\_name.c\_str());}
+\DoxyCodeLine{213     \textcolor{keywordflow}{if} (print\_info \&\& created)}
+\DoxyCodeLine{214     \{}
+\DoxyCodeLine{215         std::cout << \textcolor{stringliteral}{"Created directory "} << directory\_name << std::endl;}
+\DoxyCodeLine{216     \}}
+\DoxyCodeLine{217     \textcolor{comment}{// else if(print\_info )}}
+\DoxyCodeLine{218     \textcolor{comment}{//TODO}}
+\DoxyCodeLine{219     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!created)}
+\DoxyCodeLine{220     \{}
+\DoxyCodeLine{221         std::cout << \textcolor{stringliteral}{"Creating directory failed"} << std::endl;}
+\DoxyCodeLine{222     \}}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224     this-\/>\mbox{\hyperlink{class_base_domain_ae3a8ff153fbed2aa32c312ca882b07d2}{PATH}} = directory\_name + \textcolor{stringliteral}{"/"};}
+\DoxyCodeLine{225 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a95151f86188780b93caa6294242d366a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a729daa564abcaf5bdd37c2dfc63e8137}\label{class_base_domain_a729daa564abcaf5bdd37c2dfc63e8137}} 
+\index{BaseDomain@{BaseDomain}!generate\_single\_txt\_file@{generate\_single\_txt\_file}}
+\index{generate\_single\_txt\_file@{generate\_single\_txt\_file}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{generate\_single\_txt\_file()}{generate\_single\_txt\_file()}}
+{\footnotesize\ttfamily void Base\+Domain\+::generate\+\_\+single\+\_\+txt\+\_\+file (\begin{DoxyParamCaption}\item[{std\+::string}]{filename,  }\item[{bool}]{cuda\+\_\+mode = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+export results of probability($\vert$psi$\vert$$^\wedge$2) as txt it generates (num\+\_\+times) txt files each txt file contains $\vert$psi$\vert$$^\wedge$2 data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grid} & grid at t \\
+\hline
+{\em filename} & file name to store data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 235 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{236 \{}
+\DoxyCodeLine{237     \textcolor{keywordflow}{if} (cuda\_mode)\{}
+\DoxyCodeLine{238         this-\/>\mbox{\hyperlink{class_base_domain_ab3003e4ed3a00ba43157ebd34a112ae4}{update\_time}}(cuda\_mode);}
+\DoxyCodeLine{239     \}}
+\DoxyCodeLine{240     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{241         std::ofstream outfile(this-\/>\mbox{\hyperlink{class_base_domain_ae3a8ff153fbed2aa32c312ca882b07d2}{PATH}} + filename + \textcolor{stringliteral}{".txt"});}
+\DoxyCodeLine{242         outfile << \textcolor{stringliteral}{"x, y, real, imag, magn, phase "} << std::endl;}
+\DoxyCodeLine{243         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < \mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}}; ++i)}
+\DoxyCodeLine{244         \{}
+\DoxyCodeLine{245             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}}; ++j)}
+\DoxyCodeLine{246             \{}
+\DoxyCodeLine{247                 \textcolor{keywordtype}{float} magnitude = std::abs(this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}});}
+\DoxyCodeLine{248                 \textcolor{keywordtype}{float} phase = std::arg(this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}});}
+\DoxyCodeLine{249                 outfile << this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a8d8dd4e9c8735b33ce3c88247b231cbe}{x}} << \textcolor{stringliteral}{", "} << this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_adb4a3d4881db29c119840f5fe55a4bf8}{y}} << \textcolor{stringliteral}{", "};}
+\DoxyCodeLine{250                 outfile << this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}}.real() << \textcolor{stringliteral}{", "} << this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}}.imag() << \textcolor{stringliteral}{", "};}
+\DoxyCodeLine{251                 outfile << magnitude << \textcolor{stringliteral}{", "} << phase;}
+\DoxyCodeLine{252                 outfile << std::endl;}
+\DoxyCodeLine{253             \}}
+\DoxyCodeLine{254         \}}
+\DoxyCodeLine{255         outfile.close();}
+\DoxyCodeLine{256         \textcolor{comment}{// After saving data, update domain}}
+\DoxyCodeLine{257         this-\/>\mbox{\hyperlink{class_base_domain_ab3003e4ed3a00ba43157ebd34a112ae4}{update\_time}}();}
+\DoxyCodeLine{258     \}}
+\DoxyCodeLine{259 \};}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a729daa564abcaf5bdd37c2dfc63e8137_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_ab9a8da6271dbd7266f7fcc7af89274e3}\label{class_base_domain_ab9a8da6271dbd7266f7fcc7af89274e3}} 
+\index{BaseDomain@{BaseDomain}!get\_current\_time\_index@{get\_current\_time\_index}}
+\index{get\_current\_time\_index@{get\_current\_time\_index}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_current\_time\_index()}{get\_current\_time\_index()}}
+{\footnotesize\ttfamily int Base\+Domain\+::get\+\_\+current\+\_\+time\+\_\+index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 170 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{171 \{}
+\DoxyCodeLine{172     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}{current\_time\_index}};}
+\DoxyCodeLine{173 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_domain_afe71a36d36e3b7e20f7e5b2621f3005f}\label{class_base_domain_afe71a36d36e3b7e20f7e5b2621f3005f}} 
+\index{BaseDomain@{BaseDomain}!get\_dt@{get\_dt}}
+\index{get\_dt@{get\_dt}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_dt()}{get\_dt()}}
+{\footnotesize\ttfamily float Base\+Domain\+::get\+\_\+dt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 125 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{126 \{}
+\DoxyCodeLine{127     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a28e08b00f4aff3862e865402f349f2d6}{dt}};}
+\DoxyCodeLine{128 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_afe71a36d36e3b7e20f7e5b2621f3005f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_ac6c9c1476b3ae00c3e0863840c131d80}\label{class_base_domain_ac6c9c1476b3ae00c3e0863840c131d80}} 
+\index{BaseDomain@{BaseDomain}!get\_infinitesimal\_distance1@{get\_infinitesimal\_distance1}}
+\index{get\_infinitesimal\_distance1@{get\_infinitesimal\_distance1}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_infinitesimal\_distance1()}{get\_infinitesimal\_distance1()}}
+{\footnotesize\ttfamily float Base\+Domain\+::get\+\_\+infinitesimal\+\_\+distance1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 143 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{144 \{}
+\DoxyCodeLine{145     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_ab68bca75611922a5bf1d83ea8d33074c}{get\_infinitesimal\_distance1}}();}
+\DoxyCodeLine{146 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_ac6c9c1476b3ae00c3e0863840c131d80_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_ac6c9c1476b3ae00c3e0863840c131d80_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_aa65e83a59ac70d337e141f933008002a}\label{class_base_domain_aa65e83a59ac70d337e141f933008002a}} 
+\index{BaseDomain@{BaseDomain}!get\_infinitesimal\_distance2@{get\_infinitesimal\_distance2}}
+\index{get\_infinitesimal\_distance2@{get\_infinitesimal\_distance2}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_infinitesimal\_distance2()}{get\_infinitesimal\_distance2()}}
+{\footnotesize\ttfamily float Base\+Domain\+::get\+\_\+infinitesimal\+\_\+distance2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 147 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{148 \{}
+\DoxyCodeLine{149     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_aaf1307931a72afde158cb6eb886694bd}{get\_infinitesimal\_distance2}}();}
+\DoxyCodeLine{150 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_aa65e83a59ac70d337e141f933008002a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_aa65e83a59ac70d337e141f933008002a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}\label{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}} 
+\index{BaseDomain@{BaseDomain}!get\_null\_gridpt@{get\_null\_gridpt}}
+\index{get\_null\_gridpt@{get\_null\_gridpt}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_null\_gridpt()}{get\_null\_gridpt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_grid_point}{Grid\+Point}} $\ast$ Base\+Domain\+::get\+\_\+null\+\_\+gridpt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 176 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{177 \{}
+\DoxyCodeLine{178     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a9b25ece308051dd894b84051b8618ec6}{null\_gridpt}};}
+\DoxyCodeLine{179 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}\label{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}} 
+\index{BaseDomain@{BaseDomain}!get\_num\_grid\_1@{get\_num\_grid\_1}}
+\index{get\_num\_grid\_1@{get\_num\_grid\_1}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_num\_grid\_1()}{get\_num\_grid\_1()}}
+{\footnotesize\ttfamily int Base\+Domain\+::get\+\_\+num\+\_\+grid\+\_\+1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 134 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{135 \{}
+\DoxyCodeLine{136     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}};}
+\DoxyCodeLine{137 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}\label{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}} 
+\index{BaseDomain@{BaseDomain}!get\_num\_grid\_2@{get\_num\_grid\_2}}
+\index{get\_num\_grid\_2@{get\_num\_grid\_2}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_num\_grid\_2()}{get\_num\_grid\_2()}}
+{\footnotesize\ttfamily int Base\+Domain\+::get\+\_\+num\+\_\+grid\+\_\+2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 138 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{139 \{}
+\DoxyCodeLine{140     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}};}
+\DoxyCodeLine{141 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_ade842081a5e63b389d92222a1e00f0e5}\label{class_base_domain_ade842081a5e63b389d92222a1e00f0e5}} 
+\index{BaseDomain@{BaseDomain}!get\_num\_times@{get\_num\_times}}
+\index{get\_num\_times@{get\_num\_times}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_num\_times()}{get\_num\_times()}}
+{\footnotesize\ttfamily int Base\+Domain\+::get\+\_\+num\+\_\+times (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 129 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{130 \{}
+\DoxyCodeLine{131     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}{num\_times}};}
+\DoxyCodeLine{132 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_ade842081a5e63b389d92222a1e00f0e5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a70bdb757e119aaff5f2917c8d14314db}\label{class_base_domain_a70bdb757e119aaff5f2917c8d14314db}} 
+\index{BaseDomain@{BaseDomain}!get\_path@{get\_path}}
+\index{get\_path@{get\_path}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_path()}{get\_path()}}
+{\footnotesize\ttfamily std\+::string Base\+Domain\+::get\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 106 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{107 \{}
+\DoxyCodeLine{108     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_ae3a8ff153fbed2aa32c312ca882b07d2}{PATH}};}
+\DoxyCodeLine{109 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_domain_a0d10fc6d58eb94ed71906a5b18681f6a}\label{class_base_domain_a0d10fc6d58eb94ed71906a5b18681f6a}} 
+\index{BaseDomain@{BaseDomain}!get\_t\_end@{get\_t\_end}}
+\index{get\_t\_end@{get\_t\_end}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_t\_end()}{get\_t\_end()}}
+{\footnotesize\ttfamily float Base\+Domain\+::get\+\_\+t\+\_\+end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 121 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{122 \{}
+\DoxyCodeLine{123     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_a2740d8dadf0903ef3eeaa949018689b7}{t\_end}};}
+\DoxyCodeLine{124 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_domain_a8f330f0cb9571799fc812295727ce67a}\label{class_base_domain_a8f330f0cb9571799fc812295727ce67a}} 
+\index{BaseDomain@{BaseDomain}!get\_t\_start@{get\_t\_start}}
+\index{get\_t\_start@{get\_t\_start}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{get\_t\_start()}{get\_t\_start()}}
+{\footnotesize\ttfamily float Base\+Domain\+::get\+\_\+t\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 116 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{117 \{}
+\DoxyCodeLine{118     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_domain_abae221d4dd4c37011980ccfbba95afba}{t\_start}};}
+\DoxyCodeLine{119 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72}\label{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72}} 
+\index{BaseDomain@{BaseDomain}!normalize@{normalize}}
+\index{normalize@{normalize}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily void Base\+Domain\+::normalize (\begin{DoxyParamCaption}\item[{int}]{time\+\_\+index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 111 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{112 \{}
+\DoxyCodeLine{113     this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a93cfcbbf428c051b459f893e5417e2c1}{normalize}}();}
+\DoxyCodeLine{114 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a1bfcbbddd7317754b6190daf7283c80b}\label{class_base_domain_a1bfcbbddd7317754b6190daf7283c80b}} 
+\index{BaseDomain@{BaseDomain}!print\_directory\_info@{print\_directory\_info}}
+\index{print\_directory\_info@{print\_directory\_info}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{print\_directory\_info()}{print\_directory\_info()}}
+{\footnotesize\ttfamily void Base\+Domain\+::print\+\_\+directory\+\_\+info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 261 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{262 \{}
+\DoxyCodeLine{263     std::cout << this-\/>\mbox{\hyperlink{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}{num\_times}};}
+\DoxyCodeLine{264     std::cout << \textcolor{stringliteral}{" text files are generated in \(\backslash\)n"};}
+\DoxyCodeLine{265     std::cout << this-\/>\mbox{\hyperlink{class_base_domain_ae3a8ff153fbed2aa32c312ca882b07d2}{PATH}} << std::endl;}
+\DoxyCodeLine{266 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a1bfcbbddd7317754b6190daf7283c80b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a4ec37b33c4592796b13f4ae8da5d3cd3}\label{class_base_domain_a4ec37b33c4592796b13f4ae8da5d3cd3}} 
+\index{BaseDomain@{BaseDomain}!reset@{reset}}
+\index{reset@{reset}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Base\+Domain\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_rectangular_domain_a31704dee1b7d251e0d43be7251e5a504}{Rectangular\+Domain}}.
+
+
+
+Definition at line 282 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{283 \{}
+\DoxyCodeLine{284     this-\/>\mbox{\hyperlink{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}{current\_time\_index}} = 0;}
+\DoxyCodeLine{285     \textcolor{keyword}{delete} this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}};}
+\DoxyCodeLine{286     \textcolor{keyword}{delete} this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}};}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288     this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_base_spatial_grid}{BaseSpatialGrid}}(\mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}}, \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}});}
+\DoxyCodeLine{289     this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_base_spatial_grid}{BaseSpatialGrid}}(\mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}}, \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}});}
+\DoxyCodeLine{290 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_a4ec37b33c4592796b13f4ae8da5d3cd3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_domain_a65c25acb458684f60d58ea4e49ffdcca}\label{class_base_domain_a65c25acb458684f60d58ea4e49ffdcca}} 
+\index{BaseDomain@{BaseDomain}!time\_at@{time\_at}}
+\index{time\_at@{time\_at}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{time\_at()}{time\_at()}}
+{\footnotesize\ttfamily float Base\+Domain\+::time\+\_\+at (\begin{DoxyParamCaption}\item[{int}]{time\+\_\+index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_base_domain_ab3003e4ed3a00ba43157ebd34a112ae4}\label{class_base_domain_ab3003e4ed3a00ba43157ebd34a112ae4}} 
+\index{BaseDomain@{BaseDomain}!update\_time@{update\_time}}
+\index{update\_time@{update\_time}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{update\_time()}{update\_time()}}
+{\footnotesize\ttfamily void Base\+Domain\+::update\+\_\+time (\begin{DoxyParamCaption}\item[{bool}]{cuda\+\_\+mode = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 268 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{269 \{}
+\DoxyCodeLine{270     \textcolor{keywordflow}{if} (cuda\_mode)\{}
+\DoxyCodeLine{271         this-\/>\mbox{\hyperlink{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}{current\_time\_index}} += 1;}
+\DoxyCodeLine{272     \}}
+\DoxyCodeLine{273     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275         this-\/>\mbox{\hyperlink{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}{current\_time\_index}} += 1;}
+\DoxyCodeLine{276         \textcolor{keyword}{delete} (this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}});}
+\DoxyCodeLine{277         this-\/>\mbox{\hyperlink{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}{old\_grid}} = this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}};}
+\DoxyCodeLine{278         this-\/>\mbox{\hyperlink{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}{current\_grid}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_base_spatial_grid}{BaseSpatialGrid}}(\mbox{\hyperlink{class_base_domain_a9504b03000c5664561bf17ea6a38151c}{num\_grid\_1}}, \mbox{\hyperlink{class_base_domain_a3d072258613dbc2d50502be624325b79}{num\_grid\_2}});}
+\DoxyCodeLine{279     \}}
+\DoxyCodeLine{280 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_domain_ab3003e4ed3a00ba43157ebd34a112ae4_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}\label{class_base_domain_a6ae1fc02726e1e8245f49273f6c19251}} 
+\index{BaseDomain@{BaseDomain}!current\_grid@{current\_grid}}
+\index{current\_grid@{current\_grid}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{current\_grid}{current\_grid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_base_spatial_grid}{Base\+Spatial\+Grid}}$\ast$ Base\+Domain\+::current\+\_\+grid\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 98 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}\label{class_base_domain_a26a75816e24b8ae188906246fa9e8e1d}} 
+\index{BaseDomain@{BaseDomain}!current\_time\_index@{current\_time\_index}}
+\index{current\_time\_index@{current\_time\_index}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{current\_time\_index}{current\_time\_index}}
+{\footnotesize\ttfamily int Base\+Domain\+::current\+\_\+time\+\_\+index = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 102 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_a28e08b00f4aff3862e865402f349f2d6}\label{class_base_domain_a28e08b00f4aff3862e865402f349f2d6}} 
+\index{BaseDomain@{BaseDomain}!dt@{dt}}
+\index{dt@{dt}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{dt}{dt}}
+{\footnotesize\ttfamily float Base\+Domain\+::dt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 100 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_a9b25ece308051dd894b84051b8618ec6}\label{class_base_domain_a9b25ece308051dd894b84051b8618ec6}} 
+\index{BaseDomain@{BaseDomain}!null\_gridpt@{null\_gridpt}}
+\index{null\_gridpt@{null\_gridpt}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{null\_gridpt}{null\_gridpt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_grid_point}{Grid\+Point}}$\ast$ Base\+Domain\+::null\+\_\+gridpt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 99 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_a9504b03000c5664561bf17ea6a38151c}\label{class_base_domain_a9504b03000c5664561bf17ea6a38151c}} 
+\index{BaseDomain@{BaseDomain}!num\_grid\_1@{num\_grid\_1}}
+\index{num\_grid\_1@{num\_grid\_1}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{num\_grid\_1}{num\_grid\_1}}
+{\footnotesize\ttfamily int Base\+Domain\+::num\+\_\+grid\+\_\+1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 101 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_a3d072258613dbc2d50502be624325b79}\label{class_base_domain_a3d072258613dbc2d50502be624325b79}} 
+\index{BaseDomain@{BaseDomain}!num\_grid\_2@{num\_grid\_2}}
+\index{num\_grid\_2@{num\_grid\_2}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{num\_grid\_2}{num\_grid\_2}}
+{\footnotesize\ttfamily int Base\+Domain\+::num\+\_\+grid\+\_\+2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 101 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}\label{class_base_domain_a580e3fa7be7f8e265c1932034429d2eb}} 
+\index{BaseDomain@{BaseDomain}!num\_times@{num\_times}}
+\index{num\_times@{num\_times}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{num\_times}{num\_times}}
+{\footnotesize\ttfamily int Base\+Domain\+::num\+\_\+times\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 101 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}\label{class_base_domain_af249753a4fe21b79e0ece2196798c7d4}} 
+\index{BaseDomain@{BaseDomain}!old\_grid@{old\_grid}}
+\index{old\_grid@{old\_grid}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{old\_grid}{old\_grid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_base_spatial_grid}{Base\+Spatial\+Grid}}$\ast$ Base\+Domain\+::old\+\_\+grid\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 97 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_ae3a8ff153fbed2aa32c312ca882b07d2}\label{class_base_domain_ae3a8ff153fbed2aa32c312ca882b07d2}} 
+\index{BaseDomain@{BaseDomain}!PATH@{PATH}}
+\index{PATH@{PATH}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{PATH}{PATH}}
+{\footnotesize\ttfamily std\+::string Base\+Domain\+::\+P\+A\+TH\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 103 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_a2740d8dadf0903ef3eeaa949018689b7}\label{class_base_domain_a2740d8dadf0903ef3eeaa949018689b7}} 
+\index{BaseDomain@{BaseDomain}!t\_end@{t\_end}}
+\index{t\_end@{t\_end}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{t\_end}{t\_end}}
+{\footnotesize\ttfamily float Base\+Domain\+::t\+\_\+end\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 100 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_domain_abae221d4dd4c37011980ccfbba95afba}\label{class_base_domain_abae221d4dd4c37011980ccfbba95afba}} 
+\index{BaseDomain@{BaseDomain}!t\_start@{t\_start}}
+\index{t\_start@{t\_start}!BaseDomain@{BaseDomain}}
+\doxysubsubsection{\texorpdfstring{t\_start}{t\_start}}
+{\footnotesize\ttfamily float Base\+Domain\+::t\+\_\+start\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 100 of file base\+\_\+domain.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/domain/\mbox{\hyperlink{base__domain_8h}{base\+\_\+domain.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/domain/\mbox{\hyperlink{base__domain_8cpp}{base\+\_\+domain.\+cpp}}\end{DoxyCompactItemize}

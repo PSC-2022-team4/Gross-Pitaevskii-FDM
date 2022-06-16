@@ -1,0 +1,53 @@
+\hypertarget{_c_make_lists_8txt}{}\doxysection{/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/\+C\+Make\+Lists.txt File Reference}
+\label{_c_make_lists_8txt}\index{/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/CMakeLists.txt@{/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/CMakeLists.txt}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_c_make_lists_8txt_a6b257e14c1f5f52453d1c539a89148a7}{cmake\+\_\+minimum\+\_\+required}} (V\+E\+R\+S\+I\+ON 3.\+5) enable\+\_\+language(C\+U\+DA) file(G\+L\+O\+B\+\_\+\+R\+E\+C\+U\+R\+SE S\+R\+C\+\_\+\+F\+I\+L\+ES L\+I\+S\+T\+\_\+\+D\+I\+R\+E\+C\+T\+O\+R\+I\+ES false $\ast$.h $\ast$.cpp $\ast$.cu $\ast$cuh) find\+\_\+package(M\+PI R\+E\+Q\+U\+I\+R\+ED) include\+\_\+directories(\$
+\item 
+\mbox{\hyperlink{_c_make_lists_8txt_a8bf0ace0b46ff850cb9433755f83cbb0}{target\+\_\+link\+\_\+libraries}} (\$\{B\+I\+N\+A\+RY\}\+\_\+run \$\{M\+P\+I\+\_\+\+L\+I\+B\+R\+A\+R\+I\+ES\}) target\+\_\+link\+\_\+libraries(\$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_make_lists_8txt_a6b257e14c1f5f52453d1c539a89148a7}\label{_c_make_lists_8txt_a6b257e14c1f5f52453d1c539a89148a7}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!cmake\_minimum\_required@{cmake\_minimum\_required}}
+\index{cmake\_minimum\_required@{cmake\_minimum\_required}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{cmake\_minimum\_required()}{cmake\_minimum\_required()}}
+{\footnotesize\ttfamily cmake\+\_\+minimum\+\_\+required (\begin{DoxyParamCaption}\item[{V\+E\+R\+S\+I\+ON 3.}]{5 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1 of file C\+Make\+Lists.\+txt.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{4              \{CMAKE\_PROJECT\_NAME\} )}
+\DoxyCodeLine{5 SET( EXECUTABLE\_OUTPUT\_PATH \$\{CMAKE\_SOURCE\_DIR\}/build )}
+\DoxyCodeLine{6 SET( LIBRARY\_OUTPUT\_PATH \$\{CMAKE\_SOURCE\_DIR\}/build )}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 file(GLOB\_RECURSE SRC\_FILES LIST\_DIRECTORIES \textcolor{keyword}{false} *.h *.cpp *.cu *cuh)}
+\DoxyCodeLine{9 ADD\_EXECUTABLE( \$\{BINARY\}\_run  \$\{SRC\_FILES\} )}
+\DoxyCodeLine{10 ADD\_LIBRARY( \$\{BINARY\}\_lib STATIC \$\{SRC\_FILES\} )}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \#MPI linking}
+\DoxyCodeLine{13 find\_package(MPI REQUIRED)}
+\DoxyCodeLine{14 include\_directories(\$\{MPI\_INCLUDE\_PATH\})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_c_make_lists_8txt_a8bf0ace0b46ff850cb9433755f83cbb0}\label{_c_make_lists_8txt_a8bf0ace0b46ff850cb9433755f83cbb0}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!target\_link\_libraries@{target\_link\_libraries}}
+\index{target\_link\_libraries@{target\_link\_libraries}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{target\_link\_libraries()}{target\_link\_libraries()}}
+{\footnotesize\ttfamily target\+\_\+link\+\_\+libraries (\begin{DoxyParamCaption}\item[{}]{\$\{\+B\+I\+N\+A\+R\+Y\}\+\_\+run \$\{\+M\+P\+I\+\_\+\+L\+I\+B\+R\+A\+R\+I\+E\+S\} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 15 of file C\+Make\+Lists.\+txt.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15                        \{BINARY\}\_run \$\{MPI\_LIBRARIES\})}
+\DoxyCodeLine{16 \mbox{\hyperlink{_c_make_lists_8txt_a8bf0ace0b46ff850cb9433755f83cbb0}{target\_link\_libraries}}(\$\{BINARY\}\_lib \$\{MPI\_LIBRARIES\})}
+
+\end{DoxyCode}

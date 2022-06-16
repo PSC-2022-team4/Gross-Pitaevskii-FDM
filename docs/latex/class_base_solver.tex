@@ -1,0 +1,171 @@
+\hypertarget{class_base_solver}{}\doxysection{Base\+Solver Class Reference}
+\label{class_base_solver}\index{BaseSolver@{BaseSolver}}
+
+
+Base Solver for Gross Piteavskill finite difference solver.  
+
+
+
+
+{\ttfamily \#include $<$base\+\_\+solver.\+h$>$}
+
+
+
+Inheritance diagram for Base\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{class_base_solver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Base\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{class_base_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_base_solver_acad65cee0debe3fc25ac922a2d87de00}{Base\+Solver}} ()=default
+\item 
+\mbox{\hyperlink{class_base_solver_a3948ef89c2a2a433834ebe1cc61eddcc}{Base\+Solver}} (float \mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}})
+\begin{DoxyCompactList}\small\item\em Construct a new Base Solver\+:\+: Base Solver object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_base_solver_a909263204490fee8f1ed0959525b30b0}{$\sim$\+Base\+Solver}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Base Solver\+:\+: Base Solver object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::complex$<$ float $>$ \mbox{\hyperlink{class_base_solver_ac3d409e925228c9d164f569ff4ea8e97}{temporal\+\_\+equation}} (int i, int j, int k)
+\begin{DoxyCompactList}\small\item\em defualt temporal equation \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}
+\item 
+std\+::string \mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\+\_\+info}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base Solver for Gross Piteavskill finite difference solver. 
+
+
+
+Definition at line 22 of file base\+\_\+solver.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_base_solver_acad65cee0debe3fc25ac922a2d87de00}\label{class_base_solver_acad65cee0debe3fc25ac922a2d87de00}} 
+\index{BaseSolver@{BaseSolver}!BaseSolver@{BaseSolver}}
+\index{BaseSolver@{BaseSolver}!BaseSolver@{BaseSolver}}
+\doxysubsubsection{\texorpdfstring{BaseSolver()}{BaseSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Base\+Solver\+::\+Base\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_base_solver_a3948ef89c2a2a433834ebe1cc61eddcc}\label{class_base_solver_a3948ef89c2a2a433834ebe1cc61eddcc}} 
+\index{BaseSolver@{BaseSolver}!BaseSolver@{BaseSolver}}
+\index{BaseSolver@{BaseSolver}!BaseSolver@{BaseSolver}}
+\doxysubsubsection{\texorpdfstring{BaseSolver()}{BaseSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Base\+Solver\+::\+Base\+Solver (\begin{DoxyParamCaption}\item[{float}]{g\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Construct a new Base Solver\+:\+: Base Solver object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g\+\_\+} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file base\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19     : \mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}(g\_)\{}
+\DoxyCodeLine{20         \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\_info}} = \textcolor{stringliteral}{"Base\_Solver"};}
+\DoxyCodeLine{21     \};                   }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_solver_a909263204490fee8f1ed0959525b30b0}\label{class_base_solver_a909263204490fee8f1ed0959525b30b0}} 
+\index{BaseSolver@{BaseSolver}!````~BaseSolver@{$\sim$BaseSolver}}
+\index{````~BaseSolver@{$\sim$BaseSolver}!BaseSolver@{BaseSolver}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseSolver()}{~BaseSolver()}}
+{\footnotesize\ttfamily Base\+Solver\+::$\sim$\+Base\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the Base Solver\+:\+: Base Solver object. 
+
+
+
+Definition at line 28 of file base\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{\};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_base_solver_ac3d409e925228c9d164f569ff4ea8e97}\label{class_base_solver_ac3d409e925228c9d164f569ff4ea8e97}} 
+\index{BaseSolver@{BaseSolver}!temporal\_equation@{temporal\_equation}}
+\index{temporal\_equation@{temporal\_equation}!BaseSolver@{BaseSolver}}
+\doxysubsubsection{\texorpdfstring{temporal\_equation()}{temporal\_equation()}}
+{\footnotesize\ttfamily std\+::complex$<$ float $>$ Base\+Solver\+::temporal\+\_\+equation (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{int}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+defualt temporal equation 
+
+\begin{DoxyReturn}{Returns}
+std\+::complex$<$float$>$ 0+0i 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file base\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{36                                                                   \{}
+\DoxyCodeLine{37     \textcolor{keywordflow}{return} std::complex<float> \{0\};}
+\DoxyCodeLine{38 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}\label{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}} 
+\index{BaseSolver@{BaseSolver}!g@{g}}
+\index{g@{g}!BaseSolver@{BaseSolver}}
+\doxysubsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily float Base\+Solver\+::g\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 30 of file base\+\_\+solver.\+h.
+
+\mbox{\Hypertarget{class_base_solver_ab843cf747cfa815b46c59808043a5367}\label{class_base_solver_ab843cf747cfa815b46c59808043a5367}} 
+\index{BaseSolver@{BaseSolver}!string\_info@{string\_info}}
+\index{string\_info@{string\_info}!BaseSolver@{BaseSolver}}
+\doxysubsubsection{\texorpdfstring{string\_info}{string\_info}}
+{\footnotesize\ttfamily std\+::string Base\+Solver\+::string\+\_\+info\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 32 of file base\+\_\+solver.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/solver/\mbox{\hyperlink{base__solver_8h}{base\+\_\+solver.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/solver/\mbox{\hyperlink{base__solver_8cpp}{base\+\_\+solver.\+cpp}}\end{DoxyCompactItemize}

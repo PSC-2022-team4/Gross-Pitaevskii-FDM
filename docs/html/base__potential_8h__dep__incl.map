@@ -1,0 +1,11 @@
+<map id="/home/iqsl/IQSL_Projects/KimGH/Gross&#45;Pitaevskii&#45;FDM/src/potential/base_potential.h" name="/home/iqsl/IQSL_Projects/KimGH/Gross&#45;Pitaevskii&#45;FDM/src/potential/base_potential.h">
+<area shape="rect" id="node1" title="Header for the base potential class. Heritate this class for create custom potential shape." alt="" coords="447,5,629,76"/>
+<area shape="rect" id="node2" href="$harmonic__potential_8h.html" title="Header file for harmoni potential (V = 0.5 * (omega_x^2 * x^2 + omega_y^2 * y^2)" alt="" coords="325,124,532,195"/>
+<area shape="rect" id="node9" href="$base__potential_8cpp.html" title="Implementation of the methods in potential class." alt="" coords="556,124,739,195"/>
+<area shape="rect" id="node3" href="$main_8cpp.html" title=" " alt="" coords="268,369,451,425"/>
+<area shape="rect" id="node4" href="$g__sweeper_8h.html" title=" " alt="" coords="98,250,322,306"/>
+<area shape="rect" id="node6" href="$harmonic__p__sweeper_8h.html" title=" " alt="" coords="397,243,601,313"/>
+<area shape="rect" id="node8" href="$harmonic__potential_8cpp.html" title="Implementation of harmonic potential methods." alt="" coords="625,243,832,313"/>
+<area shape="rect" id="node5" href="$g__sweeper_8cpp.html" title=" " alt="" coords="5,369,244,425"/>
+<area shape="rect" id="node7" href="$harmonic__p__sweeper_8cpp.html" title=" " alt="" coords="475,361,679,432"/>
+</map>

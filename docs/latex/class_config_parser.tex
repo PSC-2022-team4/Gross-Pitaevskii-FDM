@@ -1,0 +1,646 @@
+\hypertarget{class_config_parser}{}\doxysection{Config\+Parser Class Reference}
+\label{class_config_parser}\index{ConfigParser@{ConfigParser}}
+
+
+Configuration parser.  
+
+
+
+
+{\ttfamily \#include $<$config\+\_\+parser.\+h$>$}
+
+
+
+Collaboration diagram for Config\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{class_config_parser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_config_parser_a31483b393515d726a15e7061e17a894f}{Config\+Parser}} ()=default
+\item 
+virtual \mbox{\hyperlink{class_config_parser_a080331308adee25d54d0adc8fb1ea521}{$\sim$\+Config\+Parser}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_parameters}{Parameters}} \mbox{\hyperlink{class_config_parser_ad70ca93d86e19c32c352319a61683ea6}{parse}} (std\+::string config\+\_\+name, std\+::string filename)
+\begin{DoxyCompactList}\small\item\em Parse configuration for the calculation. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_parameters}{Parameters}} \mbox{\hyperlink{class_config_parser_a9192374b367faf69654b4a6b5bab8d9d}{get\+\_\+default}} ()
+\begin{DoxyCompactList}\small\item\em Setup parameters with default values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration parser. 
+
+
+
+Definition at line 27 of file config\+\_\+parser.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_config_parser_a31483b393515d726a15e7061e17a894f}\label{class_config_parser_a31483b393515d726a15e7061e17a894f}} 
+\index{ConfigParser@{ConfigParser}!ConfigParser@{ConfigParser}}
+\index{ConfigParser@{ConfigParser}!ConfigParser@{ConfigParser}}
+\doxysubsubsection{\texorpdfstring{ConfigParser()}{ConfigParser()}}
+{\footnotesize\ttfamily Config\+Parser\+::\+Config\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_config_parser_a080331308adee25d54d0adc8fb1ea521}\label{class_config_parser_a080331308adee25d54d0adc8fb1ea521}} 
+\index{ConfigParser@{ConfigParser}!````~ConfigParser@{$\sim$ConfigParser}}
+\index{````~ConfigParser@{$\sim$ConfigParser}!ConfigParser@{ConfigParser}}
+\doxysubsubsection{\texorpdfstring{$\sim$ConfigParser()}{~ConfigParser()}}
+{\footnotesize\ttfamily virtual Config\+Parser\+::$\sim$\+Config\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_config_parser_a9192374b367faf69654b4a6b5bab8d9d}\label{class_config_parser_a9192374b367faf69654b4a6b5bab8d9d}} 
+\index{ConfigParser@{ConfigParser}!get\_default@{get\_default}}
+\index{get\_default@{get\_default}!ConfigParser@{ConfigParser}}
+\doxysubsubsection{\texorpdfstring{get\_default()}{get\_default()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_parameters}{Parameters}} Config\+Parser\+::get\+\_\+default (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Setup parameters with default values. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_parameters}{Parameters}} 
+\end{DoxyReturn}
+
+
+Definition at line 494 of file config\+\_\+parser.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{495 \{}
+\DoxyCodeLine{496     \textcolor{keyword}{auto} parameters = \mbox{\hyperlink{class_parameters}{Parameters}}();}
+\DoxyCodeLine{497     parameters.config\_name = \textcolor{stringliteral}{"default"};}
+\DoxyCodeLine{498     \mbox{\hyperlink{class_main_parameters}{MainParameters}} main\_parameters;}
+\DoxyCodeLine{499     \mbox{\hyperlink{class_domain_parameters}{DomainParameters}} domain\_parameters;}
+\DoxyCodeLine{500     \mbox{\hyperlink{class_initial_condition_parameters}{InitialConditionParameters}} init\_parameters;}
+\DoxyCodeLine{501     \mbox{\hyperlink{class_equation_parameters}{EquationParameters}} equation\_parameters;}
+\DoxyCodeLine{502     \mbox{\hyperlink{class_solver_parameters}{SolverParameters}} solver\_parameters;}
+\DoxyCodeLine{503 }
+\DoxyCodeLine{504     main\_parameters.\mbox{\hyperlink{class_main_parameters_a3dd5210e73e50c3a12dc07eda2790fff}{calculation\_type}} = \textcolor{stringliteral}{"single"};}
+\DoxyCodeLine{505     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a4493e76864cea62854774f86b9a82050}{domain\_type}} = \textcolor{stringliteral}{"rectangular"};}
+\DoxyCodeLine{506     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a21a59fee5d180427107e9b708e892fd2}{n\_x}} = 256;}
+\DoxyCodeLine{507     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_ac85f5cbf8260b47c762e66c46d5f23ba}{n\_y}} = 256;}
+\DoxyCodeLine{508     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a069e0b63f37ec7e64b06d8b640907c93}{n\_time}} = 5;}
+\DoxyCodeLine{509     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_aef6fa71867ca881aabd73f50267eb441}{time\_start}} = 0.;}
+\DoxyCodeLine{510     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_af6de1ab73af7112dc13690c9db206801}{time\_end}} = 0.01;}
+\DoxyCodeLine{511     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"x\_start"}] = -\/10.;}
+\DoxyCodeLine{512     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"x\_end"}] = 10.;}
+\DoxyCodeLine{513     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"y\_start"}] = -\/10.;}
+\DoxyCodeLine{514     domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"y\_end"}] = 10.;}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{516     init\_parameters.\mbox{\hyperlink{class_initial_condition_parameters_a3a5ed92e0ab6169efbd9a313380bb354}{init\_cond\_type}} = \textcolor{stringliteral}{"singlegaussian"};}
+\DoxyCodeLine{517     init\_parameters.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"sigma\_x"}] = 1.;}
+\DoxyCodeLine{518     init\_parameters.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"sigma\_y"}] = 1.;}
+\DoxyCodeLine{519     init\_parameters.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"center\_x"}] = 0.;}
+\DoxyCodeLine{520     init\_parameters.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"center\_y"}] = 0.;}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522     equation\_parameters.\mbox{\hyperlink{class_equation_parameters_a1284722e2c2d35a21d4ab65e86e5c44a}{potential\_type}} = \textcolor{stringliteral}{"harmonic"};}
+\DoxyCodeLine{523     equation\_parameters.\mbox{\hyperlink{class_equation_parameters_a2d12408261acc3fea061fd7ea98d230d}{g}} = -\/1;}
+\DoxyCodeLine{524     equation\_parameters.\mbox{\hyperlink{class_equation_parameters_a02230ef4ce2bc65514f8c02ec1e8fb4d}{potential\_parameters}}[\textcolor{stringliteral}{"omega\_x"}] = 3.;}
+\DoxyCodeLine{525     equation\_parameters.\mbox{\hyperlink{class_equation_parameters_a02230ef4ce2bc65514f8c02ec1e8fb4d}{potential\_parameters}}[\textcolor{stringliteral}{"omega\_y"}] = 5.;}
+\DoxyCodeLine{526 }
+\DoxyCodeLine{527     solver\_parameters.\mbox{\hyperlink{class_solver_parameters_aecc2d1881aadd43fa256a9fb6964fd4a}{method}} = \textcolor{stringliteral}{"cranknicolson"};}
+\DoxyCodeLine{528     solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a80745ed3f25424307bfc93ad9f4d71ce}{run\_parallel}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{529     solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a39b61a105742e84f9c89d25f44d2c886}{print\_info}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{530     solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a5f4d5dea1c236977d2279a83631b698b}{save\_data}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{531     solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a0aa2e19255919911baa6f5ad6f39dfde}{solver\_parameters}}[\textcolor{stringliteral}{"converge\_crit"}] = 1e-\/11;}
+\DoxyCodeLine{532     solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a6ed8526e28f30b140061711000cd38fe}{int\_parameters}}[\textcolor{stringliteral}{"max\_iter"}] = 1001;}
+\DoxyCodeLine{533     solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a6ed8526e28f30b140061711000cd38fe}{int\_parameters}}[\textcolor{stringliteral}{"cuda\_device"}] = 0;}
+\DoxyCodeLine{534 }
+\DoxyCodeLine{535     parameters.main\_parameters = main\_parameters;}
+\DoxyCodeLine{536     parameters.domain\_parameters = domain\_parameters;}
+\DoxyCodeLine{537     parameters.init\_cond\_parameters = init\_parameters;}
+\DoxyCodeLine{538     parameters.equation\_parameters = equation\_parameters;}
+\DoxyCodeLine{539     parameters.solver\_parameters = solver\_parameters;}
+\DoxyCodeLine{540     \textcolor{keywordflow}{return} parameters;}
+\DoxyCodeLine{541 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{class_config_parser_a9192374b367faf69654b4a6b5bab8d9d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_config_parser_ad70ca93d86e19c32c352319a61683ea6}\label{class_config_parser_ad70ca93d86e19c32c352319a61683ea6}} 
+\index{ConfigParser@{ConfigParser}!parse@{parse}}
+\index{parse@{parse}!ConfigParser@{ConfigParser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_parameters}{Parameters}} Config\+Parser\+::parse (\begin{DoxyParamCaption}\item[{std\+::string}]{config\+\_\+name,  }\item[{std\+::string}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse configuration for the calculation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+name} & configuration name \\
+\hline
+{\em filename} & configuration file name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Parsed parameters 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file config\+\_\+parser.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21                                                                        \{}
+\DoxyCodeLine{22     \textcolor{keyword}{auto} parameters = \mbox{\hyperlink{class_parameters}{Parameters}}();}
+\DoxyCodeLine{23     parameters.config\_name = config\_name;}
+\DoxyCodeLine{24     \textcolor{comment}{// -\/1 for outside, 0 for main,  1 for domain, 2 for initial condition, 3 for eqution, 4 for solver}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} mode = -\/1; }
+\DoxyCodeLine{26     \mbox{\hyperlink{class_main_parameters}{MainParameters}} main\_parameters;}
+\DoxyCodeLine{27     \mbox{\hyperlink{class_domain_parameters}{DomainParameters}} domain\_parameters;}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_initial_condition_parameters}{InitialConditionParameters}} init\_parameters;}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_equation_parameters}{EquationParameters}} equation\_parameters;}
+\DoxyCodeLine{30     \mbox{\hyperlink{class_solver_parameters}{SolverParameters}} solver\_parameters;}
+\DoxyCodeLine{31     \textcolor{keywordtype}{bool} filled\_parallel = \textcolor{keyword}{false};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     std::ifstream file(filename.c\_str());}
+\DoxyCodeLine{34     \textcolor{keywordflow}{if} (file.is\_open()) \textcolor{comment}{// If file is opened}}
+\DoxyCodeLine{35     \{}
+\DoxyCodeLine{36         std::string line;}
+\DoxyCodeLine{37         \textcolor{keywordflow}{while} (std::getline(file, line)) \textcolor{comment}{// while not EOF }}
+\DoxyCodeLine{38         \{}
+\DoxyCodeLine{39             \textcolor{comment}{// remove all blanks in the line}}
+\DoxyCodeLine{40             line.erase(std::remove(line.begin(), line.end(), \textcolor{charliteral}{' '}), line.end()); }
+\DoxyCodeLine{41             \textcolor{comment}{// replace all lines with lower case}}
+\DoxyCodeLine{42             std::transform(line.begin(), line.end(), line.begin(),}
+\DoxyCodeLine{43                            [](\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} c)}
+\DoxyCodeLine{44                            \{ return std::tolower(c); \});}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46             \textcolor{comment}{// skip the line when whole line is blank}}
+\DoxyCodeLine{47             \textcolor{keywordflow}{if} (line == \textcolor{stringliteral}{""})\{}
+\DoxyCodeLine{48                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{49             \}}
+\DoxyCodeLine{50             \textcolor{comment}{// skip the line for the comment}}
+\DoxyCodeLine{51             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"\#"}, 0) != std::string::npos)}
+\DoxyCodeLine{52             \{}
+\DoxyCodeLine{53                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{54             \}}
+\DoxyCodeLine{55             \textcolor{comment}{// Divide the configuration branches (0 for main,  1 for domain, 2 for initial condition, 3 for eqution, 4 for solver)}}
+\DoxyCodeLine{56             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"[mainconfiguration]"}, 0) != std::string::npos)}
+\DoxyCodeLine{57             \{}
+\DoxyCodeLine{58                 mode = 0;}
+\DoxyCodeLine{59             \}}
+\DoxyCodeLine{60             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"[domainconfiguration]"}, 0) != std::string::npos)}
+\DoxyCodeLine{61             \{}
+\DoxyCodeLine{62                 mode = 1;}
+\DoxyCodeLine{63             \}}
+\DoxyCodeLine{64             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"[initialconditionconfiguration]"}, 0) != std::string::npos)}
+\DoxyCodeLine{65             \{}
+\DoxyCodeLine{66                 mode = 2;}
+\DoxyCodeLine{67             \}}
+\DoxyCodeLine{68             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"[equationconfiguration]"}, 0) != std::string::npos)}
+\DoxyCodeLine{69             \{}
+\DoxyCodeLine{70                 mode = 3;}
+\DoxyCodeLine{71             \}}
+\DoxyCodeLine{72             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"[solverconfiguration]"}, 0) != std::string::npos)}
+\DoxyCodeLine{73             \{}
+\DoxyCodeLine{74                 mode = 4;}
+\DoxyCodeLine{75             \}}
+\DoxyCodeLine{76             \textcolor{comment}{// Do action for each branches}}
+\DoxyCodeLine{77             \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{78                 \textcolor{comment}{// Handle exception}}
+\DoxyCodeLine{79                 \textcolor{keywordflow}{if} (mode == -\/1)\{}
+\DoxyCodeLine{80                     std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{81                 \}}
+\DoxyCodeLine{82                 \textcolor{comment}{// Main branch }}
+\DoxyCodeLine{83                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(mode == 0)\{}
+\DoxyCodeLine{84                     std::vector<std::string> dump;}
+\DoxyCodeLine{85                     std::string tmp;}
+\DoxyCodeLine{86                     std::stringstream string\_stream(line);}
+\DoxyCodeLine{87                     \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"type"}, 0) != std::string::npos)}
+\DoxyCodeLine{88                     \{}
+\DoxyCodeLine{89                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{90                         \{}
+\DoxyCodeLine{91                             dump.push\_back(tmp);}
+\DoxyCodeLine{92                         \}}
+\DoxyCodeLine{93                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{94                         \{}
+\DoxyCodeLine{95                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{96                         \}}
+\DoxyCodeLine{97                         main\_parameters.\mbox{\hyperlink{class_main_parameters_a3dd5210e73e50c3a12dc07eda2790fff}{calculation\_type}} = dump[1];}
+\DoxyCodeLine{98                     \}}
+\DoxyCodeLine{99                     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{100                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{101                         \{}
+\DoxyCodeLine{102                             dump.push\_back(tmp);}
+\DoxyCodeLine{103                         \}}
+\DoxyCodeLine{104                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{105                         \{}
+\DoxyCodeLine{106                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{107                         \}}
+\DoxyCodeLine{108                         \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"sweep\_start"})}
+\DoxyCodeLine{109                         \{}
+\DoxyCodeLine{110                             main\_parameters.\mbox{\hyperlink{class_main_parameters_a6831814d931c436854667c764177e244}{float\_parameters}}[dump[0]] = (float)std::atof(dump[1].c\_str());}
+\DoxyCodeLine{111                         \}}
+\DoxyCodeLine{112                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"sweep\_end"})}
+\DoxyCodeLine{113                         \{}
+\DoxyCodeLine{114                             main\_parameters.\mbox{\hyperlink{class_main_parameters_a6831814d931c436854667c764177e244}{float\_parameters}}[dump[0]] = (float)std::atof(dump[1].c\_str());}
+\DoxyCodeLine{115                         \}}
+\DoxyCodeLine{116                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"sweep\_count"})}
+\DoxyCodeLine{117                         \{}
+\DoxyCodeLine{118                             main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = std::atoi(dump[1].c\_str());}
+\DoxyCodeLine{119                         \}}
+\DoxyCodeLine{120                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"end\_point"})}
+\DoxyCodeLine{121                         \{}
+\DoxyCodeLine{122                             \textcolor{keywordflow}{if} (dump[1] == \textcolor{stringliteral}{"true"})}
+\DoxyCodeLine{123                             \{}
+\DoxyCodeLine{124                                 main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = (int)\textcolor{keyword}{true};}
+\DoxyCodeLine{125                             \}}
+\DoxyCodeLine{126                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[1] == \textcolor{stringliteral}{"false"})}
+\DoxyCodeLine{127                             \{}
+\DoxyCodeLine{128                                 main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = (int)\textcolor{keyword}{false};}
+\DoxyCodeLine{129                             \}}
+\DoxyCodeLine{130                             \textcolor{keywordflow}{else} }
+\DoxyCodeLine{131                             \{}
+\DoxyCodeLine{132                                 std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{133                             \}}
+\DoxyCodeLine{134                         \}}
+\DoxyCodeLine{135                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"mpi\_use"})}
+\DoxyCodeLine{136                         \{}
+\DoxyCodeLine{137                             \textcolor{keywordflow}{if} (dump[1] == \textcolor{stringliteral}{"true"})}
+\DoxyCodeLine{138                             \{}
+\DoxyCodeLine{139                                 main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = (int)\textcolor{keyword}{true};}
+\DoxyCodeLine{140                             \}}
+\DoxyCodeLine{141                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[1] == \textcolor{stringliteral}{"false"})}
+\DoxyCodeLine{142                             \{}
+\DoxyCodeLine{143                                 main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = (int)\textcolor{keyword}{false};}
+\DoxyCodeLine{144                             \}}
+\DoxyCodeLine{145                             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{146                             \{}
+\DoxyCodeLine{147                                 std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{148                             \}}
+\DoxyCodeLine{149                         \}}
+\DoxyCodeLine{150                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"cuda\_use"})}
+\DoxyCodeLine{151                         \{}
+\DoxyCodeLine{152                             \textcolor{keywordflow}{if} (dump[1] == \textcolor{stringliteral}{"true"})}
+\DoxyCodeLine{153                             \{}
+\DoxyCodeLine{154                                 main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = (int)\textcolor{keyword}{true};}
+\DoxyCodeLine{155                             \}}
+\DoxyCodeLine{156                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[1] == \textcolor{stringliteral}{"false"})}
+\DoxyCodeLine{157                             \{}
+\DoxyCodeLine{158                                 main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = (int)\textcolor{keyword}{false};}
+\DoxyCodeLine{159                             \}}
+\DoxyCodeLine{160                             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{161                             \{}
+\DoxyCodeLine{162                                 std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{163                             \}}
+\DoxyCodeLine{164                         \}}
+\DoxyCodeLine{165                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"gpu\_count"})}
+\DoxyCodeLine{166                         \{}
+\DoxyCodeLine{167                             main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = std::atoi(dump[1].c\_str());}
+\DoxyCodeLine{168                         \}}
+\DoxyCodeLine{169                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"calculation\_per\_gpu"})}
+\DoxyCodeLine{170                         \{}
+\DoxyCodeLine{171                             main\_parameters.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[dump[0]] = std::atoi(dump[1].c\_str());}
+\DoxyCodeLine{172                         \}}
+\DoxyCodeLine{173                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{174                         \{}
+\DoxyCodeLine{175                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{176                         \}}
+\DoxyCodeLine{177                     \}}
+\DoxyCodeLine{178                 \}}
+\DoxyCodeLine{179                 \textcolor{comment}{// domain branch}}
+\DoxyCodeLine{180                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(mode == 1)\{}
+\DoxyCodeLine{181                     std::vector<std::string> dump;}
+\DoxyCodeLine{182                     std::string tmp;}
+\DoxyCodeLine{183                     std::stringstream string\_stream(line);}
+\DoxyCodeLine{184                     \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"type"}, 0) != std::string::npos)}
+\DoxyCodeLine{185                     \{}
+\DoxyCodeLine{186                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{187                         \{}
+\DoxyCodeLine{188                             dump.push\_back(tmp);}
+\DoxyCodeLine{189                         \}}
+\DoxyCodeLine{190                         \textcolor{keywordflow}{if} (dump.size() != 2)\{}
+\DoxyCodeLine{191                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{192                         \}}
+\DoxyCodeLine{193                         domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a4493e76864cea62854774f86b9a82050}{domain\_type}} = dump[1];}
+\DoxyCodeLine{194                     \}}
+\DoxyCodeLine{195                     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{196                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{197                         \{}
+\DoxyCodeLine{198                             dump.push\_back(tmp);}
+\DoxyCodeLine{199                         \}}
+\DoxyCodeLine{200                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{201                         \{}
+\DoxyCodeLine{202                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{203                         \}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205                         \textcolor{keywordflow}{if} (domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a4493e76864cea62854774f86b9a82050}{domain\_type}} != \textcolor{stringliteral}{""})\{}
+\DoxyCodeLine{206                             \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{207                             \{}
+\DoxyCodeLine{208                                 dump.push\_back(tmp);}
+\DoxyCodeLine{209                             \}}
+\DoxyCodeLine{210                             \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{211                             \{}
+\DoxyCodeLine{212                                 std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{213                             \}}
+\DoxyCodeLine{214                             }
+\DoxyCodeLine{215                             \textcolor{keywordflow}{if} (dump[0] == \textcolor{stringliteral}{"n\_x"})\{}
+\DoxyCodeLine{216                                 domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a21a59fee5d180427107e9b708e892fd2}{n\_x}} = std::atoi(dump[1].c\_str());}
+\DoxyCodeLine{217                             \}}
+\DoxyCodeLine{218                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(dump[0] == \textcolor{stringliteral}{"n\_y"})\{}
+\DoxyCodeLine{219                                 domain\_parameters.\mbox{\hyperlink{class_domain_parameters_ac85f5cbf8260b47c762e66c46d5f23ba}{n\_y}} = std::atoi(dump[1].c\_str());}
+\DoxyCodeLine{220                             \}}
+\DoxyCodeLine{221                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(dump[0] == \textcolor{stringliteral}{"n\_time"})\{}
+\DoxyCodeLine{222                                 domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a069e0b63f37ec7e64b06d8b640907c93}{n\_time}} = std::atoi(dump[1].c\_str());}
+\DoxyCodeLine{223                             \}}
+\DoxyCodeLine{224                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(dump[0] == \textcolor{stringliteral}{"time\_start"})\{}
+\DoxyCodeLine{225                                 domain\_parameters.\mbox{\hyperlink{class_domain_parameters_aef6fa71867ca881aabd73f50267eb441}{time\_start}} = (float)std::atof(dump[1].c\_str());}
+\DoxyCodeLine{226                             \}}
+\DoxyCodeLine{227                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(dump[0] == \textcolor{stringliteral}{"time\_end"})\{}
+\DoxyCodeLine{228                                 domain\_parameters.\mbox{\hyperlink{class_domain_parameters_af6de1ab73af7112dc13690c9db206801}{time\_end}} = (float)std::atof(dump[1].c\_str());}
+\DoxyCodeLine{229                             \}}
+\DoxyCodeLine{230                             \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{231                                 domain\_parameters.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[dump[0]] = (float)std::atof(dump[1].c\_str());}
+\DoxyCodeLine{232                             \}}
+\DoxyCodeLine{233                         \}}
+\DoxyCodeLine{234                         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{235                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{236                         \}}
+\DoxyCodeLine{237                     \}}
+\DoxyCodeLine{238                 \}}
+\DoxyCodeLine{239                 \textcolor{comment}{// initial condition branches}}
+\DoxyCodeLine{240                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(mode == 2)\{}
+\DoxyCodeLine{241                     std::vector<std::string> dump;}
+\DoxyCodeLine{242                     std::string tmp;}
+\DoxyCodeLine{243                     std::stringstream string\_stream(line);}
+\DoxyCodeLine{244                     \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"type"}, 0) != std::string::npos)}
+\DoxyCodeLine{245                     \{}
+\DoxyCodeLine{246                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{247                         \{}
+\DoxyCodeLine{248                             dump.push\_back(tmp);}
+\DoxyCodeLine{249                         \}}
+\DoxyCodeLine{250                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{251                         \{}
+\DoxyCodeLine{252                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{253                         \}}
+\DoxyCodeLine{254                         init\_parameters.\mbox{\hyperlink{class_initial_condition_parameters_a3a5ed92e0ab6169efbd9a313380bb354}{init\_cond\_type}} = dump[1];}
+\DoxyCodeLine{255                     \}}
+\DoxyCodeLine{256                     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{257                     \{}
+\DoxyCodeLine{258                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{259                         \{}
+\DoxyCodeLine{260                             dump.push\_back(tmp);}
+\DoxyCodeLine{261                         \}}
+\DoxyCodeLine{262                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{263                         \{}
+\DoxyCodeLine{264                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{265                         \}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267                         \textcolor{keywordflow}{if} (init\_parameters.\mbox{\hyperlink{class_initial_condition_parameters_a3a5ed92e0ab6169efbd9a313380bb354}{init\_cond\_type}} != \textcolor{stringliteral}{""})}
+\DoxyCodeLine{268                         \{}
+\DoxyCodeLine{269                             init\_parameters.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[dump[0]] = (float)std::atof(dump[1].c\_str());}
+\DoxyCodeLine{270                         \}}
+\DoxyCodeLine{271                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{272                         \{}
+\DoxyCodeLine{273                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{274                         \}}
+\DoxyCodeLine{275                     \}}
+\DoxyCodeLine{276                 \}}
+\DoxyCodeLine{277                 \textcolor{comment}{// eqution branch}}
+\DoxyCodeLine{278                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(mode == 3)\{}
+\DoxyCodeLine{279                     std::vector<std::string> dump;}
+\DoxyCodeLine{280                     std::string tmp;}
+\DoxyCodeLine{281                     std::stringstream string\_stream(line);}
+\DoxyCodeLine{282                     \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"type"}, 0) != std::string::npos)}
+\DoxyCodeLine{283                     \{}
+\DoxyCodeLine{284                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{285                         \{}
+\DoxyCodeLine{286                             dump.push\_back(tmp);}
+\DoxyCodeLine{287                         \}}
+\DoxyCodeLine{288                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{289                         \{}
+\DoxyCodeLine{290                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{291                         \}}
+\DoxyCodeLine{292                         equation\_parameters.\mbox{\hyperlink{class_equation_parameters_a1284722e2c2d35a21d4ab65e86e5c44a}{potential\_type}} = dump[1];}
+\DoxyCodeLine{293                     \}}
+\DoxyCodeLine{294                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"g"}, 0) != std::string::npos)}
+\DoxyCodeLine{295                     \{}
+\DoxyCodeLine{296                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{297                         \{}
+\DoxyCodeLine{298                             dump.push\_back(tmp);}
+\DoxyCodeLine{299                         \}}
+\DoxyCodeLine{300                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{301                         \{}
+\DoxyCodeLine{302                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{303                         \}}
+\DoxyCodeLine{304                         equation\_parameters.\mbox{\hyperlink{class_equation_parameters_a2d12408261acc3fea061fd7ea98d230d}{g}} = std::atof(dump[1].c\_str());}
+\DoxyCodeLine{305                     \}}
+\DoxyCodeLine{306                     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{307                     \{}
+\DoxyCodeLine{308                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{309                         \{}
+\DoxyCodeLine{310                             dump.push\_back(tmp);}
+\DoxyCodeLine{311                         \}}
+\DoxyCodeLine{312                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{313                         \{}
+\DoxyCodeLine{314                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{315                         \}}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317                         \textcolor{keywordflow}{if} (equation\_parameters.\mbox{\hyperlink{class_equation_parameters_a1284722e2c2d35a21d4ab65e86e5c44a}{potential\_type}} != \textcolor{stringliteral}{""})}
+\DoxyCodeLine{318                         \{}
+\DoxyCodeLine{319                             equation\_parameters.\mbox{\hyperlink{class_equation_parameters_a02230ef4ce2bc65514f8c02ec1e8fb4d}{potential\_parameters}}[dump[0]] = std::atof(dump[1].c\_str());}
+\DoxyCodeLine{320                         \}}
+\DoxyCodeLine{321                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{322                         \{}
+\DoxyCodeLine{323                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{324                         \}}
+\DoxyCodeLine{325                     \}}
+\DoxyCodeLine{326                 \}}
+\DoxyCodeLine{327                 \textcolor{comment}{// solver branch}}
+\DoxyCodeLine{328                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mode == 4)\{}
+\DoxyCodeLine{329                     std::vector<std::string> dump;}
+\DoxyCodeLine{330                     std::string tmp;}
+\DoxyCodeLine{331                     std::stringstream string\_stream(line);}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333                     \textcolor{comment}{// Get Method}}
+\DoxyCodeLine{334                     \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"method"}, 0) != std::string::npos)}
+\DoxyCodeLine{335                     \{}
+\DoxyCodeLine{336                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{337                         \{}
+\DoxyCodeLine{338                             dump.push\_back(tmp);}
+\DoxyCodeLine{339                         \}}
+\DoxyCodeLine{340                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{341                         \{}
+\DoxyCodeLine{342                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{343                         \}}
+\DoxyCodeLine{344                         solver\_parameters.\mbox{\hyperlink{class_solver_parameters_aecc2d1881aadd43fa256a9fb6964fd4a}{method}} = dump[1];}
+\DoxyCodeLine{345                     \}}
+\DoxyCodeLine{346                     }
+\DoxyCodeLine{347                     \textcolor{comment}{// Get Parallel}}
+\DoxyCodeLine{348                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"parallel"}, 0) != std::string::npos)}
+\DoxyCodeLine{349                     \{}
+\DoxyCodeLine{350                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{351                         \{}
+\DoxyCodeLine{352                             dump.push\_back(tmp);}
+\DoxyCodeLine{353                         \}}
+\DoxyCodeLine{354                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{355                         \{}
+\DoxyCodeLine{356                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{357                         \}}
+\DoxyCodeLine{358                         }
+\DoxyCodeLine{359                         \textcolor{keywordflow}{if} (dump[1].rfind(\textcolor{stringliteral}{"true"}, 0) != std::string::npos)}
+\DoxyCodeLine{360                         \{}
+\DoxyCodeLine{361                             solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a80745ed3f25424307bfc93ad9f4d71ce}{run\_parallel}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{362                             filled\_parallel = \textcolor{keyword}{true};}
+\DoxyCodeLine{363                         \}}
+\DoxyCodeLine{364                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[1].rfind(\textcolor{stringliteral}{"false"}, 0) != std::string::npos)}
+\DoxyCodeLine{365                         \{}
+\DoxyCodeLine{366                             solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a80745ed3f25424307bfc93ad9f4d71ce}{run\_parallel}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{367                             filled\_parallel = \textcolor{keyword}{true};}
+\DoxyCodeLine{368                         \}}
+\DoxyCodeLine{369                         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{370                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{371                         \}}
+\DoxyCodeLine{372                     \}}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{374                     \textcolor{comment}{// Get Print Info}}
+\DoxyCodeLine{375                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"print\_info"}, 0) != std::string::npos)}
+\DoxyCodeLine{376                     \{}
+\DoxyCodeLine{377                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{378                         \{}
+\DoxyCodeLine{379                             dump.push\_back(tmp);}
+\DoxyCodeLine{380                         \}}
+\DoxyCodeLine{381                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{382                         \{}
+\DoxyCodeLine{383                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{384                         \}}
+\DoxyCodeLine{385                         \textcolor{keywordflow}{if} (dump[1].rfind(\textcolor{stringliteral}{"true"}, 0) != std::string::npos)}
+\DoxyCodeLine{386                         \{}
+\DoxyCodeLine{387                             solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a39b61a105742e84f9c89d25f44d2c886}{print\_info}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{388                         \}}
+\DoxyCodeLine{389                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[1].rfind(\textcolor{stringliteral}{"false"}, 0) != std::string::npos)}
+\DoxyCodeLine{390                         \{}
+\DoxyCodeLine{391                             solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a39b61a105742e84f9c89d25f44d2c886}{print\_info}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{392                         \}}
+\DoxyCodeLine{393                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{394                         \{}
+\DoxyCodeLine{395                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{396                         \}}
+\DoxyCodeLine{397                     \}}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399                     \textcolor{comment}{// Get Save Data}}
+\DoxyCodeLine{400                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"save\_data"}, 0) != std::string::npos)}
+\DoxyCodeLine{401                     \{}
+\DoxyCodeLine{402                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{403                         \{}
+\DoxyCodeLine{404                             dump.push\_back(tmp);}
+\DoxyCodeLine{405                         \}}
+\DoxyCodeLine{406                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{407                         \{}
+\DoxyCodeLine{408                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{409                         \}}
+\DoxyCodeLine{410                         \textcolor{keywordflow}{if} (dump[1].rfind(\textcolor{stringliteral}{"true"}, 0) != std::string::npos)}
+\DoxyCodeLine{411                         \{}
+\DoxyCodeLine{412                             solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a5f4d5dea1c236977d2279a83631b698b}{save\_data}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{413                         \}}
+\DoxyCodeLine{414                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dump[1].rfind(\textcolor{stringliteral}{"false"}, 0) != std::string::npos)}
+\DoxyCodeLine{415                         \{}
+\DoxyCodeLine{416                             solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a5f4d5dea1c236977d2279a83631b698b}{save\_data}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{417                         \}}
+\DoxyCodeLine{418                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{419                         \{}
+\DoxyCodeLine{420                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{421                         \}}
+\DoxyCodeLine{422                     \}}
+\DoxyCodeLine{423                     }
+\DoxyCodeLine{424                     \textcolor{comment}{// Get Cuda Device}}
+\DoxyCodeLine{425                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"cuda\_device"}, 0) != std::string::npos)}
+\DoxyCodeLine{426                     \{}
+\DoxyCodeLine{427                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{428                         \{}
+\DoxyCodeLine{429                             dump.push\_back(tmp);}
+\DoxyCodeLine{430                         \}}
+\DoxyCodeLine{431                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{432                         \{}
+\DoxyCodeLine{433                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{434                         \}}
+\DoxyCodeLine{435                         solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a6ed8526e28f30b140061711000cd38fe}{int\_parameters}}[dump[0]] = std::atoi(dump[1].c\_str());}
+\DoxyCodeLine{436                     \}}
+\DoxyCodeLine{437 }
+\DoxyCodeLine{438                     \textcolor{comment}{// Get max iter}}
+\DoxyCodeLine{439                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (line.rfind(\textcolor{stringliteral}{"max\_iter"}, 0) != std::string::npos)}
+\DoxyCodeLine{440                     \{}
+\DoxyCodeLine{441                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{442                         \{}
+\DoxyCodeLine{443                             dump.push\_back(tmp);}
+\DoxyCodeLine{444                         \}}
+\DoxyCodeLine{445                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{446                         \{}
+\DoxyCodeLine{447                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{448                         \}}
+\DoxyCodeLine{449                         solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a6ed8526e28f30b140061711000cd38fe}{int\_parameters}}[dump[0]] = std::atoi(dump[1].c\_str());}
+\DoxyCodeLine{450                     \}}
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452                     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{453                     \{}
+\DoxyCodeLine{454                         \textcolor{keywordflow}{while} (std::getline(string\_stream, tmp, \textcolor{charliteral}{'='}))}
+\DoxyCodeLine{455                         \{}
+\DoxyCodeLine{456                             dump.push\_back(tmp);}
+\DoxyCodeLine{457                         \}}
+\DoxyCodeLine{458                         \textcolor{keywordflow}{if} (dump.size() != 2)}
+\DoxyCodeLine{459                         \{}
+\DoxyCodeLine{460                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{461                         \}}
+\DoxyCodeLine{462                         \textcolor{keywordflow}{if} ( (solver\_parameters.\mbox{\hyperlink{class_solver_parameters_aecc2d1881aadd43fa256a9fb6964fd4a}{method}} != \textcolor{stringliteral}{""}) \&\& filled\_parallel)}
+\DoxyCodeLine{463                         \{}
+\DoxyCodeLine{464                             solver\_parameters.\mbox{\hyperlink{class_solver_parameters_a0aa2e19255919911baa6f5ad6f39dfde}{solver\_parameters}}[dump[0]] = std::atof(dump[1].c\_str());}
+\DoxyCodeLine{465                         \}}
+\DoxyCodeLine{466                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{467                         \{}
+\DoxyCodeLine{468                             std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{469                         \}}
+\DoxyCodeLine{470                     \}}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472                 \}}
+\DoxyCodeLine{473                 \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{474                     std::cerr << \textcolor{stringliteral}{"Unexpected Configuration File"} << std::endl;}
+\DoxyCodeLine{475                 \}}
+\DoxyCodeLine{476             \}}
+\DoxyCodeLine{477         \}}
+\DoxyCodeLine{478     \}}
+\DoxyCodeLine{479     \textcolor{comment}{// setup parameters}}
+\DoxyCodeLine{480     parameters.main\_parameters = main\_parameters;}
+\DoxyCodeLine{481     parameters.domain\_parameters = domain\_parameters;}
+\DoxyCodeLine{482     parameters.init\_cond\_parameters = init\_parameters;}
+\DoxyCodeLine{483     parameters.equation\_parameters = equation\_parameters;}
+\DoxyCodeLine{484     parameters.solver\_parameters = solver\_parameters;}
+\DoxyCodeLine{485     \textcolor{keywordflow}{return} parameters;}
+\DoxyCodeLine{486 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{class_config_parser_ad70ca93d86e19c32c352319a61683ea6_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/configuration/\mbox{\hyperlink{config__parser_8h}{config\+\_\+parser.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/configuration/\mbox{\hyperlink{config__parser_8cpp}{config\+\_\+parser.\+cpp}}\end{DoxyCompactItemize}

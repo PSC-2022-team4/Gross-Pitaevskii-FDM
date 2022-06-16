@@ -1,0 +1,223 @@
+\hypertarget{class_harmonic_potential}{}\doxysection{Harmonic\+Potential Class Reference}
+\label{class_harmonic_potential}\index{HarmonicPotential@{HarmonicPotential}}
+
+
+{\ttfamily \#include $<$harmonic\+\_\+potential.\+h$>$}
+
+
+
+Inheritance diagram for Harmonic\+Potential\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{class_harmonic_potential__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Harmonic\+Potential\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{class_harmonic_potential__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_harmonic_potential_acf4bc94e4e850b86413b8924c7237d3f}{Harmonic\+Potential}} (float \mbox{\hyperlink{class_harmonic_potential_ac79dddade44f7cdf45aa656779c0e84d}{omega\+\_\+x}}, float \mbox{\hyperlink{class_harmonic_potential_aa14f95e7b946cec7443383d5d7b53861}{omega\+\_\+y}})
+\begin{DoxyCompactList}\small\item\em Construct a new Harmonic Potential\+:\+: Harmonic Potential object V = 0.\+5 $\ast$ (omega\+\_\+x$^\wedge$2 $\ast$ x$^\wedge$2 + omega\+\_\+y$^\wedge$2 $\ast$ y$^\wedge$2) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_harmonic_potential_a738463403b07e5d1379d57b348db047a}{calcualte\+\_\+potential\+\_\+in\+\_\+grid}} (\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$domain)
+\item 
+float \mbox{\hyperlink{class_harmonic_potential_a81055e99c74d3f2bb377b0bda71f856f}{potential\+\_\+function}} (float x, float y)
+\item 
+std\+::string \mbox{\hyperlink{class_base_potential_a6c257f106a4b385fde779690464376fc}{get\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Getter for name class variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}{name}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_harmonic_potential_ac79dddade44f7cdf45aa656779c0e84d}{omega\+\_\+x}}
+\item 
+float \mbox{\hyperlink{class_harmonic_potential_aa14f95e7b946cec7443383d5d7b53861}{omega\+\_\+y}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 19 of file harmonic\+\_\+potential.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_harmonic_potential_acf4bc94e4e850b86413b8924c7237d3f}\label{class_harmonic_potential_acf4bc94e4e850b86413b8924c7237d3f}} 
+\index{HarmonicPotential@{HarmonicPotential}!HarmonicPotential@{HarmonicPotential}}
+\index{HarmonicPotential@{HarmonicPotential}!HarmonicPotential@{HarmonicPotential}}
+\doxysubsubsection{\texorpdfstring{HarmonicPotential()}{HarmonicPotential()}}
+{\footnotesize\ttfamily Harmonic\+Potential\+::\+Harmonic\+Potential (\begin{DoxyParamCaption}\item[{float}]{omega\+\_\+x,  }\item[{float}]{omega\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Construct a new Harmonic Potential\+:\+: Harmonic Potential object V = 0.\+5 $\ast$ (omega\+\_\+x$^\wedge$2 $\ast$ x$^\wedge$2 + omega\+\_\+y$^\wedge$2 $\ast$ y$^\wedge$2) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em omega\+\_\+x} & \\
+\hline
+{\em omega\+\_\+y} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 19 of file harmonic\+\_\+potential.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{20 : \mbox{\hyperlink{class_base_potential_aae82c3231238d6ba9a02a1c2cb5aefe8}{BasePotential}}(), \mbox{\hyperlink{class_harmonic_potential_ac79dddade44f7cdf45aa656779c0e84d}{omega\_x}}(\mbox{\hyperlink{class_harmonic_potential_ac79dddade44f7cdf45aa656779c0e84d}{omega\_x}}), \mbox{\hyperlink{class_harmonic_potential_aa14f95e7b946cec7443383d5d7b53861}{omega\_y}}(\mbox{\hyperlink{class_harmonic_potential_aa14f95e7b946cec7443383d5d7b53861}{omega\_y}})}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22     this-\/>\mbox{\hyperlink{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}{name}} = std::string(\textcolor{stringliteral}{"Harmonic"});}
+\DoxyCodeLine{23 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_harmonic_potential_a738463403b07e5d1379d57b348db047a}\label{class_harmonic_potential_a738463403b07e5d1379d57b348db047a}} 
+\index{HarmonicPotential@{HarmonicPotential}!calcualte\_potential\_in\_grid@{calcualte\_potential\_in\_grid}}
+\index{calcualte\_potential\_in\_grid@{calcualte\_potential\_in\_grid}!HarmonicPotential@{HarmonicPotential}}
+\doxysubsubsection{\texorpdfstring{calcualte\_potential\_in\_grid()}{calcualte\_potential\_in\_grid()}}
+{\footnotesize\ttfamily void Harmonic\+Potential\+::calcualte\+\_\+potential\+\_\+in\+\_\+grid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$}]{domain }\end{DoxyParamCaption})}
+
+
+
+Definition at line 29 of file harmonic\+\_\+potential.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} num\_grid\_1 = domain-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}();}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} num\_grid\_2 = domain-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}();}
+\DoxyCodeLine{33     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < num\_grid\_1; ++i)}
+\DoxyCodeLine{34     \{}
+\DoxyCodeLine{35         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < num\_grid\_2; ++j)}
+\DoxyCodeLine{36         \{}
+\DoxyCodeLine{37             \textcolor{keyword}{auto} point = domain-\/>\mbox{\hyperlink{class_rectangular_domain_a09a9a52ff6302e77511c377169c6fb71}{potential\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39             \textcolor{comment}{//Assign potential value in potential grid}}
+\DoxyCodeLine{40             point-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} = std::complex<float>\{this-\/>\mbox{\hyperlink{class_harmonic_potential_a81055e99c74d3f2bb377b0bda71f856f}{potential\_function}}(point-\/>x, point-\/>y), 0\};}
+\DoxyCodeLine{41         \}}
+\DoxyCodeLine{42     \}}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_harmonic_potential_a738463403b07e5d1379d57b348db047a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_harmonic_potential_a738463403b07e5d1379d57b348db047a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_potential_a6c257f106a4b385fde779690464376fc}\label{class_base_potential_a6c257f106a4b385fde779690464376fc}} 
+\index{HarmonicPotential@{HarmonicPotential}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!HarmonicPotential@{HarmonicPotential}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string Base\+Potential\+::get\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Getter for name class variable. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file base\+\_\+potential.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}{name}};}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_harmonic_potential_a81055e99c74d3f2bb377b0bda71f856f}\label{class_harmonic_potential_a81055e99c74d3f2bb377b0bda71f856f}} 
+\index{HarmonicPotential@{HarmonicPotential}!potential\_function@{potential\_function}}
+\index{potential\_function@{potential\_function}!HarmonicPotential@{HarmonicPotential}}
+\doxysubsubsection{\texorpdfstring{potential\_function()}{potential\_function()}}
+{\footnotesize\ttfamily float Harmonic\+Potential\+::potential\+\_\+function (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line 25 of file harmonic\+\_\+potential.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27     \textcolor{keywordflow}{return} 0.5 * (this-\/>\mbox{\hyperlink{class_harmonic_potential_ac79dddade44f7cdf45aa656779c0e84d}{omega\_x}} * x * x + this-\/>\mbox{\hyperlink{class_harmonic_potential_aa14f95e7b946cec7443383d5d7b53861}{omega\_y}} * y * y);}
+\DoxyCodeLine{28 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_harmonic_potential_a81055e99c74d3f2bb377b0bda71f856f_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}\label{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}} 
+\index{HarmonicPotential@{HarmonicPotential}!name@{name}}
+\index{name@{name}!HarmonicPotential@{HarmonicPotential}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::string Base\+Potential\+::name\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 27 of file base\+\_\+potential.\+h.
+
+\mbox{\Hypertarget{class_harmonic_potential_ac79dddade44f7cdf45aa656779c0e84d}\label{class_harmonic_potential_ac79dddade44f7cdf45aa656779c0e84d}} 
+\index{HarmonicPotential@{HarmonicPotential}!omega\_x@{omega\_x}}
+\index{omega\_x@{omega\_x}!HarmonicPotential@{HarmonicPotential}}
+\doxysubsubsection{\texorpdfstring{omega\_x}{omega\_x}}
+{\footnotesize\ttfamily float Harmonic\+Potential\+::omega\+\_\+x\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 27 of file harmonic\+\_\+potential.\+h.
+
+\mbox{\Hypertarget{class_harmonic_potential_aa14f95e7b946cec7443383d5d7b53861}\label{class_harmonic_potential_aa14f95e7b946cec7443383d5d7b53861}} 
+\index{HarmonicPotential@{HarmonicPotential}!omega\_y@{omega\_y}}
+\index{omega\_y@{omega\_y}!HarmonicPotential@{HarmonicPotential}}
+\doxysubsubsection{\texorpdfstring{omega\_y}{omega\_y}}
+{\footnotesize\ttfamily float Harmonic\+Potential\+::omega\+\_\+y\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 27 of file harmonic\+\_\+potential.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/potential/\mbox{\hyperlink{harmonic__potential_8h}{harmonic\+\_\+potential.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/potential/\mbox{\hyperlink{harmonic__potential_8cpp}{harmonic\+\_\+potential.\+cpp}}\end{DoxyCompactItemize}

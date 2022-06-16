@@ -1,0 +1,5 @@
+<map id="BaseSweeper" name="BaseSweeper">
+<area shape="rect" id="node1" title=" " alt="" coords="45,5,221,420"/>
+<area shape="rect" id="node2" href="$class_g_sweeper.html" title=" " alt="" coords="5,468,119,575"/>
+<area shape="rect" id="node3" href="$class_h_p_sweeper.html" title=" " alt="" coords="143,468,264,575"/>
+</map>

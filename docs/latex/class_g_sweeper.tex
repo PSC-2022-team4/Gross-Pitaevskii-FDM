@@ -1,0 +1,599 @@
+\hypertarget{class_g_sweeper}{}\doxysection{G\+Sweeper Class Reference}
+\label{class_g_sweeper}\index{GSweeper@{GSweeper}}
+
+
+{\ttfamily \#include $<$g\+\_\+sweeper.\+h$>$}
+
+
+
+Inheritance diagram for G\+Sweeper\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{class_g_sweeper__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Sweeper\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{class_g_sweeper__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_sweeper_a40670aeb53dd2df27075f4379d2a8c24}{G\+Sweeper}} ()=default
+\item 
+\mbox{\hyperlink{class_g_sweeper_a73a29e0a2c04c6736d6fc5a7b5b44785}{G\+Sweeper}} (float \mbox{\hyperlink{class_base_sweeper_aa4c5b301523d252047daf8bfdfc4ced4}{start}}, float \mbox{\hyperlink{class_base_sweeper_a41d9292590fc97d2a725408040964ea6}{end}}, int \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}}, bool \mbox{\hyperlink{class_base_sweeper_a2b033506b1e27e5a1e8f2ad75776c7e7}{endpoint}})
+\item 
+void \mbox{\hyperlink{class_g_sweeper_adb960798cd0f312000093c09a3af9001}{run}} (\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$domain, \mbox{\hyperlink{class_initial_condition}{Initial\+Condition}} $\ast$initial\+\_\+condition, \mbox{\hyperlink{class_harmonic_potential}{Harmonic\+Potential}} $\ast$potential)
+\item 
+float \mbox{\hyperlink{class_base_sweeper_a69473a576dfd70a16fdb714f8e000691}{get\+\_\+value\+\_\+from\+\_\+idx}} (int idx)
+\item 
+float \mbox{\hyperlink{class_base_sweeper_acc347ed25599da46e7b27cd53c37d4a2}{get\+\_\+start}} ()
+\item 
+float \mbox{\hyperlink{class_base_sweeper_ae8416ef84441216bda2234db148b7f29}{get\+\_\+end}} ()
+\item 
+int \mbox{\hyperlink{class_base_sweeper_a6d6e2c3a428cb62bdefdb7c58f255e54}{get\+\_\+number\+\_\+of\+\_\+pts}} ()
+\item 
+virtual void \mbox{\hyperlink{class_base_sweeper_ac401def4866ebb0d173188fba3100014}{set\+\_\+\+M\+P\+I\+\_\+info}} (int \mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}}, int \mbox{\hyperlink{class_base_sweeper_a67015d3fa7fb1669b9e2013cbeef56d9}{size}})
+\item 
+virtual void \mbox{\hyperlink{class_base_sweeper_a4be89766f70e81703c48b33d1fde8c56}{set\+\_\+\+C\+U\+D\+A\+\_\+info}} (int \mbox{\hyperlink{class_base_sweeper_a4ffe407daa1e5d7a182b53e1ade3ae93}{gpu\+\_\+num}}, int \mbox{\hyperlink{class_base_sweeper_abcb27dbe47715d57e549251a656f2944}{gpu\+\_\+limit}})
+\item 
+void \mbox{\hyperlink{class_base_sweeper_a94d76c4ada293274d5d87eb51ac6e081}{set\+\_\+print\+\_\+info}} (bool \mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\+\_\+info}})
+\item 
+void \mbox{\hyperlink{class_base_sweeper_a39044e863ad50a25174331e0cf4f173d}{set\+\_\+save\+\_\+data}} (bool \mbox{\hyperlink{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}{save\+\_\+data}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_base_sweeper_a9355da278cb2fb1f7c3f6b6e608d482a}{generate\+\_\+num\+\_\+list}} ()
+\begin{DoxyCompactList}\small\item\em generate number of points that sweep from start to end \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_base_sweeper_aa4c5b301523d252047daf8bfdfc4ced4}{start}}
+\item 
+float \mbox{\hyperlink{class_base_sweeper_a41d9292590fc97d2a725408040964ea6}{end}}
+\item 
+int \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}}
+\item 
+bool \mbox{\hyperlink{class_base_sweeper_a2b033506b1e27e5a1e8f2ad75776c7e7}{endpoint}}
+\item 
+vector$<$ float $>$ \mbox{\hyperlink{class_base_sweeper_a08fa7f649f2ac08747f9deefee9037c6}{num\+\_\+list}}
+\item 
+int \mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}} =0
+\item 
+int \mbox{\hyperlink{class_base_sweeper_a67015d3fa7fb1669b9e2013cbeef56d9}{size}} =0
+\item 
+bool \mbox{\hyperlink{class_base_sweeper_a4174b6960e8c3fdbe62b183c200751db}{M\+P\+I\+\_\+use}}
+\item 
+bool \mbox{\hyperlink{class_base_sweeper_a8ac41f061f7ce7ae92c69cbbc12fd5ab}{C\+U\+D\+A\+\_\+use}}
+\item 
+int \mbox{\hyperlink{class_base_sweeper_a4ffe407daa1e5d7a182b53e1ade3ae93}{gpu\+\_\+num}} =1
+\item 
+int \mbox{\hyperlink{class_base_sweeper_abcb27dbe47715d57e549251a656f2944}{gpu\+\_\+limit}} =3
+\item 
+bool \mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\+\_\+info}} =true
+\item 
+bool \mbox{\hyperlink{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}{save\+\_\+data}} =true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 5 of file g\+\_\+sweeper.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_sweeper_a40670aeb53dd2df27075f4379d2a8c24}\label{class_g_sweeper_a40670aeb53dd2df27075f4379d2a8c24}} 
+\index{GSweeper@{GSweeper}!GSweeper@{GSweeper}}
+\index{GSweeper@{GSweeper}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{GSweeper()}{GSweeper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Sweeper\+::\+G\+Sweeper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_g_sweeper_a73a29e0a2c04c6736d6fc5a7b5b44785}\label{class_g_sweeper_a73a29e0a2c04c6736d6fc5a7b5b44785}} 
+\index{GSweeper@{GSweeper}!GSweeper@{GSweeper}}
+\index{GSweeper@{GSweeper}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{GSweeper()}{GSweeper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Sweeper\+::\+G\+Sweeper (\begin{DoxyParamCaption}\item[{float}]{start,  }\item[{float}]{end,  }\item[{int}]{num,  }\item[{bool}]{endpoint }\end{DoxyParamCaption})}
+
+
+
+Definition at line 7 of file g\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{8 : \mbox{\hyperlink{class_base_sweeper_a4133feda70145dbd5337ba323a1c07a4}{BaseSweeper}}(\mbox{\hyperlink{class_base_sweeper_aa4c5b301523d252047daf8bfdfc4ced4}{start}}, \mbox{\hyperlink{class_base_sweeper_a41d9292590fc97d2a725408040964ea6}{end}}, \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}}, \mbox{\hyperlink{class_base_sweeper_a2b033506b1e27e5a1e8f2ad75776c7e7}{endpoint}})\{}
+\DoxyCodeLine{9     }
+\DoxyCodeLine{10 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_base_sweeper_a9355da278cb2fb1f7c3f6b6e608d482a}\label{class_base_sweeper_a9355da278cb2fb1f7c3f6b6e608d482a}} 
+\index{GSweeper@{GSweeper}!generate\_num\_list@{generate\_num\_list}}
+\index{generate\_num\_list@{generate\_num\_list}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{generate\_num\_list()}{generate\_num\_list()}}
+{\footnotesize\ttfamily void Base\+Sweeper\+::generate\+\_\+num\+\_\+list (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+generate number of points that sweep from start to end 
+
+
+
+Definition at line 15 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15                                    \{}
+\DoxyCodeLine{16     this-\/>\mbox{\hyperlink{class_base_sweeper_a08fa7f649f2ac08747f9deefee9037c6}{num\_list}} = std::vector<float>(this-\/>\mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}});}
+\DoxyCodeLine{17     \textcolor{keywordtype}{float} d = 0.;}
+\DoxyCodeLine{18     \textcolor{keywordflow}{if}(this-\/>\mbox{\hyperlink{class_base_sweeper_a2b033506b1e27e5a1e8f2ad75776c7e7}{endpoint}})\{}
+\DoxyCodeLine{19         d = (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a41d9292590fc97d2a725408040964ea6}{end}} -\/ this-\/> \mbox{\hyperlink{class_base_sweeper_aa4c5b301523d252047daf8bfdfc4ced4}{start}} ) / \textcolor{keywordtype}{float}(this-\/> \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}} -\/1 );}
+\DoxyCodeLine{20     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{21         d = (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a41d9292590fc97d2a725408040964ea6}{end}} -\/ this-\/> \mbox{\hyperlink{class_base_sweeper_aa4c5b301523d252047daf8bfdfc4ced4}{start}} ) / \textcolor{keywordtype}{float}(this-\/> \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}});}
+\DoxyCodeLine{22     \}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<\textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}}; ++i)\{}
+\DoxyCodeLine{25         this-\/>\mbox{\hyperlink{class_base_sweeper_a08fa7f649f2ac08747f9deefee9037c6}{num\_list}}[i] = \textcolor{keyword}{this} -\/>start + d*i; }
+\DoxyCodeLine{26     \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_sweeper_a9355da278cb2fb1f7c3f6b6e608d482a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_sweeper_ae8416ef84441216bda2234db148b7f29}\label{class_base_sweeper_ae8416ef84441216bda2234db148b7f29}} 
+\index{GSweeper@{GSweeper}!get\_end@{get\_end}}
+\index{get\_end@{get\_end}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{get\_end()}{get\_end()}}
+{\footnotesize\ttfamily float Base\+Sweeper\+::get\+\_\+end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 38 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38                           \{}
+\DoxyCodeLine{39     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_base_sweeper_a41d9292590fc97d2a725408040964ea6}{end}}; }
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_sweeper_a6d6e2c3a428cb62bdefdb7c58f255e54}\label{class_base_sweeper_a6d6e2c3a428cb62bdefdb7c58f255e54}} 
+\index{GSweeper@{GSweeper}!get\_number\_of\_pts@{get\_number\_of\_pts}}
+\index{get\_number\_of\_pts@{get\_number\_of\_pts}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{get\_number\_of\_pts()}{get\_number\_of\_pts()}}
+{\footnotesize\ttfamily int Base\+Sweeper\+::get\+\_\+number\+\_\+of\+\_\+pts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 41 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41                                   \{}
+\DoxyCodeLine{42     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}}; }
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_sweeper_acc347ed25599da46e7b27cd53c37d4a2}\label{class_base_sweeper_acc347ed25599da46e7b27cd53c37d4a2}} 
+\index{GSweeper@{GSweeper}!get\_start@{get\_start}}
+\index{get\_start@{get\_start}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{get\_start()}{get\_start()}}
+{\footnotesize\ttfamily float Base\+Sweeper\+::get\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 35 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35                             \{}
+\DoxyCodeLine{36     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_base_sweeper_aa4c5b301523d252047daf8bfdfc4ced4}{start}}; }
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_sweeper_a69473a576dfd70a16fdb714f8e000691}\label{class_base_sweeper_a69473a576dfd70a16fdb714f8e000691}} 
+\index{GSweeper@{GSweeper}!get\_value\_from\_idx@{get\_value\_from\_idx}}
+\index{get\_value\_from\_idx@{get\_value\_from\_idx}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{get\_value\_from\_idx()}{get\_value\_from\_idx()}}
+{\footnotesize\ttfamily float Base\+Sweeper\+::get\+\_\+value\+\_\+from\+\_\+idx (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 31 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31                                             \{}
+\DoxyCodeLine{32     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_sweeper_a08fa7f649f2ac08747f9deefee9037c6}{num\_list}}[idx];}
+\DoxyCodeLine{33 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_sweeper_a69473a576dfd70a16fdb714f8e000691_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_g_sweeper_adb960798cd0f312000093c09a3af9001}\label{class_g_sweeper_adb960798cd0f312000093c09a3af9001}} 
+\index{GSweeper@{GSweeper}!run@{run}}
+\index{run@{run}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void G\+Sweeper\+::run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$}]{domain,  }\item[{\mbox{\hyperlink{class_initial_condition}{Initial\+Condition}} $\ast$}]{initial\+\_\+condition,  }\item[{\mbox{\hyperlink{class_harmonic_potential}{Harmonic\+Potential}} $\ast$}]{potential }\end{DoxyParamCaption})}
+
+
+
+Definition at line 12 of file g\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{12                                                                                                                \{}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \textcolor{keywordflow}{if} (!(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a4174b6960e8c3fdbe62b183c200751db}{MPI\_use}}) \&\& !(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a8ac41f061f7ce7ae92c69cbbc12fd5ab}{CUDA\_use}}))\{}
+\DoxyCodeLine{16         \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}})\{}
+\DoxyCodeLine{17             cout<< \textcolor{stringliteral}{"Running serially started"}<<endl;}
+\DoxyCodeLine{18         \}}
+\DoxyCodeLine{19         \textcolor{keywordtype}{float} g=0;}
+\DoxyCodeLine{20         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}} ; ++i)\{}
+\DoxyCodeLine{21             \textcolor{comment}{//Set conditions }}
+\DoxyCodeLine{22             initial\_condition-\/>\mbox{\hyperlink{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5}{assign\_to\_domain}}(domain);}
+\DoxyCodeLine{23             potential-\/>\mbox{\hyperlink{class_harmonic_potential_a738463403b07e5d1379d57b348db047a}{calcualte\_potential\_in\_grid}}(domain);}
+\DoxyCodeLine{24             g = \textcolor{keyword}{this}  -\/> \mbox{\hyperlink{class_base_sweeper_a69473a576dfd70a16fdb714f8e000691}{get\_value\_from\_idx}}(i);}
+\DoxyCodeLine{25             \textcolor{comment}{//Apply on solver}}
+\DoxyCodeLine{26             \mbox{\hyperlink{class_c_n_rect_solver}{CNRectSolver}}* solver =\textcolor{keyword}{new} \mbox{\hyperlink{class_c_n_rect_solver}{CNRectSolver}}(g, domain);}
+\DoxyCodeLine{27             \textcolor{comment}{//solve using solver. It automatically save data}}
+\DoxyCodeLine{28             solver-\/>\mbox{\hyperlink{class_c_n_rect_solver_a1c68d9b8d7fc0eb4ec5246d62f570e82}{solve}}(1e-\/11, 101, to\_string(i) , this-\/> \mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}{save\_data}});}
+\DoxyCodeLine{29             \textcolor{comment}{//reset domain to use in next iteration }}
+\DoxyCodeLine{30             domain-\/>\mbox{\hyperlink{class_rectangular_domain_a31704dee1b7d251e0d43be7251e5a504}{reset}}();}
+\DoxyCodeLine{31             \textcolor{keyword}{delete} solver;}
+\DoxyCodeLine{32         \}}
+\DoxyCodeLine{33     \}}
+\DoxyCodeLine{34     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((this-\/>\mbox{\hyperlink{class_base_sweeper_a4174b6960e8c3fdbe62b183c200751db}{MPI\_use}}) \&\& !(this-\/>\mbox{\hyperlink{class_base_sweeper_a8ac41f061f7ce7ae92c69cbbc12fd5ab}{CUDA\_use}}))\{}
+\DoxyCodeLine{35         \textcolor{comment}{//If number of tasks exceed number of processors, abort. }}
+\DoxyCodeLine{36         \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}})\{}
+\DoxyCodeLine{37             cout<< \textcolor{stringliteral}{"Running with only MPI started"}<<endl;}
+\DoxyCodeLine{38         \}}
+\DoxyCodeLine{39         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}} > \mbox{\hyperlink{class_base_sweeper_a67015d3fa7fb1669b9e2013cbeef56d9}{size}})\{}
+\DoxyCodeLine{40             MPI\_Abort( MPI\_COMM\_WORLD, EXIT\_FAILURE);}
+\DoxyCodeLine{41         \}}
+\DoxyCodeLine{42         \textcolor{keywordtype}{float} g = 0 ; }
+\DoxyCodeLine{43         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}} < \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}})\{}
+\DoxyCodeLine{44             initial\_condition-\/>\mbox{\hyperlink{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5}{assign\_to\_domain}}(domain);}
+\DoxyCodeLine{45             potential-\/>\mbox{\hyperlink{class_harmonic_potential_a738463403b07e5d1379d57b348db047a}{calcualte\_potential\_in\_grid}}(domain);}
+\DoxyCodeLine{46             g = \textcolor{keyword}{this}  -\/> \mbox{\hyperlink{class_base_sweeper_a69473a576dfd70a16fdb714f8e000691}{get\_value\_from\_idx}}(\mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}});}
+\DoxyCodeLine{47             \mbox{\hyperlink{class_c_n_rect_solver}{CNRectSolver}}* solver =\textcolor{keyword}{new} \mbox{\hyperlink{class_c_n_rect_solver}{CNRectSolver}}(g, domain);}
+\DoxyCodeLine{48             solver-\/>\mbox{\hyperlink{class_c_n_rect_solver_a1c68d9b8d7fc0eb4ec5246d62f570e82}{solve}}(1e-\/11, 101, \textcolor{stringliteral}{"MPI\_"}+to\_string(\mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}}), \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}}, this-\/>\mbox{\hyperlink{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}{save\_data}});}
+\DoxyCodeLine{49             \textcolor{keyword}{delete} solver;}
+\DoxyCodeLine{50         \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{51             \textcolor{comment}{// No job for extra processors }}
+\DoxyCodeLine{52             ;}
+\DoxyCodeLine{53         \}}
+\DoxyCodeLine{54     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!(this-\/>\mbox{\hyperlink{class_base_sweeper_a4174b6960e8c3fdbe62b183c200751db}{MPI\_use}}) \&\& (this-\/>\mbox{\hyperlink{class_base_sweeper_a8ac41f061f7ce7ae92c69cbbc12fd5ab}{CUDA\_use}}))\{}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56         \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}})\{}
+\DoxyCodeLine{57             cout<< \textcolor{stringliteral}{"Running with CUDA serially started"}<<endl;}
+\DoxyCodeLine{58         \}}
+\DoxyCodeLine{59         \textcolor{keywordtype}{float} g=0;}
+\DoxyCodeLine{60         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}} ; ++i)\{}
+\DoxyCodeLine{61             \textcolor{comment}{//Set conditions }}
+\DoxyCodeLine{62             initial\_condition-\/>\mbox{\hyperlink{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5}{assign\_to\_domain}}(domain);}
+\DoxyCodeLine{63             potential-\/>\mbox{\hyperlink{class_harmonic_potential_a738463403b07e5d1379d57b348db047a}{calcualte\_potential\_in\_grid}}(domain);}
+\DoxyCodeLine{64             g = \textcolor{keyword}{this}  -\/> \mbox{\hyperlink{class_base_sweeper_a69473a576dfd70a16fdb714f8e000691}{get\_value\_from\_idx}}(i);}
+\DoxyCodeLine{65             \textcolor{comment}{//Apply on solver}}
+\DoxyCodeLine{66             CNRectPSolver* solver =\textcolor{keyword}{new} CNRectPSolver(g, domain, 0);\textcolor{comment}{//solve using solver. It automatically save data}}
+\DoxyCodeLine{67             solver-\/>solve(1e-\/11, 101, \textcolor{stringliteral}{"CUDA\_"}+to\_string(i) , this-\/> \mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}{save\_data}});}
+\DoxyCodeLine{68             \textcolor{comment}{//reset domain to use in next iteration }}
+\DoxyCodeLine{69             domain-\/>\mbox{\hyperlink{class_rectangular_domain_a31704dee1b7d251e0d43be7251e5a504}{reset}}();}
+\DoxyCodeLine{70             \textcolor{keyword}{delete} solver;}
+\DoxyCodeLine{71         \}}
+\DoxyCodeLine{72         }
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{75         \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}})\{}
+\DoxyCodeLine{76             cout<< \textcolor{stringliteral}{"Running with CUDA \& MPI started"}<<endl;}
+\DoxyCodeLine{77         \}}
+\DoxyCodeLine{78         \textcolor{keywordtype}{float} g=0;}
+\DoxyCodeLine{79         }
+\DoxyCodeLine{80         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}} > \mbox{\hyperlink{class_base_sweeper_a67015d3fa7fb1669b9e2013cbeef56d9}{size}})\{}
+\DoxyCodeLine{81             MPI\_Abort( MPI\_COMM\_WORLD, EXIT\_FAILURE);}
+\DoxyCodeLine{82         \}}
+\DoxyCodeLine{83         \textcolor{keywordtype}{int} max\_pallel\_tasks = \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a4ffe407daa1e5d7a182b53e1ade3ae93}{gpu\_num}} * \textcolor{keyword}{this} -\/>gpu\_limit;}
+\DoxyCodeLine{84         \textcolor{keywordtype}{int} repeat = \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}} / max\_pallel\_tasks+(\mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}}\%max\_pallel\_tasks !=0);}
+\DoxyCodeLine{85         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<repeat; ++i)\{}
+\DoxyCodeLine{86             \textcolor{keywordflow}{if} (i*repeat < max\_pallel\_tasks \&\& \mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}} < (i+1)*max\_pallel\_tasks \&\& \mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}} < \mbox{\hyperlink{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}{num}} )\{}
+\DoxyCodeLine{87                 \textcolor{keywordtype}{int} casted\_GPU\_num = (\mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}} \% max\_pallel\_tasks) \% \mbox{\hyperlink{class_base_sweeper_abcb27dbe47715d57e549251a656f2944}{gpu\_limit}};}
+\DoxyCodeLine{88                 initial\_condition-\/>\mbox{\hyperlink{class_initial_condition_a87271969e2c13c1f1ccea5ce1d5fd1a5}{assign\_to\_domain}}(domain);}
+\DoxyCodeLine{89                 potential-\/>\mbox{\hyperlink{class_harmonic_potential_a738463403b07e5d1379d57b348db047a}{calcualte\_potential\_in\_grid}}(domain);}
+\DoxyCodeLine{90                 g = \textcolor{keyword}{this}  -\/> \mbox{\hyperlink{class_base_sweeper_a69473a576dfd70a16fdb714f8e000691}{get\_value\_from\_idx}}(\mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}});}
+\DoxyCodeLine{91                 CNRectPSolver* solver =\textcolor{keyword}{new} CNRectPSolver(g, domain, casted\_GPU\_num);}
+\DoxyCodeLine{92                 solver-\/>solve(1e-\/11, 101, \textcolor{stringliteral}{"MPI\&CUDA\_"}+to\_string(\mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}}), \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}}, this-\/>\mbox{\hyperlink{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}{save\_data}});}
+\DoxyCodeLine{93                 \textcolor{keyword}{delete} solver;}
+\DoxyCodeLine{94             \}}
+\DoxyCodeLine{95         \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98         }
+\DoxyCodeLine{99     \}}
+\DoxyCodeLine{100 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_sweeper_adb960798cd0f312000093c09a3af9001_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{class_g_sweeper_adb960798cd0f312000093c09a3af9001_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_sweeper_a4be89766f70e81703c48b33d1fde8c56}\label{class_base_sweeper_a4be89766f70e81703c48b33d1fde8c56}} 
+\index{GSweeper@{GSweeper}!set\_CUDA\_info@{set\_CUDA\_info}}
+\index{set\_CUDA\_info@{set\_CUDA\_info}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{set\_CUDA\_info()}{set\_CUDA\_info()}}
+{\footnotesize\ttfamily void Base\+Sweeper\+::set\+\_\+\+C\+U\+D\+A\+\_\+info (\begin{DoxyParamCaption}\item[{int}]{gpu\+\_\+num,  }\item[{int}]{gpu\+\_\+limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 51 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{51                                                          \{}
+\DoxyCodeLine{52     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a8ac41f061f7ce7ae92c69cbbc12fd5ab}{CUDA\_use}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{53     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a4ffe407daa1e5d7a182b53e1ade3ae93}{gpu\_num}} = \mbox{\hyperlink{class_base_sweeper_a4ffe407daa1e5d7a182b53e1ade3ae93}{gpu\_num}};}
+\DoxyCodeLine{54     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_abcb27dbe47715d57e549251a656f2944}{gpu\_limit}} = \mbox{\hyperlink{class_base_sweeper_abcb27dbe47715d57e549251a656f2944}{gpu\_limit}};}
+\DoxyCodeLine{55 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{class_base_sweeper_a4be89766f70e81703c48b33d1fde8c56_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_sweeper_ac401def4866ebb0d173188fba3100014}\label{class_base_sweeper_ac401def4866ebb0d173188fba3100014}} 
+\index{GSweeper@{GSweeper}!set\_MPI\_info@{set\_MPI\_info}}
+\index{set\_MPI\_info@{set\_MPI\_info}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{set\_MPI\_info()}{set\_MPI\_info()}}
+{\footnotesize\ttfamily void Base\+Sweeper\+::set\+\_\+\+M\+P\+I\+\_\+info (\begin{DoxyParamCaption}\item[{int}]{rank,  }\item[{int}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 45 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{45                                                 \{}
+\DoxyCodeLine{46     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}} = \mbox{\hyperlink{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}{rank}}; }
+\DoxyCodeLine{47     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a67015d3fa7fb1669b9e2013cbeef56d9}{size}} = \mbox{\hyperlink{class_base_sweeper_a67015d3fa7fb1669b9e2013cbeef56d9}{size}};}
+\DoxyCodeLine{48     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_a4174b6960e8c3fdbe62b183c200751db}{MPI\_use}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{49 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{class_base_sweeper_ac401def4866ebb0d173188fba3100014_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_sweeper_a94d76c4ada293274d5d87eb51ac6e081}\label{class_base_sweeper_a94d76c4ada293274d5d87eb51ac6e081}} 
+\index{GSweeper@{GSweeper}!set\_print\_info@{set\_print\_info}}
+\index{set\_print\_info@{set\_print\_info}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{set\_print\_info()}{set\_print\_info()}}
+{\footnotesize\ttfamily void Base\+Sweeper\+::set\+\_\+print\+\_\+info (\begin{DoxyParamCaption}\item[{bool}]{print\+\_\+info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 57 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57                                                \{}
+\DoxyCodeLine{58     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}} = \mbox{\hyperlink{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}{print\_info}};}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{class_base_sweeper_a94d76c4ada293274d5d87eb51ac6e081_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_sweeper_a39044e863ad50a25174331e0cf4f173d}\label{class_base_sweeper_a39044e863ad50a25174331e0cf4f173d}} 
+\index{GSweeper@{GSweeper}!set\_save\_data@{set\_save\_data}}
+\index{set\_save\_data@{set\_save\_data}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{set\_save\_data()}{set\_save\_data()}}
+{\footnotesize\ttfamily void Base\+Sweeper\+::set\+\_\+save\+\_\+data (\begin{DoxyParamCaption}\item[{bool}]{save\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 60 of file base\+\_\+sweeper.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{60                                              \{}
+\DoxyCodeLine{61     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}{save\_data}} = \mbox{\hyperlink{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}{save\_data}};}
+\DoxyCodeLine{62 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_base_sweeper_a39044e863ad50a25174331e0cf4f173d_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_base_sweeper_a8ac41f061f7ce7ae92c69cbbc12fd5ab}\label{class_base_sweeper_a8ac41f061f7ce7ae92c69cbbc12fd5ab}} 
+\index{GSweeper@{GSweeper}!CUDA\_use@{CUDA\_use}}
+\index{CUDA\_use@{CUDA\_use}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{CUDA\_use}{CUDA\_use}}
+{\footnotesize\ttfamily bool Base\+Sweeper\+::\+C\+U\+D\+A\+\_\+use\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 36 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_a41d9292590fc97d2a725408040964ea6}\label{class_base_sweeper_a41d9292590fc97d2a725408040964ea6}} 
+\index{GSweeper@{GSweeper}!end@{end}}
+\index{end@{end}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{end}{end}}
+{\footnotesize\ttfamily float Base\+Sweeper\+::end\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 25 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_a2b033506b1e27e5a1e8f2ad75776c7e7}\label{class_base_sweeper_a2b033506b1e27e5a1e8f2ad75776c7e7}} 
+\index{GSweeper@{GSweeper}!endpoint@{endpoint}}
+\index{endpoint@{endpoint}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{endpoint}{endpoint}}
+{\footnotesize\ttfamily bool Base\+Sweeper\+::endpoint\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 27 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_abcb27dbe47715d57e549251a656f2944}\label{class_base_sweeper_abcb27dbe47715d57e549251a656f2944}} 
+\index{GSweeper@{GSweeper}!gpu\_limit@{gpu\_limit}}
+\index{gpu\_limit@{gpu\_limit}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{gpu\_limit}{gpu\_limit}}
+{\footnotesize\ttfamily int Base\+Sweeper\+::gpu\+\_\+limit =3\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 38 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_a4ffe407daa1e5d7a182b53e1ade3ae93}\label{class_base_sweeper_a4ffe407daa1e5d7a182b53e1ade3ae93}} 
+\index{GSweeper@{GSweeper}!gpu\_num@{gpu\_num}}
+\index{gpu\_num@{gpu\_num}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{gpu\_num}{gpu\_num}}
+{\footnotesize\ttfamily int Base\+Sweeper\+::gpu\+\_\+num =1\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 37 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_a4174b6960e8c3fdbe62b183c200751db}\label{class_base_sweeper_a4174b6960e8c3fdbe62b183c200751db}} 
+\index{GSweeper@{GSweeper}!MPI\_use@{MPI\_use}}
+\index{MPI\_use@{MPI\_use}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{MPI\_use}{MPI\_use}}
+{\footnotesize\ttfamily bool Base\+Sweeper\+::\+M\+P\+I\+\_\+use\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 34 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}\label{class_base_sweeper_a1cf1c37b387b3e8e9ef07943ee92a94c}} 
+\index{GSweeper@{GSweeper}!num@{num}}
+\index{num@{num}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{num}{num}}
+{\footnotesize\ttfamily int Base\+Sweeper\+::num\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 26 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_a08fa7f649f2ac08747f9deefee9037c6}\label{class_base_sweeper_a08fa7f649f2ac08747f9deefee9037c6}} 
+\index{GSweeper@{GSweeper}!num\_list@{num\_list}}
+\index{num\_list@{num\_list}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{num\_list}{num\_list}}
+{\footnotesize\ttfamily vector$<$float$>$ Base\+Sweeper\+::num\+\_\+list\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 28 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}\label{class_base_sweeper_aa00db3167a93b0120f5e208ffdc96fb8}} 
+\index{GSweeper@{GSweeper}!print\_info@{print\_info}}
+\index{print\_info@{print\_info}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{print\_info}{print\_info}}
+{\footnotesize\ttfamily bool Base\+Sweeper\+::print\+\_\+info =true\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 40 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}\label{class_base_sweeper_a5419a0d61be68beed40402fdcee16a44}} 
+\index{GSweeper@{GSweeper}!rank@{rank}}
+\index{rank@{rank}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{rank}{rank}}
+{\footnotesize\ttfamily int Base\+Sweeper\+::rank =0\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 32 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}\label{class_base_sweeper_acc338d7aa0eb6ecad50379c69d109bf8}} 
+\index{GSweeper@{GSweeper}!save\_data@{save\_data}}
+\index{save\_data@{save\_data}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{save\_data}{save\_data}}
+{\footnotesize\ttfamily bool Base\+Sweeper\+::save\+\_\+data =true\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 41 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_a67015d3fa7fb1669b9e2013cbeef56d9}\label{class_base_sweeper_a67015d3fa7fb1669b9e2013cbeef56d9}} 
+\index{GSweeper@{GSweeper}!size@{size}}
+\index{size@{size}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int Base\+Sweeper\+::size =0\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 33 of file base\+\_\+sweeper.\+h.
+
+\mbox{\Hypertarget{class_base_sweeper_aa4c5b301523d252047daf8bfdfc4ced4}\label{class_base_sweeper_aa4c5b301523d252047daf8bfdfc4ced4}} 
+\index{GSweeper@{GSweeper}!start@{start}}
+\index{start@{start}!GSweeper@{GSweeper}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily float Base\+Sweeper\+::start\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 24 of file base\+\_\+sweeper.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/sweeper/\mbox{\hyperlink{g__sweeper_8h}{g\+\_\+sweeper.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/sweeper/\mbox{\hyperlink{g__sweeper_8cpp}{g\+\_\+sweeper.\+cpp}}\end{DoxyCompactItemize}
