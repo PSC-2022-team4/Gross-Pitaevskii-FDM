@@ -1,0 +1,321 @@
+\hypertarget{main_8cpp}{}\doxysection{/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/main.cpp File Reference}
+\label{main_8cpp}\index{/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/main.cpp@{/home/iqsl/IQSL\_Projects/KimGH/Gross-\/Pitaevskii-\/FDM/src/main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$mpi.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}domain/rect\+\_\+domain.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}initial\+\_\+condition/initial\+\_\+condition.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}potential/harmonic\+\_\+potential.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}solver/base\+\_\+solver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}solver/parallel\+\_\+solver/forward\+\_\+euler/fe\+\_\+rect\+\_\+psolver.\+cuh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}solver/parallel\+\_\+solver/crank\+\_\+nicolson/cn\+\_\+rect\+\_\+psolver.\+cuh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}solver/serial\+\_\+solver/crank\+\_\+nicolson/cn\+\_\+rect\+\_\+solver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}configuration/config\+\_\+parser.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}configuration/parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sweeper/g\+\_\+sweeper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sweeper/harmonic\+\_\+p\+\_\+sweeper.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file main.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{comment}{//Initialize MPI}}
+\DoxyCodeLine{21     MPI\_Init(\&argc, \&argv);}
+\DoxyCodeLine{22     \textcolor{keywordtype}{int} rank, size;}
+\DoxyCodeLine{23     MPI\_Comm comm = MPI\_COMM\_WORLD;}
+\DoxyCodeLine{24     MPI\_Comm\_rank(comm, \&rank);}
+\DoxyCodeLine{25     MPI\_Comm\_size(comm, \&size);}
+\DoxyCodeLine{26     \mbox{\hyperlink{class_parameters}{Parameters}} parameters;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{comment}{// If argc == 1: no input configuration => use default}}
+\DoxyCodeLine{29     \textcolor{keywordflow}{if} (argc == 1)}
+\DoxyCodeLine{30     \{}
+\DoxyCodeLine{31         parameters = \mbox{\hyperlink{class_config_parser_a9192374b367faf69654b4a6b5bab8d9d}{ConfigParser::get\_default}}();}
+\DoxyCodeLine{32     \}}
+\DoxyCodeLine{33     \textcolor{comment}{// argc != 1 and argc != 2 => exception}}
+\DoxyCodeLine{34     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(argc != 2)\{}
+\DoxyCodeLine{35         std::cerr << \textcolor{stringliteral}{"Input config file required. "} << std::endl;}
+\DoxyCodeLine{36     \}}
+\DoxyCodeLine{37     \textcolor{comment}{// else: use given configuration}}
+\DoxyCodeLine{38     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{39         std::string config\_filename = std::string(argv[1]);}
+\DoxyCodeLine{40         std::size\_t dir\_pos = config\_filename.find\_last\_of(\textcolor{stringliteral}{"/"});}
+\DoxyCodeLine{41         std::string dir = config\_filename.substr(0, dir\_pos);}
+\DoxyCodeLine{42         std::string config\_name\_extension = config\_filename.substr(dir\_pos + 1, config\_filename.length());}
+\DoxyCodeLine{43         std::string config\_name = config\_name\_extension.substr(0, config\_name\_extension.length() -\/ 4);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45         parameters = \mbox{\hyperlink{class_config_parser_ad70ca93d86e19c32c352319a61683ea6}{ConfigParser::parse}}(config\_name, config\_filename);}
+\DoxyCodeLine{46     \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{comment}{// Non rectangular domain is not ready in this project, but leave this part for further development}}
+\DoxyCodeLine{49     \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a4493e76864cea62854774f86b9a82050}{domain\_type}} == \textcolor{stringliteral}{"rectangular"})}
+\DoxyCodeLine{50     \{}
+\DoxyCodeLine{51         \textcolor{comment}{// Single calculation}}
+\DoxyCodeLine{52         \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_a3dd5210e73e50c3a12dc07eda2790fff}{calculation\_type}} == \textcolor{stringliteral}{"single"})}
+\DoxyCodeLine{53         \{   }
+\DoxyCodeLine{54             \textcolor{comment}{// Prepare domain}}
+\DoxyCodeLine{55             \mbox{\hyperlink{class_rectangular_domain}{RectangularDomain}} *domain = \textcolor{keyword}{new} \mbox{\hyperlink{class_rectangular_domain}{RectangularDomain}}(parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21a59fee5d180427107e9b708e892fd2}{n\_x}},}
+\DoxyCodeLine{56                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_ac85f5cbf8260b47c762e66c46d5f23ba}{n\_y}},}
+\DoxyCodeLine{57                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_aef6fa71867ca881aabd73f50267eb441}{time\_start}},}
+\DoxyCodeLine{58                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_af6de1ab73af7112dc13690c9db206801}{time\_end}},}
+\DoxyCodeLine{59                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a069e0b63f37ec7e64b06d8b640907c93}{n\_time}},}
+\DoxyCodeLine{60                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"x\_start"}],}
+\DoxyCodeLine{61                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"x\_end"}],}
+\DoxyCodeLine{62                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"y\_start"}],}
+\DoxyCodeLine{63                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"y\_end"}]);}
+\DoxyCodeLine{64             \textcolor{comment}{// Prepare initialcondition}}
+\DoxyCodeLine{65             std::function<std::complex<float>(\textcolor{keywordtype}{float}, \textcolor{keywordtype}{float})> initial\_cond\_function;}
+\DoxyCodeLine{66             \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_a3a5ed92e0ab6169efbd9a313380bb354}{init\_cond\_type}} == \textcolor{stringliteral}{"singlegaussian"})}
+\DoxyCodeLine{67             \{}
+\DoxyCodeLine{68                 \textcolor{keyword}{auto} sigma\_x = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"sigma\_x"}];}
+\DoxyCodeLine{69                 \textcolor{keyword}{auto} sigma\_y = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"sigma\_y"}];}
+\DoxyCodeLine{70                 \textcolor{keyword}{auto} center\_x = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"center\_x"}];}
+\DoxyCodeLine{71                 \textcolor{keyword}{auto} center\_y = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"center\_y"}];}
+\DoxyCodeLine{72                 initial\_cond\_function = [center\_x, center\_y, sigma\_x, sigma\_y](\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y)}
+\DoxyCodeLine{73                 \{ }
+\DoxyCodeLine{74                     \textcolor{keywordflow}{return} std::complex<float>\{}
+\DoxyCodeLine{75                         float(1.) * expf(-\/((x -\/ center\_x) * (x -\/ center\_x) / (sigma\_x * sigma\_x) + (y -\/ center\_y) * (y -\/ center\_y) / (sigma\_y * sigma\_y)))}
+\DoxyCodeLine{76                         \};}
+\DoxyCodeLine{77                 \};}
+\DoxyCodeLine{78                 \textcolor{keyword}{auto} *initial\_condition = \textcolor{keyword}{new} \mbox{\hyperlink{class_initial_condition}{InitialCondition}}(initial\_cond\_function);}
+\DoxyCodeLine{79                 initial\_condition-\/>assign\_to\_domain(domain);}
+\DoxyCodeLine{80             \}}
+\DoxyCodeLine{81             \textcolor{comment}{// Library user could add case in here if they want to use non-\/gaussian initial condition.}}
+\DoxyCodeLine{82             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{83             \{}
+\DoxyCodeLine{84                 std::cerr << \textcolor{stringliteral}{"Unexpected initial condition"} << std::endl;}
+\DoxyCodeLine{85             \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87             \textcolor{comment}{// Prepare potential}}
+\DoxyCodeLine{88             \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a1284722e2c2d35a21d4ab65e86e5c44a}{potential\_type}} == \textcolor{stringliteral}{"harmonic"})}
+\DoxyCodeLine{89             \{}
+\DoxyCodeLine{90                 \textcolor{keyword}{auto} omega\_x = parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a02230ef4ce2bc65514f8c02ec1e8fb4d}{potential\_parameters}}[\textcolor{stringliteral}{"omega\_x"}];}
+\DoxyCodeLine{91                 \textcolor{keyword}{auto} omega\_y = parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a02230ef4ce2bc65514f8c02ec1e8fb4d}{potential\_parameters}}[\textcolor{stringliteral}{"omega\_y"}];}
+\DoxyCodeLine{92                 \textcolor{keyword}{auto} *potential = \textcolor{keyword}{new} \mbox{\hyperlink{class_harmonic_potential}{HarmonicPotential}}(omega\_x, omega\_y);}
+\DoxyCodeLine{93                 potential-\/>calcualte\_potential\_in\_grid(domain);}
+\DoxyCodeLine{94             \}}
+\DoxyCodeLine{95             \textcolor{comment}{// Library user could add case in here if they want to use non-\/harmonic potential}}
+\DoxyCodeLine{96             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{97             \{}
+\DoxyCodeLine{98                 std::cerr << \textcolor{stringliteral}{"Unexpected initial condition"} << std::endl;}
+\DoxyCodeLine{99             \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101             \textcolor{keywordtype}{float} g = parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a2d12408261acc3fea061fd7ea98d230d}{g}};}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103             \textcolor{keywordtype}{bool} save\_data = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a5f4d5dea1c236977d2279a83631b698b}{save\_data}};}
+\DoxyCodeLine{104             \textcolor{keywordtype}{bool} print\_info = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a39b61a105742e84f9c89d25f44d2c886}{print\_info}};}
+\DoxyCodeLine{105             }
+\DoxyCodeLine{106             \textcolor{comment}{// Solve equation in given method from configuration}}
+\DoxyCodeLine{107             \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_aecc2d1881aadd43fa256a9fb6964fd4a}{method}} == \textcolor{stringliteral}{"cranknicolson"})}
+\DoxyCodeLine{108             \{}
+\DoxyCodeLine{109                 \textcolor{keywordflow}{if}(parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a80745ed3f25424307bfc93ad9f4d71ce}{run\_parallel}})\{}
+\DoxyCodeLine{110                     \textcolor{keywordtype}{float} converge\_crit = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a0aa2e19255919911baa6f5ad6f39dfde}{solver\_parameters}}[\textcolor{stringliteral}{"converge\_crit"}];}
+\DoxyCodeLine{111                     \textcolor{keywordtype}{int} max\_iter = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a6ed8526e28f30b140061711000cd38fe}{int\_parameters}}[\textcolor{stringliteral}{"max\_iter"}];}
+\DoxyCodeLine{112                     \textcolor{keywordtype}{int} cuda\_device = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a6ed8526e28f30b140061711000cd38fe}{int\_parameters}}[\textcolor{stringliteral}{"cuda\_device"}];}
+\DoxyCodeLine{113                     CNRectPSolver solver = CNRectPSolver(g, domain, cuda\_device);}
+\DoxyCodeLine{114                     solver.solve(converge\_crit, max\_iter, std::to\_string(rank), print\_info, save\_data);}
+\DoxyCodeLine{115                 \}}
+\DoxyCodeLine{116                 \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{117                     \textcolor{keywordtype}{float} converge\_crit = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a0aa2e19255919911baa6f5ad6f39dfde}{solver\_parameters}}[\textcolor{stringliteral}{"converge\_crit"}];}
+\DoxyCodeLine{118                     \textcolor{keywordtype}{int} max\_iter = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a6ed8526e28f30b140061711000cd38fe}{int\_parameters}}[\textcolor{stringliteral}{"max\_iter"}];}
+\DoxyCodeLine{119                     \mbox{\hyperlink{class_c_n_rect_solver}{CNRectSolver}} solver = \mbox{\hyperlink{class_c_n_rect_solver}{CNRectSolver}}(g, domain);}
+\DoxyCodeLine{120                     \textcolor{comment}{//std::cout<<"save\_data " <<save\_data<<std::endl;}}
+\DoxyCodeLine{121                     solver.\mbox{\hyperlink{class_c_n_rect_solver_a1c68d9b8d7fc0eb4ec5246d62f570e82}{solve}}(converge\_crit, max\_iter, std::to\_string(rank), print\_info, save\_data);}
+\DoxyCodeLine{122                 \}}
+\DoxyCodeLine{123             \}}
+\DoxyCodeLine{124             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_aecc2d1881aadd43fa256a9fb6964fd4a}{method}} == \textcolor{stringliteral}{"forwardeuler"})\{}
+\DoxyCodeLine{125                 \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a80745ed3f25424307bfc93ad9f4d71ce}{run\_parallel}})}
+\DoxyCodeLine{126                 \{}
+\DoxyCodeLine{127                     \textcolor{keywordtype}{int} cuda\_device = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a6ed8526e28f30b140061711000cd38fe}{int\_parameters}}[\textcolor{stringliteral}{"cuda\_device"}];}
+\DoxyCodeLine{128                     FERectPSolver solver = FERectPSolver(g, domain, cuda\_device);}
+\DoxyCodeLine{129                     solver.solve(std::to\_string(rank), print\_info, save\_data);}
+\DoxyCodeLine{130                 \}}
+\DoxyCodeLine{131                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{132                 \{}
+\DoxyCodeLine{133                     \mbox{\hyperlink{class_f_e_rect_solver}{FERectSolver}} solver = \mbox{\hyperlink{class_f_e_rect_solver}{FERectSolver}}(g, domain);}
+\DoxyCodeLine{134                     solver.\mbox{\hyperlink{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a}{solve}}(std::to\_string(rank), print\_info, save\_data);}
+\DoxyCodeLine{135                 \}}
+\DoxyCodeLine{136             \}}
+\DoxyCodeLine{137         \}}
+\DoxyCodeLine{138         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_a3dd5210e73e50c3a12dc07eda2790fff}{calculation\_type}} == \textcolor{stringliteral}{"g\_sweep"})}
+\DoxyCodeLine{139         \{   }
+\DoxyCodeLine{140             \textcolor{comment}{// Prepare G sweep}}
+\DoxyCodeLine{141             \mbox{\hyperlink{class_g_sweeper}{GSweeper}} gSweeper = \mbox{\hyperlink{class_g_sweeper}{GSweeper}}(parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_a6831814d931c436854667c764177e244}{float\_parameters}}[\textcolor{stringliteral}{"sweep\_start"}],}
+\DoxyCodeLine{142                                          parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_a6831814d931c436854667c764177e244}{float\_parameters}}[\textcolor{stringliteral}{"sweep\_end"}],}
+\DoxyCodeLine{143                                          parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"sweep\_count"}],}
+\DoxyCodeLine{144                                          \textcolor{keywordtype}{bool}(parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"end\_point"}]));}
+\DoxyCodeLine{145             \textcolor{comment}{// Initialze domain}}
+\DoxyCodeLine{146             \mbox{\hyperlink{class_rectangular_domain}{RectangularDomain}} *domain = \textcolor{keyword}{new} \mbox{\hyperlink{class_rectangular_domain}{RectangularDomain}}(parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21a59fee5d180427107e9b708e892fd2}{n\_x}},}
+\DoxyCodeLine{147                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_ac85f5cbf8260b47c762e66c46d5f23ba}{n\_y}},}
+\DoxyCodeLine{148                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_aef6fa71867ca881aabd73f50267eb441}{time\_start}},}
+\DoxyCodeLine{149                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_af6de1ab73af7112dc13690c9db206801}{time\_end}},}
+\DoxyCodeLine{150                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a069e0b63f37ec7e64b06d8b640907c93}{n\_time}},}
+\DoxyCodeLine{151                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"x\_start"}],}
+\DoxyCodeLine{152                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"x\_end"}],}
+\DoxyCodeLine{153                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"y\_start"}],}
+\DoxyCodeLine{154                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"y\_end"}]);}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156             \textcolor{comment}{// Prepare initial condition}}
+\DoxyCodeLine{157             std::function<std::complex<float>(\textcolor{keywordtype}{float}, \textcolor{keywordtype}{float})> initial\_cond\_function;}
+\DoxyCodeLine{158             \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_a3a5ed92e0ab6169efbd9a313380bb354}{init\_cond\_type}} == \textcolor{stringliteral}{"singlegaussian"})}
+\DoxyCodeLine{159             \{}
+\DoxyCodeLine{160                 \textcolor{comment}{// prepare initial condition}}
+\DoxyCodeLine{161                 \textcolor{keyword}{auto} sigma\_x = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"sigma\_x"}];}
+\DoxyCodeLine{162                 \textcolor{keyword}{auto} sigma\_y = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"sigma\_y"}];}
+\DoxyCodeLine{163                 \textcolor{keyword}{auto} center\_x = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"center\_x"}];}
+\DoxyCodeLine{164                 \textcolor{keyword}{auto} center\_y = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"center\_y"}];}
+\DoxyCodeLine{165                 initial\_cond\_function = [center\_x, center\_y, sigma\_x, sigma\_y](\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y)}
+\DoxyCodeLine{166                 \{}
+\DoxyCodeLine{167                     \textcolor{keywordflow}{return} std::complex<float>\{}
+\DoxyCodeLine{168                         float(1.) * expf(-\/((x -\/ center\_x) * (x -\/ center\_x) / (sigma\_x * sigma\_x) + (y -\/ center\_y) * (y -\/ center\_y) / (sigma\_y * sigma\_y)))\};}
+\DoxyCodeLine{169                 \};}
+\DoxyCodeLine{170                 \textcolor{keyword}{auto} *initial\_condition = \textcolor{keyword}{new} \mbox{\hyperlink{class_initial_condition}{InitialCondition}}(initial\_cond\_function);}
+\DoxyCodeLine{171                 initial\_condition-\/>assign\_to\_domain(domain);}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173                 \textcolor{comment}{// Prepare potential}}
+\DoxyCodeLine{174                 \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a1284722e2c2d35a21d4ab65e86e5c44a}{potential\_type}} == \textcolor{stringliteral}{"harmonic"})}
+\DoxyCodeLine{175                 \{}
+\DoxyCodeLine{176                     \textcolor{keyword}{auto} omega\_x = parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a02230ef4ce2bc65514f8c02ec1e8fb4d}{potential\_parameters}}[\textcolor{stringliteral}{"omega\_x"}];}
+\DoxyCodeLine{177                     \textcolor{keyword}{auto} omega\_y = parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a02230ef4ce2bc65514f8c02ec1e8fb4d}{potential\_parameters}}[\textcolor{stringliteral}{"omega\_y"}];}
+\DoxyCodeLine{178                     \textcolor{keyword}{auto} *potential = \textcolor{keyword}{new} \mbox{\hyperlink{class_harmonic_potential}{HarmonicPotential}}(omega\_x, omega\_y);}
+\DoxyCodeLine{179                     potential-\/>calcualte\_potential\_in\_grid(domain);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181                     \textcolor{keywordtype}{bool} save\_data = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a5f4d5dea1c236977d2279a83631b698b}{save\_data}};}
+\DoxyCodeLine{182                     \textcolor{keywordtype}{bool} print\_info = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a39b61a105742e84f9c89d25f44d2c886}{print\_info}};}
+\DoxyCodeLine{183                     \textcolor{keywordtype}{bool} cuda\_use = (bool)parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"cuda\_use"}];}
+\DoxyCodeLine{184                     \textcolor{keywordtype}{bool} mpi\_use = (\textcolor{keywordtype}{bool})parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"mpi\_use"}];}
+\DoxyCodeLine{185                     \textcolor{keywordflow}{if} (cuda\_use)}
+\DoxyCodeLine{186                     \{}
+\DoxyCodeLine{187                         \textcolor{comment}{// setup cuda if cuda\_use}}
+\DoxyCodeLine{188                         gSweeper.\mbox{\hyperlink{class_base_sweeper_a4be89766f70e81703c48b33d1fde8c56}{set\_CUDA\_info}}(parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"gpu\_count"}],}
+\DoxyCodeLine{189                                             parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"calculation\_per\_gpu"}]);}
+\DoxyCodeLine{190                     \}}
+\DoxyCodeLine{191                     \textcolor{keywordflow}{if} (mpi\_use)}
+\DoxyCodeLine{192                     \{}
+\DoxyCodeLine{193                         \textcolor{comment}{// setup MPI if mpi\_use}}
+\DoxyCodeLine{194                         gSweeper.\mbox{\hyperlink{class_base_sweeper_ac401def4866ebb0d173188fba3100014}{set\_MPI\_info}}(rank, size);}
+\DoxyCodeLine{195                     \}}
+\DoxyCodeLine{196                     \textcolor{comment}{// Setup whether print through standard output or not}}
+\DoxyCodeLine{197                     gSweeper.\mbox{\hyperlink{class_base_sweeper_a94d76c4ada293274d5d87eb51ac6e081}{set\_print\_info}}(print\_info);}
+\DoxyCodeLine{198                     \textcolor{comment}{// Setup whether save data or not}}
+\DoxyCodeLine{199                     gSweeper.\mbox{\hyperlink{class_base_sweeper_a39044e863ad50a25174331e0cf4f173d}{set\_save\_data}}(save\_data);}
+\DoxyCodeLine{200                     \textcolor{comment}{// Run sweeping}}
+\DoxyCodeLine{201                     gSweeper.\mbox{\hyperlink{class_g_sweeper_adb960798cd0f312000093c09a3af9001}{run}}(domain, initial\_condition, potential);}
+\DoxyCodeLine{202                 \}}
+\DoxyCodeLine{203                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{204                 \{}
+\DoxyCodeLine{205                     std::cerr << \textcolor{stringliteral}{"Unexpected initial condition"} << std::endl;}
+\DoxyCodeLine{206                 \}}
+\DoxyCodeLine{207             \}}
+\DoxyCodeLine{208             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{209             \{}
+\DoxyCodeLine{210                 std::cerr << \textcolor{stringliteral}{"Unexpected initial condition"} << std::endl;}
+\DoxyCodeLine{211             \}}
+\DoxyCodeLine{212         \}}
+\DoxyCodeLine{213         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_a3dd5210e73e50c3a12dc07eda2790fff}{calculation\_type}} == \textcolor{stringliteral}{"anisotropy\_sweep"})}
+\DoxyCodeLine{214         \{}
+\DoxyCodeLine{215             \textcolor{comment}{// Prepare Harmonic Potential Sweeper}}
+\DoxyCodeLine{216             \mbox{\hyperlink{class_h_p_sweeper}{HPSweeper}} hpSweeper = \mbox{\hyperlink{class_h_p_sweeper}{HPSweeper}}(parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_a6831814d931c436854667c764177e244}{float\_parameters}}[\textcolor{stringliteral}{"sweep\_start"}],}
+\DoxyCodeLine{217                                             parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_a6831814d931c436854667c764177e244}{float\_parameters}}[\textcolor{stringliteral}{"sweep\_end"}],}
+\DoxyCodeLine{218                                             parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"sweep\_count"}],}
+\DoxyCodeLine{219                                             \textcolor{keywordtype}{bool}(parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"end\_point"}]));}
+\DoxyCodeLine{220             \textcolor{comment}{// Prepare domain}}
+\DoxyCodeLine{221             \mbox{\hyperlink{class_rectangular_domain}{RectangularDomain}} *domain = \textcolor{keyword}{new} \mbox{\hyperlink{class_rectangular_domain}{RectangularDomain}}(parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21a59fee5d180427107e9b708e892fd2}{n\_x}},}
+\DoxyCodeLine{222                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_ac85f5cbf8260b47c762e66c46d5f23ba}{n\_y}},}
+\DoxyCodeLine{223                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_aef6fa71867ca881aabd73f50267eb441}{time\_start}},}
+\DoxyCodeLine{224                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_af6de1ab73af7112dc13690c9db206801}{time\_end}},}
+\DoxyCodeLine{225                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a069e0b63f37ec7e64b06d8b640907c93}{n\_time}},}
+\DoxyCodeLine{226                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"x\_start"}],}
+\DoxyCodeLine{227                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"x\_end"}],}
+\DoxyCodeLine{228                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"y\_start"}],}
+\DoxyCodeLine{229                                                               parameters.\mbox{\hyperlink{class_parameters_a6a942a051fda7a5075ab3a15868a7b26}{domain\_parameters}}.\mbox{\hyperlink{class_domain_parameters_a21186ed6245b2c9100669959925c6d8e}{spatial\_parameters}}[\textcolor{stringliteral}{"y\_end"}]);}
+\DoxyCodeLine{230             \textcolor{comment}{// Prepare initial Condition}}
+\DoxyCodeLine{231             std::function<std::complex<float>(\textcolor{keywordtype}{float}, \textcolor{keywordtype}{float})> initial\_cond\_function;}
+\DoxyCodeLine{232             \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_a3a5ed92e0ab6169efbd9a313380bb354}{init\_cond\_type}} == \textcolor{stringliteral}{"singlegaussian"})}
+\DoxyCodeLine{233             \{}
+\DoxyCodeLine{234                 \textcolor{comment}{// Prepare initial condition}}
+\DoxyCodeLine{235                 \textcolor{keyword}{auto} sigma\_x = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"sigma\_x"}];}
+\DoxyCodeLine{236                 \textcolor{keyword}{auto} sigma\_y = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"sigma\_y"}];}
+\DoxyCodeLine{237                 \textcolor{keyword}{auto} center\_x = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"center\_x"}];}
+\DoxyCodeLine{238                 \textcolor{keyword}{auto} center\_y = parameters.\mbox{\hyperlink{class_parameters_a2750312901bbf37b48e62a1696e1c670}{init\_cond\_parameters}}.\mbox{\hyperlink{class_initial_condition_parameters_ae34e47fdc02fee002de5a27a734b3ab4}{init\_cond\_parameters}}[\textcolor{stringliteral}{"center\_y"}];}
+\DoxyCodeLine{239                 initial\_cond\_function = [center\_x, center\_y, sigma\_x, sigma\_y](\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y)}
+\DoxyCodeLine{240                 \{}
+\DoxyCodeLine{241                     \textcolor{keywordflow}{return} std::complex<float>\{}
+\DoxyCodeLine{242                         float(1.) * expf(-\/((x -\/ center\_x) * (x -\/ center\_x) / (sigma\_x * sigma\_x) + (y -\/ center\_y) * (y -\/ center\_y) / (sigma\_y * sigma\_y)))\};}
+\DoxyCodeLine{243                 \};}
+\DoxyCodeLine{244                 \textcolor{keyword}{auto} *initial\_condition = \textcolor{keyword}{new} \mbox{\hyperlink{class_initial_condition}{InitialCondition}}(initial\_cond\_function);}
+\DoxyCodeLine{245                 initial\_condition-\/>assign\_to\_domain(domain);}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247                 \textcolor{keywordflow}{if} (parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a1284722e2c2d35a21d4ab65e86e5c44a}{potential\_type}} == \textcolor{stringliteral}{"harmonic"})}
+\DoxyCodeLine{248                 \{   }
+\DoxyCodeLine{249                     \textcolor{comment}{// setup save / MPI use / cuda use / print option}}
+\DoxyCodeLine{250                     \textcolor{keywordtype}{float} g = parameters.\mbox{\hyperlink{class_parameters_ad79f6051b51ac179876bb73ca7d85bca}{equation\_parameters}}.\mbox{\hyperlink{class_equation_parameters_a2d12408261acc3fea061fd7ea98d230d}{g}};}
+\DoxyCodeLine{251                     \textcolor{keywordtype}{bool} save\_data = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a5f4d5dea1c236977d2279a83631b698b}{save\_data}};}
+\DoxyCodeLine{252                     \textcolor{keywordtype}{bool} print\_info = parameters.\mbox{\hyperlink{class_parameters_a20092a79e1eb8017e53edf3ad9b7f310}{solver\_parameters}}.\mbox{\hyperlink{class_solver_parameters_a39b61a105742e84f9c89d25f44d2c886}{print\_info}};}
+\DoxyCodeLine{253                     \textcolor{keywordtype}{bool} cuda\_use = (bool)parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"cuda\_use"}];}
+\DoxyCodeLine{254                     \textcolor{keywordtype}{bool} mpi\_use = (\textcolor{keywordtype}{bool})parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"mpi\_use"}];}
+\DoxyCodeLine{255                     \textcolor{keywordflow}{if} (cuda\_use)}
+\DoxyCodeLine{256                     \{}
+\DoxyCodeLine{257                         hpSweeper.\mbox{\hyperlink{class_base_sweeper_a4be89766f70e81703c48b33d1fde8c56}{set\_CUDA\_info}}(parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"gpu\_count"}],}
+\DoxyCodeLine{258                                                 parameters.\mbox{\hyperlink{class_parameters_aab2e5175d82df68c9752708dfc76a243}{main\_parameters}}.\mbox{\hyperlink{class_main_parameters_af8cd4b76c1b759bae3f8c321c09d7113}{int\_parameters}}[\textcolor{stringliteral}{"calculation\_per\_gpu"}]);}
+\DoxyCodeLine{259                     \}}
+\DoxyCodeLine{260                     \textcolor{keywordflow}{if} (mpi\_use)}
+\DoxyCodeLine{261                     \{}
+\DoxyCodeLine{262                         hpSweeper.\mbox{\hyperlink{class_base_sweeper_ac401def4866ebb0d173188fba3100014}{set\_MPI\_info}}(rank, size);}
+\DoxyCodeLine{263                     \}}
+\DoxyCodeLine{264                     hpSweeper.\mbox{\hyperlink{class_base_sweeper_a94d76c4ada293274d5d87eb51ac6e081}{set\_print\_info}}(print\_info);}
+\DoxyCodeLine{265                     hpSweeper.\mbox{\hyperlink{class_base_sweeper_a39044e863ad50a25174331e0cf4f173d}{set\_save\_data}}(save\_data);}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267                     hpSweeper.\mbox{\hyperlink{class_h_p_sweeper_a842301e05d0b2bacbcc9f9e8e7b72f7c}{run}}(domain, initial\_condition, g);}
+\DoxyCodeLine{268                 \}}
+\DoxyCodeLine{269                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{270                 \{}
+\DoxyCodeLine{271                     std::cerr << \textcolor{stringliteral}{"Unexpected initial condition"} << std::endl;}
+\DoxyCodeLine{272                 \}}
+\DoxyCodeLine{273             \}}
+\DoxyCodeLine{274             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{275             \{}
+\DoxyCodeLine{276                 std::cerr << \textcolor{stringliteral}{"Unexpected initial condition"} << std::endl;}
+\DoxyCodeLine{277             \}}
+\DoxyCodeLine{278         \}}
+\DoxyCodeLine{279     \}}
+\DoxyCodeLine{280     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{281     \{}
+\DoxyCodeLine{282         std::cerr << \textcolor{stringliteral}{"Unexpected Domain"} << std::endl;}
+\DoxyCodeLine{283     \}}
+\DoxyCodeLine{284     \textcolor{comment}{// Finialize MPI}}
+\DoxyCodeLine{285     MPI\_Finalize();}
+\DoxyCodeLine{286 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,17 @@
+<map id="CNRectSolver::solve_single_time" name="CNRectSolver::solve_single_time">
+<area shape="rect" id="node1" title="Solve spatial domain for temporal index k." alt="" coords="5,284,160,326"/>
+<area shape="rect" id="node2" href="$class_base_spatial_grid.html#a5ff7c8639d562834eea2ac7aa46a8647" title=" " alt="" coords="934,62,1081,89"/>
+<area shape="rect" id="node3" href="$class_base_domain.html#a3c892a19bb330d5a5228977bfb83e3aa" title=" " alt="" coords="695,62,821,89"/>
+<area shape="rect" id="node4" href="$class_c_n_rect_solver.html#a918e8c60642eb0b2b4a8acf797d3c343" title="Calculate L2 error between the ccurrent and previous guess." alt="" coords="420,444,599,486"/>
+<area shape="rect" id="node5" href="$class_base_domain.html#a73e6d9e0b672889afc4b06a5f14d33e6" title=" " alt="" coords="673,375,843,416"/>
+<area shape="rect" id="node6" href="$class_base_domain.html#a0c09d40d12956668d8e24c1e9bbd7822" title=" " alt="" coords="673,440,843,482"/>
+<area shape="rect" id="node7" href="$class_c_n_rect_solver.html#a195b268c6b5c75bd0846712f0305992f" title="Update guess of the spatial(i, j), temporal k point." alt="" coords="208,234,372,275"/>
+<area shape="rect" id="node8" href="$class_base_domain.html#afe71a36d36e3b7e20f7e5b2621f3005f" title=" " alt="" coords="432,292,587,318"/>
+<area shape="rect" id="node9" href="$class_f_e_rect_solver.html#a745799eccd8454816dad0ddb541f5244" title="Time differential of phi." alt="" coords="422,175,597,216"/>
+<area shape="rect" id="node10" href="$class_base_domain.html#ac6c9c1476b3ae00c3e0863840c131d80" title=" " alt="" coords="647,244,869,286"/>
+<area shape="rect" id="node12" href="$class_base_domain.html#aa65e83a59ac70d337e141f933008002a" title=" " alt="" coords="647,310,869,351"/>
+<area shape="rect" id="node14" href="$class_base_domain.html#a5e4ea2bf89c2d46634bb8acd3ccfeea5" title=" " alt="" coords="675,114,841,155"/>
+<area shape="rect" id="node15" href="$class_f_e_rect_solver.html#a2b412f0ea20480423773eae874d961e5" title="Get Potential value on each grid point." alt="" coords="657,179,859,220"/>
+<area shape="rect" id="node11" href="$class_base_spatial_grid.html#ab68bca75611922a5bf1d83ea8d33074c" title=" " alt="" coords="917,244,1097,286"/>
+<area shape="rect" id="node13" href="$class_base_spatial_grid.html#aaf1307931a72afde158cb6eb886694bd" title=" " alt="" coords="917,310,1097,351"/>
+</map>

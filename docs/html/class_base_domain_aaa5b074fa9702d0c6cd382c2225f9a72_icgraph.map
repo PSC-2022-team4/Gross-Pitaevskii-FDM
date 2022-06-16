@@ -1,0 +1,9 @@
+<map id="BaseDomain::normalize" name="BaseDomain::normalize">
+<area shape="rect" id="node1" title=" " alt="" coords="525,75,704,101"/>
+<area shape="rect" id="node2" href="$class_initial_condition.html#a87271969e2c13c1f1ccea5ce1d5fd1a5" title="Assign initial condition to the domain class instance." alt="" coords="307,9,477,50"/>
+<area shape="rect" id="node6" href="$class_c_n_rect_solver.html#a1c68d9b8d7fc0eb4ec5246d62f570e82" title="solve equation with crank nicolson method with given max_iter and tolerance." alt="" coords="315,75,469,101"/>
+<area shape="rect" id="node7" href="$class_f_e_rect_solver.html#aaa98fb6ddd22fc78cb6279b3f533dc5a" title="Solve Equation." alt="" coords="108,157,259,184"/>
+<area shape="rect" id="node3" href="$class_g_sweeper.html#adb960798cd0f312000093c09a3af9001" title=" " alt="" coords="125,5,242,32"/>
+<area shape="rect" id="node5" href="$class_h_p_sweeper.html#a842301e05d0b2bacbcc9f9e8e7b72f7c" title=" " alt="" coords="121,56,246,83"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,81,60,108"/>
+</map>

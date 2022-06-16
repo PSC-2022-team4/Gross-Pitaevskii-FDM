@@ -1,0 +1,6 @@
+<map id="CNRectSolver::calculate_error" name="CNRectSolver::calculate_error">
+<area shape="rect" id="node1" title="Calculate L2 error between the ccurrent and previous guess." alt="" coords="5,57,184,98"/>
+<area shape="rect" id="node2" href="$class_base_spatial_grid.html#a5ff7c8639d562834eea2ac7aa46a8647" title=" " alt="" coords="244,5,391,32"/>
+<area shape="rect" id="node3" href="$class_base_domain.html#a73e6d9e0b672889afc4b06a5f14d33e6" title=" " alt="" coords="232,57,403,98"/>
+<area shape="rect" id="node4" href="$class_base_domain.html#a0c09d40d12956668d8e24c1e9bbd7822" title=" " alt="" coords="232,122,403,163"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="BasePotential::potential_function" name="BasePotential::potential_function">
+<area shape="rect" id="node1" title="Default potental function for constant zero potential." alt="" coords="232,5,411,47"/>
+<area shape="rect" id="node2" href="$class_base_potential.html#a9fa8726a86f640d3c729da7580204162" title="Calculate potential values in each grid based on domain point coordinate and potential function." alt="" coords="5,5,184,47"/>
+</map>

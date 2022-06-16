@@ -1,0 +1,761 @@
+\hypertarget{class_c_n_rect_solver}{}\doxysection{C\+N\+Rect\+Solver Class Reference}
+\label{class_c_n_rect_solver}\index{CNRectSolver@{CNRectSolver}}
+
+
+{\ttfamily \#include $<$cn\+\_\+rect\+\_\+solver.\+h$>$}
+
+
+
+Inheritance diagram for C\+N\+Rect\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{class_c_n_rect_solver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\+N\+Rect\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_c_n_rect_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_n_rect_solver_a627e2a110b544b38d2f5f5b00626f905}{C\+N\+Rect\+Solver}} ()=default
+\item 
+\mbox{\hyperlink{class_c_n_rect_solver_a97fde39b9eb8281fa2eabe11e08ed5e7}{C\+N\+Rect\+Solver}} (float \mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}, \mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}})
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_c_n_rect_solver_a627e2a110b544b38d2f5f5b00626f905}{C\+N\+Rect\+Solver\+::\+C\+N\+Rect\+Solver}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_n_rect_solver_a1c68d9b8d7fc0eb4ec5246d62f570e82}{solve}} (float tolerance, int max\+\_\+iter, std\+::string dir\+\_\+name=\char`\"{}\char`\"{}, bool print\+\_\+info=true, bool save\+\_\+data=true)
+\begin{DoxyCompactList}\small\item\em solve equation with crank nicolson method with given max\+\_\+iter and tolerance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_n_rect_solver_ad55eff8aecbdbcc631a1fe1505170011}{solve\+\_\+single\+\_\+time}} (int k, float tolerance, int max\+\_\+iter)
+\begin{DoxyCompactList}\small\item\em Solve spatial domain for temporal index k. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_c_n_rect_solver_adff8610ed9aa5db0323bff6a34096938}{initialize\+\_\+guess\+\_\+with\+\_\+forward\+\_\+euler}} (int k)
+\begin{DoxyCompactList}\small\item\em initialize guess with forward euler method \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_n_rect_solver_a195b268c6b5c75bd0846712f0305992f}{update\+\_\+guess}} (int i, int j, int k)
+\begin{DoxyCompactList}\small\item\em Update guess of the spatial(i, j), temporal k point. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_c_n_rect_solver_a918e8c60642eb0b2b4a8acf797d3c343}{calculate\+\_\+error}} (int k)
+\begin{DoxyCompactList}\small\item\em Calculate L2 error between the ccurrent and previous guess. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rectangular_spatial_grid}{Rectangular\+Spatial\+Grid}} $\ast$ \mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a}{solve}} (std\+::string dir\+\_\+name=\char`\"{}\char`\"{}, bool print\+\_\+info=true, bool save\+\_\+data=true)
+\begin{DoxyCompactList}\small\item\em Solve Equation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5}{solve\+\_\+single\+\_\+time}} (int k)
+\begin{DoxyCompactList}\small\item\em Update k+1 th wave function value with k th values. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5}{get\+\_\+potential\+\_\+value}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Get Potential value on each grid point. \end{DoxyCompactList}\item 
+std\+::complex$<$ float $>$ \mbox{\hyperlink{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}{temporal\+\_\+equation}} (int i, int j, int k)
+\begin{DoxyCompactList}\small\item\em Time differential of phi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$ \mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}
+\item 
+float \mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}
+\item 
+std\+::string \mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\+\_\+info}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 24 of file cn\+\_\+rect\+\_\+solver.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_n_rect_solver_a627e2a110b544b38d2f5f5b00626f905}\label{class_c_n_rect_solver_a627e2a110b544b38d2f5f5b00626f905}} 
+\index{CNRectSolver@{CNRectSolver}!CNRectSolver@{CNRectSolver}}
+\index{CNRectSolver@{CNRectSolver}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{CNRectSolver()}{CNRectSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily C\+N\+Rect\+Solver\+::\+C\+N\+Rect\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_c_n_rect_solver_a97fde39b9eb8281fa2eabe11e08ed5e7}\label{class_c_n_rect_solver_a97fde39b9eb8281fa2eabe11e08ed5e7}} 
+\index{CNRectSolver@{CNRectSolver}!CNRectSolver@{CNRectSolver}}
+\index{CNRectSolver@{CNRectSolver}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{CNRectSolver()}{CNRectSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily C\+N\+Rect\+Solver\+::\+C\+N\+Rect\+Solver (\begin{DoxyParamCaption}\item[{float}]{g,  }\item[{\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$}]{domain }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_c_n_rect_solver_a627e2a110b544b38d2f5f5b00626f905}{C\+N\+Rect\+Solver\+::\+C\+N\+Rect\+Solver}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & \\
+\hline
+{\em domain} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file cn\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23     : \mbox{\hyperlink{class_f_e_rect_solver_a017311b98a2081ff13fd9c81d7cb3d34}{FERectSolver}}(\mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}, \mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}) \textcolor{comment}{//}}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25     \textcolor{comment}{// this-\/>generate\_potential\_grid();}}
+\DoxyCodeLine{26     this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_rectangular_spatial_grid}{RectangularSpatialGrid}}(}
+\DoxyCodeLine{27         this-\/>domain-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}(),}
+\DoxyCodeLine{28         this-\/>domain-\/>get\_num\_grid\_2(),}
+\DoxyCodeLine{29         this-\/>domain-\/>get\_x\_start(),}
+\DoxyCodeLine{30         this-\/>domain-\/>get\_x\_end(),}
+\DoxyCodeLine{31         this-\/>domain-\/>get\_y\_start(),}
+\DoxyCodeLine{32         this-\/>domain-\/>get\_y\_end());}
+\DoxyCodeLine{33     this-\/>\mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\_info}} = std::string\{\textcolor{stringliteral}{"Crank\_Nicolson\_serial\_"}\};}
+\DoxyCodeLine{34 \};}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_a97fde39b9eb8281fa2eabe11e08ed5e7_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_n_rect_solver_a918e8c60642eb0b2b4a8acf797d3c343}\label{class_c_n_rect_solver_a918e8c60642eb0b2b4a8acf797d3c343}} 
+\index{CNRectSolver@{CNRectSolver}!calculate\_error@{calculate\_error}}
+\index{calculate\_error@{calculate\_error}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{calculate\_error()}{calculate\_error()}}
+{\footnotesize\ttfamily float C\+N\+Rect\+Solver\+::calculate\+\_\+error (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Calculate L2 error between the ccurrent and previous guess. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+
+
+Definition at line 94 of file cn\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{95 \{}
+\DoxyCodeLine{96     \textcolor{keywordtype}{float} error = 0.;}
+\DoxyCodeLine{97     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}(); ++i)}
+\DoxyCodeLine{98     \{}
+\DoxyCodeLine{99         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}(); ++j)}
+\DoxyCodeLine{100         \{}
+\DoxyCodeLine{101             error += std::pow(std::abs((this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} -\/ this-\/>domain-\/>at(i, j, k)-\/>value)), 2);}
+\DoxyCodeLine{102         \}}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104     \textcolor{keywordflow}{return} error;}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_a918e8c60642eb0b2b4a8acf797d3c343_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_a918e8c60642eb0b2b4a8acf797d3c343_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5}\label{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5}} 
+\index{CNRectSolver@{CNRectSolver}!get\_potential\_value@{get\_potential\_value}}
+\index{get\_potential\_value@{get\_potential\_value}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{get\_potential\_value()}{get\_potential\_value()}}
+{\footnotesize\ttfamily float F\+E\+Rect\+Solver\+::get\+\_\+potential\+\_\+value (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Get Potential value on each grid point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+{\em j} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a09a9a52ff6302e77511c377169c6fb71}{potential\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}}.real();}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_c_n_rect_solver_adff8610ed9aa5db0323bff6a34096938}\label{class_c_n_rect_solver_adff8610ed9aa5db0323bff6a34096938}} 
+\index{CNRectSolver@{CNRectSolver}!initialize\_guess\_with\_forward\_euler@{initialize\_guess\_with\_forward\_euler}}
+\index{initialize\_guess\_with\_forward\_euler@{initialize\_guess\_with\_forward\_euler}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{initialize\_guess\_with\_forward\_euler()}{initialize\_guess\_with\_forward\_euler()}}
+{\footnotesize\ttfamily void C\+N\+Rect\+Solver\+::initialize\+\_\+guess\+\_\+with\+\_\+forward\+\_\+euler (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+initialize guess with forward euler method 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 41 of file cn\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43     \textcolor{keyword}{delete} this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}};}
+\DoxyCodeLine{44     this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_rectangular_spatial_grid}{RectangularSpatialGrid}}(}
+\DoxyCodeLine{45         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}(),}
+\DoxyCodeLine{46         this-\/>domain-\/>get\_num\_grid\_2(),}
+\DoxyCodeLine{47         this-\/>domain-\/>get\_x\_start(),}
+\DoxyCodeLine{48         this-\/>domain-\/>get\_x\_end(),}
+\DoxyCodeLine{49         this-\/>domain-\/>get\_y\_start(),}
+\DoxyCodeLine{50         this-\/>domain-\/>get\_y\_end());}
+\DoxyCodeLine{51     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}(); ++i)}
+\DoxyCodeLine{52     \{}
+\DoxyCodeLine{53         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}(); ++j)}
+\DoxyCodeLine{54         \{}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56             \textcolor{comment}{//At first, initial guess is the results of fe algorithm}}
+\DoxyCodeLine{57             this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k -\/ 1)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} + this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_afe71a36d36e3b7e20f7e5b2621f3005f}{get\_dt}}() * (this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}{temporal\_equation}}(i, j, k -\/ 1));}
+\DoxyCodeLine{58             this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}};}
+\DoxyCodeLine{59         \}}
+\DoxyCodeLine{60     \}}
+\DoxyCodeLine{61     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}} -\/>\mbox{\hyperlink{class_rectangular_spatial_grid_a374bdd08b245d2cee7d460c6cbd27859}{normalize}}();}
+\DoxyCodeLine{62 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_adff8610ed9aa5db0323bff6a34096938_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_adff8610ed9aa5db0323bff6a34096938_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_c_n_rect_solver_a1c68d9b8d7fc0eb4ec5246d62f570e82}\label{class_c_n_rect_solver_a1c68d9b8d7fc0eb4ec5246d62f570e82}} 
+\index{CNRectSolver@{CNRectSolver}!solve@{solve}}
+\index{solve@{solve}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void C\+N\+Rect\+Solver\+::solve (\begin{DoxyParamCaption}\item[{float}]{tolerance,  }\item[{int}]{max\+\_\+iter,  }\item[{std\+::string}]{dir\+\_\+name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{print\+\_\+info = {\ttfamily true},  }\item[{bool}]{save\+\_\+data = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+solve equation with crank nicolson method with given max\+\_\+iter and tolerance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tolerance} & \\
+\hline
+{\em max\+\_\+iter} & \\
+\hline
+{\em dir\+\_\+name} & \\
+\hline
+{\em print\+\_\+info} & \\
+\hline
+{\em save\+\_\+data} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 162 of file cn\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{163 \{}
+\DoxyCodeLine{164     \textcolor{keywordtype}{int} time\_length = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_ade842081a5e63b389d92222a1e00f0e5}{get\_num\_times}}();}
+\DoxyCodeLine{165     \textcolor{comment}{//Save initial condition at time = start\_time}}
+\DoxyCodeLine{166     \textcolor{keywordflow}{if}(save\_data)\{}
+\DoxyCodeLine{167         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a95151f86188780b93caa6294242d366a}{generate\_directory\_name}}(this-\/>\mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\_info}}+dir\_name, print\_info);}
+\DoxyCodeLine{168         \textcolor{comment}{//Save initial condition}}
+\DoxyCodeLine{169         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a0ce97d3410d1f0695570bb89dd8b5952}{generate\_single\_txt\_file}}(std::string(\textcolor{stringliteral}{"Solution\_"}) + std::to\_string(0));}
+\DoxyCodeLine{170     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{171         \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a2440d822afc19df205c6ea3a2ba38593}{update\_time}}();}
+\DoxyCodeLine{172     \}}
+\DoxyCodeLine{173     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < time\_length-\/1; ++k)}
+\DoxyCodeLine{174     \{}
+\DoxyCodeLine{175         \textcolor{comment}{//Update kth grid using k-\/1 th grid}}
+\DoxyCodeLine{176         \textcolor{comment}{// std::cout << "time step " << k << std::endl;}}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178         this-\/>\mbox{\hyperlink{class_c_n_rect_solver_adff8610ed9aa5db0323bff6a34096938}{initialize\_guess\_with\_forward\_euler}}(k+1);}
+\DoxyCodeLine{179         this-\/>\mbox{\hyperlink{class_c_n_rect_solver_ad55eff8aecbdbcc631a1fe1505170011}{solve\_single\_time}}(k+1, tolerance, max\_iter);}
+\DoxyCodeLine{180         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72}{normalize}}(k+1);}
+\DoxyCodeLine{181         \textcolor{keywordflow}{if}(save\_data)\{}
+\DoxyCodeLine{182             this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a0ce97d3410d1f0695570bb89dd8b5952}{generate\_single\_txt\_file}}(std::string(\textcolor{stringliteral}{"Solution\_"}) + std::to\_string(k+1));}
+\DoxyCodeLine{183         \}}
+\DoxyCodeLine{184         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{185             this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a2440d822afc19df205c6ea3a2ba38593}{update\_time}}();}
+\DoxyCodeLine{186         \}}
+\DoxyCodeLine{187     \}}
+\DoxyCodeLine{188     \textcolor{keywordflow}{if}(print\_info)\{}
+\DoxyCodeLine{189         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a1bfcbbddd7317754b6190daf7283c80b}{print\_directory\_info}}();}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_a1c68d9b8d7fc0eb4ec5246d62f570e82_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_a1c68d9b8d7fc0eb4ec5246d62f570e82_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a}\label{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a}} 
+\index{CNRectSolver@{CNRectSolver}!solve@{solve}}
+\index{solve@{solve}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void F\+E\+Rect\+Solver\+::solve (\begin{DoxyParamCaption}\item[{std\+::string}]{dir\+\_\+name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{print\+\_\+info = {\ttfamily true},  }\item[{bool}]{save\+\_\+data = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Solve Equation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir\+\_\+name} & \\
+\hline
+{\em print\+\_\+info} & \\
+\hline
+{\em save\+\_\+data} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 116 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{117 \{}
+\DoxyCodeLine{118     \textcolor{keywordtype}{int} time\_length = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_ade842081a5e63b389d92222a1e00f0e5}{get\_num\_times}}();}
+\DoxyCodeLine{119     \textcolor{keywordflow}{if}(save\_data)\{}
+\DoxyCodeLine{120         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a95151f86188780b93caa6294242d366a}{generate\_directory\_name}}(this-\/>\mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\_info}}+dir\_name, print\_info);}
+\DoxyCodeLine{121         \textcolor{comment}{//Save initial condition}}
+\DoxyCodeLine{122         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a0ce97d3410d1f0695570bb89dd8b5952}{generate\_single\_txt\_file}}(std::string(\textcolor{stringliteral}{"Solution\_"}) + std::to\_string(0));}
+\DoxyCodeLine{123     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{124         \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a2440d822afc19df205c6ea3a2ba38593}{update\_time}}();}
+\DoxyCodeLine{125     \}}
+\DoxyCodeLine{126     }
+\DoxyCodeLine{127     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < time\_length -\/ 1; ++k)}
+\DoxyCodeLine{128     \{}
+\DoxyCodeLine{129         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5}{solve\_single\_time}}(k);}
+\DoxyCodeLine{130         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72}{normalize}}(k + 1);}
+\DoxyCodeLine{131         \textcolor{keywordflow}{if}(save\_data)\{}
+\DoxyCodeLine{132             this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a0ce97d3410d1f0695570bb89dd8b5952}{generate\_single\_txt\_file}}(std::string(\textcolor{stringliteral}{"Solution\_"}) + std::to\_string(k + 1));}
+\DoxyCodeLine{133         \}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{135             this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a2440d822afc19df205c6ea3a2ba38593}{update\_time}}();}
+\DoxyCodeLine{136         \}}
+\DoxyCodeLine{137     \}}
+\DoxyCodeLine{138     \textcolor{keywordflow}{if}(print\_info)\{}
+\DoxyCodeLine{139         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a1bfcbbddd7317754b6190daf7283c80b}{print\_directory\_info}}();}
+\DoxyCodeLine{140     \}}
+\DoxyCodeLine{141 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5}\label{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5}} 
+\index{CNRectSolver@{CNRectSolver}!solve\_single\_time@{solve\_single\_time}}
+\index{solve\_single\_time@{solve\_single\_time}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{solve\_single\_time()}{solve\_single\_time()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void F\+E\+Rect\+Solver\+::solve\+\_\+single\+\_\+time (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Update k+1 th wave function value with k th values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 95 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{96 \{}
+\DoxyCodeLine{97     \textcolor{keywordtype}{int} Nx = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}();}
+\DoxyCodeLine{98     \textcolor{keywordtype}{int} Ny = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}();}
+\DoxyCodeLine{99     \textcolor{keywordtype}{float} dt = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_afe71a36d36e3b7e20f7e5b2621f3005f}{get\_dt}}();}
+\DoxyCodeLine{100     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < Nx; ++i)}
+\DoxyCodeLine{101     \{}
+\DoxyCodeLine{102         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < Ny; ++j)}
+\DoxyCodeLine{103         \{}
+\DoxyCodeLine{104             (this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k + 1)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}}) = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} + dt * this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}{temporal\_equation}}(i, j, k);}
+\DoxyCodeLine{105         \}}
+\DoxyCodeLine{106     \}}
+\DoxyCodeLine{107 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_c_n_rect_solver_ad55eff8aecbdbcc631a1fe1505170011}\label{class_c_n_rect_solver_ad55eff8aecbdbcc631a1fe1505170011}} 
+\index{CNRectSolver@{CNRectSolver}!solve\_single\_time@{solve\_single\_time}}
+\index{solve\_single\_time@{solve\_single\_time}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{solve\_single\_time()}{solve\_single\_time()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void C\+N\+Rect\+Solver\+::solve\+\_\+single\+\_\+time (\begin{DoxyParamCaption}\item[{int}]{k,  }\item[{float}]{tolerance,  }\item[{int}]{max\+\_\+iter }\end{DoxyParamCaption})}
+
+
+
+Solve spatial domain for temporal index k. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+{\em tolerance} & \\
+\hline
+{\em max\+\_\+iter} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 114 of file cn\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{115 \{}
+\DoxyCodeLine{116     \textcolor{keywordtype}{float} error = 1.;}
+\DoxyCodeLine{117     \textcolor{keywordtype}{bool} converged = \textcolor{keyword}{false};}
+\DoxyCodeLine{118     \textcolor{keywordtype}{int} converged\_step = 0;}
+\DoxyCodeLine{119     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} iter = 0; iter < max\_iter; ++iter)}
+\DoxyCodeLine{120     \{}
+\DoxyCodeLine{121         \textcolor{keywordflow}{if} (error < tolerance)}
+\DoxyCodeLine{122         \{}
+\DoxyCodeLine{123             converged = \textcolor{keyword}{true};}
+\DoxyCodeLine{124             converged\_step = iter -\/ 1;}
+\DoxyCodeLine{125             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{126         \}}
+\DoxyCodeLine{127         \textcolor{comment}{//For each point, update wave function}}
+\DoxyCodeLine{128         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}(); ++i)}
+\DoxyCodeLine{129         \{}
+\DoxyCodeLine{130             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}(); ++j)}
+\DoxyCodeLine{131             \{}
+\DoxyCodeLine{132                 this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} = this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}};}
+\DoxyCodeLine{133             \}}
+\DoxyCodeLine{134         \}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136         \textcolor{comment}{//for each point, update predicted value}}
+\DoxyCodeLine{137         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}(); ++i)}
+\DoxyCodeLine{138         \{}
+\DoxyCodeLine{139             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}(); ++j)}
+\DoxyCodeLine{140             \{}
+\DoxyCodeLine{141                 \mbox{\hyperlink{class_c_n_rect_solver_a195b268c6b5c75bd0846712f0305992f}{update\_guess}}(i, j, k);}
+\DoxyCodeLine{142             \}}
+\DoxyCodeLine{143         \}}
+\DoxyCodeLine{144         error = this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a918e8c60642eb0b2b4a8acf797d3c343}{calculate\_error}}(k);}
+\DoxyCodeLine{145         }
+\DoxyCodeLine{146     \}}
+\DoxyCodeLine{147     \textcolor{keywordflow}{if} (!converged)}
+\DoxyCodeLine{148     \{}
+\DoxyCodeLine{149         std::cout << \textcolor{stringliteral}{"At time "}<<k <<\textcolor{stringliteral}{" Converged failed with error = "} << error << std::endl;}
+\DoxyCodeLine{150     \}}
+\DoxyCodeLine{151 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_ad55eff8aecbdbcc631a1fe1505170011_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_ad55eff8aecbdbcc631a1fe1505170011_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}\label{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}} 
+\index{CNRectSolver@{CNRectSolver}!temporal\_equation@{temporal\_equation}}
+\index{temporal\_equation@{temporal\_equation}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{temporal\_equation()}{temporal\_equation()}}
+{\footnotesize\ttfamily std\+::complex$<$ float $>$ F\+E\+Rect\+Solver\+::temporal\+\_\+equation (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{int}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Time differential of phi. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index for x \\
+\hline
+{\em j} & index for y \\
+\hline
+{\em k} & index for time(t) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::complex$<$float$>$ time differential at x, y, t 
+\end{DoxyReturn}
+
+
+Definition at line 51 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53     \textcolor{comment}{//Use five stencil method}}
+\DoxyCodeLine{54     \textcolor{keyword}{auto} point\_data = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{comment}{//l,r,d,u denotes left, right, down, up value}}
+\DoxyCodeLine{57     \textcolor{comment}{//Check boundary}}
+\DoxyCodeLine{58     \textcolor{keyword}{auto} point\_data\_l = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i -\/ 1, j, k);}
+\DoxyCodeLine{59     \textcolor{keywordflow}{if} (i <= 0)}
+\DoxyCodeLine{60         point\_data\_l = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\_null\_gridpt}}();}
+\DoxyCodeLine{61     \textcolor{keyword}{auto} point\_data\_d = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j -\/ 1, k);}
+\DoxyCodeLine{62     \textcolor{keywordflow}{if} (j <= 0)}
+\DoxyCodeLine{63         point\_data\_d = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\_null\_gridpt}}();}
+\DoxyCodeLine{64     \textcolor{keyword}{auto} point\_data\_r = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i + 1, j, k);}
+\DoxyCodeLine{65     \textcolor{keywordflow}{if} (i >= (this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}()) -\/ 1)}
+\DoxyCodeLine{66         point\_data\_r = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\_null\_gridpt}}();}
+\DoxyCodeLine{67     \textcolor{keyword}{auto} point\_data\_u = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j + 1, k);}
+\DoxyCodeLine{68     \textcolor{keywordflow}{if} (j >= (this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}()) -\/ 1)}
+\DoxyCodeLine{69         point\_data\_u = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\_null\_gridpt}}();}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \textcolor{comment}{//potential at x, y}}
+\DoxyCodeLine{72     \textcolor{keywordtype}{float} V\_ij = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5}{get\_potential\_value}}(i, j);}
+\DoxyCodeLine{73     \textcolor{comment}{//this-\/>potential\_func(point\_data-\/>x, point\_data-\/>y);}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{comment}{//g * |psi(x,y)|\string^2}}
+\DoxyCodeLine{76     \textcolor{keywordtype}{float} additional\_term = (this-\/>\mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}) * (std::abs(point\_data-\/>value)) * (std::abs(point\_data-\/>value));}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{comment}{//Set infinitesimal value}}
+\DoxyCodeLine{79     \textcolor{keywordtype}{float} dx = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_ac6c9c1476b3ae00c3e0863840c131d80}{get\_infinitesimal\_distance1}}();}
+\DoxyCodeLine{80     \textcolor{keywordtype}{float} dy = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_aa65e83a59ac70d337e141f933008002a}{get\_infinitesimal\_distance2}}();}
+\DoxyCodeLine{81     \textcolor{comment}{//df denote time differential of dt (d(psi)/dt)}}
+\DoxyCodeLine{82     \textcolor{comment}{// = (laplace -\/ V-\/g|psi|\string^2) psi}}
+\DoxyCodeLine{83     std::complex<float> df =}
+\DoxyCodeLine{84         +((point\_data\_r-\/>value) + (point\_data\_l-\/>value) -\/ (point\_data-\/>value) * std::complex<float>\{2\}) / (std::complex<float>\{dx * dx\}) + ((point\_data\_u-\/>value) + (point\_data\_d-\/>value) -\/ (point\_data-\/>value) * std::complex<float>\{2\}) / (std::complex<float>\{dy * dy\}) -\/ (V\_ij + additional\_term) * (point\_data-\/>value);}
+\DoxyCodeLine{85     df *= std::complex<float>\{0, 1\};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{keywordflow}{return} df;}
+\DoxyCodeLine{88 \};}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_c_n_rect_solver_a195b268c6b5c75bd0846712f0305992f}\label{class_c_n_rect_solver_a195b268c6b5c75bd0846712f0305992f}} 
+\index{CNRectSolver@{CNRectSolver}!update\_guess@{update\_guess}}
+\index{update\_guess@{update\_guess}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{update\_guess()}{update\_guess()}}
+{\footnotesize\ttfamily void C\+N\+Rect\+Solver\+::update\+\_\+guess (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{int}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Update guess of the spatial(i, j), temporal k point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+{\em j} & \\
+\hline
+{\em k} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 71 of file cn\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{72 \{}
+\DoxyCodeLine{73     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}(); ++i)}
+\DoxyCodeLine{74     \{}
+\DoxyCodeLine{75         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}(); ++j)}
+\DoxyCodeLine{76         \{}
+\DoxyCodeLine{77             this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} = (}
+\DoxyCodeLine{78                 0.99f * this-\/>\mbox{\hyperlink{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}{guess}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} +}
+\DoxyCodeLine{79                 0.01f * (}
+\DoxyCodeLine{80                     this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k -\/ 1)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} + }
+\DoxyCodeLine{81                     std::complex<float>\{0.5, 0.\} * this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_afe71a36d36e3b7e20f7e5b2621f3005f}{get\_dt}}() * (}
+\DoxyCodeLine{82                         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}{temporal\_equation}}(i, j, k -\/ 1) + }
+\DoxyCodeLine{83                         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}{temporal\_equation}}(i, j, k)))); \textcolor{comment}{// this-\/>temporal\_equation\_from\_guess(i, j))));}}
+\DoxyCodeLine{84         \}}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_a195b268c6b5c75bd0846712f0305992f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_n_rect_solver_a195b268c6b5c75bd0846712f0305992f_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}\label{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}} 
+\index{CNRectSolver@{CNRectSolver}!domain@{domain}}
+\index{domain@{domain}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{domain}{domain}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}}$\ast$ F\+E\+Rect\+Solver\+::domain\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 39 of file fe\+\_\+rect\+\_\+solver.\+h.
+
+\mbox{\Hypertarget{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}\label{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}} 
+\index{CNRectSolver@{CNRectSolver}!g@{g}}
+\index{g@{g}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily float Base\+Solver\+::g\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 30 of file base\+\_\+solver.\+h.
+
+\mbox{\Hypertarget{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}\label{class_c_n_rect_solver_a5bda3c379ac49651105dfe5d1339fc4a}} 
+\index{CNRectSolver@{CNRectSolver}!guess@{guess}}
+\index{guess@{guess}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{guess}{guess}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rectangular_spatial_grid}{Rectangular\+Spatial\+Grid}}$\ast$ C\+N\+Rect\+Solver\+::guess\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 35 of file cn\+\_\+rect\+\_\+solver.\+h.
+
+\mbox{\Hypertarget{class_base_solver_ab843cf747cfa815b46c59808043a5367}\label{class_base_solver_ab843cf747cfa815b46c59808043a5367}} 
+\index{CNRectSolver@{CNRectSolver}!string\_info@{string\_info}}
+\index{string\_info@{string\_info}!CNRectSolver@{CNRectSolver}}
+\doxysubsubsection{\texorpdfstring{string\_info}{string\_info}}
+{\footnotesize\ttfamily std\+::string Base\+Solver\+::string\+\_\+info\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 32 of file base\+\_\+solver.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/solver/serial\+\_\+solver/crank\+\_\+nicolson/\mbox{\hyperlink{cn__rect__solver_8h}{cn\+\_\+rect\+\_\+solver.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/solver/serial\+\_\+solver/crank\+\_\+nicolson/\mbox{\hyperlink{cn__rect__solver_8cpp}{cn\+\_\+rect\+\_\+solver.\+cpp}}\end{DoxyCompactItemize}

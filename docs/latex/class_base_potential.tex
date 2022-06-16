@@ -1,0 +1,189 @@
+\hypertarget{class_base_potential}{}\doxysection{Base\+Potential Class Reference}
+\label{class_base_potential}\index{BasePotential@{BasePotential}}
+
+
+{\ttfamily \#include $<$base\+\_\+potential.\+h$>$}
+
+
+
+Inheritance diagram for Base\+Potential\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{class_base_potential__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Base\+Potential\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{class_base_potential__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_base_potential_aae82c3231238d6ba9a02a1c2cb5aefe8}{Base\+Potential}} ()=default
+\item 
+void \mbox{\hyperlink{class_base_potential_a9fa8726a86f640d3c729da7580204162}{calcualte\+\_\+potential\+\_\+in\+\_\+grid}} (\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$domain)
+\begin{DoxyCompactList}\small\item\em Calculate potential values in each grid based on domain point coordinate and potential function. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_base_potential_a6c257f106a4b385fde779690464376fc}{get\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Getter for name class variable. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_base_potential_a9ef45478f84a4c280dd6b7c9bc231974}{potential\+\_\+function}} (float, float)
+\begin{DoxyCompactList}\small\item\em Default potental function for constant zero potential. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}{name}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 18 of file base\+\_\+potential.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_base_potential_aae82c3231238d6ba9a02a1c2cb5aefe8}\label{class_base_potential_aae82c3231238d6ba9a02a1c2cb5aefe8}} 
+\index{BasePotential@{BasePotential}!BasePotential@{BasePotential}}
+\index{BasePotential@{BasePotential}!BasePotential@{BasePotential}}
+\doxysubsubsection{\texorpdfstring{BasePotential()}{BasePotential()}}
+{\footnotesize\ttfamily Base\+Potential\+::\+Base\+Potential (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_base_potential_a9fa8726a86f640d3c729da7580204162}\label{class_base_potential_a9fa8726a86f640d3c729da7580204162}} 
+\index{BasePotential@{BasePotential}!calcualte\_potential\_in\_grid@{calcualte\_potential\_in\_grid}}
+\index{calcualte\_potential\_in\_grid@{calcualte\_potential\_in\_grid}!BasePotential@{BasePotential}}
+\doxysubsubsection{\texorpdfstring{calcualte\_potential\_in\_grid()}{calcualte\_potential\_in\_grid()}}
+{\footnotesize\ttfamily void Base\+Potential\+::calcualte\+\_\+potential\+\_\+in\+\_\+grid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$}]{domain }\end{DoxyParamCaption})}
+
+
+
+Calculate potential values in each grid based on domain point coordinate and potential function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em domain} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file base\+\_\+potential.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keywordtype}{int} num\_grid\_1 = domain-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}();}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} num\_grid\_2 = domain-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}();}
+\DoxyCodeLine{22     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < num\_grid\_1; ++i)}
+\DoxyCodeLine{23     \{}
+\DoxyCodeLine{24         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < num\_grid\_2; ++j)}
+\DoxyCodeLine{25         \{}
+\DoxyCodeLine{26             \textcolor{keyword}{auto} point = domain-\/>\mbox{\hyperlink{class_rectangular_domain_a09a9a52ff6302e77511c377169c6fb71}{potential\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28             \textcolor{comment}{//Assign potential value in potential grid}}
+\DoxyCodeLine{29             point-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} = std::complex<float>\{this-\/>\mbox{\hyperlink{class_base_potential_a9ef45478f84a4c280dd6b7c9bc231974}{potential\_function}}(point-\/>x, point-\/>y), 0\};}
+\DoxyCodeLine{30         \}}
+\DoxyCodeLine{31     \}}
+\DoxyCodeLine{32     }
+\DoxyCodeLine{33 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_potential_a9fa8726a86f640d3c729da7580204162_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_potential_a6c257f106a4b385fde779690464376fc}\label{class_base_potential_a6c257f106a4b385fde779690464376fc}} 
+\index{BasePotential@{BasePotential}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!BasePotential@{BasePotential}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string Base\+Potential\+::get\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter for name class variable. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file base\+\_\+potential.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}{name}};}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_base_potential_a9ef45478f84a4c280dd6b7c9bc231974}\label{class_base_potential_a9ef45478f84a4c280dd6b7c9bc231974}} 
+\index{BasePotential@{BasePotential}!potential\_function@{potential\_function}}
+\index{potential\_function@{potential\_function}!BasePotential@{BasePotential}}
+\doxysubsubsection{\texorpdfstring{potential\_function()}{potential\_function()}}
+{\footnotesize\ttfamily float Base\+Potential\+::potential\+\_\+function (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+Default potental function for constant zero potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file base\+\_\+potential.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{53 \{}
+\DoxyCodeLine{54     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{55 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_potential_a9ef45478f84a4c280dd6b7c9bc231974_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}\label{class_base_potential_a438d6f260d3d52594170398e5ba67ce7}} 
+\index{BasePotential@{BasePotential}!name@{name}}
+\index{name@{name}!BasePotential@{BasePotential}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::string Base\+Potential\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 27 of file base\+\_\+potential.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/potential/\mbox{\hyperlink{base__potential_8h}{base\+\_\+potential.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/potential/\mbox{\hyperlink{base__potential_8cpp}{base\+\_\+potential.\+cpp}}\end{DoxyCompactItemize}

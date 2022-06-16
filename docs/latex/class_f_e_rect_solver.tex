@@ -1,0 +1,399 @@
+\hypertarget{class_f_e_rect_solver}{}\doxysection{F\+E\+Rect\+Solver Class Reference}
+\label{class_f_e_rect_solver}\index{FERectSolver@{FERectSolver}}
+
+
+Forward Euler Serial Solver.  
+
+
+
+
+{\ttfamily \#include $<$fe\+\_\+rect\+\_\+solver.\+h$>$}
+
+
+
+Inheritance diagram for F\+E\+Rect\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{class_f_e_rect_solver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for F\+E\+Rect\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_f_e_rect_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_e_rect_solver_a017311b98a2081ff13fd9c81d7cb3d34}{F\+E\+Rect\+Solver}} ()=default
+\item 
+\mbox{\hyperlink{class_f_e_rect_solver_a137c7c3ac8cdbe0f7aa7252d2d914676}{F\+E\+Rect\+Solver}} (float \mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}, \mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}})
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_f_e_rect_solver_a017311b98a2081ff13fd9c81d7cb3d34}{F\+E\+Rect\+Solver\+::\+F\+E\+Rect\+Solver}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a}{solve}} (std\+::string dir\+\_\+name=\char`\"{}\char`\"{}, bool print\+\_\+info=true, bool save\+\_\+data=true)
+\begin{DoxyCompactList}\small\item\em Solve Equation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5}{solve\+\_\+single\+\_\+time}} (int k)
+\begin{DoxyCompactList}\small\item\em Update k+1 th wave function value with k th values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5}{get\+\_\+potential\+\_\+value}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Get Potential value on each grid point. \end{DoxyCompactList}\item 
+std\+::complex$<$ float $>$ \mbox{\hyperlink{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}{temporal\+\_\+equation}} (int i, int j, int k)
+\begin{DoxyCompactList}\small\item\em Time differential of phi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$ \mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}
+\item 
+float \mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}
+\item 
+std\+::string \mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\+\_\+info}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Forward Euler Serial Solver. 
+
+
+
+Definition at line 27 of file fe\+\_\+rect\+\_\+solver.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_e_rect_solver_a017311b98a2081ff13fd9c81d7cb3d34}\label{class_f_e_rect_solver_a017311b98a2081ff13fd9c81d7cb3d34}} 
+\index{FERectSolver@{FERectSolver}!FERectSolver@{FERectSolver}}
+\index{FERectSolver@{FERectSolver}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{FERectSolver()}{FERectSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily F\+E\+Rect\+Solver\+::\+F\+E\+Rect\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_f_e_rect_solver_a137c7c3ac8cdbe0f7aa7252d2d914676}\label{class_f_e_rect_solver_a137c7c3ac8cdbe0f7aa7252d2d914676}} 
+\index{FERectSolver@{FERectSolver}!FERectSolver@{FERectSolver}}
+\index{FERectSolver@{FERectSolver}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{FERectSolver()}{FERectSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily F\+E\+Rect\+Solver\+::\+F\+E\+Rect\+Solver (\begin{DoxyParamCaption}\item[{float}]{g\+\_\+,  }\item[{\mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}} $\ast$}]{domain\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_f_e_rect_solver_a017311b98a2081ff13fd9c81d7cb3d34}{F\+E\+Rect\+Solver\+::\+F\+E\+Rect\+Solver}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g\+\_\+} & \\
+\hline
+{\em domain\+\_\+} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23     : \mbox{\hyperlink{class_base_solver_acad65cee0debe3fc25ac922a2d87de00}{BaseSolver}}(g\_)}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25     this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}} = domain\_;}
+\DoxyCodeLine{26     this-\/>\mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\_info}} = std::string\{\textcolor{stringliteral}{"Forward\_Euler\_serial\_"}\};}
+\DoxyCodeLine{27    }
+\DoxyCodeLine{28 \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5}\label{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5}} 
+\index{FERectSolver@{FERectSolver}!get\_potential\_value@{get\_potential\_value}}
+\index{get\_potential\_value@{get\_potential\_value}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{get\_potential\_value()}{get\_potential\_value()}}
+{\footnotesize\ttfamily float F\+E\+Rect\+Solver\+::get\+\_\+potential\+\_\+value (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Get Potential value on each grid point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+{\em j} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a09a9a52ff6302e77511c377169c6fb71}{potential\_grid}}-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}}.real();}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a}\label{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a}} 
+\index{FERectSolver@{FERectSolver}!solve@{solve}}
+\index{solve@{solve}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily void F\+E\+Rect\+Solver\+::solve (\begin{DoxyParamCaption}\item[{std\+::string}]{dir\+\_\+name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{print\+\_\+info = {\ttfamily true},  }\item[{bool}]{save\+\_\+data = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Solve Equation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir\+\_\+name} & \\
+\hline
+{\em print\+\_\+info} & \\
+\hline
+{\em save\+\_\+data} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 116 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{117 \{}
+\DoxyCodeLine{118     \textcolor{keywordtype}{int} time\_length = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_ade842081a5e63b389d92222a1e00f0e5}{get\_num\_times}}();}
+\DoxyCodeLine{119     \textcolor{keywordflow}{if}(save\_data)\{}
+\DoxyCodeLine{120         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a95151f86188780b93caa6294242d366a}{generate\_directory\_name}}(this-\/>\mbox{\hyperlink{class_base_solver_ab843cf747cfa815b46c59808043a5367}{string\_info}}+dir\_name, print\_info);}
+\DoxyCodeLine{121         \textcolor{comment}{//Save initial condition}}
+\DoxyCodeLine{122         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a0ce97d3410d1f0695570bb89dd8b5952}{generate\_single\_txt\_file}}(std::string(\textcolor{stringliteral}{"Solution\_"}) + std::to\_string(0));}
+\DoxyCodeLine{123     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{124         \textcolor{keyword}{this} -\/> \mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a2440d822afc19df205c6ea3a2ba38593}{update\_time}}();}
+\DoxyCodeLine{125     \}}
+\DoxyCodeLine{126     }
+\DoxyCodeLine{127     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < time\_length -\/ 1; ++k)}
+\DoxyCodeLine{128     \{}
+\DoxyCodeLine{129         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5}{solve\_single\_time}}(k);}
+\DoxyCodeLine{130         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_aaa5b074fa9702d0c6cd382c2225f9a72}{normalize}}(k + 1);}
+\DoxyCodeLine{131         \textcolor{keywordflow}{if}(save\_data)\{}
+\DoxyCodeLine{132             this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a0ce97d3410d1f0695570bb89dd8b5952}{generate\_single\_txt\_file}}(std::string(\textcolor{stringliteral}{"Solution\_"}) + std::to\_string(k + 1));}
+\DoxyCodeLine{133         \}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{135             this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_rectangular_domain_a2440d822afc19df205c6ea3a2ba38593}{update\_time}}();}
+\DoxyCodeLine{136         \}}
+\DoxyCodeLine{137     \}}
+\DoxyCodeLine{138     \textcolor{keywordflow}{if}(print\_info)\{}
+\DoxyCodeLine{139         this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a1bfcbbddd7317754b6190daf7283c80b}{print\_directory\_info}}();}
+\DoxyCodeLine{140     \}}
+\DoxyCodeLine{141 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{class_f_e_rect_solver_aaa98fb6ddd22fc78cb6279b3f533dc5a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5}\label{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5}} 
+\index{FERectSolver@{FERectSolver}!solve\_single\_time@{solve\_single\_time}}
+\index{solve\_single\_time@{solve\_single\_time}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{solve\_single\_time()}{solve\_single\_time()}}
+{\footnotesize\ttfamily void F\+E\+Rect\+Solver\+::solve\+\_\+single\+\_\+time (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Update k+1 th wave function value with k th values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 95 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{96 \{}
+\DoxyCodeLine{97     \textcolor{keywordtype}{int} Nx = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}();}
+\DoxyCodeLine{98     \textcolor{keywordtype}{int} Ny = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}();}
+\DoxyCodeLine{99     \textcolor{keywordtype}{float} dt = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_afe71a36d36e3b7e20f7e5b2621f3005f}{get\_dt}}();}
+\DoxyCodeLine{100     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < Nx; ++i)}
+\DoxyCodeLine{101     \{}
+\DoxyCodeLine{102         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < Ny; ++j)}
+\DoxyCodeLine{103         \{}
+\DoxyCodeLine{104             (this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k + 1)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}}) = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} + dt * this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}{temporal\_equation}}(i, j, k);}
+\DoxyCodeLine{105         \}}
+\DoxyCodeLine{106     \}}
+\DoxyCodeLine{107 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_ae2bef526b75b45a312fa34a9cc8090b5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}\label{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244}} 
+\index{FERectSolver@{FERectSolver}!temporal\_equation@{temporal\_equation}}
+\index{temporal\_equation@{temporal\_equation}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{temporal\_equation()}{temporal\_equation()}}
+{\footnotesize\ttfamily std\+::complex$<$ float $>$ F\+E\+Rect\+Solver\+::temporal\+\_\+equation (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{int}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Time differential of phi. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index for x \\
+\hline
+{\em j} & index for y \\
+\hline
+{\em k} & index for time(t) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::complex$<$float$>$ time differential at x, y, t 
+\end{DoxyReturn}
+
+
+Definition at line 51 of file fe\+\_\+rect\+\_\+solver.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53     \textcolor{comment}{//Use five stencil method}}
+\DoxyCodeLine{54     \textcolor{keyword}{auto} point\_data = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j, k);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{comment}{//l,r,d,u denotes left, right, down, up value}}
+\DoxyCodeLine{57     \textcolor{comment}{//Check boundary}}
+\DoxyCodeLine{58     \textcolor{keyword}{auto} point\_data\_l = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i -\/ 1, j, k);}
+\DoxyCodeLine{59     \textcolor{keywordflow}{if} (i <= 0)}
+\DoxyCodeLine{60         point\_data\_l = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\_null\_gridpt}}();}
+\DoxyCodeLine{61     \textcolor{keyword}{auto} point\_data\_d = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j -\/ 1, k);}
+\DoxyCodeLine{62     \textcolor{keywordflow}{if} (j <= 0)}
+\DoxyCodeLine{63         point\_data\_d = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\_null\_gridpt}}();}
+\DoxyCodeLine{64     \textcolor{keyword}{auto} point\_data\_r = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i + 1, j, k);}
+\DoxyCodeLine{65     \textcolor{keywordflow}{if} (i >= (this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a73e6d9e0b672889afc4b06a5f14d33e6}{get\_num\_grid\_1}}()) -\/ 1)}
+\DoxyCodeLine{66         point\_data\_r = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\_null\_gridpt}}();}
+\DoxyCodeLine{67     \textcolor{keyword}{auto} point\_data\_u = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a3c892a19bb330d5a5228977bfb83e3aa}{at}}(i, j + 1, k);}
+\DoxyCodeLine{68     \textcolor{keywordflow}{if} (j >= (this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a0c09d40d12956668d8e24c1e9bbd7822}{get\_num\_grid\_2}}()) -\/ 1)}
+\DoxyCodeLine{69         point\_data\_u = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_a5e4ea2bf89c2d46634bb8acd3ccfeea5}{get\_null\_gridpt}}();}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \textcolor{comment}{//potential at x, y}}
+\DoxyCodeLine{72     \textcolor{keywordtype}{float} V\_ij = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2b412f0ea20480423773eae874d961e5}{get\_potential\_value}}(i, j);}
+\DoxyCodeLine{73     \textcolor{comment}{//this-\/>potential\_func(point\_data-\/>x, point\_data-\/>y);}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{comment}{//g * |psi(x,y)|\string^2}}
+\DoxyCodeLine{76     \textcolor{keywordtype}{float} additional\_term = (this-\/>\mbox{\hyperlink{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}{g}}) * (std::abs(point\_data-\/>value)) * (std::abs(point\_data-\/>value));}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{comment}{//Set infinitesimal value}}
+\DoxyCodeLine{79     \textcolor{keywordtype}{float} dx = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_ac6c9c1476b3ae00c3e0863840c131d80}{get\_infinitesimal\_distance1}}();}
+\DoxyCodeLine{80     \textcolor{keywordtype}{float} dy = this-\/>\mbox{\hyperlink{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}{domain}}-\/>\mbox{\hyperlink{class_base_domain_aa65e83a59ac70d337e141f933008002a}{get\_infinitesimal\_distance2}}();}
+\DoxyCodeLine{81     \textcolor{comment}{//df denote time differential of dt (d(psi)/dt)}}
+\DoxyCodeLine{82     \textcolor{comment}{// = (laplace -\/ V-\/g|psi|\string^2) psi}}
+\DoxyCodeLine{83     std::complex<float> df =}
+\DoxyCodeLine{84         +((point\_data\_r-\/>value) + (point\_data\_l-\/>value) -\/ (point\_data-\/>value) * std::complex<float>\{2\}) / (std::complex<float>\{dx * dx\}) + ((point\_data\_u-\/>value) + (point\_data\_d-\/>value) -\/ (point\_data-\/>value) * std::complex<float>\{2\}) / (std::complex<float>\{dy * dy\}) -\/ (V\_ij + additional\_term) * (point\_data-\/>value);}
+\DoxyCodeLine{85     df *= std::complex<float>\{0, 1\};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{keywordflow}{return} df;}
+\DoxyCodeLine{88 \};}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_f_e_rect_solver_a745799eccd8454816dad0ddb541f5244_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}\label{class_f_e_rect_solver_a2c5dfb3d790de17fbbc9a2b85df4c04c}} 
+\index{FERectSolver@{FERectSolver}!domain@{domain}}
+\index{domain@{domain}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{domain}{domain}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rectangular_domain}{Rectangular\+Domain}}$\ast$ F\+E\+Rect\+Solver\+::domain\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 39 of file fe\+\_\+rect\+\_\+solver.\+h.
+
+\mbox{\Hypertarget{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}\label{class_base_solver_a7240cc3a4ca915acfcd1056cb0616c94}} 
+\index{FERectSolver@{FERectSolver}!g@{g}}
+\index{g@{g}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily float Base\+Solver\+::g\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 30 of file base\+\_\+solver.\+h.
+
+\mbox{\Hypertarget{class_base_solver_ab843cf747cfa815b46c59808043a5367}\label{class_base_solver_ab843cf747cfa815b46c59808043a5367}} 
+\index{FERectSolver@{FERectSolver}!string\_info@{string\_info}}
+\index{string\_info@{string\_info}!FERectSolver@{FERectSolver}}
+\doxysubsubsection{\texorpdfstring{string\_info}{string\_info}}
+{\footnotesize\ttfamily std\+::string Base\+Solver\+::string\+\_\+info\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 32 of file base\+\_\+solver.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/solver/serial\+\_\+solver/forward\+\_\+euler/\mbox{\hyperlink{fe__rect__solver_8h}{fe\+\_\+rect\+\_\+solver.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/solver/serial\+\_\+solver/forward\+\_\+euler/\mbox{\hyperlink{fe__rect__solver_8cpp}{fe\+\_\+rect\+\_\+solver.\+cpp}}\end{DoxyCompactItemize}

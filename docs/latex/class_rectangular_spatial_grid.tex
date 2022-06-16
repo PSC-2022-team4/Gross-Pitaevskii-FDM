@@ -1,0 +1,388 @@
+\hypertarget{class_rectangular_spatial_grid}{}\doxysection{Rectangular\+Spatial\+Grid Class Reference}
+\label{class_rectangular_spatial_grid}\index{RectangularSpatialGrid@{RectangularSpatialGrid}}
+
+
+Rectangular Spatial Grid class for single time step.  
+
+
+
+
+{\ttfamily \#include $<$rect\+\_\+domain.\+h$>$}
+
+
+
+Inheritance diagram for Rectangular\+Spatial\+Grid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{class_rectangular_spatial_grid__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Rectangular\+Spatial\+Grid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{class_rectangular_spatial_grid__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rectangular_spatial_grid_aa3eb808db047a87689ff0287e9e46d37}{Rectangular\+Spatial\+Grid}} ()=default
+\item 
+\mbox{\hyperlink{class_rectangular_spatial_grid_a37a1c8b82864305931c8c5a5caa3fbca}{Rectangular\+Spatial\+Grid}} (int \mbox{\hyperlink{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}{num\+\_\+grid\+\_\+1}}, int \mbox{\hyperlink{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}{num\+\_\+grid\+\_\+2}}, float \mbox{\hyperlink{class_rectangular_spatial_grid_aa4f9a301777a1b0f8e147f8c1cfead74}{x\+\_\+start}}, float \mbox{\hyperlink{class_rectangular_spatial_grid_ab244ee8a13f47381aa61e7bae8a8e67c}{x\+\_\+end}}, float \mbox{\hyperlink{class_rectangular_spatial_grid_a5a0a43319c63585578381e8689240fd5}{y\+\_\+start}}, float \mbox{\hyperlink{class_rectangular_spatial_grid_ae0ce9b6e2cbde2b2aa692b325ef93286}{y\+\_\+end}})
+\begin{DoxyCompactList}\small\item\em Construct a new Rectangular Spatial Grid\+:\+: Rectangular Spatial Grid object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_rectangular_spatial_grid_a3d15dd3411957127a03d5a68900454f5}{$\sim$\+Rectangular\+Spatial\+Grid}} ()
+\item 
+void \mbox{\hyperlink{class_rectangular_spatial_grid_a374bdd08b245d2cee7d460c6cbd27859}{normalize}} ()
+\item 
+\mbox{\hyperlink{class_grid_point}{Grid\+Point}} $\ast$ \mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}} (int index\+\_\+1, int index\+\_\+2)
+\item 
+float \mbox{\hyperlink{class_base_spatial_grid_ab68bca75611922a5bf1d83ea8d33074c}{get\+\_\+infinitesimal\+\_\+distance1}} ()
+\item 
+float \mbox{\hyperlink{class_base_spatial_grid_aaf1307931a72afde158cb6eb886694bd}{get\+\_\+infinitesimal\+\_\+distance2}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_grid_point}{Grid\+Point}} $>$ $>$ \mbox{\hyperlink{class_base_spatial_grid_a09c819c0e894edf5e570703418a01d3b}{spatial\+\_\+data}}
+\item 
+float \mbox{\hyperlink{class_base_spatial_grid_aaece9f79848ebeef0f39b22da235cbfb}{infinitesimal\+\_\+distance\+\_\+1}}
+\item 
+float \mbox{\hyperlink{class_base_spatial_grid_a8428897a379d15b3d303ca070b592cff}{infinitesimal\+\_\+distance\+\_\+2}}
+\item 
+int \mbox{\hyperlink{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}{num\+\_\+grid\+\_\+1}}
+\item 
+int \mbox{\hyperlink{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}{num\+\_\+grid\+\_\+2}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_rectangular_spatial_grid_aa4f9a301777a1b0f8e147f8c1cfead74}{x\+\_\+start}}
+\item 
+float \mbox{\hyperlink{class_rectangular_spatial_grid_ab244ee8a13f47381aa61e7bae8a8e67c}{x\+\_\+end}}
+\item 
+float \mbox{\hyperlink{class_rectangular_spatial_grid_a5a0a43319c63585578381e8689240fd5}{y\+\_\+start}}
+\item 
+float \mbox{\hyperlink{class_rectangular_spatial_grid_ae0ce9b6e2cbde2b2aa692b325ef93286}{y\+\_\+end}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rectangular Spatial Grid class for single time step. 
+
+
+
+Definition at line 18 of file rect\+\_\+domain.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_rectangular_spatial_grid_aa3eb808db047a87689ff0287e9e46d37}\label{class_rectangular_spatial_grid_aa3eb808db047a87689ff0287e9e46d37}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{RectangularSpatialGrid()}{RectangularSpatialGrid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Rectangular\+Spatial\+Grid\+::\+Rectangular\+Spatial\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_rectangular_spatial_grid_a37a1c8b82864305931c8c5a5caa3fbca}\label{class_rectangular_spatial_grid_a37a1c8b82864305931c8c5a5caa3fbca}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{RectangularSpatialGrid()}{RectangularSpatialGrid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Rectangular\+Spatial\+Grid\+::\+Rectangular\+Spatial\+Grid (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+grid\+\_\+1,  }\item[{int}]{num\+\_\+grid\+\_\+2,  }\item[{float}]{x\+\_\+start,  }\item[{float}]{x\+\_\+end,  }\item[{float}]{y\+\_\+start,  }\item[{float}]{y\+\_\+end }\end{DoxyParamCaption})}
+
+
+
+Construct a new Rectangular Spatial Grid\+:\+: Rectangular Spatial Grid object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+grid\+\_\+1} & Number of grids in x axis \\
+\hline
+{\em num\+\_\+grid\+\_\+2} & Number of grids in y axis \\
+\hline
+{\em x\+\_\+start} & Start point of x axis \\
+\hline
+{\em x\+\_\+end} & End point of x axis \\
+\hline
+{\em y\+\_\+start} & Start point of y axis \\
+\hline
+{\em y\+\_\+end} & Start point of x axis \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 26 of file rect\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32                  : \mbox{\hyperlink{class_base_spatial_grid_a50a4adfe8ec705a8f8cea2761c81f4d1}{BaseSpatialGrid}}(\mbox{\hyperlink{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}{num\_grid\_1}}, \mbox{\hyperlink{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}{num\_grid\_2}})}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34     this-\/>\mbox{\hyperlink{class_rectangular_spatial_grid_aa4f9a301777a1b0f8e147f8c1cfead74}{x\_start}} = \mbox{\hyperlink{class_rectangular_spatial_grid_aa4f9a301777a1b0f8e147f8c1cfead74}{x\_start}};}
+\DoxyCodeLine{35     this-\/>\mbox{\hyperlink{class_rectangular_spatial_grid_ab244ee8a13f47381aa61e7bae8a8e67c}{x\_end}} = \mbox{\hyperlink{class_rectangular_spatial_grid_ab244ee8a13f47381aa61e7bae8a8e67c}{x\_end}};}
+\DoxyCodeLine{36     this-\/>\mbox{\hyperlink{class_rectangular_spatial_grid_a5a0a43319c63585578381e8689240fd5}{y\_start}} = \mbox{\hyperlink{class_rectangular_spatial_grid_a5a0a43319c63585578381e8689240fd5}{y\_start}};}
+\DoxyCodeLine{37     this-\/>\mbox{\hyperlink{class_rectangular_spatial_grid_ae0ce9b6e2cbde2b2aa692b325ef93286}{y\_end}} = \mbox{\hyperlink{class_rectangular_spatial_grid_ae0ce9b6e2cbde2b2aa692b325ef93286}{y\_end}};}
+\DoxyCodeLine{38     \textcolor{comment}{//infinitesimal\_distance 1,2 = dx, dy}}
+\DoxyCodeLine{39     this-\/>\mbox{\hyperlink{class_base_spatial_grid_aaece9f79848ebeef0f39b22da235cbfb}{infinitesimal\_distance\_1}} = (\mbox{\hyperlink{class_rectangular_spatial_grid_ab244ee8a13f47381aa61e7bae8a8e67c}{x\_end}} -\/ \mbox{\hyperlink{class_rectangular_spatial_grid_aa4f9a301777a1b0f8e147f8c1cfead74}{x\_start}}) / (\mbox{\hyperlink{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}{num\_grid\_1}} -\/ 1);}
+\DoxyCodeLine{40     this-\/>\mbox{\hyperlink{class_base_spatial_grid_a8428897a379d15b3d303ca070b592cff}{infinitesimal\_distance\_2}} = (\mbox{\hyperlink{class_rectangular_spatial_grid_ae0ce9b6e2cbde2b2aa692b325ef93286}{y\_end}} -\/ \mbox{\hyperlink{class_rectangular_spatial_grid_a5a0a43319c63585578381e8689240fd5}{y\_start}}) / (\mbox{\hyperlink{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}{num\_grid\_2}} -\/ 1);}
+\DoxyCodeLine{41     \textcolor{comment}{//For each GridPoint, set x, y position. Also, set wave\_function as 0+0i default value}}
+\DoxyCodeLine{42     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < \mbox{\hyperlink{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}{num\_grid\_1}}; ++i)}
+\DoxyCodeLine{43     \{}
+\DoxyCodeLine{44         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < \mbox{\hyperlink{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}{num\_grid\_2}}; ++j)}
+\DoxyCodeLine{45         \{}
+\DoxyCodeLine{46             this-\/>\mbox{\hyperlink{class_base_spatial_grid_a09c819c0e894edf5e570703418a01d3b}{spatial\_data}}[i][j] = \mbox{\hyperlink{class_grid_point}{GridPoint}}(this-\/>\mbox{\hyperlink{class_rectangular_spatial_grid_aa4f9a301777a1b0f8e147f8c1cfead74}{x\_start}} + \mbox{\hyperlink{class_base_spatial_grid_aaece9f79848ebeef0f39b22da235cbfb}{infinitesimal\_distance\_1}} * i,}
+\DoxyCodeLine{47                                                  this-\/>\mbox{\hyperlink{class_rectangular_spatial_grid_a5a0a43319c63585578381e8689240fd5}{y\_start}} + \mbox{\hyperlink{class_base_spatial_grid_a8428897a379d15b3d303ca070b592cff}{infinitesimal\_distance\_2}} * j,}
+\DoxyCodeLine{48                                                  \textcolor{comment}{//\{real value, imaginary value\}}}
+\DoxyCodeLine{49                                                  std::complex<float>\{0, 0\});}
+\DoxyCodeLine{50         \}}
+\DoxyCodeLine{51     \}}
+\DoxyCodeLine{52 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{class_rectangular_spatial_grid_a3d15dd3411957127a03d5a68900454f5}\label{class_rectangular_spatial_grid_a3d15dd3411957127a03d5a68900454f5}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!````~RectangularSpatialGrid@{$\sim$RectangularSpatialGrid}}
+\index{````~RectangularSpatialGrid@{$\sim$RectangularSpatialGrid}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{$\sim$RectangularSpatialGrid()}{~RectangularSpatialGrid()}}
+{\footnotesize\ttfamily Rectangular\+Spatial\+Grid\+::$\sim$\+Rectangular\+Spatial\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 76 of file rect\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76                                                \{}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}\label{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!at@{at}}
+\index{at@{at}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_grid_point}{Grid\+Point}} $\ast$ Base\+Spatial\+Grid\+::at (\begin{DoxyParamCaption}\item[{int}]{index\+\_\+1,  }\item[{int}]{index\+\_\+2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 76 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{77 \{}
+\DoxyCodeLine{78     \textcolor{keywordflow}{return} \&this-\/>\mbox{\hyperlink{class_base_spatial_grid_a09c819c0e894edf5e570703418a01d3b}{spatial\_data}}[index\_1 \% this-\/>\mbox{\hyperlink{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}{num\_grid\_1}}][index\_2 \% this-\/>\mbox{\hyperlink{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}{num\_grid\_2}}];}
+\DoxyCodeLine{79 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_spatial_grid_ab68bca75611922a5bf1d83ea8d33074c}\label{class_base_spatial_grid_ab68bca75611922a5bf1d83ea8d33074c}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!get\_infinitesimal\_distance1@{get\_infinitesimal\_distance1}}
+\index{get\_infinitesimal\_distance1@{get\_infinitesimal\_distance1}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{get\_infinitesimal\_distance1()}{get\_infinitesimal\_distance1()}}
+{\footnotesize\ttfamily float Base\+Spatial\+Grid\+::get\+\_\+infinitesimal\+\_\+distance1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 64 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65 \{}
+\DoxyCodeLine{66     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_spatial_grid_aaece9f79848ebeef0f39b22da235cbfb}{infinitesimal\_distance\_1}};}
+\DoxyCodeLine{67 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_spatial_grid_ab68bca75611922a5bf1d83ea8d33074c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_base_spatial_grid_aaf1307931a72afde158cb6eb886694bd}\label{class_base_spatial_grid_aaf1307931a72afde158cb6eb886694bd}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!get\_infinitesimal\_distance2@{get\_infinitesimal\_distance2}}
+\index{get\_infinitesimal\_distance2@{get\_infinitesimal\_distance2}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{get\_infinitesimal\_distance2()}{get\_infinitesimal\_distance2()}}
+{\footnotesize\ttfamily float Base\+Spatial\+Grid\+::get\+\_\+infinitesimal\+\_\+distance2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 70 of file base\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{71 \{}
+\DoxyCodeLine{72     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{class_base_spatial_grid_a8428897a379d15b3d303ca070b592cff}{infinitesimal\_distance\_2}};}
+\DoxyCodeLine{73 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_base_spatial_grid_aaf1307931a72afde158cb6eb886694bd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_rectangular_spatial_grid_a374bdd08b245d2cee7d460c6cbd27859}\label{class_rectangular_spatial_grid_a374bdd08b245d2cee7d460c6cbd27859}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!normalize@{normalize}}
+\index{normalize@{normalize}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily void Rectangular\+Spatial\+Grid\+::normalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 53 of file rect\+\_\+domain.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{54 \{}
+\DoxyCodeLine{55     \textcolor{keywordtype}{float} sum = 0.;}
+\DoxyCodeLine{56     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < this-\/>\mbox{\hyperlink{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}{num\_grid\_1}}; ++i)}
+\DoxyCodeLine{57     \{}
+\DoxyCodeLine{58         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < this-\/>\mbox{\hyperlink{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}{num\_grid\_2}}; ++j)}
+\DoxyCodeLine{59         \{}
+\DoxyCodeLine{60             \textcolor{keyword}{auto} wave\_func = this-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}};}
+\DoxyCodeLine{61             sum += float(std::pow(std::abs(wave\_func), 2));}
+\DoxyCodeLine{62         \}}
+\DoxyCodeLine{63     \}}
+\DoxyCodeLine{64     sum = std::sqrt(sum * this-\/>\mbox{\hyperlink{class_base_spatial_grid_aaece9f79848ebeef0f39b22da235cbfb}{infinitesimal\_distance\_1}} * this-\/>\mbox{\hyperlink{class_base_spatial_grid_a8428897a379d15b3d303ca070b592cff}{infinitesimal\_distance\_2}});}
+\DoxyCodeLine{65     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < this-\/>\mbox{\hyperlink{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}{num\_grid\_1}}; ++i)}
+\DoxyCodeLine{66     \{}
+\DoxyCodeLine{67         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0; j < this-\/>\mbox{\hyperlink{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}{num\_grid\_2}}; ++j)}
+\DoxyCodeLine{68         \{}
+\DoxyCodeLine{69             this-\/>\mbox{\hyperlink{class_base_spatial_grid_a5ff7c8639d562834eea2ac7aa46a8647}{at}}(i, j)-\/>\mbox{\hyperlink{class_grid_point_a7fe815d599b98260dd5414f8c7194b0e}{value}} /= sum;}
+\DoxyCodeLine{70         \}}
+\DoxyCodeLine{71     \}}
+\DoxyCodeLine{72     }
+\DoxyCodeLine{73 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_rectangular_spatial_grid_a374bdd08b245d2cee7d460c6cbd27859_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_rectangular_spatial_grid_a374bdd08b245d2cee7d460c6cbd27859_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_base_spatial_grid_aaece9f79848ebeef0f39b22da235cbfb}\label{class_base_spatial_grid_aaece9f79848ebeef0f39b22da235cbfb}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!infinitesimal\_distance\_1@{infinitesimal\_distance\_1}}
+\index{infinitesimal\_distance\_1@{infinitesimal\_distance\_1}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{infinitesimal\_distance\_1}{infinitesimal\_distance\_1}}
+{\footnotesize\ttfamily float Base\+Spatial\+Grid\+::infinitesimal\+\_\+distance\+\_\+1\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 59 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_spatial_grid_a8428897a379d15b3d303ca070b592cff}\label{class_base_spatial_grid_a8428897a379d15b3d303ca070b592cff}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!infinitesimal\_distance\_2@{infinitesimal\_distance\_2}}
+\index{infinitesimal\_distance\_2@{infinitesimal\_distance\_2}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{infinitesimal\_distance\_2}{infinitesimal\_distance\_2}}
+{\footnotesize\ttfamily float Base\+Spatial\+Grid\+::infinitesimal\+\_\+distance\+\_\+2\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 59 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}\label{class_base_spatial_grid_a7f1552e9906ceda8a70f8d40691203d7}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!num\_grid\_1@{num\_grid\_1}}
+\index{num\_grid\_1@{num\_grid\_1}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{num\_grid\_1}{num\_grid\_1}}
+{\footnotesize\ttfamily int Base\+Spatial\+Grid\+::num\+\_\+grid\+\_\+1\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 60 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}\label{class_base_spatial_grid_a2b9d3c38eeb40f992bb4b077c140f7af}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!num\_grid\_2@{num\_grid\_2}}
+\index{num\_grid\_2@{num\_grid\_2}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{num\_grid\_2}{num\_grid\_2}}
+{\footnotesize\ttfamily int Base\+Spatial\+Grid\+::num\+\_\+grid\+\_\+2\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 60 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_base_spatial_grid_a09c819c0e894edf5e570703418a01d3b}\label{class_base_spatial_grid_a09c819c0e894edf5e570703418a01d3b}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!spatial\_data@{spatial\_data}}
+\index{spatial\_data@{spatial\_data}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{spatial\_data}{spatial\_data}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$\mbox{\hyperlink{class_grid_point}{Grid\+Point}}$>$ $>$ Base\+Spatial\+Grid\+::spatial\+\_\+data\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 58 of file base\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_rectangular_spatial_grid_ab244ee8a13f47381aa61e7bae8a8e67c}\label{class_rectangular_spatial_grid_ab244ee8a13f47381aa61e7bae8a8e67c}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!x\_end@{x\_end}}
+\index{x\_end@{x\_end}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{x\_end}{x\_end}}
+{\footnotesize\ttfamily float Rectangular\+Spatial\+Grid\+::x\+\_\+end\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 28 of file rect\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_rectangular_spatial_grid_aa4f9a301777a1b0f8e147f8c1cfead74}\label{class_rectangular_spatial_grid_aa4f9a301777a1b0f8e147f8c1cfead74}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!x\_start@{x\_start}}
+\index{x\_start@{x\_start}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{x\_start}{x\_start}}
+{\footnotesize\ttfamily float Rectangular\+Spatial\+Grid\+::x\+\_\+start\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 27 of file rect\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_rectangular_spatial_grid_ae0ce9b6e2cbde2b2aa692b325ef93286}\label{class_rectangular_spatial_grid_ae0ce9b6e2cbde2b2aa692b325ef93286}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!y\_end@{y\_end}}
+\index{y\_end@{y\_end}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{y\_end}{y\_end}}
+{\footnotesize\ttfamily float Rectangular\+Spatial\+Grid\+::y\+\_\+end\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 30 of file rect\+\_\+domain.\+h.
+
+\mbox{\Hypertarget{class_rectangular_spatial_grid_a5a0a43319c63585578381e8689240fd5}\label{class_rectangular_spatial_grid_a5a0a43319c63585578381e8689240fd5}} 
+\index{RectangularSpatialGrid@{RectangularSpatialGrid}!y\_start@{y\_start}}
+\index{y\_start@{y\_start}!RectangularSpatialGrid@{RectangularSpatialGrid}}
+\doxysubsubsection{\texorpdfstring{y\_start}{y\_start}}
+{\footnotesize\ttfamily float Rectangular\+Spatial\+Grid\+::y\+\_\+start\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 29 of file rect\+\_\+domain.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/domain/\mbox{\hyperlink{rect__domain_8h}{rect\+\_\+domain.\+h}}\item 
+/home/iqsl/\+I\+Q\+S\+L\+\_\+\+Projects/\+Kim\+G\+H/\+Gross-\/\+Pitaevskii-\/\+F\+D\+M/src/domain/\mbox{\hyperlink{rect__domain_8cpp}{rect\+\_\+domain.\+cpp}}\end{DoxyCompactItemize}

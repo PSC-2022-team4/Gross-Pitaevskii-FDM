@@ -1,0 +1,8 @@
+<map id="Parameters" name="Parameters">
+<area shape="rect" id="node1" title="Parameters containing configuration name and all other branched parameters." alt="" coords="440,233,560,311"/>
+<area shape="rect" id="node2" href="$class_domain_parameters.html" title="Domain branch parameters containing information about domain." alt="" coords="5,5,168,171"/>
+<area shape="rect" id="node3" href="$class_initial_condition_parameters.html" title="Initial condition branch parameters containing information about initial condition." alt="" coords="192,42,387,134"/>
+<area shape="rect" id="node4" href="$class_equation_parameters.html" title="Equation branch parameters containing information about equation." alt="" coords="411,35,589,141"/>
+<area shape="rect" id="node5" href="$class_solver_parameters.html" title="Solver branch parameters containing information about solver." alt="" coords="613,13,771,163"/>
+<area shape="rect" id="node6" href="$class_main_parameters.html" title="Main branch parameters containing information about overall calculation." alt="" coords="795,35,943,141"/>
+</map>

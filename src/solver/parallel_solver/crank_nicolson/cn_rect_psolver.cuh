@@ -88,7 +88,7 @@ protected:
     float calculate_error(int k);
 };
 
-// Explains about cuda kernels are in .cu file.
+
 
 __global__ void cn_rect_cusolver(float *psi_old_real,
                                  float *psi_old_imag,

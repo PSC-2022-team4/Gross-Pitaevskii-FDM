@@ -1,0 +1,5 @@
+<map id="FERectSolver" name="FERectSolver">
+<area shape="rect" id="node1" title="Forward Euler Serial Solver." alt="" coords="5,189,181,340"/>
+<area shape="rect" id="node3" href="$class_c_n_rect_solver.html" title=" " alt="" coords="7,388,180,568"/>
+<area shape="rect" id="node2" href="$class_base_solver.html" title="Base Solver for Gross Piteavskill finite difference solver." alt="" coords="8,5,179,141"/>
+</map>

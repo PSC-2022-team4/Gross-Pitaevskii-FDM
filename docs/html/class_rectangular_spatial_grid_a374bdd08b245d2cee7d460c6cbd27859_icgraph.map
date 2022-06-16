@@ -1,0 +1,8 @@
+<map id="RectangularSpatialGrid::normalize" name="RectangularSpatialGrid::normalize">
+<area shape="rect" id="node1" title=" " alt="" coords="731,15,903,56"/>
+<area shape="rect" id="node2" href="$class_c_n_rect_solver.html#adff8610ed9aa5db0323bff6a34096938" title="initialize guess with forward euler method" alt="" coords="484,15,683,56"/>
+<area shape="rect" id="node3" href="$class_c_n_rect_solver.html#a1c68d9b8d7fc0eb4ec5246d62f570e82" title="solve equation with crank nicolson method with given max_iter and tolerance." alt="" coords="281,22,436,49"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,22,60,49"/>
+<area shape="rect" id="node5" href="$class_h_p_sweeper.html#a842301e05d0b2bacbcc9f9e8e7b72f7c" title=" " alt="" coords="108,22,233,49"/>
+<area shape="rect" id="node6" href="$class_g_sweeper.html#adb960798cd0f312000093c09a3af9001" title=" " alt="" coords="112,73,229,99"/>
+</map>
