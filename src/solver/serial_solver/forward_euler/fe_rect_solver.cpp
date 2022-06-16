@@ -56,7 +56,19 @@ std::complex<float> FERectSolver::temporal_equation(int i, int j, int k)
     //df denote time differential of dt (d(psi)/dt)
     // = (laplace - V-g|psi|^2) psi
     std::complex<float> df =
-        +((point_data_r->value) + (point_data_l->value) - (point_data->value) * std::complex<float>{2}) / (std::complex<float>{dx * dx}) + ((point_data_u->value) + (point_data_d->value) - (point_data->value) * std::complex<float>{2}) / (std::complex<float>{dy * dy}) - (V_ij + additional_term) * (point_data->value);
+        +(
+            (point_data_r->value) + 
+            (point_data_l->value) - 
+            (point_data->value) * std::complex<float>{2}) / (std::complex<float>{dx * dx}) + 
+            
+            ((point_data_u->value) + 
+            (point_data_d->value) - 
+            (point_data->value) * std::complex<float>{2}) / (std::complex<float>{dy * dy}) - 
+            (V_ij + additional_term) * (point_data->value);
+
+    
+
+    
     df *= std::complex<float>{0, 1};
 
     return df;

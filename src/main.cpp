@@ -22,7 +22,6 @@ int main(int argc, char *argv[])
     MPI_Comm comm = MPI_COMM_WORLD;
     MPI_Comm_rank(comm, &rank);
     MPI_Comm_size(comm, &size);
-
     Parameters parameters;
 
     if (argc == 1)
@@ -41,6 +40,7 @@ int main(int argc, char *argv[])
 
         parameters = ConfigParser::parse(config_name, config_filename);
     }
+
 
     if (parameters.domain_parameters.domain_type == "rectangular")
     {
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
 
             bool save_data = parameters.solver_parameters.save_data;
             bool print_info = parameters.solver_parameters.print_info;
-
+            //std::cout<<"save_data " <<save_data<<std::endl;
             if (parameters.solver_parameters.method == "cranknicolson")
             {
                 if(parameters.solver_parameters.run_parallel){
@@ -107,6 +107,7 @@ int main(int argc, char *argv[])
                     float converge_crit = parameters.solver_parameters.solver_parameters["converge_crit"];
                     int max_iter = parameters.solver_parameters.int_parameters["max_iter"];
                     CNRectSolver solver = CNRectSolver(g, domain);
+                    //std::cout<<"save_data " <<save_data<<std::endl;
                     solver.solve(converge_crit, max_iter, std::to_string(rank), print_info, save_data);
                 }
             }

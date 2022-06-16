@@ -47,6 +47,6 @@ TEST(FESolverTest, SolveTest)
 
     FERectSolver solver = FERectSolver(g, domain);
     solver.solve("", false, false);
-    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.real(), 0.266078);
-    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.imag(), -0.00013546731);
+    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.real(), 0.2660563);
+    ASSERT_FLOAT_EQ((*domain).at(10, 10, 1)->value.imag(), -0.00013545621);
 }
