@@ -10,6 +10,22 @@
  */
 #include "fe_rect_psolver.cuh"
 
+/**
+ * @brief update solution with forward euler method
+ * 
+ * @param psi_old_real 
+ * @param psi_old_imag 
+ * @param psi_new_real 
+ * @param psi_new_imag 
+ * @param potential 
+ * @param n_x 
+ * @param n_y 
+ * @param g 
+ * @param h_x 
+ * @param h_y 
+ * @param tau 
+ * @return __global__ 
+ */
 __global__ void fe_rect_cusolver(float *psi_old_real,
                                  float *psi_old_imag,
                                  float *psi_new_real,
@@ -71,6 +87,13 @@ __global__ void fe_rect_cusolver(float *psi_old_real,
     psi_new_imag[(j + 1) * striding + i] += ((tau / (h_y * h_y)) * tile_old_real[thread_x][thread_y]) * (i >= 0) * (i < n_x) * (j >= 0) * (j < (n_y - 1));
 }
 
+/**
+ * @brief Construct a new FERectPSolver::FERectPSolver object
+ * 
+ * @param g_ 
+ * @param domain_ 
+ * @param device_number 
+ */
 FERectPSolver::FERectPSolver(
     float g_,
     RectangularDomain *domain_,
@@ -82,6 +105,13 @@ FERectPSolver::FERectPSolver(
     cudaSetDevice(device_number);
 };
 
+/**
+ * @brief Load potential value
+ * 
+ * @param i 
+ * @param j 
+ * @return float 
+ */
 float FERectPSolver::get_potential_value(int i, int j)
 {
     return this->domain->potential_grid->at(i, j)->value.real();

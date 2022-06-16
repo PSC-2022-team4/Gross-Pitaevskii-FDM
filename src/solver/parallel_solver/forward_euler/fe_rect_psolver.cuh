@@ -27,6 +27,10 @@
 #define nTx 16
 #define nTy 16
 
+/**
+ * @brief Forward Euler solver with Parallel CUDA algorithm
+ * 
+ */
 class FERectPSolver : public BaseSolver
 {
 public:
