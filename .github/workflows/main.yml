@@ -47,5 +47,5 @@ jobs:
           # Installation method, can be either 'local' or 'network'. 'local' downloads the entire installer with all packages and runs that (you can still only install certain packages with sub-packages on Windows). 'network' downloads a smaller executable which only downloads necessary packages which you can define in subPackages
           method: Linux # optional, default is local
           # (Linux and 'local' method only) override arguments for the linux .run installer. For example if you don't want samples use ["--toolkit"] double quotes required!
-          linux-local-args:["--toolkit", "--samples"] # optional, default is ["--toolkit", "--samples"]
+          linux-local-args: "--toolkit" # optional, default is ["--toolkit", "--samples"]
 
