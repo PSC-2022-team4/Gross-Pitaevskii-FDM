@@ -14,7 +14,7 @@ TEST(GSweeperTest, gSweeperSerial){
         ASSERT_FLOAT_EQ(gSweeper.get_value_from_idx(0), float(0));
         ASSERT_FLOAT_EQ(gSweeper.get_value_from_idx(1), float(-5));
         
-        auto domain = RectangularDomain(21, 21, 0, 0.01, 2, -10, 10, -10, 10);
+        auto domain = RectangularDomain(11, 11, 0, 1e-8, 2, -1, 1, -1, 1);
         auto initial_cond_function = [](float x, float y)
         { return std::complex<float>{float(1.)}; }; //  expf(-(x * x + y * y) / (9))
         auto *initial_condition = new InitialCondition(initial_cond_function);

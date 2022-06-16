@@ -8,12 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
- * @version 0.1
- * @date 2022-06-16
- * 
- * @copyright Copyright (c) 2022
- * 
- */
+
 #pragma once
 #include <complex>
 #include <vector>

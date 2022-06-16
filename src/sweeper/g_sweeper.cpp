@@ -89,9 +89,6 @@ void GSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditio
                 potential->calcualte_potential_in_grid(domain);
                 g = this  -> get_value_from_idx(rank);
                 CNRectPSolver* solver =new CNRectPSolver(g, domain, casted_GPU_num);
-                if (rank == 0){
-                    std::cout << this->print_info << ", " << this->save_data << std::endl;
-                }
                 solver->solve(1e-11, 101, "MPI&CUDA_"+to_string(rank), this -> print_info, this->save_data);
                 delete solver;
             }

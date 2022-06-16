@@ -161,8 +161,14 @@ __global__ void calculate_local_error(float *psi_1_real,
 
     __syncthreads();
 
-    error_array[j * striding + i] = ((tile_psi_1_real[thread_x][thread_y] - tile_psi_2_real[thread_x][thread_y]) * (tile_psi_1_real[thread_x][thread_y] - tile_psi_2_real[thread_x][thread_y])) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
-    error_array[j * striding + i] += ((tile_psi_1_imag[thread_x][thread_y] - tile_psi_2_imag[thread_x][thread_y]) * (tile_psi_1_imag[thread_x][thread_y] - tile_psi_2_imag[thread_x][thread_y])) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    error_array[j * striding + i] = (
+        (tile_psi_1_real[thread_x][thread_y] - tile_psi_2_real[thread_x][thread_y]) * 
+        (tile_psi_1_real[thread_x][thread_y] - tile_psi_2_real[thread_x][thread_y])
+        ) * float((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
+    error_array[j * striding + i] += (
+        (tile_psi_1_imag[thread_x][thread_y] - tile_psi_2_imag[thread_x][thread_y]) * 
+        (tile_psi_1_imag[thread_x][thread_y] - tile_psi_2_imag[thread_x][thread_y])
+        ) * float((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
 }
 
 __global__ void reduction_error(float *error_array, float *error, int array_size)
@@ -206,7 +212,11 @@ __global__ void calculate_probability(float *psi_real, float *psi_imag, float *p
     tile_psi_imag[thread_x][thread_y] = psi_imag[j * striding + i];
     __syncthreads();
 
-    probability[j * striding + i] = ((tile_psi_real[thread_x][thread_y] * tile_psi_real[thread_x][thread_y]) + (tile_psi_imag[thread_x][thread_y] * tile_psi_imag[thread_x][thread_y])) * (i >= 0) * (i < n_x) * (j >= 0) * (j < n_y);
+    probability[j * striding + i] = (
+        (tile_psi_real[thread_x][thread_y] * tile_psi_real[thread_x][thread_y]) + 
+        (tile_psi_imag[thread_x][thread_y] * tile_psi_imag[thread_x][thread_y])
+        ) * 
+        float((i >= 0) * (i < n_x) * (j >= 0) * (j < n_y));
 }
 
 __global__ void calculate_normalize_factor(float *probability, float *normalize_factor, int array_size, float unit_area)

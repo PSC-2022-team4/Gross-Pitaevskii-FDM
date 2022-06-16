@@ -1,3 +1,13 @@
+/**
+ * @file fe_rect_psolver.cu
+ * @author Gyeonghun Kim, Minyoung Kim
+ * @brief Implementation file for CUDA based parallel forward euler solver
+ * @version 0.1
+ * @date 2022-06-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "fe_rect_psolver.cuh"
 
 __global__ void fe_rect_cusolver(float *psi_old_real,
