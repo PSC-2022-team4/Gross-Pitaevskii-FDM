@@ -9,7 +9,7 @@
   - [Generate configuration file](#generate-configuration-file)
   - [Execute single condition](#execute-single-condition)
   - [Execute multiple conditions with MPI](#execute-multiple-conditions-with-mpi)
-- [Example](#example)
+- [Example results](#example-results)
 
 ## Overview
 ### Equation
@@ -109,3 +109,7 @@ For example,
 ```
 mpiexec -np 4 ./build/GrossPitaevskiiFDM_run ./inputs/example_sweep.inp
 ```
+
+## Example results
+in results directory    
+..... And ....

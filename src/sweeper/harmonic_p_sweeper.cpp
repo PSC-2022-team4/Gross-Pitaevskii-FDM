@@ -1,17 +1,41 @@
+/**
+ * @file harmonic_p_sweeper.cpp
+ * @author Minyoung Kim, Gyeonghun Kim
+ * @brief Implementation file for Harmonic potential strength sweeper
+ * @version 0.1
+ * @date 2022-06-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "./harmonic_p_sweeper.h"
 #include "../solver/serial_solver/crank_nicolson/cn_rect_solver.h"
 
 #include "../../src/solver/parallel_solver/crank_nicolson/cn_rect_psolver.cuh"
 #include <mpi.h>
-
+/**
+ * @brief Construct a new HPSweeper::HPSweeper object
+ * 
+ * @param start 
+ * @param end 
+ * @param num 
+ * @param endpoint 
+ */
 HPSweeper::HPSweeper(float start, float end, int num, bool endpoint)
 : BaseSweeper(start, end, num, endpoint){
-    //numlist contains assymetry of angular frequency 
+    //numlist contains unisotropy of angular frequency 
+    //i.e. omega_y / omega_x 
 }
-
+/**
+ * @brief solve the equation with various parameters 
+ * 
+ * @param domain domain to solve
+ * @param initial_condition 
+ * @param g 
+ */
 void HPSweeper::run(RectangularDomain *domain, InitialCondition *initial_condition, float g ){
 
-
+    //If MPI_use = false, CUDA_use = false, solve the equation serially 
     if (!(this -> MPI_use) && !(this -> CUDA_use)){
         if(print_info){
             cout<< "Running serially started"<<endl;
@@ -91,7 +115,6 @@ void HPSweeper::run(RectangularDomain *domain, InitialCondition *initial_conditi
                 initial_condition->assign_to_domain(domain);
                 auto potential = new HarmonicPotential(1, get_value_from_idx(rank));
                 potential->calcualte_potential_in_grid(domain);
-                //g = this  -> get_value_from_idx(rank);
                 CNRectPSolver* solver =new CNRectPSolver(g, domain, casted_GPU_num);
                 solver->solve(1e-11, 101, "MPI&CUDA_"+to_string(rank), this -> print_info, this->save_data);
                 delete solver;
