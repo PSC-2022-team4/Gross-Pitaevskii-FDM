@@ -82,7 +82,7 @@ There are following parameters to set.
 - Equation Configuration 
 - Solver Configuration 
  
-For the details, refer to the code decription. [documentation page](https://psc-2022-team4.github.io/Gross-Pitaevskii-FDM/)
+For the details, refer to the [code description.](https://psc-2022-team4.github.io/Gross-Pitaevskii-FDM/)   
 Especially, if you want to use GPU to accelerate the execution, set parallel as true and set cuda_device = {device number} in Solver Configuration.   
 For example, 
 ```
